@@ -3,14 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\User; // Pastikan Anda mengimpor model User Anda
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request) // Tambahkan Request sebagai parameter
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $query = User::query(); // Mulai membangun query untuk model User
+
+        // Cek apakah ada parameter 'search' di URL dan nilainya tidak kosong
+        if ($request->has('search') && $request->search != '') {
+            $searchTerm = $request->search; // Ambil nilai pencarian
+            // Tambahkan kondisi WHERE untuk mencari di kolom 'nama', 'email', atau 'role'
+            $query->where('nama', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('email', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('role', 'like', '%' . $searchTerm . '%');
+        }
+
+        // Jalankan query dan ambil semua user yang cocok dengan filter (jika ada)
+        $users = $query->get();
+
+        // Kirimkan data user yang sudah difilter ke view
+        return view('users.index', compact('users')); // Sesuaikan dengan nama view Anda (misal: 'admin.index' atau 'kelola-admin')
     }
 
     public function store(Request $request)
@@ -32,9 +46,10 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        // Validasi email agar unik kecuali untuk user yang sedang diedit
         $validated = $request->validate([
             'nama' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|unique:users,email,' . $user->id, // Menggunakan $user->id untuk unique ignore
             'role' => 'required|in:admin,superadmin',
         ]);
 

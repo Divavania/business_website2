@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Dashboard')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title', 'Dashboard')</title>
 
     <!-- Bootstrap & Icon -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,6 +13,8 @@
         body {
             background-color: #f1f5f9;
             font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         .sidebar {
@@ -31,6 +33,7 @@
             font-size: 1.2rem;
             text-align: center;
             margin-bottom: 20px;
+            color: #ffffff;
         }
 
         .sidebar a {
@@ -39,6 +42,7 @@
             padding: 12px 20px;
             text-decoration: none;
             white-space: nowrap;
+            transition: background-color 0.3s ease;
         }
 
         .sidebar a:hover,
@@ -86,6 +90,13 @@
             left: 70px;
         }
 
+        .topbar .btn-toggle {
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #333;
+        }
+
         .main-content {
             margin-left: 240px;
             padding: 80px 20px 20px 20px;
@@ -96,11 +107,54 @@
             margin-left: 70px;
         }
 
-        .btn-toggle {
+        /* Styling for cards */
+        .card {
             border: none;
-            background: none;
-            font-size: 1.3rem;
-            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #014a79;
+            margin-bottom: 20px;
+        }
+
+        .card .btn {
+            background-color: #4797ec;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card .btn:hover {
+            background-color: #014a79;
+        }
+
+        /* Adjust table for simplicity */
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .table thead {
+            background-color: #4797ec;
+            color: white;
+        }
+
+        /* Adjusting the spacing and making the layout cleaner */
+        .card-body .row {
+            margin-bottom: 20px;
+        }
+
+        .container-fluid {
+            padding: 0 30px;
         }
     </style>
 </head>
@@ -108,7 +162,8 @@
 
 <!-- Sidebar -->
 <div id="sidebar" class="sidebar">
-    <h5>Tigatra Admin</h5>
+    <h5>Tigatra Admin
+    </h5>
     <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">
         <i class="bi bi-speedometer2"></i>
         <span class="text">Dashboard</span>
@@ -143,6 +198,18 @@
 <div id="topbar" class="topbar">
     <button class="btn-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
     <span><strong>Halo,</strong> {{ session('user')->nama }} ({{ session('user')->role }})</span>
+
+    <!-- Ikon Pesan -->
+    <a href="/contacts" class="position-relative">
+        <i class="bi bi-envelope fs-4 text-dark"></i>
+        @if($unreadMessages > 0)
+            <!-- Titik merah indikator pesan belum dibaca -->
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ $unreadMessages }}
+                <span class="visually-hidden">unread messages</span>
+            </span>
+        @endif
+    </a>
 </div>
 
 <!-- Main Content -->

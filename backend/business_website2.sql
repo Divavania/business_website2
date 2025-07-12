@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2025 at 02:07 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 12 Jul 2025 pada 23.06
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `about_us`
+-- Struktur dari tabel `about_us`
 --
 
 CREATE TABLE `about_us` (
@@ -34,10 +34,17 @@ CREATE TABLE `about_us` (
   `misi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `about_us`
+--
+
+INSERT INTO `about_us` (`id`, `sejarah`, `visi`, `misi`) VALUES
+(1, 'Halo semuanya', 'Hai', 'Oke');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contacts`
+-- Struktur dari tabel `contacts`
 --
 
 CREATE TABLE `contacts` (
@@ -48,13 +55,26 @@ CREATE TABLE `contacts` (
   `subjek` varchar(255) DEFAULT NULL,
   `alamat` text DEFAULT NULL,
   `pesan` text DEFAULT NULL,
-  `tanggal_kontak` timestamp NOT NULL DEFAULT current_timestamp()
+  `tanggal_kontak` timestamp NOT NULL DEFAULT current_timestamp(),
+  `is_read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktur dari tabel `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `products`
 --
 
 CREATE TABLE `products` (
@@ -64,20 +84,24 @@ CREATE TABLE `products` (
   `spesifikasi` text DEFAULT NULL,
   `kategori` enum('hardware','software') NOT NULL,
   `harga` decimal(10,2) NOT NULL,
-  `gambar` varchar(255) DEFAULT NULL
+  `gambar` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `products`
+-- Dumping data untuk tabel `products`
 --
 
-INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `harga`, `gambar`) VALUES
-(1, 'Mouse', 'bukan tikus', 'kayak tikus', 'hardware', 30000.00, 'produk/dfU7a7C1trLkFgGVImwWpPklxHwnHjrw3M00Acun.png');
+INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `harga`, `gambar`, `created_at`, `updated_at`) VALUES
+(1, 'Mouse', 'bukan tikus', 'kayak tikus', 'hardware', 30000.00, 'produk/dfU7a7C1trLkFgGVImwWpPklxHwnHjrw3M00Acun.png', NULL, NULL),
+(5, 'Mousepad', 'okeo', 'oke', 'hardware', 15000.00, NULL, '2025-07-12 13:03:41', '2025-07-12 13:03:41'),
+(6, 'Anjay', NULL, NULL, 'software', 10000.00, NULL, '2025-07-12 13:04:29', '2025-07-12 13:04:29');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service_centers`
+-- Struktur dari tabel `service_centers`
 --
 
 CREATE TABLE `service_centers` (
@@ -87,10 +111,17 @@ CREATE TABLE `service_centers` (
   `waktu_pelayanan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `service_centers`
+--
+
+INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
+(1, 'Madiun Store', 'Madiun Kota', 'Senin-Jumat 09.00-21.00');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -102,7 +133,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
@@ -113,66 +144,78 @@ INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
 --
 
 --
--- Indexes for table `about_us`
+-- Indeks untuk tabel `about_us`
 --
 ALTER TABLE `about_us`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `contacts`
+-- Indeks untuk tabel `contacts`
 --
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Indeks untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `service_centers`
+-- Indeks untuk tabel `service_centers`
 --
 ALTER TABLE `service_centers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `about_us`
+-- AUTO_INCREMENT untuk tabel `about_us`
 --
 ALTER TABLE `about_us`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `contacts`
+-- AUTO_INCREMENT untuk tabel `contacts`
 --
 ALTER TABLE `contacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `service_centers`
+-- AUTO_INCREMENT untuk tabel `service_centers`
 --
 ALTER TABLE `service_centers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
