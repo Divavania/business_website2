@@ -1,60 +1,56 @@
 @extends('layouts.master')
 
+@section('title', 'Dashboard - Tigatra Adikara')
+
 @section('content')
 <div class="container-fluid">
-    <!-- Header Section -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+    <div class="row mb-4">
+        <div class="col-12">
+            <h3 class="text-dark">Selamat Datang, {{ session('user') ? session('user')->nama : 'Guest' }}</h3>
+            <p class="text-muted">Anda login sebagai <strong>{{ session('user') ? session('user')->role : 'Guest' }}</strong>.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card border-0">
+                <div class="card-body bg-light text-dark">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-box fa-2x mr-3 text-primary"></i>
+                        <div>
+                            <h5 class="card-title mb-1">Total Produk</h5>
+                            <h3 class="mb-0">{{ number_format($totalProduk) }}</h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-6 text-right">
-                    <small>Selamat Datang, {{ session('user')->nama }} ({{ session('user')->role }})</small>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card border-0">
+                <div class="card-body bg-light text-dark">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-envelope fa-2x mr-3 text-success"></i>
+                        <div>
+                            <h5 class="card-title mb-1">Pesan Kontak</h5>
+                            <h3 class="mb-0">{{ number_format($totalKontak) }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card border-0">
+                <div class="card-body bg-light text-dark">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-tools fa-2x mr-3 text-warning"></i>
+                        <div>
+                            <h5 class="card-title mb-1">Service Center</h5>
+                            <h3 class="mb-0">{{ number_format($totalService) }}</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Main Content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Total Produk Card -->
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-box mr-2"></i>Total Produk</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2 class="text-center">{{ $totalProduk }}</h2>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pesan Kontak Card -->
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="card card-success">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-envelope mr-2"></i>Pesan Kontak</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2 class="text-center">{{ $totalKontak }}</h2>
-                        </div>
-                    </div>
-                </div>
-                <!-- Service Center Card -->
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <div class="card card-warning">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-tools mr-2"></i>Service Center</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2 class="text-center">{{ $totalService }}</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 @endsection
