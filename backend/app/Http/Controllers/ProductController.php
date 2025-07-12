@@ -2,38 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        if (!session()->has('user')) return redirect('/login');
-
-        $produk = DB::table('products')->get();
-        return view('products.index', compact('produk'));
-    }
-
-    public function create()
-    {
-        if (!session()->has('user')) return redirect('/login');
-
-        return view('products.create');
+        $products = DB::table('products')->get();
+        return view('products.index', compact('products'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
-            'deskripsi' => 'required',
-            'spesifikasi' => 'required',
-            'kategori' => 'required',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'nullable',
+            'spesifikasi' => 'nullable',
+            'kategori' => 'required|in:hardware,software',
             'harga' => 'required|numeric',
-            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        // Upload gambar jika ada
         $gambar = null;
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar')->store('produk', 'public');
@@ -48,33 +39,29 @@ class ProductController extends Controller
             'gambar' => $gambar
         ]);
 
-        return redirect('/produk')->with('success', 'Produk berhasil ditambahkan.');
-    }
-
-    public function edit($id)
-    {
-        if (!session()->has('user')) return redirect('/login');
-
-        $produk = DB::table('products')->where('id', $id)->first();
-        return view('products.edit', compact('produk'));
+        return redirect('/products')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required',
-            'deskripsi' => 'required',
-            'spesifikasi' => 'required',
-            'kategori' => 'required',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'nullable',
+            'spesifikasi' => 'nullable',
+            'kategori' => 'required|in:hardware,software',
             'harga' => 'required|numeric',
-            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
+        // Ambil data produk lama
         $produk = DB::table('products')->where('id', $id)->first();
 
-        $gambar = $produk->gambar;
+        // Jika upload gambar baru
         if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar')->store('produk', 'public');
+        } else {
+            // Pakai gambar lama
+            $gambar = $produk->gambar;
         }
 
         DB::table('products')->where('id', $id)->update([
@@ -86,13 +73,23 @@ class ProductController extends Controller
             'gambar' => $gambar
         ]);
 
-        return redirect('/produk')->with('success', 'Produk berhasil diperbarui.');
+        return redirect('/products')->with('success', 'Produk berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
+        $produk = DB::table('products')->where('id', $id)->first();
+
+        // Hapus gambar kalau ada
+        if ($produk->gambar && Storage::disk('public')->exists($produk->gambar)) {
+            Storage::disk('public')->delete($produk->gambar);
+        }
+
+        // Hapus dari database
         DB::table('products')->where('id', $id)->delete();
-        return redirect('/produk')->with('success', 'Produk berhasil dihapus.');
+
+        return redirect('/products')->with('success', 'Produk berhasil dihapus!');
     }
+
 }
 ?>

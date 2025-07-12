@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -13,7 +13,6 @@ class AuthController extends Controller
         if (session()->has('user')) {
             return redirect('/dashboard');
         }
-
         return view('auth.login');
     }
 
@@ -24,17 +23,14 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        // Cek user berdasarkan email
-        $user = DB::table('users')->where('email', $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return back()->with('error', 'Email atau password salah');
+        if ($user && Hash::check($request->password, $user->password)) {
+            session(['user' => $user]);
+            return redirect('/dashboard');
         }
 
-        // Simpan data user ke session
-        session(['user' => $user]);
-
-        return redirect('/dashboard');
+        return back()->with('error', 'Email atau password salah');
     }
 
     public function logout()
@@ -43,4 +39,3 @@ class AuthController extends Controller
         return redirect('/login');
     }
 }
-?>

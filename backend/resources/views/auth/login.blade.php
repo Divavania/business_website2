@@ -1,33 +1,45 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Admin - Tigatra Adikara</title>
+    <title>Login Admin | Tigatra Adikara</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; background: #f0f0f0; }
-        .login-box { width: 360px; margin: 60px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
-        input, button { width: 100%; padding: 10px; margin-top: 10px; }
-        button { background-color: #4797ec; color: white; border: none; cursor: pointer; }
+        body { background-color: #f0f0f0; }
+        .login-box {
+            margin-top: 100px;
+            max-width: 400px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
     </style>
 </head>
 <body>
+<div class="container d-flex justify-content-center">
     <div class="login-box">
-        <h3>Login Admin</h3>
+        <h4 class="text-center text-primary mb-4">Login Admin</h4>
 
         @if(session('error'))
-            <div style="color:red;">{{ session('error') }}</div>
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
         @endif
 
-        <form action="{{ url('/login') }}" method="POST">
+        <form action="/login" method="POST">
             @csrf
-            <label>Email</label>
-            <input type="email" name="email" required>
-
-            <label>Password</label>
-            <input type="password" name="password" required>
-
-            <button type="submit">Login</button>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button class="btn btn-primary w-100">Login</button>
         </form>
     </div>
+</div>
 </body>
 </html>
