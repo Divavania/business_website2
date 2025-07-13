@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceCenterController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return redirect('/login'); // ⬅️ Saat buka web, langsung redirect ke halaman login
@@ -36,8 +37,8 @@ Route::delete('/service/hapus/{id}', [ServiceCenterController::class, 'destroy']
 Route::get('/about', [AboutController::class, 'index']);
 Route::post('/about/update', [AboutController::class, 'update']);
 
-Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
-Route::post('/users/tambah', [\App\Http\Controllers\UserController::class, 'store']);
-Route::post('/users/edit/{id}', [\App\Http\Controllers\UserController::class, 'update']);
-Route::delete('/users/hapus/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::post('/users/tambah', [UserController::class, 'store'])->name('users.store');
+Route::put('/users/edit/{id}', [UserController::class, 'update'])->name('users.update'); // GANTI ke PUT
+Route::delete('/users/hapus/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 ?>

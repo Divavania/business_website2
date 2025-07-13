@@ -184,15 +184,19 @@
         <i class="bi bi-info-circle"></i>
         <span class="text">Tentang Kami</span>
     </a>
-    <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
-        <i class="bi bi-people"></i>
-        <span class="text">Kelola Admin</span>
-    </a>
-    <a href="/logout" onclick="return confirm('Yakin mau logout?')">
-        <i class="bi bi-box-arrow-right"></i>
-        <span class="text">Logout</span>
-    </a>
-</div>
+    {{-- Link Kelola Admin --}}
+    {{-- Hanya tampilkan jika pengguna yang login adalah 'superadmin' --}}
+    @if(session()->has('user') && session('user')->role == 'superadmin')
+        <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
+            <i class="bi bi-people"></i>
+            <span class="text">Kelola Admin</span>
+        </a>
+    @endif
+        <a href="/logout" onclick="return confirm('Yakin mau logout?')">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="text">Logout</span>
+        </a>
+    </div>
 
 <!-- Topbar -->
 <div id="topbar" class="topbar">

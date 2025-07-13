@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Jul 2025 pada 23.06
+-- Waktu pembuatan: 13 Jul 2025 pada 06.31
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -62,18 +62,6 @@ CREATE TABLE `contacts` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `products`
 --
 
@@ -95,7 +83,7 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `harga`, `gambar`, `created_at`, `updated_at`) VALUES
 (1, 'Mouse', 'bukan tikus', 'kayak tikus', 'hardware', 30000.00, 'produk/dfU7a7C1trLkFgGVImwWpPklxHwnHjrw3M00Acun.png', NULL, NULL),
-(5, 'Mousepad', 'okeo', 'oke', 'hardware', 15000.00, NULL, '2025-07-12 13:03:41', '2025-07-12 13:03:41'),
+(5, 'Keyboard', 'okeo', 'oke', 'hardware', 15000.00, NULL, '2025-07-12 13:03:41', '2025-07-12 20:52:57'),
 (6, 'Anjay', NULL, NULL, 'software', 10000.00, NULL, '2025-07-12 13:04:29', '2025-07-12 13:04:29');
 
 -- --------------------------------------------------------
@@ -116,7 +104,7 @@ CREATE TABLE `service_centers` (
 --
 
 INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
-(1, 'Madiun Store', 'Madiun Kota', 'Senin-Jumat 09.00-21.00');
+(1, 'Madiun Store', 'Madiun Kota', 'Senin-Jumat 09.00-20.00');
 
 -- --------------------------------------------------------
 
@@ -137,7 +125,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', '$2y$10$smifxYv2Fs0mJ/k24pI.6OBidRnZhkJdhW.OPd151m9GPOqW7UDTC', 'superadmin');
+(1, 'Super Admin', 'superadmin@gmail.com', '$2y$10$smifxYv2Fs0mJ/k24pI.6OBidRnZhkJdhW.OPd151m9GPOqW7UDTC', 'superadmin'),
+(3, 'Nindi', 'nindi@gmail.com', '$2y$10$xy2JQGnNd9VMeXDdmyPzZesceONe0iuZxZ.XLfnCqw.xgR.kSfO4G', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -153,12 +142,6 @@ ALTER TABLE `about_us`
 -- Indeks untuk tabel `contacts`
 --
 ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `migrations`
---
-ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -197,12 +180,6 @@ ALTER TABLE `contacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
@@ -218,7 +195,7 @@ ALTER TABLE `service_centers`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

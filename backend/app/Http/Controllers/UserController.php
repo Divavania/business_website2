@@ -3,70 +3,90 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User; // Pastikan Anda mengimpor model User Anda
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index(Request $request) // Tambahkan Request sebagai parameter
+    public function index(Request $request)
     {
-        $query = User::query(); // Mulai membangun query untuk model User
+        $query = User::query();
 
-        // Cek apakah ada parameter 'search' di URL dan nilainya tidak kosong
         if ($request->has('search') && $request->search != '') {
-            $searchTerm = $request->search; // Ambil nilai pencarian
-            // Tambahkan kondisi WHERE untuk mencari di kolom 'nama', 'email', atau 'role'
+            $searchTerm = $request->search;
             $query->where('nama', 'like', '%' . $searchTerm . '%')
                   ->orWhere('email', 'like', '%' . $searchTerm . '%')
                   ->orWhere('role', 'like', '%' . $searchTerm . '%');
         }
 
-        // Jalankan query dan ambil semua user yang cocok dengan filter (jika ada)
         $users = $query->get();
 
-        // Kirimkan data user yang sudah difilter ke view
-        return view('users.index', compact('users')); // Sesuaikan dengan nama view Anda (misal: 'admin.index' atau 'kelola-admin')
+        return view('users.index', compact('users'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'role' => 'required|in:admin,superadmin'
-        ]);
+        try {
+            $validated = $request->validate([
+                'nama' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:6',
+                'role' => 'required|in:admin,superadmin'
+            ]);
 
-        $validated['password'] = bcrypt($validated['password']);
-        User::create($validated);
+            // Hash password manual untuk memastikan
+            $validated['password'] = Hash::make($validated['password']);
+            
+            User::create($validated);
 
-        return back()->with('success', 'Admin berhasil ditambahkan');
+            return redirect()->back()->with('success', 'Admin berhasil ditambahkan');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('modal_target', 'tambahModal');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menambahkan admin: ' . $e->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        try {
+            $user = User::findOrFail($id);
 
-        // Validasi email agar unik kecuali untuk user yang sedang diedit
-        $validated = $request->validate([
-            'nama' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id, // Menggunakan $user->id untuk unique ignore
-            'role' => 'required|in:admin,superadmin',
-        ]);
+            $validated = $request->validate([
+                'nama' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'role' => 'required|in:admin,superadmin',
+                'password' => 'nullable|string|min:6'
+            ]);
 
-        if ($request->filled('password')) {
-            $validated['password'] = bcrypt($request->password);
+            // Jika password diisi, hash password baru
+            if ($request->filled('password')) {
+                $validated['password'] = Hash::make($validated['password']);
+            } else {
+                // Jika password kosong, hapus dari array agar tidak diupdate
+                unset($validated['password']);
+            }
+
+            $user->update($validated);
+
+            return redirect()->back()->with('success', 'Admin berhasil diupdate');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal mengupdate admin: ' . $e->getMessage());
         }
-
-        $user->update($validated);
-
-        return back()->with('success', 'Admin berhasil diupdate');
     }
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
 
-        return back()->with('success', 'Admin berhasil dihapus');
+            return redirect()->back()->with('success', 'Admin berhasil dihapus');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus admin: ' . $e->getMessage());
+        }
     }
 }

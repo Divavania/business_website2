@@ -11,9 +11,16 @@
         </div>
         <div class="col-md-6 d-flex justify-content-md-end justify-content-start">
             {{-- Tombol Tambah Admin --}}
-            <button class="btn btn-primary rounded-pill shadow-sm px-3 py-1" data-bs-toggle="modal" data-bs-target="#tambahModal">
-                <i class="bi bi-plus-circle-fill me-2"></i>Tambah Admin
-            </button>
+           @if(session()->has('user') && session('user')->role == 'superadmin')
+                <button class="btn btn-primary rounded-pill shadow-sm px-3 py-1" data-bs-toggle="modal" data-bs-target="#tambahModal">
+                    <i class="bi bi-plus-circle-fill me-2"></i>Tambah Admin
+                </button>
+            @else
+                {{-- Tombol non-aktif jika bukan superadmin --}}
+                <button class="btn btn-primary rounded-pill shadow-sm px-3 py-1" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    <i class="bi bi-plus-circle-fill me-2"></i>Tambah Admin
+                </button>
+            @endif
         </div>
     </div>
 
@@ -73,11 +80,24 @@
                             <td class="align-middle px-4">{{ $u->email }}</td>
                             <td class="align-middle px-4">{{ ucfirst($u->role) }}</td>
                             <td class="align-middle text-center px-4">
-                                <div class="d-flex justify-content-center gap-2">
+                            <div class="d-flex justify-content-center gap-2">
+                                {{-- Tombol Edit --}}
+                                @if(session()->has('user') && session('user')->role == 'superadmin')
                                     <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $u->id }}" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                                @else
+                                    {{-- Tombol Edit non-aktif jika bukan superadmin --}}
+                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                                @endif
+
+                                {{-- Tombol Hapus --}}
+                                @if(session()->has('user') && session('user')->role == 'superadmin')
                                     <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $u->id }}" title="Hapus"><i class="bi bi-trash-fill"></i></button>
-                                </div>
-                            </td>
+                                @else
+                                    {{-- Tombol Hapus non-aktif jika bukan superadmin --}}
+                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Hapus"><i class="bi bi-trash-fill"></i></button>
+                                @endif
+                            </div>
+                        </td>
                         </tr>
                         @empty
                         <tr>
@@ -92,6 +112,7 @@
         </div>
     </div>
 
+    {{-- MODAL TAMBAH ADMIN --}}
     <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <form method="POST" action="/users/tambah" class="modal-content shadow-lg rounded-lg border-0">
@@ -101,24 +122,46 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
+                    {{-- Menampilkan error validasi jika ada --}}
+                    @if ($errors->any() && session('modal_target') == 'tambahModal')
+                        <div class="alert alert-danger pb-0">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="mb-3">
                         <label for="nama_tambah" class="form-label fw-semibold">Nama</label>
-                        <input type="text" name="nama" id="nama_tambah" class="form-control rounded-pill" required>
+                        <input type="text" name="nama" id="nama_tambah" class="form-control rounded-pill @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
+                        @error('nama')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="email_tambah" class="form-label fw-semibold">Email</label>
-                        <input type="email" name="email" id="email_tambah" class="form-control rounded-pill" required>
+                        <input type="email" name="email" id="email_tambah" class="form-control rounded-pill @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="password_tambah" class="form-label fw-semibold">Password</label>
-                        <input type="password" name="password" id="password_tambah" class="form-control rounded-pill" required>
+                        <input type="password" name="password" id="password_tambah" class="form-control rounded-pill @error('password') is-invalid @enderror" required>
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label for="role_tambah" class="form-label fw-semibold">Role</label>
-                        <select name="role" id="role_tambah" class="form-select rounded-pill" required>
-                            <option value="admin">Admin</option>
-                            <option value="superadmin">Superadmin</option>
+                        <select name="role" id="role_tambah" class="form-select rounded-pill @error('role') is-invalid @enderror" required>
+                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
                         </select>
+                        @error('role')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center p-3 bg-light border-top rounded-bottom-lg">
@@ -129,11 +172,15 @@
         </div>
     </div>
 
+    {{-- MODAL EDIT ADMIN --}}
     @foreach($users as $u)
+    {{-- Hanya tampilkan modal edit jika user yang login adalah superadmin --}}
+    @if(session()->has('user') && session('user')->role == 'superadmin')
     <div class="modal fade" id="editModal{{ $u->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $u->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <form method="POST" action="/users/edit/{{ $u->id }}" class="modal-content shadow-lg rounded-lg border-0">
                 @csrf
+                @method('PUT')
                 <div class="modal-header bg-warning text-dark p-4 rounded-top-lg">
                     <h5 class="modal-title" id="editModalLabel{{ $u->id }}"><i class="bi bi-pencil-square me-2"></i>Edit Admin</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -166,7 +213,13 @@
             </form>
         </div>
     </div>
+    @endif
+@endforeach
 
+    {{-- MODAL HAPUS ADMIN --}}
+    @foreach($users as $u)
+    {{-- Hanya tampilkan modal hapus jika user yang login adalah superadmin --}}
+    @if(session()->has('user') && session('user')->role == 'superadmin')
     <div class="modal fade" id="hapusModal{{ $u->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $u->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <form method="POST" action="/users/hapus/{{ $u->id }}" class="modal-content shadow-lg rounded-lg border-0">
@@ -187,7 +240,8 @@
             </form>
         </div>
     </div>
-    @endforeach
+    @endif
+@endforeach
 </div>
 @endsection
 
@@ -201,14 +255,13 @@
     .table-fixed-layout th,
     .table-fixed-layout td {
         overflow: hidden;
-        text-overflow: ellipsis; /* Menambahkan elipsis jika teks terpotong */
-        white-space: nowrap; /* Memastikan teks tetap dalam satu baris untuk th dan td umum */
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
-    /* Kustomisasi untuk input-group agar lebih rapi */
     .input-group.rounded-pill > .input-group-text,
     .input-group.rounded-pill > .form-control {
-        border-color: #dee2e6; /* Warna border default Bootstrap */
+        border-color: #dee2e6;
     }
 </style>
 @endpush
@@ -217,34 +270,38 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('searchInput');
-        const searchForm = searchInput.closest('form'); // Dapatkan form yang membungkus input
+        const searchForm = searchInput.closest('form');
 
-        // Otomatis submit form ketika user berhenti mengetik (debounce)
         let typingTimer;
-        const doneTypingInterval = 500; // milliseconds (0.5 detik)
+        const doneTypingInterval = 500;
 
         searchInput.addEventListener('keyup', () => {
-            clearTimeout(typingTimer); // Bersihkan timer sebelumnya
-            if (searchInput.value) { // Hanya submit jika ada teks
+            clearTimeout(typingTimer);
+            if (searchInput.value.length > 0) {
                 typingTimer = setTimeout(() => {
-                    searchForm.submit(); // Submit form GET
+                    searchForm.submit();
                 }, doneTypingInterval);
             } else {
-                 // Jika input kosong, langsung submit untuk menampilkan semua data
                 searchForm.submit();
             }
         });
 
-        // Hentikan timer jika user mulai mengetik lagi
         searchInput.addEventListener('keydown', () => {
             clearTimeout(typingTimer);
         });
 
-        // Untuk memastikan form terkirim jika input search langsung dihapus
-        // atau jika user menggunakan autocomplete yang tidak memicu keyup
         searchInput.addEventListener('change', () => {
-             searchForm.submit();
+            searchForm.submit();
         });
+
+        // SKRIP UNTUK MENAMPILKAN MODAL SECARA OTOMATIS JIKA ADA ERROR VALIDASI
+        @if ($errors->any())
+            const modalTarget = "{{ session('modal_target') }}";
+            if (modalTarget) {
+                const myModal = new bootstrap.Modal(document.getElementById(modalTarget));
+                myModal.show();
+            }
+        @endif
     });
 </script>
 @endpush
