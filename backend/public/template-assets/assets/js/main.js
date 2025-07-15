@@ -63,7 +63,8 @@
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
+    // window.addEventListener('load', () => { (load halaman lama)
+     window.addEventListener('DOMContentLoaded', () => { // (load lebih cepat)
       preloader.remove();
     });
   }

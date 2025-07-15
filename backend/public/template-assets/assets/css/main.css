@@ -611,7 +611,7 @@ h6 {
   z-index: 999999;
   overflow: hidden;
   background: var(--background-color);
-  transition: all 0.6s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 #preloader:before {
@@ -620,7 +620,7 @@ h6 {
   top: calc(50% - 30px);
   left: calc(50% - 30px);
   border: 6px solid #ffffff;
-  border-color: var(--accent-color) transparent var(--accent-color) transparent;
+  border-color: #007bff transparent #007bff transparent;
   border-radius: 50%;
   width: 60px;
   height: 60px;
