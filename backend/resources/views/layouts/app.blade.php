@@ -180,7 +180,7 @@
         <i class="bi bi-wrench"></i>
         <span class="text">Service Center</span>
     </a>
-    <a href="/about" class="{{ request()->is('about') ? 'active' : '' }}">
+    <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
         <i class="bi bi-info-circle"></i>
         <span class="text">Tentang Kami</span>
     </a>

@@ -95,7 +95,7 @@
                             </li>
                             <li class="list-group-item d-flex align-items-center">
                                 <i class="bi bi-info-circle me-3 text-secondary fs-5"></i>
-                                <a href="/about" class="text-decoration-none text-dark fw-semibold">Kelola Informasi "Tentang Kami"</a>
+                                <a href="/about_backend" class="text-decoration-none text-dark fw-semibold">Kelola Informasi "Tentang Kami"</a>
                             </li>
                             @if(session()->has('user') && session('user')->role == 'superadmin') {{-- Pastikan ini sudah diterapkan --}}
                                 <li class="list-group-item d-flex align-items-center">

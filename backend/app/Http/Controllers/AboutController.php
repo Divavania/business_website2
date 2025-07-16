@@ -20,7 +20,7 @@ class AboutController extends Controller
         }
 
         // Mengirimkan objek $about ke view 'tentang-kami'
-        return view('about.index', compact('about'));
+        return view('about_backend.index', compact('about'));
     }
 
     public function update(Request $request)
@@ -42,6 +42,6 @@ class AboutController extends Controller
         );
 
         // Redirect kembali ke halaman '/about' dengan pesan sukses
-        return redirect('/about')->with('success', 'Informasi "Tentang Kami" berhasil diperbarui!');
+        return redirect('/about_backend')->with('success', 'Informasi "Tentang Kami" berhasil diperbarui!');
     }
 }

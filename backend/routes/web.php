@@ -88,8 +88,8 @@ Route::post('/service/edit/{id}', [ServiceCenterController::class, 'update']);
 Route::delete('/service/hapus/{id}', [ServiceCenterController::class, 'destroy']);
 
 // Rute untuk manajemen About di backend, menggunakan '/admin/about' untuk menghindari bentrok
-Route::get('/admin/about', [AboutController::class, 'index'])->name('admin.about.index');
-Route::post('/admin/about/update', [AboutController::class, 'update'])->name('admin.about.update');
+Route::get('/about_backend', [AboutController::class, 'index'])->name('about_backend.index');
+Route::post('/about_backend/update', [AboutController::class, 'update'])->name('about_backend.update');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/users/tambah', [UserController::class, 'store'])->name('users.store');
