@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -13,20 +13,15 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        // 1. Logika Pencarian
         if ($request->has('search') && $request->input('search') !== null) {
             $search = $request->input('search');
             $query->where('nama', 'like', '%' . $search . '%')
-                  ->orWhere('deskripsi', 'like', '%' . $search . '%') // Tambahkan pencarian di deskripsi
-                  ->orWhere('spesifikasi', 'like', '%' . $search . '%'); // Tambahkan pencarian di spesifikasi
+                  ->orWhere('deskripsi', 'like', '%' . $search . '%') 
+                  ->orWhere('spesifikasi', 'like', '%' . $search . '%'); 
         }
-
-        // 2. Logika Filter Kategori
         if ($request->has('kategori') && $request->input('kategori') !== 'all') {
             $query->where('kategori', $request->input('kategori'));
         }
-
-        // 3. Logika Sorting Harga (termurah/termahal)
         if ($request->has('sort_harga')) {
             if ($request->input('sort_harga') == 'asc') {
                 $query->orderBy('harga', 'asc');
@@ -34,8 +29,6 @@ class ProductController extends Controller
                 $query->orderBy('harga', 'desc');
             }
         }
-
-        // 4. Logika Sorting Nama (A-Z/Z-A) - Akan menjadi prioritas kedua jika harga juga disort
         if ($request->has('sort_nama')) {
             if ($request->input('sort_nama') == 'asc') {
                 $query->orderBy('nama', 'asc');
@@ -43,25 +36,16 @@ class ProductController extends Controller
                 $query->orderBy('nama', 'desc');
             }
         } else {
-            // Default sorting jika tidak ada sort_nama atau sort_harga
-            // Anda bisa menyesuaikannya, misalnya default tetap latest()
-            $query->latest(); // Mengurutkan terbaru jika tidak ada sorting lain
+            $query->latest(); 
         }
 
-
-        // Ambil total produk (setelah filter, sebelum pagination)
         $totalProducts = $query->count();
 
-        // Gunakan paginate() untuk mendapatkan objek LengthAwarePaginator
-        // Sesuaikan jumlah per halaman jika diinginkan
         $products = $query->paginate(10);
 
-        // Penting: Pastikan view yang direturn adalah 'products.index' jika itu nama folder/file Anda
-        // Jika file adalah resources/views/products.blade.php, maka cukup 'products'
-        return view('products.index', compact('products', 'totalProducts')); // Teruskan totalProducts juga
+        return view('products.index', compact('products', 'totalProducts'));
     }
 
-    // ... (fungsi store, update, destroy tetap sama)
     public function store(Request $request)
     {
         $request->validate([

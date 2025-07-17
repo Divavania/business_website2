@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -34,7 +34,6 @@ class UserController extends Controller
                 'role' => 'required|in:admin,superadmin'
             ]);
 
-            // Hash password manual untuk memastikan
             $validated['password'] = Hash::make($validated['password']);
             
             User::create($validated);
@@ -62,11 +61,9 @@ class UserController extends Controller
                 'password' => 'nullable|string|min:6'
             ]);
 
-            // Jika password diisi, hash password baru
             if ($request->filled('password')) {
                 $validated['password'] = Hash::make($validated['password']);
             } else {
-                // Jika password kosong, hapus dari array agar tidak diupdate
                 unset($validated['password']);
             }
 

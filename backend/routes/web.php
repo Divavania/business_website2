@@ -1,26 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ServiceCenterController;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\ServiceCenterController;
+use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Frontend\About_frontendController;
+use Illuminate\Support\Facades\DB; // Tambahkan ini untuk akses DB
 
 // FRONTEND
 Route::get('/', function () {
-    return view('frontend.index'); // Ini akan menampilkan halaman home frontend
+    $about = DB::table('about_us')->first();
+
+    if (is_null($about)) {
+        $about = (object)[
+            'sejarah' => 'Data Sejarah belum tersedia.',
+            'visi' => 'Data Visi belum tersedia.',
+            'misi' => 'Data Misi belum tersedia.',
+            'deskripsi' => 'Ringkasan deskripsi belum tersedia.'
+        ];
+    }
+    return view('frontend.index', compact('about')); // Melewatkan variabel $about ke view
 });
 
 // Rute untuk halaman About (resources/views/frontend/about.blade.php)
-Route::get('/about', function () {
-    return view('frontend.about');
-});
+Route::get('/about', [About_frontendController::class, 'index']);
 
-// Tambahkan rute untuk halaman frontend lainnya sesuai file Blade Anda di resources/views/frontend/
 Route::get('/services', function () {
     return view('frontend.services');
 });
@@ -37,9 +45,10 @@ Route::get('/blog', function () {
     return view('frontend.blog');
 });
 
-Route::get('/contact-us', function () { // Gunakan nama rute berbeda jika ada 'contacts' untuk backend
+Route::get('/contact-us', function () { 
     return view('frontend.contact');
 });
+
 
 Route::get('/team', function () {
     return view('frontend.team');
@@ -66,6 +75,10 @@ Route::get('/starter-page', function () {
 });
 
 
+// CONTROLLER FE
+//About
+Route::get('/tentang-kami', [About_frontendController::class, 'index']);
+
 // --- RUTE UNTUK AUTENTIKASI (LOGIN, LOGOUT) ---
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -79,7 +92,7 @@ Route::post('/products/tambah', [ProductController::class, 'store'])->name('prod
 Route::post('/products/edit/{product}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/hapus/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index'); // Ini adalah rute untuk manajemen kontak di backend
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index'); 
 Route::get('/contacts/{id}/mark-as-read', [ContactController::class, 'markAsRead'])->name('contacts.markAsRead');
 
 Route::get('/service', [ServiceCenterController::class, 'index']);
@@ -87,7 +100,6 @@ Route::post('/service/tambah', [ServiceCenterController::class, 'store']);
 Route::post('/service/edit/{id}', [ServiceCenterController::class, 'update']);
 Route::delete('/service/hapus/{id}', [ServiceCenterController::class, 'destroy']);
 
-// Rute untuk manajemen About di backend, menggunakan '/admin/about' untuk menghindari bentrok
 Route::get('/about_backend', [AboutController::class, 'index'])->name('about_backend.index');
 Route::post('/about_backend/update', [AboutController::class, 'update'])->name('about_backend.update');
 

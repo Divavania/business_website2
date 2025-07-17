@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +13,6 @@ class DashboardController extends Controller
             return redirect('/login');
         }
 
-        // Hitung data dari database
         $totalProduk = DB::table('products')->count();
         $totalKontak = DB::table('contacts')->count();
         $totalService = DB::table('service_centers')->count();
