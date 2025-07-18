@@ -168,7 +168,8 @@
         <i class="bi bi-speedometer2"></i>
         <span class="text">Dashboard</span>
     </a>
-    <a href="/products" class="{{ request()->is('products') ? 'active' : '' }}">
+    {{-- KOREKSI: Menggunakan route() helper untuk rute backend produk --}}
+    <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
         <i class="bi bi-box-seam"></i>
         <span class="text">Produk</span>
     </a>

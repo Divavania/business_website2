@@ -18,23 +18,58 @@
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #556270; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #d9232d; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+:root {
+  --default-color: #212529;
+  --default-color-rgb: 33, 37, 41;
+  --primary-color: #014a79; /* Biru Tua sebagai primary */
+  --primary-color-rgb: 1, 74, 121;
+  --secondary-color: #ffffff; /* Broken White sebagai secondary */
+  --secondary-color-rgb: 240, 240, 240;
+  --accent-color: #4797ec; /* Biru Muda sebagai accent */
+  --accent-color-rgb: 71, 151, 236;
+  --background-color: #ffffff; /* Broken White sebagai background */
+  --contrast-color: #ffffff; /* Warna kontras untuk teks di atas warna gelap */
+}
+
+.dark-background {
+  background-color: var(--primary-color);
+  color: var(--contrast-color);
+}
+
+.dark-background a {
+  color: var(--contrast-color);
+}
+
+.dark-background a:hover {
+  color: var(--accent-color);
+}
+
+.light-background {
+  background-color: var(--secondary-color);
+  color: var(--default-color);
+}
+
+.light-background a {
+  color: var(--primary-color);
+}
+
+.light-background a:hover {
+  color: var(--accent-color);
+}
+
+/* General Body Background */
+body {
+  background-color: var(--secondary-broken-white);
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #556270;  /* The default color of the main navmenu links */
-  --nav-hover-color: #d9232d; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #2365d9; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #556270; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #d9232d; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #2365d9; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -390,7 +425,7 @@ h6 {
   .navmenu .active:focus i {
     background-color: var(--accent-color);
     color: var(--contrast-color);
-    transform: rotate(180deg);
+    transo: rotate(180deg);
   }
 
   .navmenu .dropdown ul {
@@ -723,11 +758,11 @@ section,
   color: var(--default-color);
   background-color: var(--background-color);
   padding: 60px 0;
-  scroll-margin-top: 90px;
+  scroll-margin-top: 74px;
   overflow: clip;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 768px) {
 
   section,
   .section {
@@ -867,6 +902,7 @@ section,
   display: inline-block;
   padding: 8px 32px;
   border-radius: 4px;
+  border:0;
   transition: 0.5s;
   margin: 10px;
   animation: fadeInUp 1s both 0.4s;
@@ -2305,7 +2341,7 @@ section,
 .contact .php-email-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
-  border: 0;
+  border: 1px solid var(--primary-dark-blue);
   padding: 10px 30px;
   transition: 0.4s;
   border-radius: 4px;
@@ -2313,6 +2349,7 @@ section,
 
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  border-color: var(--primary-light-blue);
 }
 
 /*--------------------------------------------------------------
@@ -2492,4 +2529,90 @@ section,
   padding-left: 5px;
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
+}
+
+/* --- WhatsApp Sticky Button CSS --- */
+.whatsapp-sticky-button {
+    position: fixed;
+    top: 75%; /* Vertically center */
+    right: 20px; /* Jarak dari kanan */
+    transform: translateY(-50%); /* Penyesuaian untuk centering sempurna */
+    z-index: 10000; /* Lebih tinggi dari scroll-top */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-sticky-button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366; /* Warna hijau WhatsApp */
+    color: white;
+    width: 50px; /* Ukuran tombol bulat */
+    height: 50px; /* Ukuran tombol bulat */
+    border-radius: 50%; /* Membuat tombol bulat */
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.whatsapp-sticky-button a:hover {
+    background-color: #128C7E; /* Warna hijau lebih gelap saat hover */
+    transform: scale(1.05) translateY(-50%); /* Efek zoom ringan saat hover, tetap di tengah */
+    color: white;
+}
+
+.whatsapp-sticky-button i {
+    font-size: 24px; /* Ukuran ikon */
+    line-height: 1;
+}
+
+.whatsapp-sticky-button span {
+    display: none; /* Sembunyikan teks karena kita ingin tombol sederhana hanya ikon */
+}
+
+/* --- Scroll-to-top button styling --- */
+#scroll-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 999; /* Lebih rendah dari WhatsApp button */
+    background: rgba(1, 74, 121, 0.5); /* KOREKSI: Lebih transparan (50% opacity) */
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    transition: all 0.4s;
+}
+
+#scroll-top i {
+    font-size: 24px;
+    color: #fff;
+    line-height: 0;
+}
+
+#scroll-top:hover {
+    background: rgba(1, 74, 121, 0.8); /* KOREKSI: Agak gelap (80% opacity) saat hover */
+    color: #fff;
+}
+
+#scroll-top.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Media queries untuk penyesuaian di layar kecil */
+@media (max-width: 768px) {
+    .whatsapp-sticky-button {
+        right: 10px;
+    }
+    .whatsapp-sticky-button a {
+        width: 45px;
+        height: 45px;
+    }
+    .whatsapp-sticky-button i {
+        font-size: 20px;
+    }
 }

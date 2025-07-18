@@ -8,79 +8,34 @@
     <meta name="description" content="@yield('description', 'Selamat datang di Tigatra Adikara, perusahaan terkemuka dalam berbagai layanan profesional.')"> {{-- Default description --}}
     <meta name="keywords" content="@yield('keywords', 'Tigatra Adikara, services, solutions, business, technology')"> {{-- Default keywords --}}
 
-
+    {{-- Favicon dan Apple Touch Icon --}}
     <link href="{{ asset('template-assets/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('template-assets/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
+    {{-- Google Fonts --}}
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+    {{-- Vendor CSS Files --}}
     <link href="{{ asset('template-assets/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template-assets/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('template-assets/assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('template-assets/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template-assets/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    {{-- Main Template CSS File --}}
     <link href="{{ asset('template-assets/assets/css/main.css') }}" rel="stylesheet">
 
-    {{-- CSS untuk Pop-up WhatsApp (Ditempatkan di <head> untuk loading lebih awal) --}}
-    <style>
-        .whatsapp-sticky-button {
-            position: fixed;
-            top: 50%; /* Vertically center */
-            right: 20px; /* Jarak dari kanan */
-            transform: translateY(-50%); /* Penyesuaian untuk centering sempurna */
-            z-index: 9999; /* Pastikan di atas elemen lain */
-            display: flex; /* Untuk memastikan item di dalamnya (icon) terpusat */
-            align-items: center;
-            justify-content: center;
-        }
+    {{-- Custom CSS untuk Warna dan UI (DIASUMSIKAN SUDAH ADA DI public/css/app.css) --}}
+    {{-- Jika Anda menggunakan Laravel Mix/Vite, pastikan 'resources/css/app.css' sudah dikompilasi --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- ATAU, jika menggunakan Vite (Laravel 9+), gunakan ini: --}}
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
-        .whatsapp-sticky-button a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #25D366; /* Warna hijau WhatsApp */
-            color: white;
-            width: 50px; /* Ukuran tombol bulat */
-            height: 50px; /* Ukuran tombol bulat */
-            border-radius: 50%; /* Membuat tombol bulat */
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
+    {{-- Catatan: Blok <style> untuk WhatsApp sticky button telah dihapus dari sini --}}
+    {{-- dan seharusnya sudah dipindahkan ke resources/css/app.css --}}
 
-        .whatsapp-sticky-button a:hover {
-            background-color: #128C7E; /* Warna hijau lebih gelap saat hover */
-            transform: scale(1.05) translateY(-50%); /* Efek zoom ringan saat hover, tetap di tengah */
-            color: white; /* Pastikan teks/ikon tetap putih saat hover */
-        }
-
-        .whatsapp-sticky-button i {
-            font-size: 24px; /* Ukuran ikon */
-            line-height: 1; /* Penting untuk centering vertikal ikon */
-        }
-
-        /* Sembunyikan teks karena kita ingin tombol sederhana hanya ikon */
-        .whatsapp-sticky-button span {
-            display: none;
-        }
-
-        /* Media queries untuk penyesuaian di layar kecil */
-        @media (max-width: 768px) {
-            .whatsapp-sticky-button {
-                right: 10px; /* Sedikit lebih dekat ke tepi pada layar kecil */
-            }
-            .whatsapp-sticky-button a {
-                width: 45px; /* Ukuran sedikit lebih kecil di layar kecil */
-                height: 45px;
-            }
-            .whatsapp-sticky-button i {
-                font-size: 20px;
-            }
-        }
-    </style>
 </head>
 
 <body class="index-page">
@@ -179,10 +134,12 @@
 
     </footer>
 
+    {{-- Scroll-to-top button --}}
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <div id="preloader"></div>
 
+    {{-- Vendor JS Files --}}
     <script src="{{ asset('template-assets/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('template-assets/assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('template-assets/assets/vendor/aos/aos.js') }}"></script>
@@ -193,9 +150,10 @@
     <script src="{{ asset('template-assets/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
     <script src="{{ asset('template-assets/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
+    {{-- Main Template JS File --}}
     <script src="{{ asset('template-assets/assets/js/main.js') }}"></script>
 
-    {{-- Pop-up WhatsApp --}}
+    {{-- Pop-up WhatsApp (HTML structure remains, styling from app.css) --}}
     <div class="whatsapp-sticky-button">
         <a href="https://wa.me/?text=Halo%20Tigatra%20Adikara,%20saya%20ingin%20bertanya..." target="_blank">
             <i class="bi bi-whatsapp"></i>

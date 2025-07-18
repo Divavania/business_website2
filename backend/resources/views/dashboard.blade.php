@@ -24,7 +24,8 @@
                         {{-- Tambahkan mb-2 atau mb-1 --}}
                         <p class="card-text text-muted mb-2">Total produk yang terdaftar pada sistem.</p>
                         {{-- Ubah mt-3 menjadi mt-2 atau mt-1 --}}
-                        <a href="/products" class="btn btn-outline-primary btn-sm mt-2 align-self-start">Kelola Produk <i class="bi bi-arrow-right"></i></a>
+                        {{-- KOREKSI: Menggunakan route() helper untuk rute backend produk --}}
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-primary btn-sm mt-2 align-self-start">Kelola Produk <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -87,7 +88,8 @@
                             {{-- ... item list group Anda ... --}}
                             <li class="list-group-item d-flex align-items-center">
                                 <i class="bi bi-plus-circle me-3 text-success fs-5"></i>
-                                <a href="/products" class="text-decoration-none text-dark fw-semibold">Kelola Produk</a>
+                                {{-- KOREKSI: Menggunakan route() helper untuk rute backend produk --}}
+                                <a href="{{ route('admin.products.index') }}" class="text-decoration-none text-dark fw-semibold">Kelola Produk</a>
                             </li>
                             <li class="list-group-item d-flex align-items-center">
                                 <i class="bi bi-chat-left-text me-3 text-info fs-5"></i>

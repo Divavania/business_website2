@@ -9,8 +9,9 @@
 
         <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
+            {{-- Slide 1 --}}
             <div class="carousel-item active">
-                <img src="{{ asset('template-assets/img/hero-carousel/hero-carousel-1.jpg') }}" alt="Solusi Infrastruktur IT Tigatra Adikara">
+                <img src="{{ asset('template-assets/img/hero-carousel/hero-carousel-1.jpg') }}" class="img-fluid" alt="Solusi Infrastruktur IT Tigatra Adikara">
                 <div class="carousel-container">
                     <h2>Membangun Pondasi Digital Anda</h2>
                     <p>Tigatra Adikara adalah mitra terpercaya Anda dalam menyediakan solusi **Infrastruktur IT** yang kokoh dan inovatif. Kami merancang, mengimplementasikan, dan mengelola sistem yang mendukung pertumbuhan bisnis Anda.</p>
@@ -19,8 +20,11 @@
                         <a href="{{ url('/service-center') }}" class="btn-get-started btn-get-started-alt ms-3">Dukungan Teknis</a>
                     </div>
                 </div>
-            </div><div class="carousel-item">
-                <img src="{{ asset('template-assets/img/hero-carousel/hero-carousel-2.jpg') }}" alt="Pemasaran Hardware dan Software Terbaik">
+            </div>
+
+            {{-- Slide 2 (Hanya 2 slide sesuai permintaan) --}}
+            <div class="carousel-item">
+                <img src="{{ asset('template-assets/img/hero-carousel/hero-carousel-2.jpg') }}" class="img-fluid" alt="Pemasaran Hardware dan Software Terbaik">
                 <div class="carousel-container">
                     <h2>Hardware & Software Terbaik untuk Efisiensi Anda</h2>
                     <p>Dapatkan **hardware dan software** terkini dari brand terkemuka. Kami menyediakan konsultasi, pengadaan, dan instalasi untuk memastikan Anda memiliki alat yang tepat untuk setiap kebutuhan operasional Anda.</p>
@@ -29,17 +33,11 @@
                         <a href="{{ url('/contact') }}" class="btn-get-started btn-get-started-alt ms-3">Konsultasi Gratis</a>
                     </div>
                 </div>
-            </div><div class="carousel-item">
-                <img src="{{ asset('template-assets/img/hero-carousel/hero-carousel-3.jpg') }}" alt="Layanan Purna Jual Komprehensif">
-                <div class="carousel-container">
-                    <h2>Layanan Purna Jual & Service Center Terdepan</h2>
-                    <p>Komitmen kami tidak berhenti pada penjualan. **Service Center** kami siap memberikan dukungan purna jual, perbaikan, dan pemeliharaan untuk memastikan investasi IT Anda bekerja optimal dalam jangka panjang.</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="{{ url('/service-center') }}" class="btn-get-started">Kunjungi Service Center</a>
-                        <a href="{{ url('/about') }}" class="btn-get-started btn-get-started-alt ms-3">Tentang Kami</a>
-                    </div>
-                </div>
-            </div><a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+            </div>
+
+            {{-- Slide 3 dihapus --}}
+
+            <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
             </a>
 
@@ -51,205 +49,151 @@
 
         </div>
 
-    </section><section id="about" class="about section">
+    </section>
 
+    {{-- Bagian Tentang Kami --}}
+    <section id="about" class="about section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Tentang Kami</h2>
             <p>Siapa Kami dan Apa yang Kami Lakukan</p>
-        </div><div class="container">
+        </div>
+        <div class="container">
             <div class="row gy-4 justify-content-center">
-                {{-- Menambahkan kolom untuk gambar di kiri --}}
+                {{-- Kolom untuk gambar di kiri --}}
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
                     <div class="about-img">
                         <img src="{{ asset('template-assets/img/about-portrait.jpg') }}" class="img-fluid" alt="About Us Portrait">
                     </div>
                 </div>
 
-                {{-- Kolom untuk konten deskripsi, disesuaikan menjadi col-lg-7 --}}
+                {{-- Kolom untuk konten deskripsi --}}
                 <div class="col-lg-7 content" data-aos="fade-up" data-aos-delay="200">
                     {{-- Hanya menampilkan deskripsi dari database --}}
                     <p class="fst-italic">
                         {!! nl2br(e($about->deskripsi ?? 'Ringkasan tentang perusahaan belum tersedia. Silakan perbarui dari dashboard.')) !!}
                     </p>
-                    {{-- Tombol "Selengkapnya Tentang Kami" tetap dipertahankan --}}
                     <a href="{{ url('/about') }}" class="read-more"><span>Selengkapnya Tentang Kami</span><i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
-    </section><section id="clients" class="clients section light-background">
-        <div class="container" data-aos="fade-up">
-            <div class="section-title">
-                <h2>Klien Kami</h2>
-                <p>Mitra Kepercayaan Kami</p>
-            </div>
-            <div class="row gy-4">
-                <div class="col-xl-2 col-md-3 col-6 client-logo">
-                    <img src="{{ asset('template-assets/img/clients/client-1.png') }}" class="img-fluid" alt="Client Logo 1">
-                </div>
-                <div class="col-xl-2 col-md-3 col-6 client-logo">
-                    <img src="{{ asset('template-assets/img/clients/client-2.png') }}" class="img-fluid" alt="Client Logo 2">
-                </div>
-                <div class="col-xl-2 col-md-3 col-6 client-logo">
-                    <img src="{{ asset('template-assets/img/clients/client-3.png') }}" class="img-fluid" alt="Client Logo 3">
-                </div>
-                <div class="col-xl-2 col-md-3 col-6 client-logo">
-                    <img src="{{ asset('template-assets/img/clients/client-4.png') }}" class="img-fluid" alt="Client Logo 4">
-                </div>
-                <div class="col-xl-2 col-md-3 col-6 client-logo">
-                    <img src="{{ asset('template-assets/img/clients/client-5.png') }}" class="img-fluid" alt="Client Logo 5">
-                </div>
-                <div class="col-xl-2 col-md-3 col-6 client-logo">
-                    <img src="{{ asset('template-assets/img/clients/client-6.png') }}" class="img-fluid" alt="Client Logo 6">
-                </div>
-            </div>
-        </div>
-    </section><section id="services" class="services section">
+    </section>
+
+    {{-- Bagian Our Product (Baru) --}}
+    <section id="products" class="products section light-background">
         <div class="container section-title" data-aos="fade-up">
-            <h2>Produk & Layanan Kami</h2>
-            <p>Solusi Lengkap untuk Kebutuhan IT Anda</p>
-        </div><div class="container">
+            <h2>Produk Unggulan Kami</h2>
+            <p>Jelajahi Solusi Teknologi Terkini</p>
+        </div>
+        <div class="container">
             <div class="row gy-4">
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-item d-flex position-relative h-100">
-                        <i class="bi bi-server icon flex-shrink-0"></i> {{-- Icon baru --}}
-                        <div>
-                            <h4 class="title"><a href="{{ url('/products') }}" class="stretched-link">Infrastruktur IT & Jaringan</a></h4>
-                            <p class="description">Perancangan, instalasi, dan pemeliharaan server, data center, dan jaringan yang handal.</p>
+                @forelse($products as $product)
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card h-100 shadow-sm border-0 rounded-lg">
+                            {{-- Perhatikan path gambar: sesuaikan dengan tempat Anda menyimpan gambar produk --}}
+                            <img src="{{ asset('storage/' . $product->gambar) }}" class="card-img-top rounded-top-lg" alt="{{ $product->nama }}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E0E0E0/333333?text=No+Image';">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title fw-bold text-primary">{{ $product->nama }}</h5>
+                                <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->deskripsi, 100) }}</p> {{-- Batasi deskripsi --}}
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                                    <span class="fw-bold text-success">Rp {{ number_format($product->harga, 0, ',', '.') }}</span>
+                                    {{-- Anda perlu membuat rute detail produk jika belum ada, contoh: /products/{id} --}}
+                                    <a href="{{ url('/products/' . $product->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Detail <i class="bi bi-arrow-right"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-item d-flex position-relative h-100">
-                        <i class="bi bi-cpu icon flex-shrink-0"></i> {{-- Icon baru --}}
-                        <div>
-                            <h4 class="title"><a href="{{ url('/products') }}" class="stretched-link">Pemasaran Hardware & Perangkat Keras</a></h4>
-                            <p class="description">Menyediakan berbagai perangkat keras IT seperti komputer, printer, server, dan komponen jaringan.</p>
-                        </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p class="text-muted">Belum ada produk yang tersedia.</p>
                     </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-item d-flex position-relative h-100">
-                        <i class="bi bi-code-slash icon flex-shrink-0"></i> {{-- Icon baru --}}
-                        <div>
-                            <h4 class="title"><a href="{{ url('/products') }}" class="stretched-link">Pengadaan & Integrasi Software</a></h4>
-                            <p class="description">Solusi perangkat lunak bisnis, mulai dari OS, aplikasi perkantoran, hingga software khusus industri.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-item d-flex position-relative h-100">
-                        <i class="bi bi-tools icon flex-shrink-0"></i> {{-- Icon baru --}}
-                        <div>
-                            <h4 class="title"><a href="{{ url('/service-center') }}" class="stretched-link">Layanan Purna Jual & Service Center</a></h4>
-                            <p class="description">Dukungan teknis, perbaikan, dan garansi untuk semua produk hardware dan software yang kami sediakan.</p>
-                        </div>
-                    </div>
-                </div>
-                {{-- Anda bisa menambahkan atau menghapus item layanan lain sesuai kebutuhan --}}
-                <div class="col-12 text-center mt-4">
-                    <a href="{{ url('/products') }}" class="btn btn-primary btn-lg">Lihat Semua Produk & Layanan</a>
+                @endforelse
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <a href="{{ url('/products') }}" class="btn btn-primary btn-lg rounded-pill px-4 py-2">Lihat Semua Produk</a>
                 </div>
             </div>
         </div>
-    </section><section id="portfolio" class="portfolio section">
+    </section>
 
+    {{-- Bagian Kontak (Send Message) (Baru) --}}
+    <section id="contact" class="contact section">
         <div class="container section-title" data-aos="fade-up">
-            <h2>Portofolio Kami</h2>
-            <p>Proyek IT Unggulan dan Implementasi</p>
-        </div><div class="container">
-            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-                <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                    <li data-filter="*" class="filter-active">Semua</li>
-                    <li data-filter=".filter-app">Sistem & Aplikasi</li>
-                    <li data-filter=".filter-product">Infrastruktur & Hardware</li>
-                    <li data-filter=".filter-branding">Software & Integrasi</li>
-                </ul>
-
-                <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-1.jpg') }}" class="img-fluid" alt="Project 1: Sistem Manajemen IT Perusahaan">
-                        <div class="portfolio-info">
-                            <h4>Sistem Manajemen IT Perusahaan</h4>
-                            <p>Pengembangan sistem terintegrasi untuk pengelolaan aset dan operasional IT.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-1.jpg') }}" title="Sistem Manajemen IT Perusahaan" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-2.jpg') }}" class="img-fluid" alt="Project 2: Instalasi Data Center & Server">
-                        <div class="portfolio-info">
-                            <h4>Instalasi Data Center & Server</h4>
-                            <p>Pembangunan dan konfigurasi pusat data modern untuk kapasitas besar.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-2.jpg') }}" title="Instalasi Data Center & Server" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-3.jpg') }}" class="img-fluid" alt="Project 3: Implementasi ERP untuk Manufaktur">
-                        <div class="portfolio-info">
-                            <h4>Implementasi ERP untuk Manufaktur</h4>
-                            <p>Integrasi sistem Enterprise Resource Planning (ERP) khusus industri manufaktur.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-3.jpg') }}" title="Implementasi ERP untuk Manufaktur" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-4.jpg') }}" class="img-fluid" alt="Project 4: Pengembangan Aplikasi CRM Kustom">
-                        <div class="portfolio-info">
-                            <h4>Pengembangan Aplikasi CRM Kustom</h4>
-                            <p>Pembuatan aplikasi Customer Relationship Management (CRM) sesuai kebutuhan klien.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-4.jpg') }}" title="Pengembangan Aplikasi CRM Kustom" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-5.jpg') }}" class="img-fluid" alt="Project 5: Migrasi ke Hybrid Cloud Environment">
-                        <div class="portfolio-info">
-                            <h4>Migrasi ke Hybrid Cloud Environment</h4>
-                            <p>Transisi sistem ke arsitektur cloud hibrida untuk fleksibilitas dan keamanan.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-5.jpg') }}" title="Migrasi ke Hybrid Cloud Environment" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-6.jpg') }}" class="img-fluid" alt="Project 6: Instalasi Software Keamanan Jaringan">
-                        <div class="portfolio-info">
-                            <h4>Instalasi Software Keamanan Jaringan</h4>
-                            <p>Penerapan solusi keamanan siber untuk melindungi infrastruktur dan data.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-6.jpg') }}" title="Instalasi Software Keamanan Jaringan" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-7.jpg') }}" class="img-fluid" alt="Project 7: Pengembangan Sistem E-procurement">
-                        <div class="portfolio-info">
-                            <h4>Pengembangan Sistem E-procurement</h4>
-                            <p>Solusi pengadaan barang dan jasa secara elektronik yang efisien.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-7.jpg') }}" title="Pengembangan Sistem E-procurement" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}" class="img-fluid" alt="Project 8: Upgrade & Perawatan Jaringan Kantor">
-                        <div class="portfolio-info">
-                            <h4>Upgrade & Perawatan Jaringan Kantor</h4>
-                            <p>Peningkatan performa dan pemeliharaan rutin infrastruktur jaringan.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-8.jpg') }}" title="Upgrade & Perawatan Jaringan Kantor" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <img src="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}" class="img-fluid" alt="Project 9: Implementasi Lisensi Software Korporat">
-                        <div class="portfolio-info">
-                            <h4>Implementasi Lisensi Software Korporat</h4>
-                            <p>Manajemen dan pengadaan lisensi perangkat lunak berskala besar untuk perusahaan.</p>
-                            <a href="{{ asset('template-assets/img/masonry-portfolio/masonry-portfolio-9.jpg') }}" title="Implementasi Lisensi Software Korporat" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                            <a href="{{ url('/portfolio-details') }}" title="Detail Proyek" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                        </div>
+            <h2>Hubungi Kami</h2>
+            <p>Kirim Pesan kepada Kami</p>
+        </div>
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm border-0 rounded-lg p-4">
+                        {{-- Menampilkan pesan sukses --}}
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm mb-3" role="alert">
+                                <i class="bi bi-check-circle me-2"></i>
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                        {{-- Menampilkan pesan error validasi --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show rounded-lg shadow-sm mb-3" role="alert">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                                Mohon periksa kembali input Anda:
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('contact.store') }}" method="POST" class="php-email-form">
+                            @csrf
+                            <div class="row gy-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Lengkap Anda" required value="{{ old('nama') }}">
+                                        @error('nama')
+                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email Anda" required value="{{ old('email') }}">
+                                        @error('email')
+                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="nomor_hp" id="nomor_hp" placeholder="Nomor Telepon/WhatsApp Anda" required value="{{ old('nomor_hp') }}">
+                                        @error('nomor_hp')
+                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="pesan" rows="6" placeholder="Pesan Anda" required id="pesan">{{ old('pesan') }}</textarea>
+                                        @error('pesan')
+                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">Kirim Pesan</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>@endsection
+    </section>
+
+    {{-- Bagian Clients, Services, Portfolio yang sebelumnya ada di index.blade.php telah dihapus --}}
+    {{-- Jika Anda ingin bagian ini tetap ada di halaman lain, pastikan rutenya masih ada --}}
+
+@endsection

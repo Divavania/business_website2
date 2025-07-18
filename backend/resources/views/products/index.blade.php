@@ -34,7 +34,7 @@
 {{-- Semua filter dan search dalam satu card untuk kerapian --}}
 <div class="card shadow-sm border-0 rounded-lg mb-4">
     <div class="card-body py-3">
-        <form id="filterForm" action="{{ route('products.index') }}" method="GET" class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
+        <form id="filterForm" action="{{ route('admin.products.index') }}" method="GET" class="d-flex justify-content-between align-items-center gap-2 flex-wrap">
             {{-- Filters (gunakan gap-2 untuk spasi antar filter) --}}
             <div class="d-flex flex-wrap gap-2"> {{-- Membungkus dropdown filter untuk kontrol yang lebih baik --}}
                 <select name="kategori" class="form-select rounded-pill shadow-sm" style="width: auto; min-width: 140px;" onchange="this.form.submit()">
