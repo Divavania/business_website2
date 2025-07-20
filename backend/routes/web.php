@@ -10,78 +10,76 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
-use App\Http\Controllers\Frontend\ContactFrontendController;
-use App\Http\Controllers\Frontend\Product_frontendController; // Tambahkan ini
+use App\Http\Controllers\Frontend\Contact_frontendController; // KOREKSI: Mengubah nama import controller
+use App\Http\Controllers\Frontend\Product_frontendController;
+use App\Http\Controllers\Frontend\Service_frontendController; // Tambahkan ini
 use Illuminate\Support\Facades\DB;
 
 // FRONTEND
 // Mengarahkan rute '/' ke Home_frontendController
-Route::get('/', [Home_frontendController::class, 'index']);
+Route::get('/', [Home_frontendController::class, 'index'])->name('home'); // Beri nama rute home
 
 // Rute untuk halaman About (resources/views/frontend/about.blade.php)
-Route::get('/about', [About_frontendController::class, 'index']);
+Route::get('/about', [About_frontendController::class, 'index'])->name('frontend.about.index'); // Beri nama rute about
 
-// KOREKSI: Rute untuk halaman Produk di Frontend
-// Ini akan mengarahkan /products ke Product_frontendController
+// Rute untuk halaman Produk di Frontend
 Route::get('/products', [Product_frontendController::class, 'index'])->name('frontend.products.index');
 // Jika Anda ingin halaman detail produk, tambahkan ini:
 // Route::get('/products/{product}', [Product_frontendController::class, 'show'])->name('frontend.products.show');
 
+// Rute untuk halaman Service Center di Frontend
+Route::get('/services', [Service_frontendController::class, 'index'])->name('frontend.services.index');
 
 // Tambahkan rute untuk halaman frontend lainnya sesuai file Blade Anda di resources/views/frontend/
-Route::get('/services', function () {
-    return view('frontend.services');
-});
-
+// Rute-rute ini tetap menggunakan closure karena tidak ada logika database yang kompleks
 Route::get('/portfolio', function () {
     return view('frontend.portfolio');
-});
+})->name('frontend.portfolio.index'); // Beri nama rute
 
 Route::get('/pricing', function () {
     return view('frontend.pricing');
-});
+})->name('frontend.pricing.index'); // Beri nama rute
 
 Route::get('/blog', function () {
     return view('frontend.blog');
-});
+})->name('frontend.blog.index'); // Beri nama rute
 
-Route::get('/contact-us', function () {
+// KOREKSI: Rute untuk halaman Kontak di Frontend
+Route::get('/contact', function () { // Mengubah '/contact-us' menjadi '/contact' agar konsisten dengan link di layout
     return view('frontend.contact');
-});
-
+})->name('frontend.contact.index'); // Beri nama rute
 
 Route::get('/team', function () {
     return view('frontend.team');
-});
+})->name('frontend.team.index'); // Beri nama rute
 
 Route::get('/testimonials', function () {
     return view('frontend.testimonials');
-});
+})->name('frontend.testimonials.index'); // Beri nama rute
 
 Route::get('/portfolio-details', function () {
     return view('frontend.portfolio-details');
-});
+})->name('frontend.portfolio-details.index'); // Beri nama rute
 
 Route::get('/blog-details', function () {
     return view('frontend.blog-details');
-});
+})->name('frontend.blog-details.index'); // Beri nama rute
 
 Route::get('/service-details', function () {
     return view('frontend.service-details');
-});
+})->name('frontend.service-details.index'); // Beri nama rute
 
 Route::get('/starter-page', function () {
     return view('frontend.starter-page');
-});
+})->name('frontend.starter-page.index'); // Beri nama rute
 
 
 // FRONTEND CONTROLLERS
 //About
-Route::get('/tentang-kami', [About_frontendController::class, 'index']);
+Route::get('/tentang-kami', [About_frontendController::class, 'index']); // Ini duplikat dengan /about, bisa dihapus jika /about sudah cukup
 
 // Rute untuk Submit Form Kontak Frontend
-Route::post('/contact-submit', [ContactFrontendController::class, 'store'])->name('contact.store');
-
+Route::post('/contact-submit', [Contact_frontendController::class, 'store'])->name('contact.store'); // KOREKSI: Menggunakan Contact_frontendController
 
 // --- RUTE UNTUK AUTENTIKASI (LOGIN, LOGOUT) ---
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -91,9 +89,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 // --- RUTE UNTUK BACKEND/DASHBOARD (TERPROTEKSI) ---
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// KOREKSI: Rute produk backend sekarang menggunakan nama yang berbeda untuk menghindari konflik
-// Pastikan semua link di dashboard admin Anda yang mengarah ke manajemen produk
-// menggunakan /admin/products atau route('admin.products.index')
+// Rute produk backend
 Route::get('/admin/products', [BackendProductController::class, 'index'])->name('admin.products.index');
 Route::post('/admin/products/tambah', [BackendProductController::class, 'store'])->name('admin.products.store');
 Route::post('/admin/products/edit/{product}', [BackendProductController::class, 'update'])->name('admin.products.update');
@@ -103,6 +99,7 @@ Route::delete('/admin/products/hapus/{product}', [BackendProductController::clas
 Route::get('/contacts', [BackendContactController::class, 'index'])->name('contacts.index');
 Route::get('/contacts/{id}/mark-as-read', [BackendContactController::class, 'markAsRead'])->name('contacts.markAsRead');
 
+// Rute service center backend (TIDAK ADA PERUBAHAN, KARENA SUDAH BENAR)
 Route::get('/service', [ServiceCenterController::class, 'index']);
 Route::post('/service/tambah', [ServiceCenterController::class, 'store']);
 Route::post('/service/edit/{id}', [ServiceCenterController::class, 'update']);

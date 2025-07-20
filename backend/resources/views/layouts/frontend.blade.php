@@ -51,8 +51,8 @@
                 <ul>
                     <li><a href="{{ url('/') }}" class="active">Home</a></li>
                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
-                    <li><a href="{{ url('/products') }}">Produk</a></li>
-                    <li><a href="{{ url('/service-center') }}">Service Center</a></li>
+                    <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> {{-- Menggunakan rute bernama --}}
+                    <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li> {{-- KOREKSI: Menggunakan rute bernama --}}
                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -94,8 +94,8 @@
                     <ul>
                         <li><a href="{{ url('/') }}">Home</a></li>
                         <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
-                        <li><a href="{{ url('/products') }}">Produk</a></li>
-                        <li><a href="{{ url('/service-center') }}">Service Center</a></li>
+                        <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> {{-- Menggunakan rute bernama --}}
+                        <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li> {{-- KOREKSI: Menggunakan rute bernama --}}
                         <li><a href="{{ url('/contact') }}">Kontak</a></li>
                     </ul>
                 </div>

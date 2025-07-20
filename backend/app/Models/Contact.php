@@ -11,12 +11,15 @@ class Contact extends Model
 
     protected $table = 'contacts';
 
+    // KOREKSI: Memberi tahu Laravel untuk tidak menggunakan timestamps
+    public $timestamps = false;
+
     protected $fillable = [
         'nama',
         'email',
         'nomor_hp',
         'subjek',
-        'alamat',
+        // 'alamat', // Kolom ini tidak ada di form atau controller, jadi saya sarankan untuk tidak memasukkannya di fillable jika tidak digunakan.
         'pesan',
         'tanggal_kontak',
         'is_read',
