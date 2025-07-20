@@ -98,6 +98,7 @@ Route::delete('/admin/products/hapus/{product}', [BackendProductController::clas
 
 Route::get('/contacts', [BackendContactController::class, 'index'])->name('contacts.index');
 Route::get('/contacts/{id}/mark-as-read', [BackendContactController::class, 'markAsRead'])->name('contacts.markAsRead');
+Route::delete('/contacts/{id}', [BackendContactController::class, 'destroy'])->name('contacts.destroy');
 
 // Rute service center backend (TIDAK ADA PERUBAHAN, KARENA SUDAH BENAR)
 Route::get('/service', [ServiceCenterController::class, 'index']);

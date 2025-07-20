@@ -1,135 +1,84 @@
-@extends('layouts.frontend') {{-- Menggunakan layout frontend Anda --}}
-
-@section('title', 'Kontak Kami | Tigatra Adikara') {{-- Mengubah judul halaman --}}
+@extends('layouts.frontend') {{-- Sesuaikan dengan layout-mu --}}
+@section('title', 'Kontak')
 
 @section('content')
-<main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Kontak Kami</h1> {{-- Mengubah judul halaman --}}
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="{{ route('home') }}">Home</a></li> {{-- Menggunakan route() helper --}}
-            <li class="current">Kontak</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div><!-- End Google Maps -->
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4">
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
-              <div>
-                <h3>Alamat</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
-            </div><!-- End Info Item -->
-
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-telephone flex-shrink-0"></i>
-              <div>
-                <h3>Telepon</h3>
-                <p>+1 5589 55488 55</p>
-              </div>
-            </div><!-- End Info Item -->
-
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h3>Email</h3>
-                <p>info@example.com</p>
-              </div>
-            </div><!-- End Info Item -->
-
-          </div>
-
-          <div class="col-lg-8">
-            {{-- Pesan Sukses atau Error --}}
-            @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-            @if($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Mohon periksa kembali input Anda.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
-            {{-- Form Kontak --}}
-            {{-- Menghapus onsubmit="return true;" karena kita ingin JS template yang menangani validasi frontend,
-                 tetapi memastikan form action benar untuk submit ke Laravel --}}
-            <form action="{{ route('contact.store') }}" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              @csrf {{-- CSRF token untuk keamanan Laravel --}}
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Anda" required value="{{ old('nama') }}">
-                  @error('nama')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email Anda" required value="{{ old('email') }}">
-                  @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control @error('nomor_hp') is-invalid @enderror" name="nomor_hp" placeholder="Nomor Telepon (misal: 081234567890)" required value="{{ old('nomor_hp') }}">
-                  @error('nomor_hp')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control @error('subjek') is-invalid @enderror" name="subjek" placeholder="Subjek" required value="{{ old('subjek') }}">
-                  @error('subjek')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" rows="6" placeholder="Pesan" required>{{ old('pesan') }}</textarea>
-                  @error('pesan')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Pesan Anda berhasil terkirim. Terima kasih!</div> {{-- Pesan ini akan dihandle oleh JS template --}}
-
-                  <button type="submit">Kirim Pesan</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Kontak</h2>
+            <p>Silakan hubungi kami melalui formulir di bawah ini.</p>
         </div>
 
-      </div>
+        {{-- Tampilkan pesan sukses dari session --}}
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-    </section><!-- /Contact Section -->
+        {{-- Tampilkan pesan error validasi --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-</main>
+        <div class="row mt-5">
+            <div class="col-lg-6">
+                <div class="info">
+                    <div class="address">
+                        <i class="bi bi-geo-alt"></i>
+                        <h4>Lokasi:</h4>
+                        <p>Jalan Contoh No.123, Jakarta</p>
+                    </div>
+
+                    <div class="email mt-4">
+                        <i class="bi bi-envelope"></i>
+                        <h4>Email:</h4>
+                        <p>info@contoh.com</p>
+                    </div>
+
+                    <div class="phone mt-4">
+                        <i class="bi bi-phone"></i>
+                        <h4>Telepon:</h4>
+                        <p>+62 812 3456 7890</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <form action="{{ route('contact.store') }}" method="post" data-aos="fade-up" data-aos-delay="200">
+                    @csrf
+
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Anda" value="{{ old('nama') }}" required>
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email Anda" value="{{ old('email') }}" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="nomor_hp" id="nomor_hp" placeholder="Nomor Telepon (misal: 081234567890)" value="{{ old('nomor_hp') }}" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="subjek" id="subjek" placeholder="Subjek" value="{{ old('subjek') }}" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <textarea class="form-control" name="pesan" rows="5" placeholder="Tulis pesan Anda di sini..." required>{{ old('pesan') }}</textarea>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
