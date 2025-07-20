@@ -26,7 +26,7 @@
 
                 <div class="col-lg-5">
                     <div class="about-img">
-                        <img src="{{ asset('template-assets/img/about-portrait.jpg') }}" class="img-fluid" alt="About Us Portrait"> 
+                        <img src="{{ asset('template-assets/assets/img/about-portrait.jpg') }}" class="img-fluid" alt="About Us Portrait"> 
                     </div>
                 </div>
 
