@@ -16,8 +16,8 @@ class ProductController extends Controller
         if ($request->has('search') && $request->input('search') !== null) {
             $search = $request->input('search');
             $query->where('nama', 'like', '%' . $search . '%')
-                  ->orWhere('deskripsi', 'like', '%' . $search . '%') 
-                  ->orWhere('spesifikasi', 'like', '%' . $search . '%'); 
+                  ->orWhere('deskripsi', 'like', '%' . $search . '%')
+                  ->orWhere('spesifikasi', 'like', '%' . $search . '%');
         }
         if ($request->has('kategori') && $request->input('kategori') !== 'all') {
             $query->where('kategori', $request->input('kategori'));
@@ -36,7 +36,7 @@ class ProductController extends Controller
                 $query->orderBy('nama', 'desc');
             }
         } else {
-            $query->latest(); 
+            $query->latest();
         }
 
         $totalProducts = $query->count();
@@ -71,7 +71,8 @@ class ProductController extends Controller
             'gambar' => $gambar
         ]);
 
-        return redirect('/products')->with('success', 'Produk berhasil ditambahkan!');
+        // KOREKSI: Mengarahkan kembali ke halaman manajemen produk backend
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     public function update(Request $request, Product $product)
@@ -103,7 +104,8 @@ class ProductController extends Controller
             'gambar' => $gambar
         ]);
 
-        return redirect('/products')->with('success', 'Produk berhasil diperbarui!');
+        // KOREKSI: Mengarahkan kembali ke halaman manajemen produk backend
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
     public function destroy(Product $product)
@@ -114,6 +116,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect('/products')->with('success', 'Produk berhasil dihapus!');
+        // KOREKSI: Mengarahkan kembali ke halaman manajemen produk backend
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus!');
     }
 }
