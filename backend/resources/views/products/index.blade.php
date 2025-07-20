@@ -127,9 +127,10 @@
     {{-- MODAL TAMBAH PRODUK --}}
     <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <form action="/products/tambah" method="POST" enctype="multipart/form-data" class="modal-content shadow-lg rounded-lg border-0">
+            {{-- KOREKSI: Menggunakan route() helper untuk action --}}
+            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="modal-content shadow-lg rounded-lg border-0">
                 @csrf
-                <input type="hidden" name="form_type" value="add"> {{-- Tambahkan ini --}}
+                <input type="hidden" name="form_type" value="add">
                 <div class="modal-header bg-primary text-white p-4 rounded-top-lg">
                     <h5 class="modal-title" id="modalTambahLabel"><i class="bi bi-plus-circle me-2"></i>Tambah Produk Baru</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -184,10 +185,11 @@
     @foreach($products as $p)
     <div class="modal fade" id="modalEdit{{ $p->id }}" tabindex="-1" aria-labelledby="modalEditLabel{{ $p->id }}" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <form action="/products/edit/{{ $p->id }}" method="POST" enctype="multipart/form-data" class="modal-content shadow-lg rounded-lg border-0">
+            {{-- KOREKSI: Menggunakan route() helper untuk action --}}
+            <form action="{{ route('admin.products.update', $p->id) }}" method="POST" enctype="multipart/form-data" class="modal-content shadow-lg rounded-lg border-0">
                 @csrf
-                <input type="hidden" name="form_type" value="edit"> {{-- Tambahkan ini --}}
-                <input type="hidden" name="product_id_for_error" value="{{ $p->id }}"> {{-- Tambahkan ini --}}
+                <input type="hidden" name="form_type" value="edit">
+                <input type="hidden" name="product_id_for_error" value="{{ $p->id }}">
                 <div class="modal-header bg-warning text-white p-4 rounded-top-lg">
                     <h5 class="modal-title" id="modalEditLabel{{ $p->id }}"><i class="bi bi-pencil-square me-2"></i>Edit Produk: {{ $p->nama }}</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -245,7 +247,8 @@
     {{-- MODAL HAPUS PRODUK --}}
     <div class="modal fade" id="hapusModal{{ $p->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $p->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
-            <form action="/products/hapus/{{ $p->id }}" method="POST" class="modal-content shadow-lg rounded-lg border-0">
+            {{-- KOREKSI: Menggunakan route() helper untuk action --}}
+            <form action="{{ route('admin.products.destroy', $p->id) }}" method="POST" class="modal-content shadow-lg rounded-lg border-0">
                 @csrf
                 @method('DELETE')
                 <div class="modal-header bg-danger text-white p-3 rounded-top-lg">
