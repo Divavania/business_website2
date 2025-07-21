@@ -88,7 +88,7 @@
             <div class="row gy-4">
                 @forelse($products as $product)
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card h-100 shadow-sm border-0 rounded-lg">
+                        <div class="card h-100 shadow-sm border-0 rounded-lg product-card">
                             {{-- Perhatikan path gambar: sesuaikan dengan tempat Anda menyimpan gambar produk --}}
                             <img src="{{ asset('storage/' . $product->gambar) }}" class="card-img-top rounded-top-lg" alt="{{ $product->nama }}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E0E0E0/333333?text=No+Image';">
                             <div class="card-body d-flex flex-column">
@@ -125,7 +125,8 @@
         <div class="container" data-aos="fade-up" data-aos-delay="100">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="card shadow-sm border-0 rounded-lg p-4">
+                    {{-- KOREKSI: Mengubah shadow-sm border-0 menjadi shadow border --}}
+                    <div class="card shadow border rounded-lg p-4">
                         {{-- Menampilkan pesan sukses --}}
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm mb-3" role="alert">
@@ -147,42 +148,60 @@
                                 </ul>
                             </div>
                         @endif
+                        {{-- KOREKSI: Form Kontak disesuaikan dengan halaman kontak --}}
                         <form action="{{ route('contact.store') }}" method="POST" class="php-email-form">
                             @csrf
                             <div class="row gy-4">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="nama" class="form-control" id="nama" placeholder="Nama Lengkap Anda" required value="{{ old('nama') }}">
+                                        {{-- KOREKSI: Menghapus rounded-pill --}}
+                                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Nama Lengkap Anda" required value="{{ old('nama') }}">
                                         @error('nama')
-                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email Anda" required value="{{ old('email') }}">
+                                        {{-- KOREKSI: Menghapus rounded-pill --}}
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email Anda" required value="{{ old('email') }}">
                                         @error('email')
-                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="nomor_hp" id="nomor_hp" placeholder="Nomor Telepon/WhatsApp Anda" required value="{{ old('nomor_hp') }}">
+                                        {{-- KOREKSI: Menghapus rounded-pill --}}
+                                        <input type="text" class="form-control @error('nomor_hp') is-invalid @enderror" name="nomor_hp" id="nomor_hp" placeholder="Nomor Telepon (misal: 081234567890)" required value="{{ old('nomor_hp') }}">
                                         @error('nomor_hp')
-                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                {{-- KOREKSI: Menambahkan field Subjek --}}
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{-- KOREKSI: Menghapus rounded-pill --}}
+                                        <input type="text" class="form-control @error('subjek') is-invalid @enderror" name="subjek" id="subjek" placeholder="Subjek" required value="{{ old('subjek') }}">
+                                        @error('subjek')
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="pesan" rows="6" placeholder="Pesan Anda" required id="pesan">{{ old('pesan') }}</textarea>
+                                        {{-- KOREKSI: Menghapus rounded-lg --}}
+                                        <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" rows="6" placeholder="Pesan Anda" required id="pesan">{{ old('pesan') }}</textarea>
                                         @error('pesan')
-                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Pesan Anda berhasil terkirim. Terima kasih!</div>
                                     <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">Kirim Pesan</button>
                                 </div>
                             </div>
@@ -197,3 +216,45 @@
     {{-- Jika Anda ingin bagian ini tetap ada di halaman lain, pastikan rutenya masih ada --}}
 
 @endsection
+
+@push('styles')
+<style>
+    /* Custom styles for form controls */
+    .form-control {
+        border: 1px solid #ced4da; /* Default Bootstrap border color */
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .form-control:focus {
+        border-color: #86b7fe; /* Bootstrap primary color for focus */
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Bootstrap primary shadow for focus */
+    }
+
+    /* Placeholder styling */
+    .form-control::placeholder {
+        color: #6c757d; /* Darker grey for better visibility */
+        opacity: 0.7; /* Slightly less opaque than default for elegance */
+    }
+
+    /* Custom styles to reduce section padding for a more compact look */
+    #about.section,
+    #products.section,
+    #contact.section {
+        padding: 20px 0; /* Further reduced padding for these sections */
+    }
+
+    /* Remove media query for padding to keep it consistently short */
+    /* @media (min-width: 992px) {
+        #about.section,
+        #products.section,
+        #contact.section {
+            padding: 60px 0;
+        }
+    } */
+</style>
+@endpush
+
+@push('scripts')
+{{-- Jika Anda menggunakan php-email-form/validate.js, pastikan itu dimuat di layouts/frontend.blade.php --}}
+{{-- Tidak perlu script tambahan di sini karena php-email-form/validate.js sudah menangani --}}
+@endpush

@@ -23,7 +23,7 @@ class Product_frontendController extends Controller
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
                 $q->where('nama', 'like', '%' . $search . '%')
-                  ->orWhere('deskripsi', 'like', '%' . $search . '%');
+                    ->orWhere('deskripsi', 'like', '%' . $search . '%');
             });
         }
 
@@ -35,9 +35,15 @@ class Product_frontendController extends Controller
         return view('frontend.product', compact('products')); // KOREKSI: Mengarahkan ke frontend.product
     }
 
-    // Anda bisa menambahkan metode 'show' di sini jika ingin halaman detail produk
-    // public function show(Product $product)
-    // {
-    //     return view('frontend.products.show', compact('product'));
-    // }
+    /**
+     * Menampilkan detail produk tunggal.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\View\View
+     */
+    public function show(Product $product)
+    {
+        // Mengirim objek produk ke view
+        return view('frontend.product-details', compact('product'));
+    }
 }

@@ -36,6 +36,9 @@
     {{-- Catatan: Blok <style> untuk WhatsApp sticky button telah dihapus dari sini --}}
     {{-- dan seharusnya sudah dipindahkan ke resources/css/app.css --}}
 
+    {{-- KOREKSI: Menambahkan stack untuk styles dari view anak --}}
+    @stack('styles')
+
 </head>
 
 <body class="index-page">
@@ -43,22 +46,22 @@
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-            <a href="{{ url('/') }}" class="logo d-flex align-items-center me-auto">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto">
                 <h1 class="sitename">Tigatra Adikara</h1>
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ url('/') }}" class="active">Home</a></li>
-                    <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
-                    <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> {{-- Menggunakan rute bernama --}}
-                    <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li> {{-- KOREKSI: Menggunakan rute bernama --}}
-                    <li><a href="{{ url('/contact') }}">Kontak</a></li>
+                    <li><a href="{{ route('home') }}" class="active">Home</a></li>
+                    <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li> {{-- Menggunakan rute bernama --}}
+                    <li><a href="{{ route('frontend.products.index') }}">Produk</a></li>
+                    <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
+                    <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li> {{-- Menggunakan rute bernama --}}
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="{{ url('/contact') }}">Hubungi Kami</a>
+            <a class="btn-getstarted" href="{{ route('frontend.contact.index') }}">Hubungi Kami</a> {{-- Menggunakan rute bernama --}}
 
         </div>
     </header>
@@ -69,10 +72,11 @@
 
     <footer id="footer" class="footer dark-background">
 
-        <div class="container footer-top">
+        <div class="container footer-top py-3"> {{-- KOREKSI: Mengurangi padding vertikal --}}
             <div class="row gy-4">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="{{ url('/') }}" class="logo d-flex align-items-center">
+                {{-- KOREKSI: Mengubah col-lg-4 menjadi col-lg-3 --}}
+                <div class="col-lg-3 col-md-6 footer-about">
+                    <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                         <span class="sitename">Tigatra Adikara</span>
                     </a>
                     <div class="footer-contact pt-3">
@@ -89,29 +93,29 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
+                {{-- KOREKSI: Mengubah col-lg-2 menjadi col-lg-3 --}}
+                <div class="col-lg-3 col-md-3 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
-                        <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> {{-- Menggunakan rute bernama --}}
-                        <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li> {{-- KOREKSI: Menggunakan rute bernama --}}
-                        <li><a href="{{ url('/contact') }}">Kontak</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
+                        <li><a href="{{ route('frontend.products.index') }}">Produk</a></li>
+                        <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
+                        <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-3 footer-links">
+                {{-- KOREKSI: Bagian "Produk Kami" disesuaikan dan col-lg-2 menjadi col-lg-3 --}}
+                <div class="col-lg-3 col-md-3 footer-links">
                     <h4>Produk Kami</h4>
                     <ul>
-                        <li><a href="#">Produk Kategori 1</a></li>
-                        <li><a href="#">Produk Kategori 2</a></li>
-                        <li><a href="#">Produk Kategori 3</a></li>
-                        <li><a href="#">Produk Kategori 4</a></li>
-                        <li><a href="#">Produk Kategori 5</a></li>
+                        <li><a href="{{ route('frontend.products.index', ['kategori' => 'hardware']) }}">Hardware</a></li>
+                        <li><a href="{{ route('frontend.products.index', ['kategori' => 'software']) }}">Software</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-12 footer-newsletter">
+                {{-- KOREKSI: Mengubah col-lg-4 menjadi col-lg-3 --}}
+                <div class="col-lg-3 col-md-12 footer-newsletter">
                     <h4>Our Newsletter</h4>
                     <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
                     <form action="forms/newsletter.php" method="post" class="php-email-form">
@@ -125,11 +129,10 @@
             </div>
         </div>
 
-        <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">Tigatra Adikara</strong> <span>All Rights Reserved</span></p>
-            <div class="credits">
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a>
-            </div>
+        {{-- KOREKSI: Bagian Copyright disesuaikan agar lebih rapi dan ringkas --}}
+        <div class="container copyright text-center mt-3 py-2"> {{-- KOREKSI: Mengurangi margin-top dan menambahkan padding vertikal --}}
+            <p class="mb-0">© {{ date('Y') }} <span>Copyright</span> <strong class="px-1 sitename">Tigatra Adikara</strong> <span>All Rights Reserved</span></p> {{-- KOREKSI: Menambahkan tahun dinamis dan menghapus margin-bottom default p --}}
+            {{-- KOREKSI: Menghapus bagian credits --}}
         </div>
 
     </footer>
@@ -160,6 +163,9 @@
             <span>Chat via WhatsApp</span>
         </a>
     </div>
+
+    {{-- KOREKSI: Menambahkan stack untuk scripts dari view anak --}}
+    @stack('scripts')
 
 </body>
 

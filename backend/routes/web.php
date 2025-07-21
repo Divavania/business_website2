@@ -24,8 +24,8 @@ Route::get('/about', [About_frontendController::class, 'index'])->name('frontend
 
 // Rute untuk halaman Produk di Frontend
 Route::get('/products', [Product_frontendController::class, 'index'])->name('frontend.products.index');
-// Jika Anda ingin halaman detail produk, tambahkan ini:
-// Route::get('/products/{product}', [Product_frontendController::class, 'show'])->name('frontend.products.show');
+// KOREKSI: Menambahkan rute untuk halaman detail produk
+Route::get('/products/{product}', [Product_frontendController::class, 'show'])->name('frontend.products.show');
 
 // Rute untuk halaman Service Center di Frontend
 Route::get('/services', [Service_frontendController::class, 'index'])->name('frontend.services.index');
