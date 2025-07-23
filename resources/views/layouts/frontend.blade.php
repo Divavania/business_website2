@@ -47,6 +47,7 @@
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
             <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto">
+                <img src="{{ asset('template-assets/assets/img/logo-tigatra.png') }}" alt="Logo Tigatra" class="img-fluid me-2" style="height: 40px;">
                 <h1 class="sitename">Tigatra Adikara</h1>
             </a>
 
