@@ -60,9 +60,6 @@
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
-
-            <a class="btn-getstarted" href="{{ route('frontend.contact.index') }}">Hubungi Kami</a> {{-- Menggunakan rute bernama --}}
-
         </div>
     </header>
 
