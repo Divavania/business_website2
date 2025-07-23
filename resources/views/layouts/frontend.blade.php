@@ -33,7 +33,7 @@
     {{-- ATAU, jika menggunakan Vite (Laravel 9+), gunakan ini: --}}
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
-    {{-- Catatan: Blok <style> untuk WhatsApp sticky button telah dihapus dari sini --}}
+    <!-- {{-- Catatan: Blok <style> untuk WhatsApp sticky button telah dihapus dari sini --}} -->
     {{-- dan seharusnya sudah dipindahkan ke resources/css/app.css --}}
 
     {{-- KOREKSI: Menambahkan stack untuk styles dari view anak --}}
