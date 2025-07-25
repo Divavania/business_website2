@@ -1,6 +1,6 @@
 @extends('layouts.frontend') {{-- Menggunakan layout frontend Anda --}}
 
-@section('title', 'Detail Produk | ' . $product->nama) {{-- Mengubah judul halaman --}}
+@section('title', 'Tigatra Adikara') {{-- Mengubah judul halaman --}}
 @section('description', Str::limit($product->deskripsi, 150)) {{-- Deskripsi dari produk --}}
 @section('keywords', 'Tigatra Adikara, produk, ' . $product->nama . ', ' . $product->kategori) {{-- Keywords dari produk --}}
 

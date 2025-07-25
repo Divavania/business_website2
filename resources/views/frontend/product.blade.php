@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Produk Kami | Tigatra Adikara')
+@section('title', 'Tigatra Adikara')
 @section('description', 'Jelajahi berbagai produk hardware dan software terbaik dari Tigatra Adikara.')
 @section('keywords', 'produk, hardware, software, IT, komputer, laptop, server, jaringan, lisensi, Tigatra Adikara')
 

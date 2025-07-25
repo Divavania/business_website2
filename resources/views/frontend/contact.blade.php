@@ -1,11 +1,11 @@
 @extends('layouts.frontend')
-@section('title', 'Kontak')
+@section('title', 'Tigatra Adikara')
 
 @section('content')
 <section id="contact" class="contact section">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
-            <h2>Kontak</h2>
+            <h2></h2>
             <p>Silakan hubungi kami melalui formulir di bawah ini.</p>
         </div>
 

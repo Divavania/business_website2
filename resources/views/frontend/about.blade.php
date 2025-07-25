@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Tentang Kami | Tigatra Adikara')
+@section('title', 'Tigatra Adikara')
 @section('description', 'Pelajari lebih lanjut tentang sejarah, visi, dan misi Tigatra Adikara.')
 @section('keywords', 'Tigatra Adikara, tentang kami, sejarah, visi, misi, perusahaan')
 

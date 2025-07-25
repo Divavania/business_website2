@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Home | Tigatra Adikara')
+@section('title', 'Tigatra Adikara')
 @section('description', 'Tigatra Adikara menyediakan solusi komprehensif untuk Infrastruktur IT, serta pemasaran dan dukungan untuk Hardware dan Software terkemuka.')
 @section('keywords', 'Tigatra Adikara, IT Infrastructure, hardware, software, IT solutions, service center, teknologi, perangkat keras, perangkat lunak, sistem informasi')
 

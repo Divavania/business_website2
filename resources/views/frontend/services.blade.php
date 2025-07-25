@@ -1,6 +1,6 @@
 @extends('layouts.frontend') {{-- Menggunakan layout frontend Anda --}}
 
-@section('title', 'Service Center | Tigatra Adikara') {{-- Mengubah judul halaman --}}
+@section('title', 'Tigatra Adikara') {{-- Mengubah judul halaman --}}
 
 @section('content')
 <main class="main">

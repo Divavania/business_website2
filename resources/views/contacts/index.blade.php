@@ -155,10 +155,6 @@
                         <div class="col-sm-9 fw-semibold text-primary">{{ $c->subjek }}</div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-sm-3 text-muted">Alamat:</div>
-                        <div class="col-sm-9">{{ $c->alamat ?: '-' }}</div>
-                    </div>
-                    <div class="row mb-3">
                         <div class="col-sm-3 text-muted">Tanggal:</div>
                         <div class="col-sm-9">{{ \Carbon\Carbon::parse($c->created_at)->format('d F Y, H:i') }}</div>
                     </div>
