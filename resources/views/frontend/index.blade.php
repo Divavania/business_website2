@@ -11,10 +11,10 @@
 
             {{-- Slide 1 --}}
             <div class="carousel-item active">
-                <img src="{{ asset('template-assets/assets/img/contoh.jpeg') }}" class="img-fluid" alt="Solusi Infrastruktur IT Tigatra Adikara">
+                <img src="{{ asset('template-assets/assets/img/contoh.jpg') }}" class="img-fluid" alt="Solusi Infrastruktur IT Tigatra Adikara">
                 <div class="carousel-container">
                     <h2>Membangun Pondasi Digital Anda</h2>
-                    <p>Tigatra Adikara adalah mitra terpercaya Anda dalam menyediakan solusi **Infrastruktur IT** yang kokoh dan inovatif. Kami merancang, mengimplementasikan, dan mengelola sistem yang mendukung pertumbuhan bisnis Anda.</p>
+                    <p>Tigatra Adikara adalah mitra terpercaya Anda dalam menyediakan solusi <b>Infrastruktur IT</b> yang kokoh dan inovatif. Kami merancang, mengimplementasikan, dan mengelola sistem yang mendukung pertumbuhan bisnis Anda.</p>
                     <div class="d-flex justify-content-center">
                         <a href="{{ url('/products') }}" class="btn-get-started">Lihat Solusi Infrastruktur</a>
                         <a href="{{ url('/service-center') }}" class="btn-get-started btn-get-started-alt ms-3">Dukungan Teknis</a>
@@ -27,7 +27,7 @@
                 <img src="{{ asset('template-assets/assets/img/contoh2.jpeg') }}" class="img-fluid" alt="Pemasaran Hardware dan Software Terbaik">
                 <div class="carousel-container">
                     <h2>Hardware & Software Terbaik untuk Efisiensi Anda</h2>
-                    <p>Dapatkan **hardware dan software** terkini dari brand terkemuka. Kami menyediakan konsultasi, pengadaan, dan instalasi untuk memastikan Anda memiliki alat yang tepat untuk setiap kebutuhan operasional Anda.</p>
+                    <p>Dapatkan <b>hardware dan software</b> terkini dari brand terkemuka. Kami menyediakan konsultasi, pengadaan, dan instalasi untuk memastikan Anda memiliki alat yang tepat untuk setiap kebutuhan operasional Anda.</p>
                     <div class="d-flex justify-content-center">
                         <a href="{{ url('/products') }}" class="btn-get-started">Jelajahi Produk Hardware & Software</a>
                         <a href="{{ url('/contact') }}" class="btn-get-started btn-get-started-alt ms-3">Konsultasi Gratis</a>
@@ -62,7 +62,7 @@
                 {{-- Kolom untuk gambar di kiri --}}
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
                     <div class="about-img">
-                        <img src="{{ asset('template-assets/assets/img/about-portrait.jpg') }}" class="img-fluid" alt="About Us Portrait">
+                        <img src="{{ asset('template-assets/assets/img/about.jpg') }}" class="img-fluid" alt="About Us Portrait">
                     </div>
                 </div>
 
@@ -291,6 +291,29 @@
         .product-card img {
             height: 160px;
             padding: 0.75rem;
+        }
+    }
+
+     /* -------------------------
+       About Section Image Styling
+    -------------------------- */
+    .about-img img {
+        width: 100%; 
+        height: 400px; 
+        object-fit: cover; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+    }
+
+    @media (max-width: 991px) { 
+        .about-img {
+            margin-bottom: 20px; 
+        }
+    }
+
+    @media (max-width: 576px) { 
+        .about-img img {
+            height: 250px; 
         }
     }
 </style>

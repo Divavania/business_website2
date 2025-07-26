@@ -321,10 +321,10 @@
                     </a>
                     
                     <div class="footer-contact mb-3">
-                        <p class="mb-1"><strong>Alamat:</strong> A108 Adam Street</p>
-                        <p class="mb-1">New York, NY 535022</p>
-                        <p class="mb-1"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                        <p class="mb-0"><strong>Email:</strong> <span>info@example.com</span></p>
+                        <p class="mb-1"><strong>Alamat:</strong> Jakarta Selatan</p>
+                        <p class="mb-1">Jl. Teknologi No. 10</p>
+                        <p class="mb-1"><strong>Phone:</strong> <span>(021) 123-4567</span></p>
+                        <p class="mb-0"><strong>Email:</strong> <span>info@tigatra.co.id</span></p>
                     </div>
                 </div>
 

@@ -19,7 +19,7 @@
                         <i class="bi bi-geo-alt fs-3 text-primary me-3"></i>
                         <div>
                             <h5 class="mb-1">Lokasi</h5>
-                            <p class="mb-0 text-muted">Jalan Contoh No.123, Jakarta</p>
+                            <p class="mb-0 text-muted">Jl. Teknologi No. 10, Jakarta Selatan</p>
                         </div>
                     </div>
 
@@ -27,7 +27,7 @@
                         <i class="bi bi-envelope fs-3 text-primary me-3"></i>
                         <div>
                             <h5 class="mb-1">Email</h5>
-                            <p class="mb-0 text-muted">info@contoh.com</p>
+                            <p class="mb-0 text-muted">info@tigatra.co.id</p>
                         </div>
                     </div>
 
@@ -35,7 +35,7 @@
                         <i class="bi bi-phone fs-3 text-primary me-3"></i>
                         <div>
                             <h5 class="mb-1">Telepon</h5>
-                            <p class="mb-0 text-muted">+62 812 3456 7890</p>
+                            <p class="mb-0 text-muted">(021) 123-4567</p>
                         </div>
                     </div>
                 </div>
