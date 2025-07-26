@@ -9,15 +9,15 @@
 
         <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
-            {{-- Slide 1 --}}
+           {{-- Slide 1 --}}
             <div class="carousel-item active">
                 <img src="{{ asset('template-assets/assets/img/contoh.jpg') }}" class="img-fluid" alt="Solusi Infrastruktur IT Tigatra Adikara">
                 <div class="carousel-container">
                     <h2>Membangun Pondasi Digital Anda</h2>
-                    <p>Tigatra Adikara adalah mitra terpercaya Anda dalam menyediakan solusi <b>Infrastruktur IT</b> yang kokoh dan inovatif. Kami merancang, mengimplementasikan, dan mengelola sistem yang mendukung pertumbuhan bisnis Anda.</p>
+                    <p>Tigatra Adikara adalah mitra terpercaya Anda dalam menyediakan solusi **Infrastruktur IT** yang kokoh dan inovatif, mulai dari perencanaan hingga implementasi dan pengelolaan sistem yang mendukung pertumbuhan bisnis Anda.</p>
                     <div class="d-flex justify-content-center">
-                        <a href="{{ url('/products') }}" class="btn-get-started">Lihat Solusi Infrastruktur</a>
-                        <a href="{{ url('/service-center') }}" class="btn-get-started btn-get-started-alt ms-3">Dukungan Teknis</a>
+                        <a href="{{ route('frontend.about.index') }}" class="btn-get-started">Tentang Kami</a> {{-- Diubah ke Tentang Kami --}}
+                        <a href="{{ route('frontend.products.index') }}" class="btn-get-started btn-get-started-alt ms-3">Lihat Produk</a> {{-- Diubah ke Produk --}}
                     </div>
                 </div>
             </div>
@@ -26,11 +26,11 @@
             <div class="carousel-item">
                 <img src="{{ asset('template-assets/assets/img/contoh2.jpeg') }}" class="img-fluid" alt="Pemasaran Hardware dan Software Terbaik">
                 <div class="carousel-container">
-                    <h2>Hardware & Software Terbaik untuk Efisiensi Anda</h2>
-                    <p>Dapatkan <b>hardware dan software</b> terkini dari brand terkemuka. Kami menyediakan konsultasi, pengadaan, dan instalasi untuk memastikan Anda memiliki alat yang tepat untuk setiap kebutuhan operasional Anda.</p>
+                    <h2>Dukungan Komprehensif untuk Kebutuhan IT Anda</h2>
+                    <p>Kami tidak hanya menyediakan **hardware dan software** terkini, tetapi juga menawarkan **Service Center** profesional dan konsultasi ahli untuk memastikan semua kebutuhan operasional IT Anda terpenuhi dengan optimal.</p>
                     <div class="d-flex justify-content-center">
-                        <a href="{{ url('/products') }}" class="btn-get-started">Jelajahi Produk Hardware & Software</a>
-                        <a href="{{ url('/contact') }}" class="btn-get-started btn-get-started-alt ms-3">Konsultasi Gratis</a>
+                        <a href="{{ route('frontend.services.index') }}" class="btn-get-started">Service Center</a> {{-- Diubah ke Service Center --}}
+                        <a href="{{ route('frontend.contact.index') }}" class="btn-get-started btn-get-started-alt ms-3">Hubungi Kami</a> {{-- Diubah ke Kontak --}}
                     </div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
         <div class="container">
             <div class="row gy-4">
                 @forelse($products as $product)
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="card h-100 shadow-sm border-0 rounded-lg product-card">
                             {{-- Perhatikan path gambar: sesuaikan dengan tempat Anda menyimpan gambar produk --}}
                             <img src="{{ asset('storage/' . $product->gambar) }}" class="card-img-top rounded-top-lg" alt="{{ $product->nama }}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E0E0E0/333333?text=No+Image';">
@@ -116,82 +116,81 @@
         </div>
     </section>
 
-    {{-- Bagian Kontak (Send Message) (Baru) --}}
     <section id="contact" class="contact section py-5 bg-light">
-        <div class="container" data-aos="fade-up">
-            <div class="section-title text-center mb-5">
-                <h2 class="fw-bold text-primary">Hubungi Kami</h2>
-                <p class="text-muted">Kirim pesan kepada kami langsung dari beranda</p>
-            </div>
+    <div class="container" data-aos="fade-up">
+        <div class="section-title text-center"> 
+            <h2 class="fw-bold text-primary">Hubungi Kami</h2> 
+            <p class="text-muted mb-0">Kirim pesan kepada kami langsung dari beranda</p> {{-- Tambah mb-0 --}}
+        </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="bg-white p-3 p-md-4 rounded-4 shadow-sm">
 
-                        {{-- Pesan sukses --}}
-                        @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <i class="bi bi-check-circle me-2"></i>
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
+                    {{-- Pesan sukses --}}
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="bi bi-check-circle me-2"></i>
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
 
-                        {{-- Pesan error --}}
-                        @if ($errors->any())
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="bi bi-exclamation-triangle me-2"></i>
-                                Mohon periksa kembali input Anda:
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                <ul class="mb-0 mt-2">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                    {{-- Pesan error --}}
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            Mohon periksa kembali input Anda:
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <ul class="mb-0 mt-2">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                        <form action="{{ route('contact.store') }}" method="POST" class="row g-3 mt-3">
-                            @csrf
-                            <input type="hidden" name="from" value="home">
+                    <form action="{{ route('contact.store') }}" method="POST" class="row g-3">
+                        @csrf
+                        <input type="hidden" name="from" value="home">
 
-                            <div class="col-md-6">
-                                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Lengkap Anda" value="{{ old('nama') }}" required>
-                                @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                            </div>
+                        <div class="col-md-6">
+                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Lengkap Anda" value="{{ old('nama') }}" required>
+                            @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                            <div class="col-md-6">
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" value="{{ old('email') }}" required>
-                                @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                            </div>
+                        <div class="col-md-6">
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" value="{{ old('email') }}" required>
+                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                            <div class="col-md-6">
-                                <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor Telepon" value="{{ old('nomor_hp') }}" required>
-                                @error('nomor_hp') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                            </div>
+                        <div class="col-md-6">
+                            <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor Telepon" value="{{ old('nomor_hp') }}" required>
+                            @error('nomor_hp') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                            <div class="col-md-6">
-                                <input type="text" name="subjek" class="form-control @error('subjek') is-invalid @enderror" placeholder="Subjek" value="{{ old('subjek') }}" required>
-                                @error('subjek') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                            </div>
+                        <div class="col-md-6">
+                            <input type="text" name="subjek" class="form-control @error('subjek') is-invalid @enderror" placeholder="Subjek" value="{{ old('subjek') }}" required>
+                            @error('subjek') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                            <div class="col-12">
-                                <textarea name="pesan" rows="5" class="form-control @error('pesan') is-invalid @enderror" placeholder="Tulis pesan Anda di sini..." required>{{ old('pesan') }}</textarea>
-                                @error('pesan') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                            </div>
+                        <div class="col-12">
+                            <textarea name="pesan" rows="3" class="form-control @error('pesan') is-invalid @enderror" placeholder="Tulis pesan Anda di sini..." required>{{ old('pesan') }}</textarea>
+                            @error('pesan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                        </div>
 
-                            <div class="col-12 text-end">
-                                <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
-                                    <i class="bi bi-send me-1"></i> Kirim Pesan
-                                </button>
-                            </div>
-                        </form>
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
+                                <i class="bi bi-send me-1"></i> Kirim Pesan
+                            </button>
+                        </div>
+                    </form>
 
-                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
     {{-- Bagian Clients, Services, Portfolio yang sebelumnya ada di index.blade.php telah dihapus --}}
@@ -319,7 +318,4 @@
 </style>
 @endpush
 
-@push('scripts')
-{{-- Jika Anda menggunakan php-email-form/validate.js, pastikan itu dimuat di layouts/frontend.blade.php --}}
-{{-- Tidak perlu script tambahan di sini karena php-email-form/validate.js sudah menangani --}}
-@endpush
+

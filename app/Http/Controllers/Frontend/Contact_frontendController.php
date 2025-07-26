@@ -4,22 +4,24 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Models\Contact; // Menggunakan Model Contact yang sudah ada
+use App\Models\CompanyInfo; // BARU: Import model CompanyInfo
 use App\Http\Controllers\Backend\Controller; // Menggunakan base Controller dari namespace Backend
 
 class Contact_frontendController extends Controller
 {
     /**
-     * Menampilkan daftar service center di halaman frontend.
+     * Menampilkan halaman kontak frontend dengan informasi perusahaan.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        // Metode index ini tidak digunakan untuk halaman kontak,
-        // halaman kontak dirender langsung dari rute web.php
-        // Anda bisa menambahkan logika di sini jika halaman kontak
-        // perlu mengambil data dari database sebelum ditampilkan.
-        // Untuk saat ini, biarkan kosong atau hapus jika tidak diperlukan.
+        // Mengambil record CompanyInfo pertama, atau buat yang baru jika belum ada
+        // Ini akan memastikan selalu ada data companyInfo untuk ditampilkan
+        $companyInfo = CompanyInfo::firstOrCreate([]);
+
+        // Meneruskan data companyInfo ke view frontend/contact.blade.php
+        return view('frontend.contact', compact('companyInfo'));
     }
 
     public function store(Request $request)

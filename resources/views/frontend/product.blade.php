@@ -44,14 +44,14 @@
         {{-- Produk List --}}
         <div class="row gy-4">
             @forelse($products as $product)
-                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100 shadow-sm border-0 rounded-lg product-card">
                         {{-- Gambar Produk --}}
-                        <div class="text-center p-3" style="background-color: #f8f9fa;">
-                            <img src="{{ asset('storage/' . $product->gambar) }}" 
-                                 alt="{{ $product->nama }}" 
-                                 class="img-fluid"
-                                 style="max-height: 160px; object-fit: contain; width: 100%;">
+                        {{-- KOREKSI: Mengubah struktur pembungkus gambar dan gaya --}}
+                        <div class="product-image-wrapper text-center" style="height: 180px; background-color: #f0f2f5;">
+                            <img src="{{ asset('storage/' . $product->gambar) }}"
+                                 alt="{{ $product->nama }}"
+                                 class="img-fluid">
                         </div>
                         {{-- Detail Produk --}}
                         <div class="card-body d-flex flex-column">
@@ -87,12 +87,36 @@
     .product-card {
         border-radius: 16px;
         transition: all 0.3s ease-in-out;
-        padding: 8px;
+        padding: 8px; /* Padding di sekitar card, termasuk gambar */
+        background-color: #f9f9f9;
     }
 
     .product-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    /* KOREKSI: Gaya untuk pembungkus gambar */
+    .product-image-wrapper {
+        height: 180px; /* Tinggi tetap untuk wadah gambar */
+        display: flex; /* Menggunakan flexbox untuk centering */
+        align-items: center; /* Vertically center */
+        justify-content: center; /* Horizontally center */
+        overflow: hidden; /* Pastikan gambar yang 'cover' tidak meluber */
+        border-radius: 12px 12px 0 0; /* Sesuaikan border-radius agar cocok dengan card */
+        margin-bottom: 8px; /* Jarak antara gambar dan detail produk */
+    }
+
+    /* KOREKSI: Gaya untuk gambar di dalam pembungkus */
+    .product-image-wrapper img {
+        width: 100%; /* Gambar mengisi lebar wadah */
+        height: 100%; /* Gambar mengisi tinggi wadah */
+        object-fit: cover; /* Penting: agar gambar mengisi penuh tanpa 'gap', bisa terpotong */
+        transition: transform 0.3s ease; /* Efek zoom saat hover */
+    }
+
+    .product-card:hover .product-image-wrapper img {
+        transform: scale(1.05); /* Efek zoom saat hover pada card */
     }
 
     .product-card .card-title {
@@ -115,8 +139,8 @@
     }
 
     @media (max-width: 576px) {
-        .product-card img {
-            max-height: 130px;
+        .product-image-wrapper {
+            height: 150px; /* Sesuaikan tinggi gambar untuk mobile */
         }
     }
 </style>

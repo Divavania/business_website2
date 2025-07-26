@@ -91,10 +91,7 @@
                                 <td class="align-middle px-4">{{ $c->email }}</td>
                                 <td class="align-middle px-4">{{ $c->subjek }}</td>
                                 <td class="align-middle px-4">
-                                    {{ Str::limit($c->pesan, 60) }}
-                                    @if(strlen($c->pesan) > 60)
-                                        <a href="#" class="text-primary text-decoration-none small" data-bs-toggle="modal" data-bs-target="#detailPesanModal{{ $c->id }}">Baca Selengkapnya</a>
-                                    @endif
+                                    <a href="#" class="text-primary text-decoration-none small" data-bs-toggle="modal" data-bs-target="#detailPesanModal{{ $c->id }}">Baca Selengkapnya</a>
                                 </td>
                                 <td class="align-middle px-4 text-muted small">{{ \Carbon\Carbon::parse($c->created_at)->format('d M Y, H:i') }}</td>
                                 <td class="align-middle text-center px-4">

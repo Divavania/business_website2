@@ -27,6 +27,8 @@
             color: white;
             padding-top: 20px;
             transition: all 0.3s ease;
+            display: flex; /* KOREKSI: Membuat sidebar menjadi flex container */
+            flex-direction: column; /* KOREKSI: Mengatur arah flex menjadi kolom */
         }
 
         .sidebar h5 {
@@ -68,6 +70,16 @@
             margin-right: 0;
             text-align: center;
             display: block;
+        }
+
+        /* KOREKSI: Gaya untuk footer di dalam sidebar */
+        .sidebar .copyright {
+            margin-top: auto; /* Mendorong footer ke bawah */
+            padding-bottom: 20px; /* Memberi sedikit padding di bawah */
+            padding-left: 10px; /* Sesuaikan padding kiri/kanan */
+            padding-right: 10px; /* Sesuaikan padding kiri/kanan */
+            font-size: 0.8rem; /* Ukuran font lebih kecil untuk footer */
+            color: #e2e8f0; /* Warna teks yang cocok dengan sidebar */
         }
 
         .topbar {
@@ -185,6 +197,11 @@
         <i class="bi bi-info-circle"></i>
         <span class="text">Tentang Kami</span>
     </a>
+    {{-- BARU: Link untuk Company Info --}}
+    <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
+        <i class="bi bi-building"></i> {{-- Ikon untuk perusahaan --}}
+        <span class="text">Info Perusahaan</span>
+    </a>
     {{-- Link Kelola Admin --}}
     {{-- Hanya tampilkan jika pengguna yang login adalah 'superadmin' --}}
     @if(session()->has('user') && session('user')->role == 'superadmin')
@@ -197,7 +214,7 @@
             <i class="bi bi-box-arrow-right"></i>
             <span class="text">Logout</span>
         </a>
-    </div>
+</div>
 
 <!-- Topbar -->
 <div id="topbar" class="topbar">
@@ -207,7 +224,7 @@
     <!-- Ikon Pesan -->
     <a href="/contacts" class="position-relative">
         <i class="bi bi-envelope fs-4 text-dark"></i>
-        @if($unreadMessages > 0)
+        @if(isset($unreadMessages) && $unreadMessages > 0) {{-- Menambahkan isset() check --}}
             <!-- Titik merah indikator pesan belum dibaca -->
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{ $unreadMessages }}
@@ -233,7 +250,27 @@
         sidebar.classList.toggle('collapsed');
         topbar.classList.toggle('collapsed');
         content.classList.toggle('collapsed');
+
+        // Simpan status sidebar ke localStorage
+        if (sidebar.classList.contains('collapsed')) {
+            localStorage.setItem('sidebarCollapsed', 'true');
+        } else {
+            localStorage.removeItem('sidebarCollapsed'); // Hapus jika tidak lagi collapsed
+        }
     }
+
+    // Periksa status sidebar saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.getElementById('sidebar');
+        const topbar = document.getElementById('topbar');
+        const content = document.getElementById('mainContent');
+
+        if (localStorage.getItem('sidebarCollapsed') === 'true') {
+            sidebar.classList.add('collapsed');
+            topbar.classList.add('collapsed');
+            content.classList.add('collapsed');
+        }
+    });
 </script>
 
 </body>
