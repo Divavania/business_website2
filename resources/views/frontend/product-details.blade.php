@@ -1,156 +1,115 @@
-@extends('layouts.frontend') {{-- Menggunakan layout frontend Anda --}}
+@extends('layouts.frontend')
 
-@section('title', 'Tigatra Adikara') {{-- Mengubah judul halaman --}}
-@section('description', Str::limit($product->deskripsi, 150)) {{-- Deskripsi dari produk --}}
-@section('keywords', 'Tigatra Adikara, produk, ' . $product->nama . ', ' . $product->kategori) {{-- Keywords dari produk --}}
+@section('title', 'Tigatra Adikara')
+@section('description', Str::limit($product->deskripsi, 150))
+@section('keywords', 'Tigatra Adikara, produk, ' . $product->nama . ', ' . $product->kategori)
 
 @section('content')
 <main class="main">
 
     <!-- Page Title -->
     <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Detail Produk</h1> {{-- Mengubah judul halaman --}}
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="{{ url('/') }}">Home</a></li>
-            <li><a href="{{ route('frontend.products.index') }}">Produk</a></li>
-            <li class="current">Detail Produk</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
-    <!-- Product Details Section -->
-    <section id="product-details" class="portfolio-details section"> {{-- Mengubah ID section --}}
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-8">
-            <div class="product-details-image"> {{-- Mengubah class --}}
-                @if($product->gambar)
-                    <img src="{{ asset('storage/' . $product->gambar) }}" class="img-fluid rounded shadow-sm" alt="{{ $product->nama }}" onerror="this.onerror=null;this.src='https://placehold.co/800x600/E0E0E0/333333?text=No+Image';">
-                @else
-                    <img src="https://placehold.co/800x600/E0E0E0/333333?text=No+Image" class="img-fluid rounded shadow-sm" alt="No Image Available">
-                @endif
-            </div>
-            {{-- Jika Anda ingin slider gambar, Anda bisa mengaktifkan kembali dan menyesuaikan bagian ini --}}
-            {{-- <div class="portfolio-details-slider swiper init-swiper">
-              <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoplay": {
-                    "delay": 5000
-                  },
-                  "slidesPerView": "auto",
-                  "pagination": {
-                    "el": ".swiper-pagination",
-                    "type": "bullets",
-                    "clickable": true
-                  }
-                }
-              </script>
-              <div class="swiper-wrapper align-items-center">
-                <div class="swiper-slide">
-                  <img src="{{ asset('storage/' . $product->gambar) }}" alt="{{ $product->nama }}">
-                </div>
-                {{-- Tambahkan slide lain jika ada banyak gambar produk --}}
-              {{-- </div>
-              <div class="swiper-pagination"></div>
-            </div> --}}
-          </div>
-
-          <div class="col-lg-4">
-            <div class="product-info" data-aos="fade-up" data-aos-delay="200"> {{-- Mengubah class --}}
-              <h3>Informasi Produk</h3>
-              <ul>
-                <li><strong>Nama Produk</strong>: {{ $product->nama }}</li>
-                <li><strong>Kategori</strong>: {{ ucfirst($product->kategori) }}</li>
-                <li><strong>Harga</strong>: Rp {{ number_format($product->harga, 0, ',', '.') }}</li>
-                {{-- Anda bisa menambahkan link untuk order atau kontak di sini --}}
-                {{-- KOREKSI: Mengubah rute dari 'contact.index' menjadi 'frontend.contact.index' --}}
-                <li><a href="{{ route('frontend.contact.index') }}" class="btn btn-primary btn-sm mt-3 rounded-pill px-4 py-2">Hubungi Kami untuk Pembelian</a></li>
-              </ul>
-            </div>
-            <div class="product-description" data-aos="fade-up" data-aos-delay="300"> {{-- Mengubah class --}}
-              <h2>Deskripsi Produk</h2>
-              <p>
-                {!! nl2br(e($product->deskripsi)) !!}
-              </p>
-              @if($product->spesifikasi)
-                <h2 class="mt-4">Spesifikasi Teknis</h2>
-                <p>
-                  {!! nl2br(e($product->spesifikasi)) !!}
-                </p>
-              @endif
-            </div>
-          </div>
-
+        <div class="container d-lg-flex justify-content-between align-items-center">
+            <h1 class="mb-2 mb-lg-0">Detail Produk</h1>
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ route('frontend.products.index') }}">Produk</a></li>
+                    <li class="current">{{ $product->nama }}</li>
+                </ol>
+            </nav>
         </div>
+    </div>
 
-      </div>
+    <!-- Product Details -->
+    <section id="product-details" class="section py-5">
+        <div class="container" data-aos="fade-up">
+            <div class="row g-5 align-items-start">
 
-    </section><!-- /Product Details Section -->
+                <!-- Product Image -->
+                <div class="col-lg-7">
+                    <div class="bg-white shadow-sm rounded-4 overflow-hidden p-3 text-center">
+                        @if($product->gambar)
+                            <img src="{{ asset('storage/' . $product->gambar) }}" alt="{{ $product->nama }}"
+                                class="img-fluid" style="max-height: 450px; object-fit: contain;"
+                                onerror="this.onerror=null;this.src='https://placehold.co/800x600/E0E0E0/333333?text=No+Image';">
+                        @else
+                            <img src="https://placehold.co/800x600/E0E0E0/333333?text=No+Image"
+                                class="img-fluid" alt="No Image Available">
+                        @endif
+                    </div>
+                </div>
 
+                <!-- Product Info -->
+                <div class="col-lg-5">
+                    <div class="bg-light rounded-4 shadow-sm p-4">
+                        <h2 class="text-primary mb-3">{{ $product->nama }}</h2>
+                        <ul class="list-unstyled small mb-4">
+                            <li class="mb-2"><i class="bi bi-box-seam me-2 text-secondary"></i><strong>Kategori:</strong> {{ ucfirst($product->kategori) }}</li>
+                            <li class="mb-2"><i class="bi bi-cash-coin me-2 text-secondary"></i><strong>Harga:</strong> Rp {{ number_format($product->harga, 0, ',', '.') }}</li>
+                        </ul>
+
+                        <a href="{{ route('frontend.contact.index') }}" class="btn btn-primary rounded-pill px-4 py-2 mt-2 w-100">
+                            <i class="bi bi-whatsapp me-1"></i> Hubungi Kami untuk Pembelian
+                        </a>
+                    </div>
+
+                    <!-- Deskripsi -->
+                    <div class="mt-4">
+                        <h5 class="text-dark fw-bold mb-2">Deskripsi Produk</h5>
+                        <p class="text-muted">{!! nl2br(e($product->deskripsi)) !!}</p>
+                    </div>
+
+                    @if($product->spesifikasi)
+                        <div class="mt-4">
+                            <h5 class="text-dark fw-bold mb-2">Spesifikasi Teknis</h5>
+                            <p class="text-muted">{!! nl2br(e($product->spesifikasi)) !!}</p>
+                        </div>
+                    @endif
+                </div>
+
+            </div>
+        </div>
+    </section>
 </main>
 @endsection
 
 @push('styles')
 <style>
-    /* Custom styles for product details page if needed */
+    #product-details h2,
+    #product-details h5 {
+        color: #0d6efd;
+    }
+
+    #product-details p {
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+
+    #product-details ul li {
+        font-size: 0.95rem;
+    }
+
     .product-details-image img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto; /* Center the image */
+        transition: transform 0.3s ease;
     }
-    .product-info h3, .product-description h2 {
-        color: #007bff; /* Warna biru primer Bootstrap */
-        font-weight: bold;
-        margin-bottom: 15px;
+
+    .product-details-image img:hover {
+        transform: scale(1.02);
     }
-    .product-info ul {
-        list-style: none;
-        padding: 0;
+
+    .btn-primary {
+        transition: background-color 0.3s ease;
     }
-    .product-info ul li {
-        margin-bottom: 10px;
-        font-size: 1.05rem;
-        color: #333;
+
+    .btn-primary:hover {
+        background-color: #0056b3;
     }
-    .product-info ul li strong {
-        color: #555;
-    }
-    .product-description p {
-        line-height: 1.6;
-        color: #444;
+
+    @media (max-width: 768px) {
+        .btn {
+            font-size: 0.9rem;
+        }
     }
 </style>
-@endpush
-
-@push('scripts')
-{{-- Jika Anda memutuskan untuk menggunakan swiper, Anda perlu menambahkan kembali inisialisasi swiper di sini --}}
-{{-- Contoh:
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        new Swiper('.portfolio-details-slider', {
-            speed: 600,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false
-            },
-            slidesPerView: 'auto',
-            pagination: {
-                el: '.swiper-pagination',
-                type: 'bullets',
-                clickable: true
-            }
-        });
-    });
-</script>
---}}
 @endpush

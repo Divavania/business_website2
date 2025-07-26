@@ -117,98 +117,82 @@
     </section>
 
     {{-- Bagian Kontak (Send Message) (Baru) --}}
-    <section id="contact" class="contact section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Hubungi Kami</h2>
-            <p>Kirim Pesan kepada Kami</p>
-        </div>
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <section id="contact" class="contact section py-5 bg-light">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title text-center mb-5">
+                <h2 class="fw-bold text-primary">Hubungi Kami</h2>
+                <p class="text-muted">Kirim pesan kepada kami langsung dari beranda</p>
+            </div>
+
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    {{-- KOREKSI: Mengubah shadow-sm border-0 menjadi shadow border --}}
-                    <div class="card shadow border rounded-lg p-4">
-                        {{-- Menampilkan pesan sukses --}}
+                <div class="col-lg-10">
+                    <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
+
+                        {{-- Pesan sukses --}}
                         @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm mb-3" role="alert">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="bi bi-check-circle me-2"></i>
                                 {{ session('success') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-                        {{-- Menampilkan pesan error validasi --}}
+
+                        {{-- Pesan error --}}
                         @if ($errors->any())
-                            <div class="alert alert-danger alert-dismissible fade show rounded-lg shadow-sm mb-3" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <i class="bi bi-exclamation-triangle me-2"></i>
                                 Mohon periksa kembali input Anda:
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                <ul class="mb-0">
+                                <ul class="mb-0 mt-2">
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
                             </div>
                         @endif
-                        {{-- KOREKSI: Form Kontak disesuaikan dengan halaman kontak --}}
-                        <form action="{{ route('contact.store') }}" method="POST">
+
+                        <form action="{{ route('contact.store') }}" method="POST" class="row g-3 mt-3">
                             @csrf
                             <input type="hidden" name="from" value="home">
-                            <div class="row gy-4">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {{-- KOREKSI: Menghapus rounded-pill --}}
-                                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Nama Lengkap Anda" required value="{{ old('nama') }}">
-                                        @error('nama')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {{-- KOREKSI: Menghapus rounded-pill --}}
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Email Anda" required value="{{ old('email') }}">
-                                        @error('email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        {{-- KOREKSI: Menghapus rounded-pill --}}
-                                        <input type="text" class="form-control @error('nomor_hp') is-invalid @enderror" name="nomor_hp" id="nomor_hp" placeholder="Nomor Telepon (misal: 081234567890)" required value="{{ old('nomor_hp') }}">
-                                        @error('nomor_hp')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                {{-- KOREKSI: Menambahkan field Subjek --}}
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        {{-- KOREKSI: Menghapus rounded-pill --}}
-                                        <input type="text" class="form-control @error('subjek') is-invalid @enderror" name="subjek" id="subjek" placeholder="Subjek" required value="{{ old('subjek') }}">
-                                        @error('subjek')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        {{-- KOREKSI: Menghapus rounded-lg --}}
-                                        <textarea class="form-control @error('pesan') is-invalid @enderror" name="pesan" rows="6" placeholder="Pesan Anda" required id="pesan">{{ old('pesan') }}</textarea>
-                                        @error('pesan')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">Kirim Pesan</button>
-                                </div>
+
+                            <div class="col-md-6">
+                                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Lengkap Anda" value="{{ old('nama') }}" required>
+                                @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" value="{{ old('email') }}" required>
+                                @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor Telepon" value="{{ old('nomor_hp') }}" required>
+                                @error('nomor_hp') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="text" name="subjek" class="form-control @error('subjek') is-invalid @enderror" placeholder="Subjek" value="{{ old('subjek') }}" required>
+                                @error('subjek') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="col-12">
+                                <textarea name="pesan" rows="5" class="form-control @error('pesan') is-invalid @enderror" placeholder="Tulis pesan Anda di sini..." required>{{ old('pesan') }}</textarea>
+                                @error('pesan') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
+                                    <i class="bi bi-send me-1"></i> Kirim Pesan
+                                </button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     {{-- Bagian Clients, Services, Portfolio yang sebelumnya ada di index.blade.php telah dihapus --}}
     {{-- Jika Anda ingin bagian ini tetap ada di halaman lain, pastikan rutenya masih ada --}}
@@ -217,38 +201,98 @@
 
 @push('styles')
 <style>
-    /* Custom styles for form controls */
+    /* -------------------------
+       Form Control Styling
+    -------------------------- */
     .form-control {
-        border: 1px solid #ced4da; /* Default Bootstrap border color */
+        border: 1px solid #ced4da;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
 
     .form-control:focus {
-        border-color: #86b7fe; /* Bootstrap primary color for focus */
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Bootstrap primary shadow for focus */
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
     }
 
-    /* Placeholder styling */
     .form-control::placeholder {
-        color: #6c757d; /* Darker grey for better visibility */
-        opacity: 0.7; /* Slightly less opaque than default for elegance */
+        color: #6c757d;
+        opacity: 0.7;
     }
 
-    /* Custom styles to reduce section padding for a more compact look */
+    /* -------------------------
+       Section Padding Compact
+    -------------------------- */
     #about.section,
     #products.section,
     #contact.section {
-        padding: 20px 0; /* Further reduced padding for these sections */
+        padding: 20px 0;
     }
 
-    /* Remove media query for padding to keep it consistently short */
-    /* @media (min-width: 992px) {
-        #about.section,
-        #products.section,
-        #contact.section {
-            padding: 60px 0;
+    /* -------------------------
+       Product Card Styling
+    -------------------------- */
+    .product-card {
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        background-color: #f9f9f9;
+        padding: 1rem;
+    }
+
+    /* Judul dan teks */
+    .product-card .card-body {
+        padding: 1rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card .card-title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .product-card .card-text {
+        font-size: 0.9rem;
+        color: #6c757d;
+        flex-grow: 1;
+    }
+
+    .product-card .text-success {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .product-card .btn-sm {
+        font-size: 0.75rem;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-top: 0.5rem;
+    }
+
+    /* Responsive untuk mobile */
+    @media (max-width: 576px) {
+        .product-card img {
+            height: 160px;
+            padding: 0.75rem;
         }
-    } */
+    }
 </style>
 @endpush
 
