@@ -149,8 +149,9 @@
                             </div>
                         @endif
                         {{-- KOREKSI: Form Kontak disesuaikan dengan halaman kontak --}}
-                        <form action="{{ route('contact.store') }}" method="POST" class="php-email-form">
+                        <form action="{{ route('contact.store') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="from" value="home">
                             <div class="row gy-4">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -199,9 +200,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">Pesan Anda berhasil terkirim. Terima kasih!</div>
                                     <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">Kirim Pesan</button>
                                 </div>
                             </div>

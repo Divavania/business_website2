@@ -58,7 +58,7 @@
                     {{-- FORM KONTAK --}}
                     <form action="{{ route('contact.store') }}" method="POST">
                         @csrf
-
+                        <input type="hidden" name="from" value="contact">
                         <div class="row gy-4">
                             <div class="col-md-6">
                                 <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Anda" value="{{ old('nama') }}" required>

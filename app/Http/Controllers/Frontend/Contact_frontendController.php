@@ -44,7 +44,11 @@ class Contact_frontendController extends Controller
             'is_read' => false, // Default pesan belum dibaca
         ]);
 
-        // KOREKSI: Redirect kembali ke halaman kontak dengan pesan sukses
-        return redirect()->route('frontend.contact.index')->with('success', 'Pesan Anda berhasil terkirim! Kami akan segera menghubungi Anda.');
+        // Redirect berdasarkan asal form
+        if ($request->from === 'contact') {
+            return redirect()->route('frontend.contact.index')->with('success', 'Pesan Anda berhasil dikirim.');
+        } else {
+            return redirect()->to('/#contact')->with('success', 'Pesan Anda berhasil dikirim.');
+        }
     }
 }
