@@ -87,8 +87,9 @@
     .product-card {
         border-radius: 16px;
         transition: all 0.3s ease-in-out;
-        padding: 8px; /* Padding di sekitar card, termasuk gambar */
-        background-color: #f9f9f9;
+        padding: 8px;
+        border: 1px solid #e0e0e0;
+        background-color: #ffffff; /* Latar putih */
     }
 
     .product-card:hover {
@@ -96,27 +97,26 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
     }
 
-    /* KOREKSI: Gaya untuk pembungkus gambar */
     .product-image-wrapper {
-        height: 180px; /* Tinggi tetap untuk wadah gambar */
-        display: flex; /* Menggunakan flexbox untuk centering */
-        align-items: center; /* Vertically center */
-        justify-content: center; /* Horizontally center */
-        overflow: hidden; /* Pastikan gambar yang 'cover' tidak meluber */
-        border-radius: 12px 12px 0 0; /* Sesuaikan border-radius agar cocok dengan card */
-        margin-bottom: 8px; /* Jarak antara gambar dan detail produk */
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 12px 12px 0 0;
+        margin-bottom: 8px;
+        background-color: transparent; /* Hapus latar abu */
     }
 
-    /* KOREKSI: Gaya untuk gambar di dalam pembungkus */
     .product-image-wrapper img {
-        width: 100%; /* Gambar mengisi lebar wadah */
-        height: 100%; /* Gambar mengisi tinggi wadah */
-        object-fit: cover; /* Penting: agar gambar mengisi penuh tanpa 'gap', bisa terpotong */
-        transition: transform 0.3s ease; /* Efek zoom saat hover */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
     }
 
     .product-card:hover .product-image-wrapper img {
-        transform: scale(1.05); /* Efek zoom saat hover pada card */
+        transform: scale(1.05);
     }
 
     .product-card .card-title {
@@ -140,10 +140,11 @@
 
     @media (max-width: 576px) {
         .product-image-wrapper {
-            height: 150px; /* Sesuaikan tinggi gambar untuk mobile */
+            height: 150px;
         }
     }
 </style>
 @endpush
+
 
 @endsection
