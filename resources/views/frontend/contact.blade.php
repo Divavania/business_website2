@@ -55,21 +55,22 @@
                         @csrf
                         <input type="hidden" name="from" value="contact">
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Anda" value="{{ old('nama') }}" required>
                             @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" value="{{ old('email') }}" required>
                             @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                             <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor Telepon" value="{{ old('nomor_hp') }}" required>
                             @error('nomor_hp') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
+                        {{-- KOREKSI: Mengubah col-6 menjadi col-12 agar field Subjek full width di semua ukuran layar --}}
                         <div class="col-12">
                             <input type="text" name="subjek" class="form-control @error('subjek') is-invalid @enderror" placeholder="Subjek" value="{{ old('subjek') }}" required>
                             @error('subjek') <div class="invalid-feedback">{{ $message }}</div> @enderror

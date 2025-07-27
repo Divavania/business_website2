@@ -72,76 +72,106 @@
                     <p class="fst-italic">
                         {!! nl2br(e($about->deskripsi ?? 'Ringkasan tentang perusahaan belum tersedia. Silakan perbarui dari dashboard.')) !!}
                     </p>
-                    <a href="{{ url('/about') }}" class="read-more"><span>Selengkapnya Tentang Kami</span><i class="bi bi-arrow-right"></i></a>
+                    <a href="{{ route('frontend.about.index') }}" class="read-more"><span>Selengkapnya Tentang Kami</span><i class="bi bi-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- Bagian Our Product (Baru) --}}
-    <section id="products" class="products section light-background">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Produk Unggulan Kami</h2>
-            <p>Jelajahi Solusi Teknologi Terkini</p>
-        </div>
-        <div class="container">
-            <div class="row gy-4">
-                @forelse($products as $product)
-                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card h-100 shadow-sm border-0 rounded-lg product-card">
-                            {{-- Perhatikan path gambar: sesuaikan dengan tempat Anda menyimpan gambar produk --}}
-                            <img src="{{ asset('storage/' . $product->gambar) }}" class="card-img-top rounded-top-lg" alt="{{ $product->nama }}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/E0E0E0/333333?text=No+Image';">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title fw-bold text-primary">{{ $product->nama }}</h5>
-                                <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->deskripsi, 100) }}</p> {{-- Batasi deskripsi --}}
-                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                                    <span class="fw-bold text-success">Rp {{ number_format($product->harga, 0, ',', '.') }}</span>
-                                    {{-- Anda perlu membuat rute detail produk jika belum ada, contoh: /products/{id} --}}
-                                    <a href="{{ url('/products/' . $product->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Detail <i class="bi bi-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <div class="col-12 text-center">
-                        <p class="text-muted">Belum ada produk yang tersedia.</p>
-                    </div>
-                @endforelse
+   {{-- Bagian Our Product --}}
+<section id="products" class="products section">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Produk Unggulan Kami</h2>
+        <p>Jelajahi Solusi Teknologi Terkini</p>
+    </div>
+    <div class="container">
+
+        {{-- Filter Buttons --}}
+        <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="50">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <button class="btn btn-outline-primary active filter-btn" data-filter="all">All</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="hardware">Hardware</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="software">Software</button>
             </div>
-            <div class="row mt-4">
+        </div>
+
+        {{-- Produk List --}}
+        <div class="row gy-4" id="product-list">
+            @forelse($products as $product)
+                @php
+                    $kategoriClass = strtolower($product->kategori);
+                @endphp
+                <div class="col-6 col-md-4 col-lg-3 filter-item {{ $kategoriClass }}" data-aos="fade-up" data-aos-delay="100">
+    <div class="card h-100 shadow-sm border-0 rounded-lg product-card">
+        <div class="product-image-wrapper text-center" style="height: 180px;">
+            <img src="{{ asset('storage/' . $product->gambar) }}" alt="{{ $product->nama }}" class="img-fluid">
+        </div>
+        <div class="card-body d-flex flex-column">
+            <span class="badge bg-info text-dark mb-2 align-self-start">{{ ucfirst($product->kategori) }}</span>
+            <h5 class="card-title fw-bold text-primary">{{ $product->nama }}</h5>
+            <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->deskripsi, 80) }}</p>
+            <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
+                <span class="fw-bold text-success fs-6">Rp {{ number_format($product->harga, 0, ',', '.') }}</span>
+                <a href="{{ url('/products/' . $product->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Detail <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+            @empty
                 <div class="col-12 text-center">
-                    <a href="{{ url('/products') }}" class="btn btn-primary btn-lg rounded-pill px-4 py-2">Lihat Semua Produk</a>
+                    <p class="text-muted">Belum ada produk yang tersedia.</p>
                 </div>
+            @endforelse
+        </div>
+
+        {{-- Tombol Lihat Semua --}}
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{{ url('/products') }}" class="btn btn-outline-dark see-all-btn d-inline-flex align-items-center gap-2">
+                    <span>Lihat Semua Produk</span>
+                    <i class="bi bi-arrow-right-circle-fill fs-5"></i>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="contact" class="contact section py-5 bg-light">
+
+<section id="contact" class="contact section py-5 bg-light">
     <div class="container" data-aos="fade-up">
-        <div class="section-title text-center"> 
-            <h2 class="fw-bold text-primary">Hubungi Kami</h2> 
-            <p class="text-muted mb-0">Kirim pesan kepada kami langsung dari beranda</p> {{-- Tambah mb-0 --}}
-        </div>
+        <div class="row g-4 align-items-stretch">
+            <div class="col-lg-4 d-flex flex-column justify-content-between">
+                <div class="bg-white shadow-sm p-4 mb-2">
+                    <h5 class="fw-bold">Butuh informasi lebih lanjut?</h5>
+                    <p class="text-muted small mb-3">Kunjungi halaman FAQ kami untuk mempelajari lebih banyak tentang solusi terbaik dari Tigatra Adikara.</p>
+                    <a href="{{ route('frontend.about.index') }}" class="text-primary small fw-semibold text-decoration-none">Pelajari selengkapnya &nbsp;></a>
+                </div>
+                <div class="bg-white shadow-sm p-4">
+                    <h5 class="fw-bold">Ada pertanyaan?</h5>
+                    <p class="text-muted small mb-3">Ajukan pertanyaan Anda dan tim layanan pelanggan kami akan dengan senang hati membantu Anda.</p>
+                    <a href="{{ route('frontend.contact.index') }}" class="text-primary small fw-semibold text-decoration-none">Lihat Kontak &nbsp;></a>
+                </div>
+            </div>
 
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="bg-white p-3 p-md-4 rounded-4 shadow-sm">
+            <div class="col-lg-8">
+                <div class="bg-white p-4 shadow-sm h-100 d-flex flex-column">
+                    <div class="mb-3">
+                        <h3 class="fw-bold mb-2">Hubungi Kami</h3>
+                    </div>
 
-                    {{-- Pesan sukses --}}
                     @if(session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <i class="bi bi-check-circle me-2"></i>
                             {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
                         </div>
                     @endif
 
-                    {{-- Pesan error --}}
                     @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <i class="bi bi-exclamation-triangle me-2"></i>
                             Mohon periksa kembali input Anda:
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
                             <ul class="mb-0 mt-2">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -150,52 +180,51 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('contact.store') }}" method="POST" class="row g-3">
+                    <form action="{{ route('contact.store') }}" method="POST" class="row g-2 mt-auto">
                         @csrf
                         <input type="hidden" name="from" value="home">
 
                         <div class="col-md-6">
-                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama Lengkap Anda" value="{{ old('nama') }}" required>
+                            <label class="form-label">Nama Lengkap</label>
+                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
                             @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Anda" value="{{ old('email') }}" required>
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
                             @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" placeholder="Nomor Telepon" value="{{ old('nomor_hp') }}" required>
+                            <label class="form-label">Nomor Telepon</label>
+                            <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" value="{{ old('nomor_hp') }}" required>
                             @error('nomor_hp') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <input type="text" name="subjek" class="form-control @error('subjek') is-invalid @enderror" placeholder="Subjek" value="{{ old('subjek') }}" required>
+                            <label class="form-label">Subjek</label>
+                            <input type="text" name="subjek" class="form-control @error('subjek') is-invalid @enderror" value="{{ old('subjek') }}" required>
                             @error('subjek') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
                         <div class="col-12">
-                            <textarea name="pesan" rows="3" class="form-control @error('pesan') is-invalid @enderror" placeholder="Tulis pesan Anda di sini..." required>{{ old('pesan') }}</textarea>
+                            <label class="form-label">Pesan</label>
+                            <textarea name="pesan" rows="3" class="form-control @error('pesan') is-invalid @enderror" required style="min-height: 80px; padding-top: 6px; padding-bottom: 6px;">{{ old('pesan') }}</textarea>
                             @error('pesan') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
 
-                        <div class="col-12 text-end">
-                            <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
-                                <i class="bi bi-send me-1"></i> Kirim Pesan
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary px-3 py-1">
+                                <i class="bi bi-envelope me-2"></i>Kirim Pesan
                             </button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-    {{-- Bagian Clients, Services, Portfolio yang sebelumnya ada di index.blade.php telah dihapus --}}
-    {{-- Jika Anda ingin bagian ini tetap ada di halaman lain, pastikan rutenya masih ada --}}
-
 @endsection
 
 @push('styles')
@@ -293,6 +322,56 @@
         }
     }
 
+    .btn-group .filter-btn {
+        border-radius: 999px;
+        font-weight: 500;
+        padding: 0.4rem 1.2rem;
+        transition: all 0.3s ease-in-out;
+        color: #014a79;
+        border: 1.5px solid #014a79;
+        background-color: transparent;
+    }
+
+    .btn-group .filter-btn:hover {
+        background-color: #4797ec;
+        color: #fff;
+        border-color: #4797ec;
+    }
+
+    .btn-group .filter-btn.active {
+        background-color: #014a79;
+        color: #fff;
+        border-color: #014a79;
+        box-shadow: 0 4px 12px rgba(1, 74, 121, 0.2);
+        transform: translateY(-1px);
+    }
+
+    .see-all-btn {
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease-in-out;
+        border: 2px solid #014a79;
+        color: #014a79;
+        background-color: transparent;
+    }
+
+    .see-all-btn:hover {
+        background-color: #014a79;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(1, 74, 121, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .see-all-btn i {
+        transition: transform 0.3s ease;
+    }
+
+    .see-all-btn:hover i {
+        transform: translateX(3px);
+    }
+
      /* -------------------------
        About Section Image Styling
     -------------------------- */
@@ -315,7 +394,123 @@
             height: 250px; 
         }
     }
+    
+    
+     /* -------------------------
+       Form Kontak
+    -------------------------- */
+    .form-control {
+        border-radius: 0;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.95rem;
+    }
+    .form-control:focus {
+        border-color: #4797ec;
+        box-shadow: 0 0 0 0.2rem rgba(71, 151, 236, 0.25);
+    }
+    textarea.form-control {
+        resize: none;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #014a79;
+        box-shadow: 0 4px 12px rgba(1, 74, 121, 0.3);
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+        #contact .row {
+            flex-direction: column;
+        }
+        .col-lg-4, .col-lg-8 {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+        .form-control {
+            font-size: 0.9rem;
+        }
+
+    }
+    .see-all-btn {
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease-in-out;
+        border: 2px solid #014a79;
+        color: #014a79;
+        background-color: transparent;
+    }
+    .see-all-btn:hover {
+        background-color: #014a79;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(1, 74, 121, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .see-all-btn i {
+        transition: transform 0.3s ease;
+    }
+
+    .see-all-btn:hover i {
+        transform: translateX(3px);
+    }
+
+    /* -------------------------
+   Tombol Filter Produk (Homepage)
+-------------------------- */
+    .btn-group .filter-btn {
+        border-radius: 999px;
+        font-weight: 500;
+        padding: 0.4rem 1.2rem;
+        transition: all 0.3s ease-in-out;
+        color: #014a79;
+        border: 1.5px solid #014a79;
+        background-color: transparent;
+    }
+
+    .btn-group .filter-btn:hover {
+        background-color: #4797ec;
+        color: #fff;
+        border-color: #4797ec;
+    }
+
+    .btn-group .filter-btn.active {
+        background-color: #014a79;
+        color: #fff;
+        border-color: #014a79;
+        box-shadow: 0 4px 12px rgba(1, 74, 121, 0.2);
+        transform: translateY(-1px);
+    }
 </style>
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const productItems = document.querySelectorAll(".filter-item");
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener("click", function () {
+                filterButtons.forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+
+                const filter = this.getAttribute("data-filter");
+
+                productItems.forEach(item => {
+                    if (filter === "all" || item.classList.contains(filter)) {
+                        item.style.display = "block";
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+</script>
 @endpush
+
 
 
