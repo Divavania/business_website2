@@ -22,13 +22,6 @@ class ProductController extends Controller
         if ($request->has('kategori') && $request->input('kategori') !== 'all') {
             $query->where('kategori', $request->input('kategori'));
         }
-        if ($request->has('sort_harga')) {
-            if ($request->input('sort_harga') == 'asc') {
-                $query->orderBy('harga', 'asc');
-            } elseif ($request->input('sort_harga') == 'desc') {
-                $query->orderBy('harga', 'desc');
-            }
-        }
         if ($request->has('sort_nama')) {
             if ($request->input('sort_nama') == 'asc') {
                 $query->orderBy('nama', 'asc');
@@ -53,7 +46,6 @@ class ProductController extends Controller
             'deskripsi' => 'nullable',
             'spesifikasi' => 'nullable',
             'kategori' => 'required|in:hardware,software',
-            'harga' => 'required|numeric',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
@@ -67,7 +59,6 @@ class ProductController extends Controller
             'deskripsi' => $request->deskripsi,
             'spesifikasi' => $request->spesifikasi,
             'kategori' => $request->kategori,
-            'harga' => $request->harga,
             'gambar' => $gambar
         ]);
 
@@ -82,7 +73,6 @@ class ProductController extends Controller
             'deskripsi' => 'nullable',
             'spesifikasi' => 'nullable',
             'kategori' => 'required|in:hardware,software',
-            'harga' => 'required|numeric',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
@@ -100,7 +90,6 @@ class ProductController extends Controller
             'deskripsi' => $request->deskripsi,
             'spesifikasi' => $request->spesifikasi,
             'kategori' => $request->kategori,
-            'harga' => $request->harga,
             'gambar' => $gambar
         ]);
 

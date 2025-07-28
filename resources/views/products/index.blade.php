@@ -43,11 +43,12 @@
                     <option value="software" {{ request('kategori') == 'software' ? 'selected' : '' }}>Software</option>
                 </select>
 
-                <select name="sort_harga" class="form-select rounded-pill shadow-sm" style="width: auto; min-width: 160px;" onchange="this.form.submit()">
+                {{-- Urutkan Harga dihapus --}}
+                {{-- <select name="sort_harga" class="form-select rounded-pill shadow-sm" style="width: auto; min-width: 160px;" onchange="this.form.submit()">
                     <option value="">Urutkan Harga</option>
                     <option value="asc" {{ request('sort_harga') == 'asc' ? 'selected' : '' }}>Termurah</option>
                     <option value="desc" {{ request('sort_harga') == 'desc' ? 'selected' : '' }}>Termahal</option>
-                </select>
+                </select> --}}
 
                 <select name="sort_nama" class="form-select rounded-pill shadow-sm" style="width: auto; min-width: 160px;" onchange="this.form.submit()">
                     <option value="">Urutkan Nama</option>
@@ -81,7 +82,8 @@
                             <th class="py-3 px-4">Gambar</th>
                             <th class="py-3 px-4">Nama Produk</th>
                             <th class="py-3 px-4">Kategori</th>
-                            <th class="py-3 px-4">Harga</th>
+                            {{-- Harga dihapus dari header tabel --}}
+                            {{-- <th class="py-3 px-4">Harga</th> --}}
                             <th class="py-3 px-4 text-center" style="width: 150px;">Aksi</th>
                         </tr>
                     </thead>
@@ -98,7 +100,8 @@
                                 </td>
                                 <td class="align-middle px-4 fw-semibold">{{ $p->nama }}</td>
                                 <td class="align-middle px-4 text-muted">{{ ucfirst($p->kategori) }}</td>
-                                <td class="align-middle px-4 fw-semibold text-primary">Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
+                                {{-- Harga dihapus dari body tabel --}}
+                                {{-- <td class="align-middle px-4 fw-semibold text-primary">Rp {{ number_format($p->harga, 0, ',', '.') }}</td> --}}
                                 <td class="align-middle text-center px-4">
                                     <div class="d-flex justify-content-center gap-2">
                                         <button class="btn btn-warning btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $p->id }}" title="Edit Produk"><i class="bi bi-pencil-square"></i></button>
@@ -108,7 +111,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center text-muted py-4">
+                                <td colspan="5" class="text-center text-muted py-4"> {{-- colspan disesuaikan --}}
                                     <i class="bi bi-box-seam me-2"></i>Belum ada produk yang terdaftar. Tambahkan produk pertama Anda!
                                 </td>
                             </tr>
@@ -151,11 +154,12 @@
                             </select>
                             @error('kategori')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
-                        <div class="col-md-6">
+                        {{-- Harga dihapus dari modal tambah --}}
+                        {{-- <div class="col-md-6">
                             <label for="harga_tambah" class="form-label fw-semibold">Harga (Rp)</label>
                             <input type="number" name="harga" id="harga_tambah" class="form-control @error('harga') is-invalid @enderror" required value="{{ old('harga') }}">
                             @error('harga')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label for="gambar_tambah" class="form-label fw-semibold">Gambar Produk (Opsional)</label>
                             <input type="file" name="gambar" id="gambar_tambah" class="form-control @error('gambar') is-invalid @enderror">
@@ -210,11 +214,12 @@
                             </select>
                             @error('kategori')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>
-                        <div class="col-md-6">
+                        {{-- Harga dihapus dari modal edit --}}
+                        {{-- <div class="col-md-6">
                             <label for="harga_edit_{{ $p->id }}" class="form-label fw-semibold">Harga (Rp)</label>
                             <input type="number" name="harga" id="harga_edit_{{ $p->id }}" class="form-control @error('harga') is-invalid @enderror" value="{{ old('harga', $p->harga) }}" required>
                             @error('harga')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label for="gambar_edit_{{ $p->id }}" class="form-label fw-semibold">Gambar Produk (Opsional)</label>
                             <input type="file" name="gambar" id="gambar_edit_{{ $p->id }}" class="form-control @error('gambar') is-invalid @enderror">
@@ -288,14 +293,13 @@
 
 <script>
     document.getElementById('filterForm').addEventListener('submit', function(e) {
-        // Ini akan mencegah tombol search yang terpisah bekerja sendiri,
-        // karena sekarang semua filter ada di dalam satu form.
-        // Cukup submit form ini.
+        // Prevent the default action of submitting the form, in case you need custom logic
+        e.preventDefault();
+        // You can add your form submission logic here if needed
+        // For now, just submit the form normally:
+        this.submit();
     });
 
-    // Skrip untuk menyimpan scroll position (jika tabel sangat panjang)
-    // Ini lebih kompleks dan seringkali butuh library tambahan atau lebih banyak JS.
-    // Untuk saat ini, kita bisa lewati dulu agar tidak terlalu kompleks.
+    // Optional: Add custom logic here for saving scroll position if needed
 </script>
-
 @endsection

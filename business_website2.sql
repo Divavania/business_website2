@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2025 at 03:04 PM
+-- Generation Time: Jul 28, 2025 at 02:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,31 +70,7 @@ CREATE TABLE `company_info` (
 --
 
 INSERT INTO `company_info` (`id`, `company_name`, `tagline`, `street`, `city`, `province`, `postal_code`, `country`, `phone_number`, `whatsapp_number`, `contact_email`, `instagram_link`, `linkedin_link`, `google_maps_embed_link`) VALUES
-(1, 'Tigatra Adikara', 'PT Tigatra Adikara menyediakan solusi komprehensif untuk Infrastruktur IT, serta pemasaran dan dukungan untuk Hardware dan Software terkemuka.', 'Jl. Pattimura No. 46 RT. 14', 'Kelurahan Api-api - Kecamatan Bontang Utara', 'Bontang - Kalimantan Timur', '75311', 'Indonesia', NULL, '813-4621-2675', NULL, 'https://www.instagram.com/tigatra_adikara/', NULL, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8080471139633!2d117.49504308597604!3d0.13002134425753778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x320a0d80fa9db50d%3A0x97e12d0f735958ed!2sJl.%20Pattimura%20No.46%2C%20Api-Api%2C%20Kec.%20Bontang%20Utara%2C%20Kota%20Bontang%2C%20Kalimantan%20Timur%2075313!5e0!3m2!1sid!2sid!4v1753522647058!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contacts`
---
-
-CREATE TABLE `contacts` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `nomor_hp` varchar(15) DEFAULT NULL,
-  `subjek` varchar(255) DEFAULT NULL,
-  `pesan` text DEFAULT NULL,
-  `tanggal_kontak` timestamp NOT NULL DEFAULT current_timestamp(),
-  `is_read` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `contacts`
---
-
-INSERT INTO `contacts` (`id`, `nama`, `email`, `nomor_hp`, `subjek`, `pesan`, `tanggal_kontak`, `is_read`) VALUES
-(10, 'Nindi', 'nindi@gmail.com', '08xx xxxx xxxx', 'Permintaan Penawaran Produk', 'Saya tertarik dengan produk TigaPOS System untuk usaha restoran saya. Apakah ada demo atau penawaran harga khusus untuk UMKM?', '2025-07-25 21:18:03', 1);
+(1, 'Tigatra Adikara', 'PT Tigatra Adikara menyediakan solusi komprehensif untuk Infrastruktur IT, serta pemasaran dan dukungan untuk Hardware dan Software terkemuka.', 'Jl. Pattimura No. 46 RT. 14', 'Kelurahan Api-api - Kecamatan Bontang Utara', 'Bontang - Kalimantan Timur', '75311', 'Indonesia', NULL, '6281330270908', 'infotigatra@gmail.com', 'https://www.instagram.com/tigatra_adikara/', NULL, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8080471139633!2d117.49504308597604!3d0.13002134425753778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x320a0d80fa9db50d%3A0x97e12d0f735958ed!2sJl.%20Pattimura%20No.46%2C%20Api-Api%2C%20Kec.%20Bontang%20Utara%2C%20Kota%20Bontang%2C%20Kalimantan%20Timur%2075313!5e0!3m2!1sid!2sid!4v1753522647058!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade');
 
 -- --------------------------------------------------------
 
@@ -120,7 +96,6 @@ CREATE TABLE `products` (
   `deskripsi` text DEFAULT NULL,
   `spesifikasi` text DEFAULT NULL,
   `kategori` enum('hardware','software') NOT NULL,
-  `harga` decimal(10,2) NOT NULL,
   `gambar` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
@@ -130,10 +105,11 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `harga`, `gambar`, `created_at`, `updated_at`) VALUES
-(11, 'TigaRouter X100', 'Router dual-band untuk kantor dan rumah.', '2.4GHz & 5GHz, 4 port LAN, 1 port WAN', 'hardware', 850000.00, 'produk/yjbhWhmrthRpogLkTaahJ5Mtmsdoniv26n41f2l8.jpg', '2025-07-25 20:57:23', '2025-07-25 21:03:37'),
-(12, 'TigaServer Pro', 'Server mini untuk kebutuhan bisnis kecil.', 'Intel Xeon, 16GB RAM, 1TB SSD', 'hardware', 12500000.00, 'produk/m67FPaTy906bhFvxmN1MtUZBI4nESBr7NOGG4HAg.jpg', '2025-07-25 20:58:01', '2025-07-25 21:03:55'),
-(14, 'Software ERP Tigatra', 'Sistem ERP berbasis web untuk manajemen bisnis.', 'Modul HR, Inventori, Akuntansi, CRM', 'software', 45000000.00, 'produk/ZZ978Vj95zQrVXS6fWunAibkDbyAulPW1bd2dxVu.jpg', '2025-07-25 20:58:58', '2025-07-25 21:04:32');
+INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `gambar`, `created_at`, `updated_at`) VALUES
+(11, 'TigaRouter X100', 'Router dual-band untuk kantor dan rumah.', '2.4GHz & 5GHz, 4 port LAN, 1 port WAN', 'hardware', 'produk/yjbhWhmrthRpogLkTaahJ5Mtmsdoniv26n41f2l8.jpg', '2025-07-25 20:57:23', '2025-07-25 21:03:37'),
+(12, 'TigaServer Pro', 'Server mini untuk kebutuhan bisnis kecil.', 'Intel Xeon, 16GB RAM, 1TB SSD', 'hardware', 'produk/m67FPaTy906bhFvxmN1MtUZBI4nESBr7NOGG4HAg.jpg', '2025-07-25 20:58:01', '2025-07-25 21:03:55'),
+(14, 'Software ERP Tigatra', 'Sistem ERP berbasis web untuk manajemen bisnis.', 'Modul HR, Inventori, Akuntansi, CRM', 'software', 'produk/ZZ978Vj95zQrVXS6fWunAibkDbyAulPW1bd2dxVu.jpg', '2025-07-25 20:58:58', '2025-07-25 21:04:32'),
+(15, 'Anti Virus', NULL, NULL, 'software', NULL, '2025-07-27 19:28:36', '2025-07-27 19:28:36');
 
 -- --------------------------------------------------------
 
@@ -196,12 +172,6 @@ ALTER TABLE `company_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `contacts`
---
-ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -243,12 +213,6 @@ ALTER TABLE `company_info`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `contacts`
---
-ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -258,7 +222,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `service_centers`

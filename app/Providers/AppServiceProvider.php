@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View; // Import Facade View
 use App\Models\CompanyInfo; // Import Model CompanyInfo
-use App\Models\Contact; // Import Model Contact untuk unreadMessages
+// use App\Models\Contact; // Import Model Contact untuk unreadMessages - DIHAPUS
 use Illuminate\Support\Facades\DB; // Import DB Facade jika diperlukan di masa depan, saat ini tidak digunakan langsung di sini.
 
 class AppServiceProvider extends ServiceProvider
@@ -48,10 +48,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('companyInfo', $companyInfo);
         });
 
-        // View Composer untuk unreadMessages (dibagikan ke layout backend)
-        View::composer('layouts.app', function ($view) { // Menggunakan 'layouts.app' karena sidebar biasanya ada di layout
-            $unreadMessages = Contact::where('is_read', 0)->count();
-            $view->with('unreadMessages', $unreadMessages);
-        });
+        // View Composer untuk unreadMessages (dibagikan ke layout backend) - DIHAPUS
+        // View::composer('layouts.app', function ($view) {
+        //     $unreadMessages = Contact::where('is_read', 0)->count();
+        //     $view->with('unreadMessages', $unreadMessages);
+        // });
     }
 }

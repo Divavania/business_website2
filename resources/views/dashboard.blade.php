@@ -26,22 +26,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Card Jumlah Pesan Masuk (Belum Dibaca) --}}
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card shadow-sm h-100 border-0 rounded-lg">
-                    <div class="card-body d-flex flex-column p-2 text-center">
-                        <div class="d-inline-flex align-items-center justify-content-center mb-2">
-                            <i class="bi bi-envelope-fill text-success fs-3 me-3"></i>
-                            <h5 class="card-title mb-0 text-dark fw-bold fs-6">Pesan Masuk Baru</h5>
-                        </div>
-                        <h2 class="fs-5 fw-bold mb-2">{{ $unreadMessages ?? 0 }}</h2>
-                        <p class="card-text text-muted small flex-grow-1 mb-3">Pesan dari pengunjung yang belum Anda baca.</p>
-                        <a href="/contacts" class="btn btn-outline-success btn-sm mt-auto w-100">Lihat Pesan <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
             {{-- Card Jumlah Service Center --}}
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card shadow-sm h-100 border-0 rounded-lg">
@@ -53,21 +37,6 @@
                         <h2 class="fs-5 fw-bold mb-2">{{ $totalService }}</h2>
                         <p class="card-text text-muted small flex-grow-1 mb-3">Jumlah lokasi service center yang terdaftar.</p>
                         <a href="/service" class="btn btn-outline-info btn-sm mt-auto w-100">Kelola Lokasi <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Card Jumlah Semua Pesan --}}
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card shadow-sm h-100 border-0 rounded-lg">
-                    <div class="card-body d-flex flex-column p-2 text-center">
-                        <div class="d-inline-flex align-items-center justify-content-center mb-2">
-                            <i class="bi bi-chat-dots-fill text-warning fs-3 me-3"></i>
-                            <h5 class="card-title mb-0 text-dark fw-bold fs-6">Total Pesan</h5>
-                        </div>
-                        <h2 class="fs-5 fw-bold mb-2">{{ $totalKontak }}</h2>
-                        <p class="card-text text-muted small flex-grow-1 mb-3">Jumlah total pesan dari semua pengunjung.</p>
-                        <a href="/contacts" class="btn btn-outline-warning btn-sm mt-auto w-100">Arsip Pesan <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

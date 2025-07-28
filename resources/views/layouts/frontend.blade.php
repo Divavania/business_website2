@@ -125,7 +125,7 @@
         }
 
         .whatsapp-sticky-button button {
-            background-color: #007bff;
+            background-color: #1a5276; /* KOREKSI: Warna biru agak tua */
             color: white;
             border: none;
             border-radius: 50px;
@@ -142,7 +142,7 @@
         }
 
         .whatsapp-sticky-button button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #133c57; /* KOREKSI: Darker blue on hover */
         }
 
         .whatsapp-sticky-button i {
@@ -170,7 +170,7 @@
         }
 
         #whatsappModal .modal-header {
-            background-color: #007bff; /* Blue header as per image */
+            background-color: #1a5276; /* KOREKSI: Biru agak tua untuk header modal */
             color: white;
             border-bottom: none;
             padding: 10px 15px;
@@ -332,7 +332,7 @@
 
         <div class="container footer-top py-1"> {{-- KOREKSI: Mengurangi padding vertikal dari py-2 ke py-1 --}}
             <div class="row gy-4">
-               
+                
                 {{-- Kolom 1: Logo, Alamat & Kontak --}}
                 <div class="col-lg-4 col-md-6 footer-about"> {{-- Diubah dari col-lg-3 ke col-lg-4 --}}
                     <a href="{{ route('home') }}" class="logo d-flex align-items-center mb-3">
@@ -429,40 +429,42 @@
     <script src="{{ asset('template-assets/assets/js/main.js') }}"></script>
 
     {{-- Pop-up WhatsApp (HTML structure remains, styling from app.css) --}}
-    <div class="whatsapp-sticky-button">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#whatsappModal">
-            <i class="bi bi-whatsapp"></i>
-        </button>
-    </div>
+    @if(empty($hideWhatsappButton)) {{-- KOREKSI: Menggunakan empty() untuk menyembunyikan tombol --}}
+        <div class="whatsapp-sticky-button">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#whatsappModal">
+                <i class="bi bi-whatsapp"></i>
+            </button>
+        </div>
 
-    {{-- WhatsApp Chat Modal --}}
-    <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="bi bi-chat-dots"></i>
-                    <div>
-                        <h5 class="modal-title" id="whatsappModalLabel">Silahkan chat dengan tim kami</h5>
-                        <p class="admin-response">Admin akan membalas dalam beberapa menit</p>
+        {{-- WhatsApp Chat Modal --}}
+        <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <i class="bi bi-chat-dots"></i>
+                        <div>
+                            <h5 class="modal-title" id="whatsappModalLabel">Silahkan chat dengan tim kami</h5>
+                            <p class="admin-response">Admin akan membalas dalam beberapa menit</p>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-0">
-                    <div class="chat-bubble-alt">
-                        <span class="text">Halo, Ada yang bisa kami bantu?</span>
-                        <span class="typing">...</span>
+                    <div class="modal-body p-0">
+                        <div class="chat-bubble-alt">
+                            <span class="text">Halo, Ada yang bisa kami bantu?</span>
+                            <span class="typing">...</span>
+                        </div>
+                        {{-- Tombol kirim WhatsApp --}}
+                        <a href="https://wa.me/{{ $companyInfo->whatsapp_number ?? '6281234567890' }}?text=Halo%20Tigatra%20Adikara%2C%20saya%20ingin%20bertanya" 
+                        target="_blank" 
+                        class="chat-start-button" 
+                        rel="nofollow noreferrer">
+                            Mulai chat...
+                        </a>
                     </div>
-                    {{-- Tombol kirim WhatsApp --}}
-                    <a href="https://wa.me/{{ $companyInfo->whatsapp_number ?? '6281234567890' }}?text=Halo%20Tigatra%20Adikara%2C%20saya%20ingin%20bertanya" 
-                    target="_blank" 
-                    class="chat-start-button" 
-                    rel="nofollow noreferrer">
-                        Mulai chat...
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     @stack('scripts') {{-- Memastikan stack scripts ada di sini --}}
 

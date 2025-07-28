@@ -46,7 +46,6 @@
                         <h2 class="text-primary mb-3">{{ $product->nama }}</h2>
                         <ul class="list-unstyled small mb-4">
                             <li class="mb-2"><i class="bi bi-box-seam me-2 text-secondary"></i><strong>Kategori:</strong> {{ ucfirst($product->kategori) }}</li>
-                            <li class="mb-2"><i class="bi bi-cash-coin me-2 text-secondary"></i><strong>Harga:</strong> Rp {{ number_format($product->harga, 0, ',', '.') }}</li>
                         </ul>
 
                         <a href="{{ route('frontend.contact.index') }}" class="btn btn-primary rounded-pill px-4 py-2 mt-2 w-100">

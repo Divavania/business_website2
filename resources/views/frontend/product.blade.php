@@ -62,7 +62,6 @@
                             <h5 class="card-title fw-bold text-primary">{{ $product->nama }}</h5>
                             <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->deskripsi, 80) }}</p>
                             <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                                <span class="fw-bold text-success fs-6">Rp {{ number_format($product->harga, 0, ',', '.') }}</span>
                                 <a href="{{ url('/products/' . $product->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Detail <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>

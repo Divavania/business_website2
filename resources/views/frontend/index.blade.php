@@ -9,7 +9,7 @@
 
         <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
-           {{-- Slide 1 --}}
+            {{-- Slide 1 --}}
             <div class="carousel-item active">
                 <img src="{{ asset('template-assets/assets/img/contoh.jpg') }}" class="img-fluid" alt="Solusi Infrastruktur IT Tigatra Adikara">
                 <div class="carousel-container">
@@ -78,7 +78,7 @@
         </div>
     </section>
 
-   {{-- Bagian Our Product --}}
+    {{-- Bagian Our Product --}}
 <section id="products" class="products section">
     <div class="container section-title" data-aos="fade-up">
         <h2>Produk Unggulan Kami</h2>
@@ -111,7 +111,6 @@
             <h5 class="card-title fw-bold text-primary">{{ $product->nama }}</h5>
             <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->deskripsi, 80) }}</p>
             <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                <span class="fw-bold text-success fs-6">Rp {{ number_format($product->harga, 0, ',', '.') }}</span>
                 <a href="{{ url('/products/' . $product->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Detail <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
@@ -136,101 +135,27 @@
     </div>
 </section>
 
-
-<section id="contact" class="contact section py-5 bg-light">
-    <div class="container" data-aos="fade-up">
-        <div class="row g-4 align-items-stretch">
-            <div class="col-lg-4 d-flex flex-column justify-content-between">
-                <div class="bg-white shadow-sm p-4 mb-2">
-                    <h5 class="fw-bold">Butuh informasi lebih lanjut?</h5>
-                    <p class="text-muted small mb-3">Kunjungi halaman FAQ kami untuk mempelajari lebih banyak tentang solusi terbaik dari Tigatra Adikara.</p>
-                    <a href="{{ route('frontend.about.index') }}" class="text-primary small fw-semibold text-decoration-none">Pelajari selengkapnya &nbsp;></a>
-                </div>
-                <div class="bg-white shadow-sm p-4">
-                    <h5 class="fw-bold">Ada pertanyaan?</h5>
-                    <p class="text-muted small mb-3">Ajukan pertanyaan Anda dan tim layanan pelanggan kami akan dengan senang hati membantu Anda.</p>
-                    <a href="{{ route('frontend.contact.index') }}" class="text-primary small fw-semibold text-decoration-none">Lihat Kontak &nbsp;></a>
-                </div>
-            </div>
-
-            <div class="col-lg-8">
-                <div class="bg-white p-4 shadow-sm h-100 d-flex flex-column">
-                    <div class="mb-3">
-                        <h3 class="fw-bold mb-2">Hubungi Kami</h3>
-                    </div>
-
-                    @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <i class="bi bi-check-circle me-2"></i>
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
-                        </div>
-                    @endif
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <i class="bi bi-exclamation-triangle me-2"></i>
-                            Mohon periksa kembali input Anda:
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Tutup"></button>
-                            <ul class="mb-0 mt-2">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-                    <form action="{{ route('contact.store') }}" method="POST" class="row g-2 mt-auto">
-                        @csrf
-                        <input type="hidden" name="from" value="home">
-
-                        <div class="col-md-6">
-                            <label class="form-label">Nama Lengkap</label>
-                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}" required>
-                            @error('nama') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
-                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Nomor Telepon</label>
-                            <input type="text" name="nomor_hp" class="form-control @error('nomor_hp') is-invalid @enderror" value="{{ old('nomor_hp') }}" required>
-                            @error('nomor_hp') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Subjek</label>
-                            <input type="text" name="subjek" class="form-control @error('subjek') is-invalid @enderror" value="{{ old('subjek') }}" required>
-                            @error('subjek') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Pesan</label>
-                            <textarea name="pesan" rows="3" class="form-control @error('pesan') is-invalid @enderror" required style="min-height: 80px; padding-top: 6px; padding-bottom: 6px;">{{ old('pesan') }}</textarea>
-                            @error('pesan') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary px-3 py-1">
-                                <i class="bi bi-envelope me-2"></i>Kirim Pesan
-                            </button>
-                        </div>
-                    </form>
+    <section id="contact-promo" class="contact-promo section pt-5 pb-5">
+        <div class="container" data-aos="fade-up">
+            <div class="card contact-promo-card shadow-sm border-0">
+                <div class="card-body text-center p-4 p-md-5">
+                    <i class="bi bi-chat-dots contact-promo-icon mb-3"></i>
+                    <h3 class="contact-promo-title fw-bold mb-3">Punya pertanyaan atau butuh bantuan?</h3>
+                    <p class="contact-promo-description mb-4">
+                        Kami siap membantu Anda! Klik tombol di bawah untuk menghubungi kami langsung.
+                    </p>
+                    <a href="{{ route('frontend.contact.index') }}" class="btn contact-promo-btn btn-lg rounded-pill">
+                        <i class="bi bi-headset me-2"></i> Hubungi Kami
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-@endsection
+    </section>@endsection
 
 @push('styles')
 <style>
     /* -------------------------
-       Form Control Styling
+        Form Control Styling
     -------------------------- */
     .form-control {
         border: 1px solid #ced4da;
@@ -248,16 +173,15 @@
     }
 
     /* -------------------------
-       Section Padding Compact
+        Section Padding Compact
     -------------------------- */
     #about.section,
-    #products.section,
-    #contact.section {
+    #products.section { /* contact.section dihapus */
         padding: 20px 0;
     }
 
     /* -------------------------
-       Product Card Styling
+        Product Card Styling
     -------------------------- */
     .product-card {
         border-radius: 16px;
@@ -372,95 +296,32 @@
         transform: translateX(3px);
     }
 
-     /* -------------------------
-       About Section Image Styling
+      /* -------------------------
+        About Section Image Styling
     -------------------------- */
     .about-img img {
-        width: 100%; 
-        height: 400px; 
-        object-fit: cover; 
-        border-radius: 8px; 
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    @media (max-width: 991px) { 
+    @media (max-width: 991px) {
         .about-img {
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
         }
     }
 
-    @media (max-width: 576px) { 
+    @media (max-width: 576px) {
         .about-img img {
-            height: 250px; 
+            height: 250px;
         }
     }
-    
-    
-     /* -------------------------
-       Form Kontak
-    -------------------------- */
-    .form-control {
-        border-radius: 0;
-        padding: 0.4rem 0.7rem;
-        font-size: 0.95rem;
-    }
-    .form-control:focus {
-        border-color: #4797ec;
-        box-shadow: 0 0 0 0.2rem rgba(71, 151, 236, 0.25);
-    }
-    textarea.form-control {
-        resize: none;
-    }
-    .btn-primary {
-        background-color: #007bff;
-        border: none;
-    }
-    .btn-primary:hover {
-        background-color: #014a79;
-        box-shadow: 0 4px 12px rgba(1, 74, 121, 0.3);
-        transform: translateY(-1px);
-    }
 
-    @media (max-width: 768px) {
-        #contact .row {
-            flex-direction: column;
-        }
-        .col-lg-4, .col-lg-8 {
-            max-width: 100%;
-            flex: 0 0 100%;
-        }
-        .form-control {
-            font-size: 0.9rem;
-        }
 
-    }
-    .see-all-btn {
-        border-radius: 50px;
-        padding: 0.5rem 1.5rem;
-        font-weight: 500;
-        font-size: 0.95rem;
-        transition: all 0.3s ease-in-out;
-        border: 2px solid #014a79;
-        color: #014a79;
-        background-color: transparent;
-    }
-    .see-all-btn:hover {
-        background-color: #014a79;
-        color: #fff;
-        box-shadow: 0 4px 12px rgba(1, 74, 121, 0.2);
-        transform: translateY(-2px);
-    }
-
-    .see-all-btn i {
-        transition: transform 0.3s ease;
-    }
-
-    .see-all-btn:hover i {
-        transform: translateX(3px);
-    }
-
-    /* -------------------------
-   Tombol Filter Produk (Homepage)
+      /* -------------------------
+        Tombol Filter Produk (Homepage)
 -------------------------- */
     .btn-group .filter-btn {
         border-radius: 999px;
@@ -484,6 +345,84 @@
         border-color: #014a79;
         box-shadow: 0 4px 12px rgba(1, 74, 121, 0.2);
         transform: translateY(-1px);
+    }
+
+    /* Custom styles for Contact Promo section */
+    .contact-promo.section {
+        background-color: #f8f9fa; /* Light gray section background */
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .contact-promo-card {
+        background-color: #ffffff; /* White background for the card */
+        border: 1px solid #e9ecef; /* Thin light border */
+        border-radius: 15px; /* Rounded corners for the card */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft shadow */
+        max-width: 700px; /* Limit card width */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-promo-icon {
+        font-size: 2.5rem; /* Large icon size */
+        color: #014a79; /* Dark blue color for icon */
+        margin-bottom: 1rem;
+        display: block; /* Ensure it takes its own line */
+    }
+
+    .contact-promo-title {
+        font-size: 1.8rem; /* Heading size */
+        color: #014a79; /* Dark blue color */
+        font-weight: 700;
+    }
+
+    .contact-promo-description {
+        font-size: 1.0rem; /* Text size */
+        color: #333333; /* Dark gray text */
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        max-width: 500px; /* Limit text width for better readability */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-promo-btn {
+        background-color: #014a79; /* Dark blue button background */
+        color: #ffffff; /* White text on button */
+        border: none;
+        padding: 12px 30px; /* Generous padding */
+        font-size: 1.1rem; /* Slightly larger font */
+        font-weight: 500;
+        border-radius: 50px; /* Highly rounded */
+        box-shadow: 0 4px 10px rgba(1, 74, 121, 0.25); /* Shadow for depth */
+        transition: all 0.3s ease;
+    }
+
+    .contact-promo-btn:hover {
+        background-color: #003a60; /* Darker blue on hover */
+        transform: translateY(-2px); /* Slight lift effect */
+        box-shadow: 0 6px 15px rgba(1, 74, 121, 0.35); /* Increased shadow on hover */
+        color: #ffffff; /* Ensure text color remains white on hover */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767.98px) {
+        .contact-promo-card {
+            padding: 2rem !important; /* Adjust padding for smaller screens */
+        }
+        .contact-promo-title {
+            font-size: 1.5rem; /* Smaller title on mobile */
+        }
+        .contact-promo-description {
+            font-size: 0.95rem; /* Smaller description text on mobile */
+        }
+        .contact-promo-btn {
+            width: 100%; /* Full width button on mobile */
+            max-width: 300px; /* But not too wide if container is larger */
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 </style>
 @push('scripts')
@@ -511,6 +450,3 @@
     });
 </script>
 @endpush
-
-
-

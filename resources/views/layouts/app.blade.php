@@ -185,10 +185,6 @@
         <i class="bi bi-box-seam"></i>
         <span class="text">Produk</span>
     </a>
-    <a href="/contacts" class="{{ request()->is('contacts') ? 'active' : '' }}">
-        <i class="bi bi-envelope"></i>
-        <span class="text">Kontak Masuk</span>
-    </a>
     <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
         <i class="bi bi-wrench"></i>
         <span class="text">Service Center</span>
@@ -220,18 +216,6 @@
 <div id="topbar" class="topbar">
     <button class="btn-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
     <span><strong>Halo,</strong> {{ session('user')->nama }} ({{ session('user')->role }})</span>
-
-    <!-- Ikon Pesan -->
-    <a href="/contacts" class="position-relative">
-        <i class="bi bi-envelope fs-4 text-dark"></i>
-        @if(isset($unreadMessages) && $unreadMessages > 0) {{-- Menambahkan isset() check --}}
-            <!-- Titik merah indikator pesan belum dibaca -->
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{ $unreadMessages }}
-                <span class="visually-hidden">unread messages</span>
-            </span>
-        @endif
-    </a>
 </div>
 
 <!-- Main Content -->
