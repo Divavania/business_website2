@@ -88,7 +88,7 @@
                         @error('phone_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
                     <div class="col-md-6">
-                        <label for="whatsapp_number" class="form-label fw-semibold">Nomor WhatsApp (tanpa kode negara, misal: 81234567890)</label>
+                        <label for="whatsapp_number" class="form-label fw-semibold">Nomor WhatsApp (tanpa +, misal: 62812345678)</label>
                         <input type="text" name="whatsapp_number" id="whatsapp_number" class="form-control @error('whatsapp_number') is-invalid @enderror" value="{{ old('whatsapp_number', $companyInfo->whatsapp_number) }}">
                         @error('whatsapp_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
