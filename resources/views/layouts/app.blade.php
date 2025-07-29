@@ -212,10 +212,12 @@
         </a>
 </div>
 
-<!-- Topbar -->
-<div id="topbar" class="topbar">
-    <button class="btn-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
-    <span><strong>Halo,</strong> {{ session('user')->nama }} ({{ session('user')->role }})</span>
+<div id="topbar" class="topbar d-flex align-items-center justify-content-center">
+    <button class="btn-toggle d-none d-lg-block position-absolute start-0 ms-3" id="desktopToggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <span class="fw-bold">Halo, {{ session('user')->nama }} ({{ session('user')->role }})</span>
 </div>
 
 <!-- Main Content -->

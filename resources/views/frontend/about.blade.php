@@ -23,14 +23,14 @@
             <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
                 <div class="col-lg-5">
                     <div class="about-img">
-                        <img src="{{ asset('template-assets/assets/img/about.jpg') }}" class="img-fluid" alt="About Us Portrait"> 
+                        <img src="{{ asset('template-assets/assets/img/about.jpg') }}" class="img-fluid d-block mx-auto" alt="About Us Portrait"> 
                     </div>
                 </div>
 
                 <div class="col-lg-7">
-                    <h3 class="pt-0 pt-lg-5">Mengenal Lebih Dekat Tigatra Adikara</h3>
+                    <h3 class="pt-0 pt-lg-5 text-center text-lg-start">Mengenal Lebih Dekat Tigatra Adikara</h3>
 
-                    <ul class="nav nav-pills mb-3">
+                    <ul class="nav nav-pills mb-3 d-flex justify-content-center justify-content-lg-start">
                         <li><a class="nav-link active" data-bs-toggle="pill" href="#about-2-tab1">Sejarah</a></li>
                         <li><a class="nav-link" data-bs-toggle="pill" href="#about-2-tab2">Visi</a></li>
                         <li><a class="nav-link" data-bs-toggle="pill" href="#about-2-tab3">Misi</a></li>

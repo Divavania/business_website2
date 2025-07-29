@@ -125,7 +125,7 @@
         }
 
         .whatsapp-sticky-button button {
-            background-color: #1a5276; /* KOREKSI: Warna biru agak tua */
+            background-color: #007bff; /* KOREKSI: Warna biru agak tua */
             color: white;
             border: none;
             border-radius: 50px;
@@ -142,7 +142,7 @@
         }
 
         .whatsapp-sticky-button button:hover {
-            background-color: #133c57; /* KOREKSI: Darker blue on hover */
+            background-color: #0063ccff; /* KOREKSI: Darker blue on hover */
         }
 
         .whatsapp-sticky-button i {
@@ -170,7 +170,7 @@
         }
 
         #whatsappModal .modal-header {
-            background-color: #1a5276; /* KOREKSI: Biru agak tua untuk header modal */
+            background-color: #007bff; /* KOREKSI: Biru agak tua untuk header modal */
             color: white;
             border-bottom: none;
             padding: 10px 15px;
@@ -278,21 +278,91 @@
         }
 
         /* Responsive adjustments for mobile menu */
-        @media (max-width: 1199px) {
+       @media (max-width: 1199px) {
+            /* Menyesuaikan kontainer navmenu itu sendiri */
+            #header .navmenu {
+                /* Perilaku default navmenu sebagai overlay */
+                position: fixed;
+                top: 0;
+                right: -100%; /* Sembunyikan di luar layar awalnya */
+                width: 85%; /* Batasi lebar menu hingga 85% */
+                max-width: 300px; /* Batasi lebar maksimum */
+                height: 100vh; /* Tinggi penuh viewport */
+                background-color: #ffffff;
+                box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                overflow-y: auto;
+                transition: 0.3s; /* Animasi geser */
+                z-index: 9998; /* Di bawah tombol close, di atas konten lain */
+                padding: 20px 0; /* Padding vertikal */
+            }
+
+            /* Saat menu aktif, geser ke dalam */
+            body.mobile-nav-active #header .navmenu {
+                right: 0;
+            }
+
             #header .navmenu ul {
                 flex-direction: column; /* Stack vertically on mobile */
                 align-items: flex-start; /* Align text to the left */
+                padding: 0; /* Pastikan tidak ada padding berlebih di ul */
+                margin: 0; /* Pastikan tidak ada margin berlebih di ul */
+                width: 100%; /* Pastikan ul juga 100% dari navmenu */
             }
             #header .navmenu li {
                 width: 100%; /* Full width for mobile menu items */
+                margin-bottom: 10px; /* Jarak antar item menu */
+            }
+            #header .navmenu li:last-child {
+                margin-bottom: 0; /* Hapus margin bawah pada item terakhir */
             }
             #header .navmenu a {
-                padding: 12px 20px; /* More padding for touch targets on mobile */
-                font-size: 16px;
-                border-bottom: 1px solid #eee; /* Add a subtle separator */
+                padding: 12px 15px; /* Sesuaikan padding agar lebih proporsional */
+                font-size: 16px; /* Ukuran font yang mudah dibaca */
+                border-bottom: 1px solid #eee; /* Tambahkan separator */
             }
             #header .navmenu li:last-child a {
                 border-bottom: none; /* No border on the last item */
+            }
+
+            /* --- Penyesuaian untuk Ikon Hamburger di Mobile --- */
+
+            /* Pastikan kontainer header memiliki posisi relatif untuk positioning absolut */
+            #header .container-xl {
+                position: relative;
+            }
+
+            /* Gaya untuk ikon hamburger (mobile-nav-toggle) di mobile */
+            .mobile-nav-toggle {
+                display: block !important; /* Pastikan ikon hamburger terlihat di mobile */
+                position: absolute; /* Posisikan secara absolut di dalam header container */
+                right: 15px; /* Jarak dari kanan */
+                top: 50%; /* Posisikan di tengah secara vertikal */
+                transform: translateY(-50%); /* Sesuaikan untuk pemusatan vertikal yang tepat */
+                font-size: 28px; /* Ukuran ikon yang jelas */
+                z-index: 9999; /* Pastikan ikon hamburger berada di atas semua elemen lain */
+                color: #556270; /* Warna ikon */
+                cursor: pointer;
+            }
+
+            /* Gaya untuk ikon 'X' saat menu mobile aktif (jika template Anda mengubahnya) */
+            body.mobile-nav-active .mobile-nav-toggle {
+                color: #556270; /* Warna ikon 'X' */
+            }
+
+            /* Sesuaikan margin logo agar tidak bertabrakan dengan ikon hamburger jika perlu */
+            #header .logo {
+                margin-left: 15px; /* Tambahkan margin kiri untuk logo */
+                margin-right: auto; /* Tetap dorong logo ke kiri */
+            }
+
+            /* KOREKSI BARU: Kecilkan ukuran font sitename di mobile */
+            #header .logo .sitename {
+                font-size: 1.2rem; /* Sesuaikan ukuran font sesuai kebutuhan, misalnya dari 1.5rem menjadi 1.2rem */
+            }
+
+            /* Sembunyikan tombol "Hubungi Kami" di mobile jika tidak diperlukan */
+            #header .btn-getstarted {
+                display: none !important; /* Sembunyikan tombol "Hubungi Kami" di mobile */
             }
         }
     </style>
@@ -319,8 +389,10 @@
                     <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
                     <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li> {{-- Menggunakan rute bernama --}}
                 </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                {{-- <i class="mobile-nav-toggle d-xl-none bi bi-list"></i> --}} <!-- DIHAPUS DARI SINI -->
             </nav>
+            {{-- PERUBAHAN DI SINI: Pindahkan tombol hamburger keluar dari navmenu --}}
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </div>
     </header>
 
