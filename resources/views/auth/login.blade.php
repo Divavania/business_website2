@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
       body {
-        background-color: #1e293b; /* Dark Blue background - Konsisten dengan sidebar admin */
+        background-color: #1e293b; 
         font-family: 'Roboto', sans-serif;
         height: 100vh;
         display: flex;
@@ -20,7 +20,7 @@
       .login-box {
         width: 100%;
         max-width: 400px;
-        background: #fff; /* White background for the form */
+        background: #fff; 
         text-align: center;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         border-radius: 10px;
@@ -31,7 +31,7 @@
         height: 100px;
         font-size: 80px;
         line-height: 100px;
-        background: -webkit-linear-gradient(#4797ec, #014a79); /* Blue gradient - Konsisten dengan warna primer/info */
+        background: -webkit-linear-gradient(#4797ec, #014a79); 
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -39,10 +39,10 @@
       .login-title {
         margin-top: 15px;
         text-align: center;
-        font-size: 24px; /* KOREKSI: Mengubah ukuran font dari 28px menjadi 24px */
+        font-size: 24px; 
         letter-spacing: 2px;
         font-weight: bold;
-        color: #014a79; /* Dark Blue - Konsisten dengan warna primer gelap */
+        color: #014a79; 
       }
 
       .login-form {
@@ -53,26 +53,26 @@
       input[type="email"], input[type="password"] {
         background-color: #fff;
         border: none;
-        border-bottom: 2px solid #4797ec; /* Light Blue border - Konsisten dengan warna info/primer terang */
+        border-bottom: 2px solid #4797ec; 
         border-radius: 0;
         font-weight: bold;
         outline: 0;
         margin-bottom: 20px;
         padding-left: 0;
-        color: #014a79; /* Dark Blue - Konsisten dengan warna primer gelap */
+        color: #014a79; 
         transition: all 0.3s ease-in-out;
       }
 
       input[type="email"]:focus, input[type="password"]:focus {
-        border-color: #014a79; /* Dark Blue focus border - Konsisten dengan warna primer gelap */
+        border-color: #014a79; 
         box-shadow: none;
         background-color: #fff;
         color: #014a79;
       }
 
       .btn-outline-primary {
-        border-color: #4797ec; /* Light Blue border - Konsisten */
-        color: #4797ec; /* Light Blue text - Konsisten */
+        border-color: #4797ec; 
+        color: #4797ec; 
         border-radius: 0;
         font-weight: bold;
         letter-spacing: 1px;
@@ -83,14 +83,14 @@
       }
 
       .btn-outline-primary:hover {
-        background-color: #4797ec; /* Light Blue background on hover - Konsisten */
-        color: #fff; /* White text on hover - Konsisten */
+        background-color: #4797ec; 
+        color: #fff; 
         border-color: #4797ec;
       }
 
       .login-text {
         text-align: left;
-        color: #6c757d; /* KOREKSI: Mengubah warna menjadi konsisten dengan text-muted Bootstrap */
+        color: #6c757d; 
       }
     </style>
   </head>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Manajemen Produk | Tigatra Adikara')
+@section('title', 'Dashboard Admin | Tigatra Adikara')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -279,27 +279,23 @@
 @if($errors->any() && (old('form_type') == 'add' || old('form_type') == 'edit'))
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            @if(old('form_type') == 'add')
+            /* @if(old('form_type') == 'add') */
                 var addModal = new bootstrap.Modal(document.getElementById('modalTambah'));
                 addModal.show();
-            @elseif(old('form_type') == 'edit')
+            /* @elseif(old('form_type') == 'edit') */
                 var editModalId = 'modalEdit' + '{{ old("product_id_for_error") }}';
                 var editModal = new bootstrap.Modal(document.getElementById(editModalId));
                 editModal.show();
-            @endif
+            /* @endif */
         });
     </script>
 @endif
 
 <script>
     document.getElementById('filterForm').addEventListener('submit', function(e) {
-        // Prevent the default action of submitting the form, in case you need custom logic
         e.preventDefault();
-        // You can add your form submission logic here if needed
-        // For now, just submit the form normally:
         this.submit();
     });
 
-    // Optional: Add custom logic here for saving scroll position if needed
 </script>
 @endsection

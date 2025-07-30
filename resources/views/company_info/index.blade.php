@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Manajemen Informasi Perusahaan | Tigatra Adikara')
+@section('title', 'Dashboard Admin | Tigatra Adikara')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -36,25 +36,17 @@
         <div class="card-body p-4">
             <form action="{{ route('admin.company_info.update') }}" method="POST">
                 @csrf
-                {{-- Karena kita selalu mengupdate satu record, kita tidak perlu @method('PUT') secara eksplisit
-                     jika kita menggunakan firstOrCreate dan update, POST sudah cukup. --}}
-
                 <div class="row g-3">
-                    {{-- Nama Perusahaan --}}
                     <div class="col-md-6">
                         <label for="company_name" class="form-label fw-semibold">Nama Perusahaan</label>
                         <input type="text" name="company_name" id="company_name" class="form-control @error('company_name') is-invalid @enderror" value="{{ old('company_name', $companyInfo->company_name) }}">
                         @error('company_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
-
-                    {{-- Slogan/Tagline --}}
                     <div class="col-md-6">
                         <label for="tagline" class="form-label fw-semibold">Slogan/Tagline (Footer)</label>
                         <input type="text" name="tagline" id="tagline" class="form-control @error('tagline') is-invalid @enderror" value="{{ old('tagline', $companyInfo->tagline) }}">
                         @error('tagline')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
-
-                    {{-- Alamat Fisik --}}
                     <div class="col-md-12">
                         <label for="street" class="form-label fw-semibold">Jalan</label>
                         <input type="text" name="street" id="street" class="form-control @error('street') is-invalid @enderror" value="{{ old('street', $companyInfo->street) }}">
@@ -81,7 +73,6 @@
                         @error('country')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
 
-                    {{-- Nomor Telepon & WhatsApp --}}
                     <div class="col-md-6">
                         <label for="phone_number" class="form-label fw-semibold">Nomor Telepon Utama</label>
                         <input type="text" name="phone_number" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number', $companyInfo->phone_number) }}">
@@ -93,14 +84,12 @@
                         @error('whatsapp_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
 
-                    {{-- Email Kontak --}}
                     <div class="col-md-6">
                         <label for="contact_email" class="form-label fw-semibold">Email Kontak</label>
                         <input type="email" name="contact_email" id="contact_email" class="form-control @error('contact_email') is-invalid @enderror" value="{{ old('contact_email', $companyInfo->contact_email) }}">
                         @error('contact_email')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
 
-                    {{-- Tautan Media Sosial --}}
                     <div class="col-md-6">
                         <label for="instagram_link" class="form-label fw-semibold">Tautan Instagram</label>
                         <input type="url" name="instagram_link" id="instagram_link" class="form-control @error('instagram_link') is-invalid @enderror" value="{{ old('instagram_link', $companyInfo->instagram_link) }}">
@@ -112,7 +101,6 @@
                         @error('linkedin_link')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
 
-                    {{-- Google Maps Embed Link --}}
                     <div class="col-md-12">
                         <label for="google_maps_embed_link" class="form-label fw-semibold">Link Embed Google Maps (iframe)</label>
                         <textarea name="google_maps_embed_link" id="google_maps_embed_link" class="form-control @error('google_maps_embed_link') is-invalid @enderror" rows="4">{{ old('google_maps_embed_link', $companyInfo->google_maps_embed_link) }}</textarea>

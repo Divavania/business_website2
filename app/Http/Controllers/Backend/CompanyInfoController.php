@@ -2,35 +2,27 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\CompanyInfo; // Import model CompanyInfo
+use App\Models\CompanyInfo; 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Backend\Controller; // Pastikan ini meng-extend base Controller dari Backend
+use App\Http\Controllers\Backend\Controller;
 
 class CompanyInfoController extends Controller
 {
     /**
-     * Menampilkan formulir untuk mengelola informasi perusahaan.
-     * Akan selalu ada hanya satu record CompanyInfo.
-     *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        // Ambil record CompanyInfo pertama, atau buat yang baru jika belum ada
         $companyInfo = CompanyInfo::firstOrCreate([]);
-        // KOREKSI: Mengubah path view
         return view('company_info.index', compact('companyInfo'));
     }
 
     /**
-     * Memperbarui informasi perusahaan.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
-        // Validasi input
         $request->validate([
             'company_name' => 'nullable|string|max:100',
             'tagline' => 'nullable|string|max:255',
@@ -47,10 +39,8 @@ class CompanyInfoController extends Controller
             'google_maps_embed_link' => 'nullable|string',
         ]);
 
-        // Ambil record CompanyInfo pertama atau buat yang baru
         $companyInfo = CompanyInfo::firstOrCreate([]);
 
-        // Perbarui data
         $companyInfo->update($request->all());
 
         return redirect()->route('admin.company_info.index')->with('success', 'Informasi perusahaan berhasil diperbarui!');

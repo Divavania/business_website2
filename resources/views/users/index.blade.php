@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kelola Admin | Tigatra Adikara')
+@section('title', 'Dashboard Admin | Tigatra Adikara')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -41,19 +41,15 @@
 
     {{-- Filter (Input Pencarian) dan Total Admin --}}
     <div class="d-flex justify-content-between align-items-center mb-3">
-        {{-- Pembungkus form untuk pencarian server-side --}}
         <form action="{{ url('/users') }}" method="GET" class="d-flex w-100 me-3">
             <div class="input-group shadow-sm rounded-pill" style="max-width: 300px;">
                 <span class="input-group-text rounded-start-pill bg-white border-end-0 pe-1">
                     <i class="bi bi-search text-muted"></i>
                 </span>
-                {{-- Input pencarian dengan name="search" dan pre-fill value --}}
                 <input type="text" name="search" id="searchInput" class="form-control rounded-end-pill border-start-0 ps-1" placeholder="Cari admin..." value="{{ request('search') }}">
             </div>
-            {{-- Tombol submit tersembunyi, akan di-trigger oleh JS --}}
             <button type="submit" class="d-none">Search</button>
         </form>
-        {{-- Informasi Total Admin --}}
         <div class="text-end">
             <p class="mb-0 text-muted">Total Admin: <span class="fw-bold text-primary">{{ $users->count() }}</span></p>
         </div>
@@ -122,7 +118,6 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    {{-- Menampilkan error validasi jika ada --}}
                     @if ($errors->any() && session('modal_target') == 'tambahModal')
                         <div class="alert alert-danger pb-0">
                             <ul>
@@ -174,7 +169,6 @@
 
     {{-- MODAL EDIT ADMIN --}}
     @foreach($users as $u)
-    {{-- Hanya tampilkan modal edit jika user yang login adalah superadmin --}}
     @if(session()->has('user') && session('user')->role == 'superadmin')
     <div class="modal fade" id="editModal{{ $u->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $u->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -218,7 +212,6 @@
 
     {{-- MODAL HAPUS ADMIN --}}
     @foreach($users as $u)
-    {{-- Hanya tampilkan modal hapus jika user yang login adalah superadmin --}}
     @if(session()->has('user') && session('user')->role == 'superadmin')
     <div class="modal fade" id="hapusModal{{ $u->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $u->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -295,13 +288,13 @@
         });
 
         // SKRIP UNTUK MENAMPILKAN MODAL SECARA OTOMATIS JIKA ADA ERROR VALIDASI
-        @if ($errors->any())
+        /* @if ($errors->any()) */
             const modalTarget = "{{ session('modal_target') }}";
             if (modalTarget) {
                 const myModal = new bootstrap.Modal(document.getElementById(modalTarget));
                 myModal.show();
             }
-        @endif
+        /* @endif */
     });
 </script>
 @endpush

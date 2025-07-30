@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Tentang Kami | Tigatra Adikara') {{-- Perbarui judul halaman --}}
+@section('title', 'Dashboard Admin | Tigatra Adikara') 
 
 @section('content')
-<div class="container-fluid py-4"> {{-- Menggunakan py-4 untuk padding vertikal konsisten --}}
-    {{-- Header Halaman: Judul dan Deskripsi --}}
+<div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h3 class="mb-0 text-primary fw-bold">Tentang Kami</h3>
             <p class="text-muted mb-0">Kelola informasi sejarah, visi, misi, dan ringkasan perusahaan Anda.</p> {{-- Perbarui deskripsi --}}
         </div>
-        {{-- Tidak ada tombol tambah karena ini halaman konfigurasi tunggal --}}
     </div>
 
     @if(session('success'))
@@ -20,7 +18,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    @if(session('error')) {{-- Tambahkan penanganan error jika ada --}}
+    @if(session('error'))
         <div class="alert alert-danger alert-dismissible fade show rounded-lg shadow-sm" role="alert">
             <i class="bi bi-exclamation-triangle me-2"></i>
             {{ session('error') }}
@@ -30,7 +28,7 @@
 
     {{-- Formulir dalam Card --}}
     <div class="card shadow-sm border-0 rounded-lg">
-        <div class="card-body p-4"> {{-- Memberikan padding di dalam card body --}}
+        <div class="card-body p-4"> 
             <form action="{{ route('about_backend.update') }}" method="POST">
                 @csrf
                 {{-- Field Deskripsi (Ringkasan untuk Home Page) --}}

@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@yield('title', 'Tigatra Adikara - Landing Page')</title> {{-- Default title jika tidak didefinisikan --}}
+    <title>@yield('title', 'Tigatra Adikara')</title> 
     <meta name="description" content="@yield('description', 'Selamat datang di Tigatra Adikara, perusahaan terkemuka dalam berbagai layanan profesional.')"> {{-- Default description --}}
     <meta name="keywords" content="@yield('keywords', 'Tigatra Adikara, services, solutions, business, technology')"> {{-- Default keywords --}}
 
     {{-- Favicon dan Apple Touch Icon --}}
-    <link href="{{ asset('template-assets/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('template-assets/assets/img/logo-tigatra.png') }}" rel="icon">
     <link href="{{ asset('template-assets/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     {{-- Google Fonts --}}
@@ -34,89 +34,78 @@
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     <style>
-        /* CSS untuk sticky footer */
+        /* CSS footer */
         html, body {
             height: 100%;
         }
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Memastikan body setidaknya setinggi viewport */
+            min-height: 100vh; 
         }
         main {
-            flex-grow: 1; /* Memungkinkan konten utama untuk memanjang */
+            flex-grow: 1; 
         }
 
-        /* KOREKSI: Gaya untuk header dan footer agar sesuai dengan nav menu */
+        /* header footer */
         #header,
         #footer {
-            background-color: #ffffff; /* Warna latar belakang putih */
-            border-top: 1px solid #dee2e6; /* Garis di atas footer */
+            background-color: #ffffff; 
+            border-top: 1px solid #dee2e6; 
         }
 
-        /* Warna teks umum di header dan footer */
+   
         #header .sitename,
         #header .navmenu a,
         #footer {
-            color: #556270; /* Warna teks umum di footer (dark grey) */
+            color: #556270; 
         }
 
-        /* Warna putih untuk sitename dan judul di footer */
         #footer .sitename,
         #footer h4 {
-            color: #556270; /* Menggunakan #556270 untuk judul agar lebih menonjol */
-            font-size: 1.2rem; /* KOREKSI: Mengurangi ukuran font untuk sitename di footer */
+            color: #556270;
+            font-size: 1.2rem; 
         }
 
-        /* KOREKSI: Ukuran font spesifik untuk sitename di bagian copyright */
         #footer .copyright .sitename {
-            font-size: 0.9rem; /* Ukuran font yang lebih kecil untuk copyright sitename */
+            font-size: 0.9rem; 
         }
 
-
-        /* Warna dark grey untuk teks paragraf dan label di footer */
         #footer p,
         #footer ul li,
         #footer .footer-contact strong {
             color: #556270;
         }
 
-        /* Warna dark grey untuk tautan di footer */
         #footer a {
-            color: #556270; /* Menggunakan #556270 untuk tautan */
+            color: #556270; 
             text-decoration: none;
         }
 
-        /* Warna hover untuk tautan di footer (biru standar) */
         #footer a:hover {
             color: #007bff;
         }
 
-        /* Warna ikon sosial di footer */
         #footer .social-links a {
-            color: #556270; /* Menggunakan #556270 untuk ikon sosial */
-            border-color: #556270; /* Menggunakan #556270 untuk border ikon sosial */
+            color: #556270; 
+            border-color: #556270; 
         }
 
-        /* Warna hover untuk ikon sosial di footer */
         #footer .social-links a:hover {
             background-color: #007bff;
             border-color: #007bff;
-            color: #ffffff; /* Ikon putih saat hover */
+            color: #ffffff; 
         }
 
-        /* Warna teks copyright di footer */
         #footer .copyright p {
-            color: #556270; /* Menggunakan #556270 untuk teks copyright */
+            color: #556270; 
         }
 
-        /* Warna untuk tautan navigasi aktif/hover di header */
         #header .navmenu a.active,
         #header .navmenu a:hover {
-            color: #007bff; /* Biru untuk aktif/hover */
+            color: #007bff;
         }
 
-        /* Custom styles for WhatsApp sticky button and modal */
         .whatsapp-sticky-button {
             position: fixed;
             bottom: 20px;
@@ -125,7 +114,7 @@
         }
 
         .whatsapp-sticky-button button {
-            background-color: #007bff; /* KOREKSI: Warna biru agak tua */
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 50px;
@@ -142,7 +131,7 @@
         }
 
         .whatsapp-sticky-button button:hover {
-            background-color: #0063ccff; /* KOREKSI: Darker blue on hover */
+            background-color: #0063ccff;
         }
 
         .whatsapp-sticky-button i {
@@ -153,7 +142,6 @@
         }
 
         /* WhatsApp Modal Styling */
-
         #whatsappModal .modal-dialog {
             position: fixed;
             bottom: 90px;
@@ -170,7 +158,7 @@
         }
 
         #whatsappModal .modal-header {
-            background-color: #007bff; /* KOREKSI: Biru agak tua untuk header modal */
+            background-color: #007bff;
             color: white;
             border-bottom: none;
             padding: 10px 15px;
@@ -199,7 +187,7 @@
         }
 
         #whatsappModal .modal-body {
-            background-color: #f0f2f5; /* Light grey chat background */
+            background-color: #f0f2f5;
             padding: 20px;
         }
 
@@ -242,7 +230,7 @@
         }
 
         #whatsappModal .modal-footer {
-            display: none; /* Hide default footer */
+            display: none;
         }
 
         @media (max-width: 576px) {
@@ -258,111 +246,97 @@
             margin: 0;
             padding: 0;
             list-style: none;
-            display: flex; /* Makes items horizontal on desktop */
+            display: flex;
             align-items: center;
         }
 
         #header .navmenu li {
             position: relative;
-            white-space: nowrap; /* Prevents wrapping of individual menu items */
+            white-space: nowrap;
         }
 
         #header .navmenu a {
-            display: block; /* Make the whole area clickable */
-            padding: 10px 15px; /* Adjust padding to make it more compact */
-            font-size: 15px; /* Adjust font size */
+            display: block; 
+            padding: 10px 15px;
+            font-size: 15px;
             font-weight: 500;
             color: #556270;
             transition: 0.3s;
             text-decoration: none;
         }
 
-        /* Responsive adjustments for mobile menu */
+        /* Responsive for mobile menu */
        @media (max-width: 1199px) {
-            /* Menyesuaikan kontainer navmenu itu sendiri */
             #header .navmenu {
-                /* Perilaku default navmenu sebagai overlay */
                 position: fixed;
                 top: 0;
-                right: -100%; /* Sembunyikan di luar layar awalnya */
-                width: 85%; /* Batasi lebar menu hingga 85% */
-                max-width: 300px; /* Batasi lebar maksimum */
-                height: 100vh; /* Tinggi penuh viewport */
+                right: -100%; 
+                width: 85%;
+                max-width: 300px;
+                height: 100vh;
                 background-color: #ffffff;
                 box-shadow: 0 0 15px rgba(0,0,0,0.1);
                 overflow-y: auto;
-                transition: 0.3s; /* Animasi geser */
-                z-index: 9998; /* Di bawah tombol close, di atas konten lain */
-                padding: 20px 0; /* Padding vertikal */
+                transition: 0.3s; 
+                z-index: 9998;
+                padding: 20px 0;
             }
-
-            /* Saat menu aktif, geser ke dalam */
             body.mobile-nav-active #header .navmenu {
                 right: 0;
             }
 
             #header .navmenu ul {
-                flex-direction: column; /* Stack vertically on mobile */
-                align-items: flex-start; /* Align text to the left */
-                padding: 0; /* Pastikan tidak ada padding berlebih di ul */
-                margin: 0; /* Pastikan tidak ada margin berlebih di ul */
-                width: 100%; /* Pastikan ul juga 100% dari navmenu */
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+                margin: 0;
+                width: 100%;
             }
             #header .navmenu li {
-                width: 100%; /* Full width for mobile menu items */
-                margin-bottom: 10px; /* Jarak antar item menu */
+                width: 100%;
+                margin-bottom: 10px;
             }
             #header .navmenu li:last-child {
-                margin-bottom: 0; /* Hapus margin bawah pada item terakhir */
+                margin-bottom: 0;
             }
             #header .navmenu a {
-                padding: 12px 15px; /* Sesuaikan padding agar lebih proporsional */
-                font-size: 16px; /* Ukuran font yang mudah dibaca */
-                border-bottom: 1px solid #eee; /* Tambahkan separator */
+                padding: 12px 15px;
+                font-size: 16px;
+                border-bottom: 1px solid #eee;
             }
             #header .navmenu li:last-child a {
-                border-bottom: none; /* No border on the last item */
+                border-bottom: none;
             }
-
-            /* --- Penyesuaian untuk Ikon Hamburger di Mobile --- */
-
-            /* Pastikan kontainer header memiliki posisi relatif untuk positioning absolut */
             #header .container-xl {
                 position: relative;
             }
-
-            /* Gaya untuk ikon hamburger (mobile-nav-toggle) di mobile */
             .mobile-nav-toggle {
-                display: block !important; /* Pastikan ikon hamburger terlihat di mobile */
-                position: absolute; /* Posisikan secara absolut di dalam header container */
-                right: 15px; /* Jarak dari kanan */
-                top: 50%; /* Posisikan di tengah secara vertikal */
-                transform: translateY(-50%); /* Sesuaikan untuk pemusatan vertikal yang tepat */
-                font-size: 28px; /* Ukuran ikon yang jelas */
-                z-index: 9999; /* Pastikan ikon hamburger berada di atas semua elemen lain */
-                color: #556270; /* Warna ikon */
+                display: block !important; 
+                position: absolute; 
+                right: 15px; 
+                top: 50%; 
+                transform: translateY(-50%); 
+                font-size: 28px; 
+                z-index: 9999;
+                color: #556270; 
                 cursor: pointer;
             }
 
-            /* Gaya untuk ikon 'X' saat menu mobile aktif (jika template Anda mengubahnya) */
             body.mobile-nav-active .mobile-nav-toggle {
-                color: #556270; /* Warna ikon 'X' */
+                color: #556270; 
             }
 
-            /* Sesuaikan margin logo agar tidak bertabrakan dengan ikon hamburger jika perlu */
             #header .logo {
-                margin-left: 15px; /* Tambahkan margin kiri untuk logo */
-                margin-right: auto; /* Tetap dorong logo ke kiri */
+                margin-left: 15px; 
+                margin-right: auto; 
             }
 
-            /* KOREKSI BARU: Kecilkan ukuran font sitename di mobile */
             #header .logo .sitename {
-                font-size: 1.2rem; /* Sesuaikan ukuran font sesuai kebutuhan, misalnya dari 1.5rem menjadi 1.2rem */
+                font-size: 1.2rem;
             }
 
-            /* Sembunyikan tombol "Hubungi Kami" di mobile jika tidak diperlukan */
             #header .btn-getstarted {
-                display: none !important; /* Sembunyikan tombol "Hubungi Kami" di mobile */
+                display: none !important;
             }
         }
     </style>
@@ -389,9 +363,7 @@
                     <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
                     <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li> {{-- Menggunakan rute bernama --}}
                 </ul>
-                {{-- <i class="mobile-nav-toggle d-xl-none bi bi-list"></i> --}} <!-- DIHAPUS DARI SINI -->
             </nav>
-            {{-- PERUBAHAN DI SINI: Pindahkan tombol hamburger keluar dari navmenu --}}
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </div>
     </header>
@@ -402,14 +374,13 @@
 
     <footer id="footer" class="footer dark-background">
 
-        <div class="container footer-top py-1"> {{-- KOREKSI: Mengurangi padding vertikal dari py-2 ke py-1 --}}
+        <div class="container footer-top py-1">
             <div class="row gy-4">
                 
                 {{-- Kolom 1: Logo, Alamat & Kontak --}}
-                <div class="col-lg-4 col-md-6 footer-about"> {{-- Diubah dari col-lg-3 ke col-lg-4 --}}
+                <div class="col-lg-4 col-md-6 footer-about"> 
                     <a href="{{ route('home') }}" class="logo d-flex align-items-center mb-3">
                         <img src="{{ asset('template-assets/assets/img/logo-tigatra.png') }}" alt="Logo Tigatra" class="img-fluid me-2" style="height: 40px;">
-                        {{-- KOREKSI: Nama perusahaan selalu uppercase --}}
                         <span class="sitename">{{ strtoupper($companyInfo->company_name ?? 'Tigatra Adikara') }}</span>
                     </a>
                     
@@ -421,11 +392,9 @@
                                 Alamat belum tersedia.
                             @endif
                         </p>
-                        {{-- KOREKSI: Menambahkan kondisi untuk menampilkan nomor telepon --}}
                         @if($companyInfo->phone_number)
                             <p class="mb-1"><strong>Phone:</strong> <span>{{ $companyInfo->phone_number }}</span></p>
                         @endif
-                        {{-- KOREKSI: Menambahkan kondisi untuk menampilkan email --}}
                         @if($companyInfo->contact_email)
                             <p class="mb-0"><strong>Email:</strong> <span>{{ $companyInfo->contact_email }}</span></p>
                         @endif
@@ -434,23 +403,19 @@
 
                 {{-- Kolom 2: Deskripsi Singkat PT & Sosial Media --}}
                 <div class="col-lg-4 col-md-6 footer-description"> {{-- Diubah dari col-lg-3 ke col-lg-4 --}}
-                   {{-- KOREKSI: Menggunakan tagline dari companyInfo --}}
                    <p class="mb-3">{{ $companyInfo->tagline ?? 'PT Tigatra Adikara menyediakan solusi komprehensif untuk Infrastruktur IT, serta pemasaran dan dukungan untuk Hardware dan Software terkemuka.' }}</p>
                    <div class="social-links d-flex">
-                        {{-- KOREKSI: Menambahkan kondisi untuk menampilkan ikon Instagram --}}
                         @if($companyInfo->instagram_link)
                             <a href="{{ $companyInfo->instagram_link }}" target="_blank"><i class="bi bi-instagram"></i></a>
                         @endif
-                        {{-- KOREKSI: Menambahkan kondisi untuk menampilkan ikon LinkedIn --}}
                         @if($companyInfo->linkedin_link)
                             <a href="{{ $companyInfo->linkedin_link }}" target="_blank"><i class="bi bi-linkedin"></i></a>
                         @endif
-                        {{-- Twitter dan Facebook dihapus sesuai permintaan sebelumnya --}}
                    </div>
                 </div>
 
                 {{-- Kolom 3: Useful Links --}}
-                <div class="col-lg-2 col-md-6 footer-links"> {{-- Diubah dari col-lg-3 ke col-lg-2 --}}
+                <div class="col-lg-2 col-md-6 footer-links"> 
                     <h4>Useful Links</h4>
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
@@ -462,7 +427,7 @@
                 </div>
 
                 {{-- Kolom 4: Produk Kami --}}
-                <div class="col-lg-2 col-md-6 footer-links"> {{-- Diubah dari col-lg-3 ke col-lg-2 --}}
+                <div class="col-lg-2 col-md-6 footer-links"> 
                     <h4>Produk Kami</h4>
                     <ul>
                         <li><a href="{{ route('frontend.products.index', ['kategori' => 'hardware']) }}">Hardware</a></li>
@@ -473,9 +438,7 @@
             </div>
         </div>
 
-        {{-- KOREKSI: Bagian Copyright disesuaikan agar lebih rapi dan ringkas --}}
-        {{-- Menambahkan border-top dan pt-3 untuk garis di atas copyright --}}
-        <div class="container copyright text-center mt-2 py-1 border-top border-light-subtle pt-2"> {{-- KOREKSI: Mengurangi py-2 ke py-1 dan pt-3 ke pt-2 --}}
+        <div class="container copyright text-center mt-2 py-1 border-top border-light-subtle pt-2"> 
             <p class="mb-0">© {{ date('Y') }} <span>Copyright</span> <strong class="px-1 sitename">Tigatra Adikara</strong> <span>All Rights Reserved</span></p>
         </div>
 
@@ -501,7 +464,7 @@
     <script src="{{ asset('template-assets/assets/js/main.js') }}"></script>
 
     {{-- Pop-up WhatsApp (HTML structure remains, styling from app.css) --}}
-    @if(empty($hideWhatsappButton)) {{-- KOREKSI: Menggunakan empty() untuk menyembunyikan tombol --}}
+    @if(empty($hideWhatsappButton)) 
         <div class="whatsapp-sticky-button">
             <button type="button" data-bs-toggle="modal" data-bs-target="#whatsappModal">
                 <i class="bi bi-whatsapp"></i>
@@ -538,7 +501,7 @@
         </div>
     @endif
 
-    @stack('scripts') {{-- Memastikan stack scripts ada di sini --}}
+    @stack('scripts')
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -546,31 +509,21 @@
 
             if (whatsappModal) {
                 whatsappModal.addEventListener('hidden.bs.modal', function () {
-                    // Logika untuk mereset textarea jika ada di masa depan
                 });
             }
 
-            // JavaScript untuk menandai tautan navigasi aktif
             const currentPath = window.location.pathname;
             const navLinks = document.querySelectorAll('#navmenu a');
 
             navLinks.forEach(link => {
-                // Hapus kelas 'active' dari semua tautan terlebih dahulu
                 link.classList.remove('active');
-
-                // Dapatkan href tautan, pastikan itu relatif ke root
                 const linkHref = new URL(link.href).pathname;
-
-                // Periksa kecocokan persis
                 if (linkHref === currentPath) {
                     link.classList.add('active');
                 }
-                // Kasus khusus untuk halaman beranda jika currentPath adalah '/'
                 else if (currentPath === '/' && linkHref === '/') {
                     link.classList.add('active');
                 }
-                // Tangani kasus di mana jalur saat ini adalah sub-jalur dari item menu utama
-                // Contoh: /products/detail harus mengaktifkan /products
                 else if (linkHref !== '/' && currentPath.startsWith(linkHref + '/')) {
                     link.classList.add('active');
                 }

@@ -1,17 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Manajemen Service Center | Tigatra Adikara')
+@section('title', 'Dashboard Admin | Tigatra Adikara')
 
 @section('content')
 <div class="container-fluid py-4">
     {{-- Header Halaman: Judul, Deskripsi, dan Tombol Tambah --}}
-    <div class="row align-items-center mb-3"> {{-- Menggunakan mb-3 untuk sedikit jarak --}}
-        <div class="col-md-6 mb-3 mb-md-0"> {{-- Column for title/description, adjust margin for responsiveness --}}
+    <div class="row align-items-center mb-3">
+        <div class="col-md-6 mb-3 mb-md-0"
             <h3 class="mb-0 text-primary fw-bold">Manajemen Service Center</h3>
             <p class="text-muted mb-0">Kelola daftar lokasi service center Anda.</p>
         </div>
-        <div class="col-md-6 d-flex justify-content-md-end justify-content-start"> {{-- Column for button --}}
-            {{-- Tombol Tambah Service Center (Dikecilkan) --}}
+        <div class="col-md-6 d-flex justify-content-md-end justify-content-start">
             <button class="btn btn-primary rounded-pill shadow-sm px-3 py-1" data-bs-toggle="modal" data-bs-target="#tambahModal">
                 <i class="bi bi-plus-circle-fill me-2"></i>Tambah Service Center
             </button>
@@ -34,8 +33,7 @@
     @endif
 
     {{-- Filter (Input Pencarian) dan Total Store --}}
-    <div class="d-flex justify-content-between align-items-center mb-3"> {{-- Kontainer baru untuk filter dan total --}}
-        {{-- Input Pencarian dengan ikon --}}
+    <div class="d-flex justify-content-between align-items-center mb-3"> 
         <div class="input-group shadow-sm rounded-pill" style="max-width: 300px;">
             <span class="input-group-text rounded-start-pill bg-white border-end-0 pe-1">
                 <i class="bi bi-search text-muted"></i>

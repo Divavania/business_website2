@@ -20,7 +20,7 @@ class User extends Authenticatable
         'role',
     ];
 
-    public $timestamps = false; // Ini sudah BENAR jika Anda tidak ingin timestamps di DB
+    public $timestamps = false;
 
     protected $hidden = [
         'password',
@@ -29,7 +29,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'password' => 'hashed', // Ini akan menghash password secara otomatis
+            'password' => 'hashed',
         ];
     }
 }

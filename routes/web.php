@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\ProductController as BackendProductController;
-// use App\Http\Controllers\Backend\ContactController as BackendContactController; // Dihapus karena controller ini akan dihapus
 use App\Http\Controllers\Backend\ServiceCenterController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CompanyInfoController;
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
-use App\Http\Controllers\Frontend\Contact_frontendController; // Import Contact_frontendController
+use App\Http\Controllers\Frontend\Contact_frontendController; 
 use App\Http\Controllers\Frontend\Product_frontendController;
 use App\Http\Controllers\Frontend\Service_frontendController;
 use Illuminate\Support\Facades\DB;
@@ -75,10 +74,6 @@ Route::get('/starter-page', function () {
 //About
 Route::get('/tentang-kami', [About_frontendController::class, 'index']);
 
-// Rute untuk Submit Form Kontak Frontend (DIHAPUS)
-// Route::post('/contact-submit', [Contact_frontendController::class, 'store'])->name('contact.store');
-
-
 // --- RUTE UNTUK AUTENTIKASI (LOGIN, LOGOUT) ---
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -92,13 +87,6 @@ Route::get('/admin/products', [BackendProductController::class, 'index'])->name(
 Route::post('/admin/products/tambah', [BackendProductController::class, 'store'])->name('admin.products.store');
 Route::post('/admin/products/edit/{product}', [BackendProductController::class, 'update'])->name('admin.products.update');
 Route::delete('/admin/products/hapus/{product}', [BackendProductController::class, 'destroy'])->name('admin.products.destroy');
-
-
-// Rute kontak backend (DIHAPUS)
-// Route::get('/contacts', [BackendContactController::class, 'index'])->name('contacts.index');
-// Route::get('/contacts/{id}/mark-as-read', [BackendContactController::class, 'markAsRead'])->name('contacts.markAsRead');
-// Route::delete('/contacts/{id}', [BackendContactController::class, 'destroy'])->name('contacts.destroy');
-
 
 // Rute service center backend
 Route::get('/service', [ServiceCenterController::class, 'index']);

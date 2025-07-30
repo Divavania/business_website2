@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Kontak Kami | Tigatra Adikara')
+@section('title', 'Tigatra Adikara')
 
 @php $hideWhatsappButton = true; @endphp
 
@@ -9,13 +9,11 @@
 <section id="contact" class="contact section pt-5 pb-3 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="row g-4 justify-content-center">
-            {{-- Kolom untuk Peta --}}
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="card shadow-sm border-0 h-100 rounded-3 overflow-hidden">
                     <div class="card-body p-0 d-flex flex-column">
                         <h4 class="card-title fw-bold text-primary p-3 mb-0">Lokasi Kami di Peta</h4>
                         @if($companyInfo->google_maps_embed_link)
-                            {{-- Menggunakan embed-responsive untuk rasio aspek yang responsif --}}
                             <div class="embed-responsive embed-responsive-16by9 flex-grow-1">
                                 <iframe
                                     src="{{ $companyInfo->google_maps_embed_link }}"
@@ -71,16 +69,15 @@
 
 @push('styles')
 <style>
-    /* Anda bisa menyesuaikan gaya CSS yang dibutuhkan di sini */
     .contact-info .d-flex {
-        align-items: center; /* Memastikan ikon dan teks sejajar secara vertikal */
+        align-items: center; 
     }
     .contact-info i {
-        min-width: 40px; /* Memberi ruang tetap untuk ikon */
+        min-width: 40px; 
         text-align: center;
     }
     .card {
-        padding: 2.5rem !important; /* Menyesuaikan padding untuk tampilan baru */
+        padding: 2.5rem !important; 
     }
     @media (max-width: 767.98px) {
         .card {
@@ -91,19 +88,17 @@
         }
     }
 
-    /* Custom styles for the new contact section layout */
     #contact .card {
-        height: 100%; /* Ensure cards fill height */
+        height: 100%; 
     }
 
-    /* Responsive embed for iframes (similar to Bootstrap 4/5 embed-responsive) */
     .embed-responsive {
         position: relative;
         width: 100%;
         overflow: hidden;
     }
     .embed-responsive-16by9 {
-        padding-top: 56.25%; /* 16:9 aspect ratio */
+        padding-top: 56.25%; 
     }
     .embed-responsive-item {
         position: absolute;
@@ -115,51 +110,49 @@
         border: 0;
     }
 
-    /* KOREKSI: Gaya untuk deskripsi */
+
     .contact-description {
-        color: #333333; /* Warna abu-abu gelap */
-        font-size: 15px; /* Ukuran font 15px */
+        color: #333333; 
+        font-size: 15px; 
     }
 
-    /* KOREKSI: Gaya untuk tombol WhatsApp dengan gradient atas-bawah */
     .btn-whatsapp {
-        background: linear-gradient(to bottom, #25D366, #128C7E); /* Gradient WhatsApp Green (atas ke bawah) */
-        border: none; /* Hapus border */
+        background: linear-gradient(to bottom, #25D366, #128C7E); 
+        border: none; 
         color: #fff;
-        font-size: 16px; /* Ukuran font 16px */
-        padding: 12px 24px; /* Padding yang lebih besar */
-        transition: all 0.3s ease; /* Transisi untuk hover */
+        font-size: 16px; 
+        padding: 12px 24px; 
+        transition: all 0.3s ease; 
     }
     .btn-whatsapp:hover {
-        background: linear-gradient(to bottom, #1DA851, #075E54); /* Darker gradient on hover */
+        background: linear-gradient(to bottom, #1DA851, #075E54); 
         color: #fff;
-        transform: translateY(-2px); /* Efek angkat sedikit saat hover */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambah shadow saat hover */
+        transform: translateY(-2px); 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     }
 
-    /* KOREKSI: Gaya untuk tombol Email dengan gradient atas-bawah */
+    
     .btn-email {
-        background: linear-gradient(to bottom, #3b82f6, #1e3a8a); /* Gradient biru (atas ke bawah) */
-        border: none; /* Hapus border */
+        background: linear-gradient(to bottom, #3b82f6, #1e3a8a); 
+        border: none;
         color: #fff;
-        font-size: 16px; /* Ukuran font 16px */
-        padding: 12px 24px; /* Padding yang lebih besar */
-        transition: all 0.3s ease; /* Transisi untuk hover */
+        font-size: 16px; 
+        padding: 12px 24px; 
+        transition: all 0.3s ease; 
     }
     .btn-email:hover {
-        background: linear-gradient(to bottom, #2563eb, #152963); /* Darker gradient on hover */
+        background: linear-gradient(to bottom, #2563eb, #152963); 
         color: #fff;
-        transform: translateY(-2px); /* Efek angkat sedikit saat hover */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambah shadow saat hover */
+        transform: translateY(-2px); 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     }
 
-    /* KOREKSI: Responsifitas tombol pada mobile */
     @media (max-width: 767.98px) {
         #contact .flex-md-grow-0 {
-            flex-grow: 1 !important; /* Membuat tombol full width pada mobile */
+            flex-grow: 1 !important; 
         }
         #contact .d-flex.flex-column.flex-md-row {
-            align-items: center; /* Memastikan tombol rata tengah saat vertikal */
+            align-items: center; 
         }
     }
 </style>

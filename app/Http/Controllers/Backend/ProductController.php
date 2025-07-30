@@ -62,7 +62,6 @@ class ProductController extends Controller
             'gambar' => $gambar
         ]);
 
-        // KOREKSI: Mengarahkan kembali ke halaman manajemen produk backend
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan!');
     }
 
@@ -93,7 +92,6 @@ class ProductController extends Controller
             'gambar' => $gambar
         ]);
 
-        // KOREKSI: Mengarahkan kembali ke halaman manajemen produk backend
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui!');
     }
 
@@ -105,7 +103,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        // KOREKSI: Mengarahkan kembali ke halaman manajemen produk backend
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus!');
     }
 }

@@ -49,8 +49,6 @@
             @endphp
             <div class="col-6 col-sm-6 col-md-6 col-lg-3 filter-item {{ $kategoriClass }}" data-aos="fade-up" data-aos-delay="100">
                     <div class="card h-100 shadow-sm border-0 rounded-lg product-card">
-                        {{-- Gambar Produk --}}
-                        {{-- KOREKSI: Mengubah struktur pembungkus gambar dan gaya --}}
                         <div class="product-image-wrapper text-center" style="height: 180px; background-color: #f0f2f5;">
                             <img src="{{ asset('storage/' . $product->gambar) }}"
                                  alt="{{ $product->nama }}"

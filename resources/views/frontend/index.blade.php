@@ -35,16 +35,12 @@
                 </div>
             </div>
 
-            {{-- Slide 3 dihapus --}}
-
             <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
             </a>
-
             <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
                 <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
             </a>
-
             <ol class="carousel-indicators"></ol>
 
         </div>
@@ -59,16 +55,13 @@
         </div>
         <div class="container">
             <div class="row gy-4 justify-content-center">
-                {{-- Kolom untuk gambar di kiri --}}
                 <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
                     <div class="about-img">
                         <img src="{{ asset('template-assets/assets/img/about.jpg') }}" class="img-fluid" alt="About Us Portrait">
                     </div>
                 </div>
 
-                {{-- Kolom untuk konten deskripsi --}}
                 <div class="col-lg-7 content" data-aos="fade-up" data-aos-delay="200">
-                    {{-- Hanya menampilkan deskripsi dari database --}}
                     <p class="fst-italic">
                         {!! nl2br(e($about->deskripsi ?? 'Ringkasan tentang perusahaan belum tersedia. Silakan perbarui dari dashboard.')) !!}
                     </p>
@@ -176,7 +169,7 @@
         Section Padding Compact
     -------------------------- */
     #about.section,
-    #products.section { /* contact.section dihapus */
+    #products.section { 
         padding: 20px 0;
     }
 
@@ -206,7 +199,6 @@
         padding: 1rem;
     }
 
-    /* Judul dan teks */
     .product-card .card-body {
         padding: 1rem;
         flex-grow: 1;
@@ -238,7 +230,6 @@
         margin-top: 0.5rem;
     }
 
-    /* Responsive untuk mobile */
     @media (max-width: 576px) {
         .product-card img {
             height: 160px;
@@ -347,79 +338,78 @@
         transform: translateY(-1px);
     }
 
-    /* Custom styles for Contact Promo section */
     .contact-promo.section {
-        background-color: #f8f9fa; /* Light gray section background */
+        background-color: #f8f9fa; 
         padding-top: 50px;
         padding-bottom: 50px;
     }
 
     .contact-promo-card {
-        background-color: #ffffff; /* White background for the card */
-        border: 1px solid #e9ecef; /* Thin light border */
-        border-radius: 15px; /* Rounded corners for the card */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft shadow */
-        max-width: 700px; /* Limit card width */
+        background-color: #ffffff; 
+        border: 1px solid #e9ecef; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+        max-width: 700px; 
         margin-left: auto;
         margin-right: auto;
     }
 
     .contact-promo-icon {
-        font-size: 2.5rem; /* Large icon size */
-        color: #014a79; /* Dark blue color for icon */
+        font-size: 2.5rem; 
+        color: #014a79; 
         margin-bottom: 1rem;
-        display: block; /* Ensure it takes its own line */
+        display: block; 
     }
 
     .contact-promo-title {
-        font-size: 1.8rem; /* Heading size */
-        color: #014a79; /* Dark blue color */
+        font-size: 1.8rem; 
+        color: #014a79; 
         font-weight: 700;
     }
 
     .contact-promo-description {
-        font-size: 1.0rem; /* Text size */
-        color: #333333; /* Dark gray text */
+        font-size: 1.0rem; 
+        color: #333333;
         line-height: 1.6;
         margin-bottom: 1.5rem;
-        max-width: 500px; /* Limit text width for better readability */
+        max-width: 500px; 
         margin-left: auto;
         margin-right: auto;
     }
 
     .contact-promo-btn {
-        background-color: #014a79; /* Dark blue button background */
-        color: #ffffff; /* White text on button */
+        background-color: #014a79; 
+        color: #ffffff; 
         border: none;
-        padding: 12px 30px; /* Generous padding */
-        font-size: 1.1rem; /* Slightly larger font */
+        padding: 12px 30px; 
+        font-size: 1.1rem; 
         font-weight: 500;
-        border-radius: 50px; /* Highly rounded */
-        box-shadow: 0 4px 10px rgba(1, 74, 121, 0.25); /* Shadow for depth */
+        border-radius: 50px; 
+        box-shadow: 0 4px 10px rgba(1, 74, 121, 0.25); 
         transition: all 0.3s ease;
     }
 
     .contact-promo-btn:hover {
-        background-color: #003a60; /* Darker blue on hover */
-        transform: translateY(-2px); /* Slight lift effect */
-        box-shadow: 0 6px 15px rgba(1, 74, 121, 0.35); /* Increased shadow on hover */
-        color: #ffffff; /* Ensure text color remains white on hover */
+        background-color: #003a60; 
+        transform: translateY(-2px); 
+        box-shadow: 0 6px 15px rgba(1, 74, 121, 0.35); 
+        color: #ffffff;
     }
 
     /* Responsive adjustments */
     @media (max-width: 767.98px) {
         .contact-promo-card {
-            padding: 2rem !important; /* Adjust padding for smaller screens */
+            padding: 2rem !important; 
         }
         .contact-promo-title {
-            font-size: 1.5rem; /* Smaller title on mobile */
+            font-size: 1.5rem; 
         }
         .contact-promo-description {
-            font-size: 0.95rem; /* Smaller description text on mobile */
+            font-size: 0.95rem; 
         }
         .contact-promo-btn {
-            width: 100%; /* Full width button on mobile */
-            max-width: 300px; /* But not too wide if container is larger */
+            width: 100%; 
+            max-width: 300px; 
             margin-left: auto;
             margin-right: auto;
         }
