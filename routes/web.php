@@ -8,11 +8,14 @@ use App\Http\Controllers\Backend\ServiceCenterController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CompanyInfoController;
+
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
-use App\Http\Controllers\Frontend\Contact_frontendController; 
 use App\Http\Controllers\Frontend\Product_frontendController;
 use App\Http\Controllers\Frontend\Service_frontendController;
+use App\Http\Controllers\Frontend\Contact_frontendController;
+
+use App\Http\Controllers\Backend\ContactMessageController; 
 use Illuminate\Support\Facades\DB;
 
 // FRONTEND
@@ -29,8 +32,11 @@ Route::get('/products/{product}', [Product_frontendController::class, 'show'])->
 // Rute untuk halaman Service Center di Frontend
 Route::get('/services', [Service_frontendController::class, 'index'])->name('frontend.services.index');
 
-// KOREKSI: Rute untuk halaman Kontak di Frontend sekarang memanggil Contact_frontendController@index
+// Rute untuk halaman Kontak di Frontend sekarang memanggil Contact_frontendController@index
 Route::get('/contact', [Contact_frontendController::class, 'index'])->name('frontend.contact.index');
+Route::post('/contact', [Contact_frontendController::class, 'submitContactForm'])->name('contact.submit');
+Route::resource('contact_messages', ContactMessageController::class);
+Route::patch('contact_messages/{contact_message}/mark-as-read', [ContactMessageController::class, 'markAsRead'])->name('contact_messages.markAsRead');
 
 // Tambahkan rute untuk halaman frontend lainnya sesuai file Blade Anda di resources/views/frontend/
 Route::get('/portfolio', function () {
@@ -97,6 +103,12 @@ Route::delete('/service/hapus/{id}', [ServiceCenterController::class, 'destroy']
 // Rute untuk manajemen About di backend, menggunakan '/admin/about' untuk menghindari bentrok
 Route::get('/about_backend', [AboutController::class, 'index'])->name('about_backend.index');
 Route::post('/about_backend/update', [AboutController::class, 'update'])->name('about_backend.update');
+
+ // --- Rute BARU untuk Manajemen Pesan Kontak di Dashboard Admin
+Route::get('/contact-messages', [ContactMessageController::class, 'index'])->name('contact_messages.index');
+Route::get('/contact-messages/{contactMessage}', [ContactMessageController::class, 'show'])->name('contact_messages.show');
+Route::patch('/contact-messages/{contactMessage}/mark-as-read', [ContactMessageController::class, 'markAsRead'])->name('contact_messages.markAsRead');
+Route::delete('/contact-messages/{contactMessage}', [ContactMessageController::class, 'destroy'])->name('contact_messages.destroy');
 
 // Rute untuk manajemen Company Info di backend (BARU)
 Route::get('/admin/company-info', [CompanyInfoController::class, 'index'])->name('admin.company_info.index');

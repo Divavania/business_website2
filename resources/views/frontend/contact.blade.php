@@ -6,6 +6,26 @@
 
 @section('content')
 
+{{-- Alert (Notifikasi) --}}
+@if(session('success'))
+    <div class="alert alert-success fixed-alert alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+@if($errors->any())
+    <div class="alert alert-danger fixed-alert alert-dismissible fade show" role="alert">
+        <strong>Terjadi Kesalahan!</strong> Mohon periksa kembali input Anda.
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
 <section id="contact" class="contact section pt-5 pb-3 bg-light">
     <div class="container" data-aos="fade-up">
         <div class="row g-4 justify-content-center">
@@ -65,10 +85,128 @@
     </div>
 </section>
 
+<section id="contact-form-section" class="contact section pt-3 pb-5 bg-light">
+    <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0 p-4 rounded-3">
+                    <h3 class="fw-bold text-primary mb-4 text-center">Atau Kirim Pesan Melalui Form Ini</h3>
+                    <p class="text-center mb-4">
+                        Isi form di bawah ini dan tim kami akan segera menghubungi Anda.
+                    </p>
+
+                    <form action="{{ route('contact.submit') }}" method="post" class="php-email-form">
+                        @csrf {{-- Token CSRF untuk keamanan --}}
+
+                        <div class="row gy-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="first_name" class="form-label">Nama Depan <span class="text-danger">*</span></label>
+                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Masukkan nama depan Anda" value="{{ old('first_name') }}" required>
+                                    @error('first_name')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="last_name" class="form-label">Nama Belakang <span class="text-danger">*</span></label>
+                                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Masukkan nama belakang Anda" value="{{ old('last_name') }}" required>
+                                    @error('last_name')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row gy-3 mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="contoh@domain.com" value="{{ old('email') }}" required>
+                                    @error('email')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone_number" class="form-label">Nomor Handphone</label>
+                                    <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="+62 812 3456 7890" value="{{ old('phone_number') }}">
+                                    @error('phone_number')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="company_name" class="form-label">Nama Perusahaan (Opsional)</label>
+                            <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Nama perusahaan Anda" value="{{ old('company_name') }}">
+                            @error('company_name')
+                                <div class="text-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="row gy-3 mt-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="address" class="form-label">Alamat Lengkap (Opsional)</label>
+                                    <input type="text" class="form-control" name="address" id="address" placeholder="Jalan, Nomor, RT/RW" value="{{ old('address') }}">
+                                    @error('address')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="city" class="form-label">Kota (Opsional)</label>
+                                    <input type="text" class="form-control" name="city" id="city" placeholder="Kota Anda" value="{{ old('city') }}">
+                                    @error('city')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="message" class="form-label">Isi Pesan <span class="text-danger">*</span></label>
+                            <textarea class="form-control" name="message" rows="4" placeholder="Tulis pesan Anda di sini..." required>{{ old('message') }}</textarea>
+                            @error('message')
+                                <div class="text-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5">Kirim Pesan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
 
 @push('styles')
 <style>
+    /* Alert notifikasi di kanan atas */
+    .fixed-alert {
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        z-index: 9999;
+        width: auto;
+        max-width: 350px;
+        margin: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .fixed-alert.show {
+        opacity: 1;
+    }
+
     .contact-info .d-flex {
         align-items: center; 
     }
@@ -155,5 +293,35 @@
             align-items: center; 
         }
     }
+
+    /* CSS tambahan untuk form kontak */
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: .5rem;
+    }
+    .form-control {
+        border-radius: .5rem;
+        padding: .75rem 1rem;
+    }
+    .php-email-form .error-message {
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
 </style>
+@endpush
+
+@push('scripts')
+<script>
+    // Menambahkan class "show" pada alert agar muncul
+    document.addEventListener('DOMContentLoaded', function() {
+        const alert = document.querySelector('.fixed-alert');
+        if (alert) {
+            alert.classList.add('show');
+            setTimeout(function() {
+                alert.classList.remove('show');
+            }, 3000); // Menghilang setelah 3 detik
+        }
+    });
+</script>
 @endpush

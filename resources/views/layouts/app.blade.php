@@ -30,8 +30,8 @@
             color: white;
             padding-top: 20px;
             transition: all 0.3s ease;
-            display: flex; 
-            flex-direction: column; 
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar h5 {
@@ -76,12 +76,12 @@
         }
 
         .sidebar .copyright {
-            margin-top: auto; 
-            padding-bottom: 20px; 
-            padding-left: 10px; 
-            padding-right: 10px; 
-            font-size: 0.8rem; 
-            color: #e2e8f0; 
+            margin-top: auto;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 0.8rem;
+            color: #e2e8f0;
         }
 
         .topbar {
@@ -110,6 +110,42 @@
             border: none;
             color: #333;
         }
+
+        /* Styles for topbar notification */
+        .topbar .notification-group {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .topbar .notification-icon {
+            position: relative;
+            font-size: 1.5rem;
+            color: #555;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .topbar .notification-icon:hover {
+            color: #0ea5e9;
+        }
+
+        .topbar .notification-badge {
+            position: absolute;
+            top: -2px;
+            right: -9px;
+            background-color: #dc3545;
+            color: white;
+            border-radius: 50%;
+            padding: 0.2em 0.5em; /* **UKURAN BARU:** Padding lebih kecil */
+            font-size: 0.50em; /* **UKURAN BARU:** Ukuran font lebih kecil */
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 1.3em; /* **UKURAN BARU:** Min-width lebih kecil */
+            height: 1.3em; /* **UKURAN BARU:** Height lebih kecil */
+        }
+
 
         .main-content {
             margin-left: 240px;
@@ -172,8 +208,7 @@
 <body>
 
 <div id="sidebar" class="sidebar">
-    <h5>Tigatra Admin
-    </h5>
+    <h5>Tigatra Admin</h5>
     <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">
         <i class="bi bi-speedometer2"></i>
         <span class="text">Dashboard</span>
@@ -190,12 +225,17 @@
         <i class="bi bi-info-circle"></i>
         <span class="text">Tentang Kami</span>
     </a>
-    {{-- BARU: Link untuk Company Info --}}
+    {{-- Link untuk Company Info --}}
     <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
-        <i class="bi bi-building"></i> {{-- Ikon untuk perusahaan --}}
+        <i class="bi bi-building"></i>
         <span class="text">Info Perusahaan</span>
     </a>
-    
+
+    <a href="{{ route('contact_messages.index') }}" class="{{ request()->routeIs('contact_messages.*') ? 'active' : '' }}">
+        <i class="bi bi-envelope"></i>
+        <span class="text">Pesan Masuk</span>
+    </a>
+
     @if(session()->has('user') && session('user')->role == 'superadmin')
         <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
             <i class="bi bi-people"></i>
@@ -208,12 +248,27 @@
         </a>
 </div>
 
-<div id="topbar" class="topbar d-flex align-items-center justify-content-center">
-    <button class="btn-toggle d-none d-lg-block position-absolute start-0 ms-3" id="desktopToggle" onclick="toggleSidebar()">
+<div id="topbar" class="topbar d-flex align-items-center">
+    <button class="btn-toggle d-none d-lg-block ms-3" id="desktopToggle" onclick="toggleSidebar()">
         <i class="bi bi-list"></i>
     </button>
 
-    <span class="fw-bold">Halo, {{ session('user')->nama }} ({{ session('user')->role }})</span>
+    {{-- Group untuk nama pengguna dan notifikasi di kanan atas --}}
+    @php
+        use App\Models\Contact;
+        $unreadMessagesCount = Contact::where('is_read', false)->count();
+    @endphp
+
+    <div class="notification-group">
+        <span class="fw-bold me-3">Halo, {{ session('user')->nama }} ({{ session('user')->role }})</span>
+
+        <a href="{{ route('contact_messages.index') }}" class="notification-icon">
+            <i class="bi bi-envelope-fill"></i>
+            @if($unreadMessagesCount > 0)
+                <span class="notification-badge">{{ $unreadMessagesCount }}</span>
+            @endif
+        </a>
+    </div>
 </div>
 
 <div id="mainContent" class="main-content">
@@ -234,7 +289,7 @@
         if (sidebar.classList.contains('collapsed')) {
             localStorage.setItem('sidebarCollapsed', 'true');
         } else {
-            localStorage.removeItem('sidebarCollapsed'); 
+            localStorage.removeItem('sidebarCollapsed');
         }
     }
 
