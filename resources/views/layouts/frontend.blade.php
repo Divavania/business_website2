@@ -405,15 +405,6 @@
                 <div class="col-lg-4 col-md-6 footer-description"> {{-- Diubah dari col-lg-3 ke col-lg-4 --}}
                    <p class="mb-3">{{ $companyInfo->tagline ?? 'PT Tigatra Adikara menyediakan solusi komprehensif untuk Infrastruktur IT, serta pemasaran dan dukungan untuk Hardware dan Software terkemuka.' }}</p>
                    <div class="social-links d-flex">
-                        @if($companyInfo->facebook_link)
-                            <a href="{{ $companyInfo->facebook_link }}" target="_blank"><i class="bi bi-facebook"></i></a>
-                        @endif
-                        @if($companyInfo->tiktok_link)
-                            <a href="{{ $companyInfo->tiktok_link }}" target="_blank"><i class="bi bi-tiktok"></i></a>
-                        @endif
-                        @if($companyInfo->youtube_link)
-                            <a href="{{ $companyInfo->youtube_link }}" target="_blank"><i class="bi bi-youtube"></i></a>
-                        @endif
                         @if($companyInfo->instagram_link)
                             <a href="{{ $companyInfo->instagram_link }}" target="_blank"><i class="bi bi-instagram"></i></a>
                         @endif

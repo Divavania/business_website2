@@ -89,24 +89,6 @@
                         <input type="email" name="contact_email" id="contact_email" class="form-control @error('contact_email') is-invalid @enderror" value="{{ old('contact_email', $companyInfo->contact_email) }}">
                         @error('contact_email')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
-                     
-                     <div class="col-md-6">
-                        <label for="facebook_link" class="form-label fw-semibold">Tautan Facebook</label>
-                        <input type="url" name="facebook_link" id="facebook_link" class="form-control @error('facebook_link') is-invalid @enderror" value="{{ old('facebook_link', $companyInfo->facebook_link) }}">
-                        @error('facebook_link')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <label for="tiktok_link" class="form-label fw-semibold">Tautan TikTok</label>
-                        <input type="url" name="tiktok_link" id="tiktok_link" class="form-control @error('tiktok_link') is-invalid @enderror" value="{{ old('tiktok_link', $companyInfo->tiktok_link) }}">
-                        @error('tiktok_link')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="youtube_link" class="form-label fw-semibold">Tautan YouTube</label>
-                        <input type="url" name="youtube_link" id="youtube_link" class="form-control @error('youtube_link') is-invalid @enderror" value="{{ old('youtube_link', $companyInfo->youtube_link) }}">
-                        @error('youtube_link')<div class="invalid-feedback">{{ $message }}</div>@enderror
-                    </div>
 
                     <div class="col-md-6">
                         <label for="instagram_link" class="form-label fw-semibold">Tautan Instagram</label>
