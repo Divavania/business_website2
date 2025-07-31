@@ -213,10 +213,10 @@
         <i class="bi bi-speedometer2"></i>
         <span class="text">Dashboard</span>
     </a>
-    <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
+    {{-- <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
         <i class="bi bi-box-seam"></i>
         <span class="text">Produk</span>
-    </a>
+    </a> --}}
     <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
         <i class="bi bi-wrench"></i>
         <span class="text">Service Center</span>

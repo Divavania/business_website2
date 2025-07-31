@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\AuthController;
-use App\Http\Controllers\Backend\ProductController as BackendProductController;
+// use App\Http\Controllers\Backend\ProductController as BackendProductController;
 use App\Http\Controllers\Backend\ServiceCenterController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\UserController;
@@ -11,7 +11,7 @@ use App\Http\Controllers\Backend\CompanyInfoController;
 
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
-use App\Http\Controllers\Frontend\Product_frontendController;
+// use App\Http\Controllers\Frontend\Product_frontendController;
 use App\Http\Controllers\Frontend\Service_frontendController;
 use App\Http\Controllers\Frontend\Contact_frontendController;
 
@@ -26,8 +26,8 @@ Route::get('/', [Home_frontendController::class, 'index'])->name('home');
 Route::get('/about', [About_frontendController::class, 'index'])->name('frontend.about.index');
 
 // Rute untuk halaman Produk di Frontend
-Route::get('/products', [Product_frontendController::class, 'index'])->name('frontend.products.index');
-Route::get('/products/{product}', [Product_frontendController::class, 'show'])->name('frontend.products.show');
+// Route::get('/products', [Product_frontendController::class, 'index'])->name('frontend.products.index');
+// Route::get('/products/{product}', [Product_frontendController::class, 'show'])->name('frontend.products.show');
 
 // Rute untuk halaman Service Center di Frontend
 Route::get('/services', [Service_frontendController::class, 'index'])->name('frontend.services.index');
@@ -89,10 +89,10 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Rute produk backend
-Route::get('/admin/products', [BackendProductController::class, 'index'])->name('admin.products.index');
-Route::post('/admin/products/tambah', [BackendProductController::class, 'store'])->name('admin.products.store');
-Route::post('/admin/products/edit/{product}', [BackendProductController::class, 'update'])->name('admin.products.update');
-Route::delete('/admin/products/hapus/{product}', [BackendProductController::class, 'destroy'])->name('admin.products.destroy');
+// Route::get('/admin/products', [BackendProductController::class, 'index'])->name('admin.products.index');
+// Route::post('/admin/products/tambah', [BackendProductController::class, 'store'])->name('admin.products.store');
+// Route::post('/admin/products/edit/{product}', [BackendProductController::class, 'update'])->name('admin.products.update');
+// Route::delete('/admin/products/hapus/{product}', [BackendProductController::class, 'destroy'])->name('admin.products.destroy');
 
 // Rute service center backend
 Route::get('/service', [ServiceCenterController::class, 'index']);

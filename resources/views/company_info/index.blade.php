@@ -13,23 +13,23 @@
     </div>
 
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm" role="alert">
-            <i class="bi bi-check-circle me-2"></i>
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm" role="alert">
+        <i class="bi bi-check-circle me-2"></i>
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
     @if($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show rounded-lg shadow-sm" role="alert">
-            <i class="bi bi-exclamation-triangle me-2"></i>
-            Terjadi kesalahan saat memproses data. Mohon periksa kembali input Anda.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+    <div class="alert alert-danger alert-dismissible fade show rounded-lg shadow-sm" role="alert">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        Terjadi kesalahan saat memproses data. Mohon periksa kembali input Anda.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
     @endif
 
     <div class="card shadow-sm border-0 rounded-lg">
@@ -88,6 +88,22 @@
                         <label for="contact_email" class="form-label fw-semibold">Email Kontak</label>
                         <input type="email" name="contact_email" id="contact_email" class="form-control @error('contact_email') is-invalid @enderror" value="{{ old('contact_email', $companyInfo->contact_email) }}">
                         @error('contact_email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="facebook_link" class="form-label fw-semibold">Tautan Facebook</label>
+                        <input type="url" name="facebook_link" id="facebook_link" class="form-control @error('facebook_link') is-invalid @enderror" value="{{ old('facebook_link', $companyInfo->facebook_link) }}">
+                        @error('facebook_link')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tiktok_link" class="form-label fw-semibold">Tautan TikTok</label>
+                        <input type="url" name="tiktok_link" id="tiktok_link" class="form-control @error('tiktok_link') is-invalid @enderror" value="{{ old('tiktok_link', $companyInfo->tiktok_link) }}">
+                        @error('tiktok_link')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="youtube_link" class="form-label fw-semibold">Tautan YouTube</label>
+                        <input type="url" name="youtube_link" id="youtube_link" class="form-control @error('youtube_link') is-invalid @enderror" value="{{ old('youtube_link', $companyInfo->youtube_link) }}">
+                        @error('youtube_link')<div class="invalid-feedback">{{ $message }}</div>@enderror
                     </div>
 
                     <div class="col-md-6">

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller; // Pastikan ini mengarah ke base Controller yang benar
-use App\Models\Contact; // Import model Contact
+use App\Http\Controllers\Controller; 
+use App\Models\Contact; 
 use Illuminate\Http\Request;
-use Carbon\Carbon; // Import Carbon untuk format tanggal yang lebih baik
+use Carbon\Carbon; 
 
 class ContactMessageController extends Controller
 {
-    public function index(Request $request) // Tambahkan Request $request untuk pencarian
+    public function index(Request $request) 
     {
-        $query = Contact::latest(); // Mulai query dari yang terbaru
+        $query = Contact::latest(); 
 
-        // Logika Pencarian
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
             $query->where(function($q) use ($search) {
@@ -27,8 +26,7 @@ class ContactMessageController extends Controller
         }
 
         $contactMessages = $query->paginate(10);
-        $totalMessages = Contact::count(); // Total keseluruhan, tanpa filter pencarian
-
+        $totalMessages = Contact::count(); 
         return view('contact_messages.index', compact('contactMessages', 'totalMessages'));
     }
 

@@ -9,8 +9,8 @@
 
         <div class="row g-4 mb-5">
 
-            {{-- Card Jumlah Produk --}}
-            <div class="col-lg-3 col-md-6 col-sm-12">
+             {{-- Card Jumlah Produk --}}
+            {{-- <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card shadow-sm h-100 border-0 rounded-lg">
                     <div class="card-body d-flex flex-column p-2 text-center">
                         <div class="d-inline-flex align-items-center justify-content-center mb-2">
@@ -22,7 +22,7 @@
                         <a href="{{ route('admin.products.index') }}" class="btn btn-outline-primary btn-sm mt-auto w-100">Kelola Produk <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{-- Card Jumlah Service Center --}}
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card shadow-sm h-100 border-0 rounded-lg">
@@ -48,10 +48,10 @@
                         <h5 class="card-title text-dark fw-bold mb-3">Akses Cepat & Tugas Penting</h5>
                         <p class="text-muted small mb-3">Jelajahi pintasan ke fitur-fitur utama untuk efisiensi pengelolaan konten Anda.</p> {{-- KOREKSI: Menambahkan small dan mengubah mb-4 menjadi mb-3 --}}
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex align-items-center py-2"> 
+                            {{-- <li class="list-group-item d-flex align-items-center py-2"> 
                                 <i class="bi bi-plus-circle me-3 text-success fs-5"></i>
                                 <a href="{{ route('admin.products.index') }}" class="text-decoration-none text-dark fw-semibold">Kelola Produk</a>
-                            </li>
+                            </li> --}}
                             <li class="list-group-item d-flex align-items-center py-2">
                                 <i class="bi bi-info-circle me-3 text-secondary fs-5"></i>
                                 <a href="/about_backend" class="text-decoration-none text-dark fw-semibold">Kelola Informasi "Tentang Kami"</a>

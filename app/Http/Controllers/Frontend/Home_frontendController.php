@@ -22,7 +22,7 @@ class Home_frontendController extends Controller
             ];
         }
 
-        $products = Product::latest()->take(6)->get(); 
+        // $products = Product::latest()->take(6)->get(); 
         $companyInfo = CompanyInfo::first();
         if (is_null($companyInfo)) {
             $companyInfo = (object)[
@@ -42,6 +42,7 @@ class Home_frontendController extends Controller
             ];
         }
 
-        return view('frontend.index', compact('about', 'products', 'companyInfo'));
+        return view('frontend.index', compact('about', 'companyInfo'));
+        // return view('frontend.index', compact('about', 'products', 'companyInfo'));
     }
 }
