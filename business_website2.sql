@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2025 at 08:07 AM
+-- Generation Time: Aug 01, 2025 at 11:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -172,6 +172,28 @@ INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `solutions`
+--
+
+CREATE TABLE `solutions` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(100) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `solutions`
+--
+
+INSERT INTO `solutions` (`id`, `judul`, `deskripsi`, `created_at`, `updated_at`) VALUES
+(1, 'piwpiw', 'omggd', '2025-08-01 00:18:00', '2025-08-01 01:58:16'),
+(6, 'OH okey', 'halo', '2025-08-01 02:06:39', '2025-08-01 02:06:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -275,6 +297,12 @@ ALTER TABLE `service_centers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `solutions`
+--
+ALTER TABLE `solutions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -333,6 +361,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `service_centers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `solutions`
+--
+ALTER TABLE `solutions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
