@@ -236,6 +236,11 @@
         <span class="text">Pesan Masuk</span>
     </a>
 
+        <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
+        <i class="bi bi-truck"></i>
+        <span class="text">Kelola Vendor</span>
+    </a>
+
     @if(session()->has('user') && session('user')->role == 'superadmin')
         <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
             <i class="bi bi-people"></i>

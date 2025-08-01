@@ -370,6 +370,7 @@
                     <li><a href="{{ route('home') }}" class="active">Home</a></li>
                     <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li> {{-- Menggunakan rute bernama --}}
                     {{-- <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> --}}
+                    <li><a href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
                     <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
                     <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li> {{-- Menggunakan rute bernama --}}
                 </ul>

@@ -15,10 +15,12 @@ use App\Http\Controllers\Frontend\Home_frontendController;
 use App\Http\Controllers\Frontend\Service_frontendController;
 use App\Http\Controllers\Frontend\Contact_frontendController;
 
-use App\Http\Controllers\Backend\ContactMessageController; 
+use App\Http\Controllers\Backend\ContactMessageController;
+use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Frontend\Vendor_frontendController;
 use Illuminate\Support\Facades\DB;
 
-// FRONTEND
+// FRONTEND ROUTES
 // Mengarahkan rute '/' ke Home_frontendController
 Route::get('/', [Home_frontendController::class, 'index'])->name('home');
 
@@ -35,46 +37,9 @@ Route::get('/services', [Service_frontendController::class, 'index'])->name('fro
 // Rute untuk halaman Kontak di Frontend sekarang memanggil Contact_frontendController@index
 Route::get('/contact', [Contact_frontendController::class, 'index'])->name('frontend.contact.index');
 Route::post('/contact', [Contact_frontendController::class, 'submitContactForm'])->name('contact.submit');
-Route::resource('contact_messages', ContactMessageController::class);
-Route::patch('contact_messages/{contact_message}/mark-as-read', [ContactMessageController::class, 'markAsRead'])->name('contact_messages.markAsRead');
 
-// Tambahkan rute untuk halaman frontend lainnya sesuai file Blade Anda di resources/views/frontend/
-Route::get('/portfolio', function () {
-    return view('frontend.portfolio');
-})->name('frontend.portfolio.index');
-
-Route::get('/pricing', function () {
-    return view('frontend.pricing');
-})->name('frontend.pricing.index');
-
-Route::get('/blog', function () {
-    return view('frontend.blog');
-})->name('frontend.blog.index');
-
-Route::get('/team', function () {
-    return view('frontend.team');
-})->name('frontend.team.index');
-
-Route::get('/testimonials', function () {
-    return view('frontend.testimonials');
-})->name('frontend.testimonials.index');
-
-Route::get('/portfolio-details', function () {
-    return view('frontend.portfolio-details');
-})->name('frontend.portfolio-details.index');
-
-Route::get('/blog-details', function () {
-    return view('frontend.blog-details');
-})->name('frontend.blog-details.index');
-
-Route::get('/service-details', function () {
-    return view('frontend.service-details');
-})->name('frontend.service-details.index');
-
-Route::get('/starter-page', function () {
-    return view('frontend.starter-page');
-})->name('frontend.starter-page.index');
-
+// Rute untuk menampilkan halaman Our Vendor di FRONTEND
+Route::get('/vendors', [Vendor_frontendController::class, 'index'])->name('frontend.vendors.index');
 
 // FRONTEND CONTROLLERS
 //About
@@ -114,8 +79,17 @@ Route::delete('/contact-messages/{contactMessage}', [ContactMessageController::c
 Route::get('/admin/company-info', [CompanyInfoController::class, 'index'])->name('admin.company_info.index');
 Route::post('/admin/company-info/update', [CompanyInfoController::class, 'update'])->name('admin.company_info.update');
 
-
+// Rute untuk manajemen User
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/users/tambah', [UserController::class, 'store'])->name('users.store');
 Route::put('/users/edit/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/hapus/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+// Rute untuk manajemen Vendor dan Kategori di BACKEND
+Route::get('/admin/vendors', [VendorController::class, 'index'])->name('admin.vendors.index');
+Route::post('/admin/vendors/category', [VendorController::class, 'storeCategory'])->name('admin.vendors.category.store');
+Route::put('/admin/vendors/category/{category}', [VendorController::class, 'updateCategory'])->name('admin.vendors.category.update');
+Route::delete('/admin/vendors/category/{category}', [VendorController::class, 'destroyCategory'])->name('admin.vendors.category.destroy');
+Route::post('/admin/vendors', [VendorController::class, 'storeVendor'])->name('admin.vendors.store');
+Route::put('/admin/vendors/{vendor}', [VendorController::class, 'updateVendor'])->name('admin.vendors.update');
+Route::delete('/admin/vendors/{vendor}', [VendorController::class, 'destroyVendor'])->name('admin.vendors.destroy');
