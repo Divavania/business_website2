@@ -1,6 +1,17 @@
 @extends('layouts.frontend')
 
 @section('content')
+<div class="page-title light-background">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+            <h1 class="mb-2 mb-lg-0">Our Vendor</h1>
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li class="current">Our Vendor</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
 <div class="container mx-auto p-6">
     <h1 class="text-4xl font-bold text-center mb-10 text-gray-800">Our Vendor</h1>
 
@@ -36,7 +47,6 @@
                 Logo tidak tersedia
             </div>
             @endif
-            <p class="text-center font-medium text-gray-700 mt-2">{{ $vendor->name }}</p>
         </div>
         @endforeach
     </div>

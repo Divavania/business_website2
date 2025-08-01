@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -87,7 +88,7 @@
         .topbar {
             height: 60px;
             background-color: #ffffff;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
             left: 240px;
             right: 0;
@@ -125,6 +126,7 @@
             text-decoration: none;
             margin-left: 15px;
         }
+
         .topbar .notification-icon:hover {
             color: #0ea5e9;
         }
@@ -136,14 +138,18 @@
             background-color: #dc3545;
             color: white;
             border-radius: 50%;
-            padding: 0.2em 0.5em; /* **UKURAN BARU:** Padding lebih kecil */
-            font-size: 0.50em; /* **UKURAN BARU:** Ukuran font lebih kecil */
+            padding: 0.2em 0.5em;
+            /* **UKURAN BARU:** Padding lebih kecil */
+            font-size: 0.50em;
+            /* **UKURAN BARU:** Ukuran font lebih kecil */
             line-height: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 1.3em; /* **UKURAN BARU:** Min-width lebih kecil */
-            height: 1.3em; /* **UKURAN BARU:** Height lebih kecil */
+            min-width: 1.3em;
+            /* **UKURAN BARU:** Min-width lebih kecil */
+            height: 1.3em;
+            /* **UKURAN BARU:** Height lebih kecil */
         }
 
 
@@ -186,7 +192,8 @@
             background-color: #014a79;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             text-align: center;
             vertical-align: middle;
         }
@@ -205,111 +212,118 @@
         }
     </style>
 </head>
+
 <body>
 
-<div id="sidebar" class="sidebar">
-    <h5>Tigatra Admin</h5>
-    <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">
-        <i class="bi bi-speedometer2"></i>
-        <span class="text">Dashboard</span>
-    </a>
-    {{-- <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
+    <div id="sidebar" class="sidebar">
+        <h5>Tigatra Admin</h5>
+        <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">
+            <i class="bi bi-speedometer2"></i>
+            <span class="text">Dashboard</span>
+        </a>
+        {{-- <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
         <i class="bi bi-box-seam"></i>
         <span class="text">Produk</span>
-    </a> --}}
-    <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
-        <i class="bi bi-wrench"></i>
-        <span class="text">Service Center</span>
-    </a>
-    <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
-        <i class="bi bi-info-circle"></i>
-        <span class="text">Tentang Kami</span>
-    </a>
-    {{-- Link untuk Company Info --}}
-    <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
-        <i class="bi bi-building"></i>
-        <span class="text">Info Perusahaan</span>
-    </a>
+        </a> --}}
+        <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
+            <i class="bi bi-wrench"></i>
+            <span class="text">Service Center</span>
+        </a>
+        <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
+            <i class="bi bi-info-circle"></i>
+            <span class="text">Tentang Kami</span>
+        </a>
+        {{-- Link untuk Company Info --}}
+        <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
+            <i class="bi bi-building"></i>
+            <span class="text">Info Perusahaan</span>
+        </a>
 
-    <a href="{{ route('contact_messages.index') }}" class="{{ request()->routeIs('contact_messages.*') ? 'active' : '' }}">
-        <i class="bi bi-envelope"></i>
-        <span class="text">Pesan Masuk</span>
-    </a>
+        <a href="{{ route('admin.solution.index') }}" class="{{ request()->routeIs('admin.solution.index') ? 'active' : '' }}">
+            <i class="bi bi-gear-fill"></i>
+            <span class="text">Kelola Solusi</span>
+        </a>
+
+        <a href="{{ route('contact_messages.index') }}" class="{{ request()->routeIs('contact_messages.*') ? 'active' : '' }}">
+            <i class="bi bi-envelope"></i>
+            <span class="text">Pesan Masuk</span>
+        </a>
 
         <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
-        <i class="bi bi-truck"></i>
-        <span class="text">Kelola Vendor</span>
-    </a>
+            <i class="bi bi-truck"></i>
+            <span class="text">Kelola Vendor</span>
+        </a>
 
-    @if(session()->has('user') && session('user')->role == 'superadmin')
+        @if(session()->has('user') && session('user')->role == 'superadmin')
         <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
             <i class="bi bi-people"></i>
             <span class="text">Kelola Admin</span>
         </a>
-    @endif
+        @endif
         <a href="/logout" onclick="return confirm('Yakin mau logout?')">
             <i class="bi bi-box-arrow-right"></i>
             <span class="text">Logout</span>
         </a>
-</div>
+    </div>
 
-<div id="topbar" class="topbar d-flex align-items-center">
-    <button class="btn-toggle d-none d-lg-block ms-3" id="desktopToggle" onclick="toggleSidebar()">
-        <i class="bi bi-list"></i>
-    </button>
+    <div id="topbar" class="topbar d-flex align-items-center">
+        <button class="btn-toggle d-none d-lg-block ms-3" id="desktopToggle" onclick="toggleSidebar()">
+            <i class="bi bi-list"></i>
+        </button>
 
-    {{-- Group untuk nama pengguna dan notifikasi di kanan atas --}}
-    @php
+        {{-- Group untuk nama pengguna dan notifikasi di kanan atas --}}
+        @php
         use App\Models\Contact;
         $unreadMessagesCount = Contact::where('is_read', false)->count();
-    @endphp
+        @endphp
 
-    <div class="notification-group">
-        <span class="fw-bold me-3">Halo, {{ session('user')->nama }} ({{ session('user')->role }})</span>
+        <div class="notification-group">
+            <span class="fw-bold me-3">Halo, {{ session('user')->nama }} ({{ session('user')->role }})</span>
 
-        <a href="{{ route('contact_messages.index') }}" class="notification-icon">
-            <i class="bi bi-envelope-fill"></i>
-            @if($unreadMessagesCount > 0)
+            <a href="{{ route('contact_messages.index') }}" class="notification-icon">
+                <i class="bi bi-envelope-fill"></i>
+                @if($unreadMessagesCount > 0)
                 <span class="notification-badge">{{ $unreadMessagesCount }}</span>
-            @endif
-        </a>
+                @endif
+            </a>
+        </div>
     </div>
-</div>
 
-<div id="mainContent" class="main-content">
-    @yield('content')
-</div>
+    <div id="mainContent" class="main-content">
+        @yield('content')
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        const topbar = document.getElementById('topbar');
-        const content = document.getElementById('mainContent');
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const topbar = document.getElementById('topbar');
+            const content = document.getElementById('mainContent');
 
-        sidebar.classList.toggle('collapsed');
-        topbar.classList.toggle('collapsed');
-        content.classList.toggle('collapsed');
+            sidebar.classList.toggle('collapsed');
+            topbar.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
 
-        if (sidebar.classList.contains('collapsed')) {
-            localStorage.setItem('sidebarCollapsed', 'true');
-        } else {
-            localStorage.removeItem('sidebarCollapsed');
+            if (sidebar.classList.contains('collapsed')) {
+                localStorage.setItem('sidebarCollapsed', 'true');
+            } else {
+                localStorage.removeItem('sidebarCollapsed');
+            }
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebar = document.getElementById('sidebar');
-        const topbar = document.getElementById('topbar');
-        const content = document.getElementById('mainContent');
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const topbar = document.getElementById('topbar');
+            const content = document.getElementById('mainContent');
 
-        if (localStorage.getItem('sidebarCollapsed') === 'true') {
-            sidebar.classList.add('collapsed');
-            topbar.classList.add('collapsed');
-            content.classList.add('collapsed');
-        }
-    });
-</script>
+            if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                sidebar.classList.add('collapsed');
+                topbar.classList.add('collapsed');
+                content.classList.add('collapsed');
+            }
+        });
+    </script>
 
 </body>
+
 </html>

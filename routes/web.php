@@ -8,16 +8,16 @@ use App\Http\Controllers\Backend\ServiceCenterController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\CompanyInfoController;
+use App\Http\Controllers\Backend\ContactMessageController;
+use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Backend\SolutionController;
 
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
-// use App\Http\Controllers\Frontend\Product_frontendController;
 use App\Http\Controllers\Frontend\Service_frontendController;
 use App\Http\Controllers\Frontend\Contact_frontendController;
-
-use App\Http\Controllers\Backend\ContactMessageController;
-use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Frontend\Vendor_frontendController;
+use App\Http\Controllers\Frontend\Solution_frontendController;
 use Illuminate\Support\Facades\DB;
 
 // FRONTEND ROUTES
@@ -40,6 +40,10 @@ Route::post('/contact', [Contact_frontendController::class, 'submitContactForm']
 
 // Rute untuk menampilkan halaman Our Vendor di FRONTEND
 Route::get('/vendors', [Vendor_frontendController::class, 'index'])->name('frontend.vendors.index');
+
+// Rute untuk menampilkan halaman solution
+// Daftar solution
+Route::get('/solutions', [Solution_frontendController::class, 'index'])->name('frontend.solutions.index');
 
 // FRONTEND CONTROLLERS
 //About
@@ -93,3 +97,11 @@ Route::delete('/admin/vendors/category/{category}', [VendorController::class, 'd
 Route::post('/admin/vendors', [VendorController::class, 'storeVendor'])->name('admin.vendors.store');
 Route::put('/admin/vendors/{vendor}', [VendorController::class, 'updateVendor'])->name('admin.vendors.update');
 Route::delete('/admin/vendors/{vendor}', [VendorController::class, 'destroyVendor'])->name('admin.vendors.destroy');
+
+// Rute Solusi
+Route::get('/admin/solution', [SolutionController::class, 'index'])->name('admin.solution.index');
+Route::get('/admin/solution/create', [SolutionController::class, 'create'])->name('admin.solution.create');
+Route::post('/admin/solution', [SolutionController::class, 'store'])->name('admin.solution.store');
+Route::get('/admin/solution/{id}/edit', [SolutionController::class, 'edit'])->name('admin.solution.edit');
+Route::put('/admin/solution/{id}', [SolutionController::class, 'update'])->name('admin.solution.update');
+Route::delete('/admin/solution/{id}', [SolutionController::class, 'destroy'])->name('admin.solution.destroy');
