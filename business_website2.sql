@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2025 at 11:09 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 02 Agu 2025 pada 14.48
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `about_us`
+-- Struktur dari tabel `about_us`
 --
 
 CREATE TABLE `about_us` (
@@ -36,7 +36,7 @@ CREATE TABLE `about_us` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `about_us`
+-- Dumping data untuk tabel `about_us`
 --
 
 INSERT INTO `about_us` (`id`, `sejarah`, `visi`, `misi`, `deskripsi`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `about_us` (`id`, `sejarah`, `visi`, `misi`, `deskripsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company_info`
+-- Struktur dari tabel `company_info`
 --
 
 CREATE TABLE `company_info` (
@@ -69,7 +69,7 @@ CREATE TABLE `company_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `company_info`
+-- Dumping data untuk tabel `company_info`
 --
 
 INSERT INTO `company_info` (`id`, `company_name`, `tagline`, `street`, `city`, `province`, `postal_code`, `country`, `phone_number`, `whatsapp_number`, `contact_email`, `facebook_link`, `tiktok_link`, `youtube_link`, `instagram_link`, `linkedin_link`, `google_maps_embed_link`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `company_info` (`id`, `company_name`, `tagline`, `street`, `city`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact_messages`
+-- Struktur dari tabel `contact_messages`
 --
 
 CREATE TABLE `contact_messages` (
@@ -97,7 +97,7 @@ CREATE TABLE `contact_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `contact_messages`
+-- Dumping data untuk tabel `contact_messages`
 --
 
 INSERT INTO `contact_messages` (`id`, `first_name`, `last_name`, `email`, `company_name`, `address`, `city`, `phone_number`, `message`, `is_read`, `created_at`, `updated_at`) VALUES
@@ -108,7 +108,7 @@ INSERT INTO `contact_messages` (`id`, `first_name`, `last_name`, `email`, `compa
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -120,7 +120,40 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktur dari tabel `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `rubrik_id` int(10) UNSIGNED DEFAULT NULL,
+  `konten` longtext NOT NULL,
+  `gambar` varchar(255) DEFAULT NULL,
+  `deskripsi_gambar` text DEFAULT NULL,
+  `tanggal_dibuat` datetime NOT NULL DEFAULT current_timestamp(),
+  `tanggal_publish` datetime DEFAULT current_timestamp(),
+  `jadwal_publikasi` datetime DEFAULT NULL,
+  `is_scheduled` tinyint(1) NOT NULL DEFAULT 0,
+  `status` enum('draft','published','scheduled') NOT NULL DEFAULT 'draft',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `news`
+--
+
+INSERT INTO `news` (`id`, `judul`, `rubrik_id`, `konten`, `gambar`, `deskripsi_gambar`, `tanggal_dibuat`, `tanggal_publish`, `jadwal_publikasi`, `is_scheduled`, `status`, `created_at`, `updated_at`) VALUES
+(4, 'Kecerdasan Buatan dan Dampaknya di Dunia Kerja', 1, '<p>Perkembangan teknologi semakin hari semakin pesat, dan salah satu inovasi yang paling banyak dibicarakan belakangan ini adalah <strong>kecerdasan buatan</strong> atau <strong>Artificial Intelligence (AI)</strong>. Dulu, AI hanya terdengar dalam film fiksi ilmiah, tapi sekarang sudah hadir di kehidupan nyata&mdash;dan tanpa kita sadari, telah menjadi bagian dari rutinitas kerja sehari-hari.</p>\r\n\r\n<h3><strong>Apa Itu Kecerdasan Buatan?</strong></h3>\r\n\r\n<p>Secara sederhana, kecerdasan buatan adalah kemampuan mesin atau komputer untuk meniru cara berpikir manusia. AI bisa belajar dari data, membuat keputusan, hingga menyelesaikan tugas-tugas tertentu yang sebelumnya hanya bisa dilakukan manusia. Contohnya? Asisten virtual seperti Siri atau Google Assistant, chatbot layanan pelanggan, hingga sistem rekomendasi di media sosial dan toko online.</p>\r\n\r\n<h3><em>Dampak Positif AI di Dunia Kerja</em></h3>\r\n\r\n<p>AI membawa banyak manfaat bagi dunia kerja. Beberapa di antaranya:</p>\r\n\r\n<ol>\r\n	<li>\r\n	<p><strong>Meningkatkan Efisiensi dan Produktivitas</strong><br />\r\n	AI bisa mengambil alih tugas-tugas berulang dan administratif, seperti menginput data atau menjadwalkan pertemuan. Hal ini membuat karyawan bisa lebih fokus pada pekerjaan yang membutuhkan kreativitas dan analisis.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Membantu Pengambilan Keputusan</strong><br />\r\n	Dengan kemampuan analisis data yang sangat cepat, AI membantu perusahaan mengambil keputusan berdasarkan data (data-driven). Contohnya dalam dunia pemasaran, AI bisa menganalisis tren pasar dan perilaku konsumen untuk menentukan strategi terbaik.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Munculnya Lapangan Kerja Baru</strong><br />\r\n	Meskipun AI menggantikan beberapa pekerjaan, teknologi ini juga menciptakan profesi baru seperti data analyst, AI engineer, dan machine learning specialist.</p>\r\n	</li>\r\n</ol>\r\n\r\n<h3>Tantangan dan Dampak Negatif</h3>\r\n\r\n<p>Namun, perkembangan AI juga memunculkan beberapa kekhawatiran:</p>\r\n\r\n<ol>\r\n	<li>\r\n	<p><strong>Penggantian Tenaga Manusia</strong><br />\r\n	Tidak bisa dipungkiri, beberapa jenis pekerjaan mulai tergantikan oleh mesin. Contohnya kasir otomatis di supermarket atau customer service berbasis chatbot. Ini memunculkan kekhawatiran hilangnya lapangan kerja, terutama di sektor yang rutin dan berulang.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Kesenjangan Keterampilan (Skill Gap)</strong><br />\r\n	Dunia kerja membutuhkan keterampilan baru yang sesuai dengan perkembangan teknologi. Sayangnya, tidak semua tenaga kerja siap beradaptasi, terutama mereka yang belum terbiasa dengan teknologi digital.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Etika dan Keamanan Data</strong><br />\r\n	Penggunaan AI dalam memproses data menimbulkan pertanyaan tentang privasi dan keamanan informasi. Bagaimana jika data disalahgunakan atau AI mengambil keputusan yang bias?</p>\r\n	</li>\r\n</ol>\r\n\r\n<h3>Apa yang Bisa Kita Lakukan?</h3>\r\n\r\n<p>Menghadapi era AI bukan berarti harus takut, tapi perlu <strong>beradaptasi</strong> dan <strong>meningkatkan keterampilan</strong>. Beberapa langkah yang bisa dilakukan antara lain:</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Belajar keterampilan baru</strong>, terutama yang berkaitan dengan teknologi digital dan data.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Fokus pada soft skill</strong> seperti kreativitas, empati, dan komunikasi yang sulit digantikan oleh mesin.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Berpikir kritis</strong> dalam menggunakan teknologi dan tidak tergantung sepenuhnya pada otomatisasi.</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Penutup</h3>\r\n\r\n<p>AI bukan musuh, melainkan alat yang bisa membantu manusia bekerja lebih cerdas. Namun, agar tidak tertinggal, kita harus mau belajar dan berkembang bersama teknologi. Dunia kerja akan terus berubah, dan adaptasi adalah kunci untuk tetap relevan di masa depan.</p>', 'uploads/news/eQfOCEbqQ4A1QnpDxKHjW71EBKHgAceEe6SvOiEG.jpg', 'okonomiyaki', '2025-08-02 07:48:01', '2025-08-02 09:56:24', '2025-08-02 15:44:00', 0, 'published', '2025-08-02 00:48:01', '2025-08-02 02:56:24'),
+(5, 'Teknologi 5G dan Dampaknya terhadap Kehidupan Sehari-hari', 1, '<p>Teknologi jaringan seluler terus berkembang, dan kini kita memasuki era <strong>5G</strong>&mdash;generasi kelima dari konektivitas mobile. Dibandingkan 4G, 5G menawarkan kecepatan internet yang <strong>jauh lebih tinggi</strong>, <strong>latensi lebih rendah</strong>, dan <strong>koneksi lebih stabil</strong>. Tapi, apa sebenarnya dampaknya dalam kehidupan sehari-hari?</p>\r\n\r\n<p><em><strong>Internet Lebih Cepat, Aktivitas Lebih Lancar</strong></em></p>\r\n\r\n<p>Dengan kecepatan 5G, streaming video 4K, download file besar, atau main game online jadi jauh lebih lancar tanpa buffering. Aktivitas digital seperti belajar online, rapat virtual, atau upload konten juga makin efisien.</p>\r\n\r\n<h3><s><em><strong>Dunia IoT Semakin Nyata</strong></em></s></h3>\r\n\r\n<p>5G mendukung koneksi <strong>jutaan perangkat secara bersamaan</strong>, sehingga teknologi Internet of Things (IoT) makin berkembang. Bayangkan rumah yang semua perangkatnya saling terhubung&mdash;dari lampu, kulkas, sampai CCTV&mdash;semua bisa dikontrol dari smartphone secara real-time.</p>\r\n\r\n<h3>Revolusi di Berbagai Sektor</h3>\r\n\r\n<p>Dampak 5G nggak cuma di level personal, tapi juga menyentuh dunia industri. Di bidang <strong>kesehatan</strong>, misalnya, dokter bisa melakukan operasi jarak jauh dengan bantuan robot. Di <strong>transportasi</strong>, mobil tanpa sopir (autonomous car) makin mungkin digunakan secara massal.</p>\r\n\r\n<h3>Tapi, Belum Merata</h3>\r\n\r\n<p>Sayangnya, infrastruktur 5G belum tersebar luas di semua daerah. Selain itu, belum semua perangkat mendukung 5G, jadi manfaatnya belum bisa dirasakan oleh semua orang.</p>\r\n\r\n<h3>Kesimpulan</h3>\r\n\r\n<p>5G bukan cuma soal internet lebih cepat, tapi juga membuka pintu untuk <strong>inovasi yang lebih besar</strong> di masa depan. Meski butuh waktu agar sepenuhnya merata, teknologi ini sudah mulai mengubah cara kita hidup, bekerja, dan terhubung.</p>', 'uploads/news/jpTdBN1f3r62FQy0Ap9tDVQZPEuZkgThqpyRwdQ9.jpg', 'serombotan', '2025-08-02 07:53:40', '2025-08-02 07:53:40', NULL, 0, 'draft', '2025-08-02 00:53:40', '2025-08-02 00:54:19'),
+(13, 'Coba Coba', 1, '<p>coba</p>', 'uploads/news/4aOPVdUsGENGjY72m7wGKXdiw9wMCY9RN76Irwgp.jpg', 'y', '2025-08-02 18:08:28', '2025-08-02 18:08:28', NULL, 0, 'published', '2025-08-02 04:08:28', '2025-08-02 04:08:28'),
+(14, 'Mengapa Kita Perlu Peduli dengan Keamanan Data Pribadi?', 1, '<p><strong>Di zaman serba digital seperti sekarang, data pribadi kita tersebar hampir di mana-mana&mdash;dari media sosial, aplikasi belanja, sampai layanan perbankan online. Tapi sayangnya, masih banyak orang yang menganggap remeh soal keamanan data pribadi.</strong></p>\r\n\r\n<h3><strong>Data = Aset Berharga</strong></h3>\r\n\r\n<p><em>Data pribadi seperti nama, alamat, nomor telepon, hingga informasi kartu kredit sebenarnya adalah <strong>aset digital</strong>. Jika jatuh ke tangan yang salah, data ini bisa digunakan untuk penipuan, pencurian identitas, bahkan pembobolan rekening.</em></p>\r\n\r\n<h3><em>Ancaman Selalu Mengintai</em></h3>\r\n\r\n<p>Serangan siber makin hari makin canggih. Ada yang menyamar jadi layanan resmi untuk memancing kita membocorkan informasi (phishing), ada juga yang memasang malware lewat tautan mencurigakan. Kalau kita lengah, bisa saja semua akun kita diretas dalam hitungan menit.</p>\r\n\r\n<h3>Cara Sederhana Melindungi Diri</h3>\r\n\r\n<p>Kabar baiknya, ada beberapa langkah sederhana yang bisa dilakukan:</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p>Gunakan <strong>password yang kuat dan berbeda-beda</strong> untuk tiap akun.</p>\r\n	</li>\r\n	<li>\r\n	<p>Aktifkan <strong>verifikasi dua langkah (2FA)</strong>.</p>\r\n	</li>\r\n	<li>\r\n	<p>Hindari klik link sembarangan atau asal download file dari sumber tidak jelas.</p>\r\n	</li>\r\n	<li>\r\n	<p>Perbarui aplikasi dan sistem secara rutin agar tetap aman.</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3><strong>Kesimpulan</strong></h3>\r\n\r\n<p>Keamanan data bukan cuma urusan IT atau perusahaan besar&mdash;tapi juga <strong>tanggung jawab pribadi</strong> kita sebagai pengguna teknologi. Dengan sedikit kehati-hatian, kita bisa tetap menikmati kemudahan digital tanpa harus jadi korban.</p>', 'uploads/news/eUs14zlhZlhW9YzbXmTyj37Tk7RSOtczDe7eJq1f.png', 'contoh', '2025-08-02 18:11:15', '2025-08-02 18:11:15', NULL, 0, 'published', '2025-08-02 04:11:15', '2025-08-02 04:11:44'),
+(15, 'Coba', 1, '<p>Coba lagi</p>', 'uploads/news/A9crpBdzxwOViJdT31HdtbQbtVkyiSJwofFFuEo2.jpg', 'y', '2025-08-02 19:48:14', '2025-08-02 19:48:14', NULL, 0, 'published', '2025-08-02 05:48:14', '2025-08-02 05:48:14');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `products`
 --
 
 CREATE TABLE `products` (
@@ -135,7 +168,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `products`
+-- Dumping data untuk tabel `products`
 --
 
 INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `gambar`, `created_at`, `updated_at`) VALUES
@@ -150,7 +183,28 @@ INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `g
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service_centers`
+-- Struktur dari tabel `rubrik`
+--
+
+CREATE TABLE `rubrik` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `rubrik`
+--
+
+INSERT INTO `rubrik` (`id`, `nama`, `created_at`, `updated_at`) VALUES
+(1, 'News', '2025-08-02 00:44:05', '2025-08-02 00:44:05'),
+(5, 'Event', '2025-08-02 00:58:28', '2025-08-02 00:58:28');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `service_centers`
 --
 
 CREATE TABLE `service_centers` (
@@ -161,7 +215,7 @@ CREATE TABLE `service_centers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `service_centers`
+-- Dumping data untuk tabel `service_centers`
 --
 
 INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
@@ -172,7 +226,7 @@ INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `solutions`
+-- Struktur dari tabel `solutions`
 --
 
 CREATE TABLE `solutions` (
@@ -184,7 +238,7 @@ CREATE TABLE `solutions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `solutions`
+-- Dumping data untuk tabel `solutions`
 --
 
 INSERT INTO `solutions` (`id`, `judul`, `deskripsi`, `created_at`, `updated_at`) VALUES
@@ -194,7 +248,7 @@ INSERT INTO `solutions` (`id`, `judul`, `deskripsi`, `created_at`, `updated_at`)
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -206,7 +260,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
@@ -216,7 +270,7 @@ INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vendors`
+-- Struktur dari tabel `vendors`
 --
 
 CREATE TABLE `vendors` (
@@ -230,7 +284,7 @@ CREATE TABLE `vendors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vendors`
+-- Dumping data untuk tabel `vendors`
 --
 
 INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `vendor_category_id`, `created_at`, `updated_at`) VALUES
@@ -239,7 +293,7 @@ INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `vendor_category_i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vendor_categories`
+-- Struktur dari tabel `vendor_categories`
 --
 
 CREATE TABLE `vendor_categories` (
@@ -250,7 +304,7 @@ CREATE TABLE `vendor_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vendor_categories`
+-- Dumping data untuk tabel `vendor_categories`
 --
 
 INSERT INTO `vendor_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -261,137 +315,161 @@ INSERT INTO `vendor_categories` (`id`, `name`, `created_at`, `updated_at`) VALUE
 --
 
 --
--- Indexes for table `about_us`
+-- Indeks untuk tabel `about_us`
 --
 ALTER TABLE `about_us`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `company_info`
+-- Indeks untuk tabel `company_info`
 --
 ALTER TABLE `company_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `contact_messages`
+-- Indeks untuk tabel `contact_messages`
 --
 ALTER TABLE `contact_messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Indeks untuk tabel `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `service_centers`
+-- Indeks untuk tabel `rubrik`
+--
+ALTER TABLE `rubrik`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `service_centers`
 --
 ALTER TABLE `service_centers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `solutions`
+-- Indeks untuk tabel `solutions`
 --
 ALTER TABLE `solutions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `vendors`
+-- Indeks untuk tabel `vendors`
 --
 ALTER TABLE `vendors`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_vendor_category` (`vendor_category_id`);
 
 --
--- Indexes for table `vendor_categories`
+-- Indeks untuk tabel `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `about_us`
+-- AUTO_INCREMENT untuk tabel `about_us`
 --
 ALTER TABLE `about_us`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `company_info`
+-- AUTO_INCREMENT untuk tabel `company_info`
 --
 ALTER TABLE `company_info`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `contact_messages`
+-- AUTO_INCREMENT untuk tabel `contact_messages`
 --
 ALTER TABLE `contact_messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT untuk tabel `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `service_centers`
+-- AUTO_INCREMENT untuk tabel `rubrik`
+--
+ALTER TABLE `rubrik`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `service_centers`
 --
 ALTER TABLE `service_centers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `solutions`
+-- AUTO_INCREMENT untuk tabel `solutions`
 --
 ALTER TABLE `solutions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `vendors`
+-- AUTO_INCREMENT untuk tabel `vendors`
 --
 ALTER TABLE `vendors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `vendor_categories`
+-- AUTO_INCREMENT untuk tabel `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `vendors`
+-- Ketidakleluasaan untuk tabel `vendors`
 --
 ALTER TABLE `vendors`
   ADD CONSTRAINT `fk_vendor_category` FOREIGN KEY (`vendor_category_id`) REFERENCES `vendor_categories` (`id`) ON DELETE SET NULL;
