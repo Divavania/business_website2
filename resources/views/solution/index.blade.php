@@ -17,10 +17,10 @@
     </div>
 
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
 
     <div class="card shadow-sm border-0 rounded-lg">
@@ -29,55 +29,55 @@
                 <table class="table table-hover mb-0" id="solutionTable">
                     <thead class="bg-light text-secondary text-uppercase fw-semibold">
                         <tr>
-                            <th class="py-3 px-4">No.</th>
-                            <th class="py-3 px-4">Judul</th>
-                            <th class="py-3 px-4">Deskripsi</th>
-                            <th class="py-3 px-4 text-center">Aksi</th>
+                            <th class="py-3 px-4" style="width: 5%;">No.</th>
+                            <th class="py-3 px-4" style="width: 25%;">Judul</th>
+                            <th class="py-3 px-4" style="width: 55%;">Deskripsi</th>
+                            <th class="py-3 px-4 text-center" style="width: 15%;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($solutions as $i => $solution)
-                            <tr>
-                                <td class="align-middle px-4">{{ $i + 1 }}</td>
-                                <td class="align-middle px-4">{{ $solution->judul }}</td>
-                                <td class="align-middle px-4">{{ Str::limit($solution->deskripsi, 50) }}</td>
-                                <td class="align-middle text-center px-4">
-                                    <div class="d-flex justify-content-center gap-2">
-                                        <!-- Edit Button -->
-                                        <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $solution->id }}">
-                                            <i class="bi bi-pencil-fill"></i> Edit
-                                        </button>
+                        <tr>
+                            <td class="align-middle px-4">{{ $i + 1 }}</td>
+                            <td class="align-middle px-4">{{ $solution->judul }}</td>
+                            <td class="align-middle px-4">
+                                <a href="#" class="text-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#editModal{{ $solution->id }}">
+                                    Baca Selengkapnya
+                                </a>
+                            </td>
+                            <td class="align-middle text-center px-4">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $solution->id }}">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </button>
 
-                                        <!-- Delete Button -->
-                                        <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $solution->id }}">
-                                            <i class="bi bi-trash-fill"></i> Delete
-                                        </button>
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $solution->id }}">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="deleteModal{{ $solution->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $solution->id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content shadow-lg rounded-xl">
+                                    <div class="modal-header bg-danger text-white px-4 py-3 rounded-top-xl d-flex justify-content-between align-items-center">
+                                        <h5 class="modal-title fs-5" id="deleteModalLabel{{ $solution->id }}"><i class="bi bi-trash-fill me-2"></i>Hapus Solusi</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                </td>
-                            </tr>
-
-                            <!-- Modal Delete -->
-                            <div class="modal fade" id="deleteModal{{ $solution->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $solution->id }}" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content shadow-lg rounded-xl">
-                                        <div class="modal-header bg-danger text-white px-4 py-3 rounded-top-xl d-flex justify-content-between align-items-center">
-                                            <h5 class="modal-title fs-5" id="deleteModalLabel{{ $solution->id }}"><i class="bi bi-trash-fill me-2"></i>Hapus Solusi</h5>
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body p-4">
-                                            <p>Apakah Anda yakin ingin menghapus solusi <strong>{{ $solution->judul }}</strong>?</p>
-                                        </div>
-                                        <div class="modal-footer d-flex justify-content-end p-3 bg-light border-top rounded-bottom-xl">
-                                            <button type="button" class="btn btn-secondary px-4 me-2" data-bs-dismiss="modal">Batal</button>
-                                            <form method="POST" action="{{ route('admin.solution.destroy', $solution->id) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger fw-semibold px-4"><i class="bi bi-trash me-2"></i>Hapus Solusi</button>
-                                            </form>
-                                        </div>
+                                    <div class="modal-body p-4">
+                                        <p>Apakah Anda yakin ingin menghapus solusi <strong>{{ $solution->judul }}</strong>?</p>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-end p-3 bg-light border-top rounded-bottom-xl">
+                                        <button type="button" class="btn btn-secondary px-4 me-2" data-bs-dismiss="modal">Batal</button>
+                                        <form method="POST" action="{{ route('admin.solution.destroy', $solution->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger fw-semibold px-4"><i class="bi bi-trash me-2"></i>Hapus Solusi</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -85,7 +85,6 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Solusi -->
     <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
             <div class="modal-content shadow-lg rounded-xl">
@@ -114,7 +113,6 @@
         </div>
     </div>
 
-    <!-- Modal Edit Solusi -->
     @foreach($solutions as $solution)
     <div class="modal fade" id="editModal{{ $solution->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $solution->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-md">
@@ -146,4 +144,23 @@
     </div>
     @endforeach
 </div>
+
+<style>
+    .btn.btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .btn-success {
+        background-color: #198754 !important; /* Warna hijau */
+        border-color: #198754 !important;
+        color: #fff !important;
+    }
+
+    .btn-danger {
+        background-color: #dc3545 !important; /* Warna merah */
+        border-color: #dc3545 !important;
+        color: #fff !important;
+    }
+</style>
 @endsection

@@ -261,7 +261,7 @@
         #header .navmenu a {
             display: block;
             padding: 10px 15px;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: 500;
             color: #556270;
             transition: 0.3s;
@@ -342,7 +342,7 @@
             }
 
             #header .logo .sitename {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             #header .btn-getstarted {
