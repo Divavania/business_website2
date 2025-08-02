@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\CompanyInfoController;
 use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\SolutionController;
+use App\Http\Controllers\Backend\NewsController;
+use App\Http\Controllers\Backend\RubrikController;
 
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\Frontend\Service_frontendController;
 use App\Http\Controllers\Frontend\Contact_frontendController;
 use App\Http\Controllers\Frontend\Vendor_frontendController;
 use App\Http\Controllers\Frontend\Solution_frontendController;
+use App\Http\Controllers\Frontend\News_frontendController;
 use Illuminate\Support\Facades\DB;
 
 // FRONTEND ROUTES
@@ -44,6 +47,12 @@ Route::get('/vendors', [Vendor_frontendController::class, 'index'])->name('front
 // Rute untuk menampilkan halaman solution
 // Daftar solution
 Route::get('/solutions', [Solution_frontendController::class, 'index'])->name('frontend.solutions.index');
+
+Route::prefix('')->name('frontend.')->group(function () {
+    Route::get('/news', [News_frontendController::class, 'index'])->name('news.index');
+    Route::get('/news/{id}', [News_frontendController::class, 'show'])->name('news.show');
+    // tambahkan route frontend lainnya di sini juga kalau mau
+});
 
 // FRONTEND CONTROLLERS
 //About
@@ -105,3 +114,17 @@ Route::post('/admin/solution', [SolutionController::class, 'store'])->name('admi
 Route::get('/admin/solution/{id}/edit', [SolutionController::class, 'edit'])->name('admin.solution.edit');
 Route::put('/admin/solution/{id}', [SolutionController::class, 'update'])->name('admin.solution.update');
 Route::delete('/admin/solution/{id}', [SolutionController::class, 'destroy'])->name('admin.solution.destroy');
+
+// RUTE BERITA (News & Event)
+Route::prefix('admin/news')->name('admin.news.')->group(function () {
+    Route::get('/', [NewsController::class, 'index'])->name('index');
+    Route::get('/create', [NewsController::class, 'create'])->name('create');
+    Route::post('/', [NewsController::class, 'store'])->name('store');
+    Route::get('/{status}/filter', [NewsController::class, 'filter'])->name('filter');
+    Route::get('/{id}/edit', [NewsController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [NewsController::class, 'update'])->name('update');
+    Route::delete('/{id}', [NewsController::class, 'destroy'])->name('destroy');
+});
+
+// RUTE RUBRIK (tambahan rubrik baru)
+Route::post('/rubrik', [RubrikController::class, 'store'])->name('rubrik.store');

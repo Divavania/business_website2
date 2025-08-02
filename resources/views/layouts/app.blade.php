@@ -254,6 +254,11 @@
             <span class="text">Kelola Vendor</span>
         </a>
 
+        <a href="{{ route('admin.news.index') }}" class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+            <i class="bi bi-newspaper"></i>
+            <span class="text">News & Event</span>
+        </a>
+
         @if(session()->has('user') && session('user')->role == 'superadmin')
         <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
             <i class="bi bi-people"></i>

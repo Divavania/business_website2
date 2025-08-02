@@ -373,6 +373,7 @@
                     {{-- <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> --}}
                     <li><a href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
                     <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
+                    <li><a href="{{ route('frontend.news.index') }}">News & Event</a></li>
                     <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li> {{-- Menggunakan rute bernama --}}
                 </ul>
             </nav>
@@ -445,6 +446,7 @@
                         <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
                         {{-- <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> --}}
                         <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
+                        <li><a href="{{ route('frontend.news.index') }}">News & Event</a></li>
                         <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li>
                     </ul>
                 </div>
