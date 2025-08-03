@@ -221,19 +221,27 @@
             <i class="bi bi-speedometer2"></i>
             <span class="text">Dashboard</span>
         </a>
+
         {{-- <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
         <i class="bi bi-box-seam"></i>
         <span class="text">Produk</span>
         </a> --}}
+
         <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
             <i class="bi bi-wrench"></i>
             <span class="text">Service Center</span>
         </a>
+        
         <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
             <i class="bi bi-info-circle"></i>
             <span class="text">Tentang Kami</span>
         </a>
-        {{-- Link untuk Company Info --}}
+
+        <a href="{{ route('admin.organization-members.index') }}" class="{{ request()->routeIs('admin.organization-members.*') ? 'active' : '' }}">
+            <i class="bi bi-person-badge"></i>
+            <span class="text">Kelola Struktur Organisasi</span>
+        </a>
+
         <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
             <i class="bi bi-building"></i>
             <span class="text">Info Perusahaan</span>

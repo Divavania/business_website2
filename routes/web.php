@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\SolutionController;
 use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\RubrikController;
+use App\Http\Controllers\Backend\OrganizationMemberController;
 
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
@@ -21,6 +22,8 @@ use App\Http\Controllers\Frontend\Contact_frontendController;
 use App\Http\Controllers\Frontend\Vendor_frontendController;
 use App\Http\Controllers\Frontend\Solution_frontendController;
 use App\Http\Controllers\Frontend\News_frontendController;
+use App\Http\Controllers\Frontend\Organization_frontendController;
+
 use Illuminate\Support\Facades\DB;
 
 // FRONTEND ROUTES
@@ -29,6 +32,9 @@ Route::get('/', [Home_frontendController::class, 'index'])->name('home');
 
 // Rute untuk halaman About (resources/views/frontend/about.blade.php)
 Route::get('/about', [About_frontendController::class, 'index'])->name('frontend.about.index');
+// Rute untuk menampilkan struktur organisasi
+Route::get('/about/organisasi', [Organization_frontendController::class, 'index'])->name('frontend.organization.index');
+
 
 // Rute untuk halaman Produk di Frontend
 // Route::get('/products', [Product_frontendController::class, 'index'])->name('frontend.products.index');
@@ -63,7 +69,9 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
-// --- RUTE UNTUK BACKEND/DASHBOARD (TERPROTEKSI) ---
+
+
+// --- RUTE UNTUK BACKEND/DASHBOARD ---
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Rute produk backend
@@ -128,3 +136,11 @@ Route::prefix('admin/news')->name('admin.news.')->group(function () {
 
 // RUTE RUBRIK (tambahan rubrik baru)
 Route::post('/rubrik', [RubrikController::class, 'store'])->name('rubrik.store');
+
+// --- RUTE UNTUK MANAJEMEN STRUKTUR ORGANISASI ---
+Route::prefix('admin/organization-members')->name('admin.organization-members.')->group(function () {
+    Route::get('/', [OrganizationMemberController::class, 'index'])->name('index');
+    Route::post('/store', [OrganizationMemberController::class, 'store'])->name('store');
+    Route::post('/update/{organizationMember}', [OrganizationMemberController::class, 'update'])->name('update');
+    Route::delete('/destroy/{organizationMember}', [OrganizationMemberController::class, 'destroy'])->name('destroy');
+});

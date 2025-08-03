@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Backend\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class About_frontendController extends Controller
@@ -20,6 +20,17 @@ class About_frontendController extends Controller
             ];
         }
 
-        return view('frontend.about', compact('about'));
+        // Mengambil semua anggota dan memisahkannya
+        $members = DB::table('organization_members')->orderBy('order')->get();
+
+        // Memisahkan data
+        $president = $members->where('order', 1)->first();
+        $vicePresident = $members->where('order', 2)->first();
+        $staff = $members->filter(function ($member) {
+            return $member->order >= 3;
+        });
+
+        // Mengirimkan semua data ke view
+        return view('frontend.about', compact('about', 'president', 'vicePresident', 'staff'));
     }
 }
