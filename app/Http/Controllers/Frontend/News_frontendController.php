@@ -11,10 +11,21 @@ class News_frontendController extends Controller
 {
     public function index()
     {
-        $news = News::with('rubrik') // jika ada relasi
+        $query = News::with('rubrik')
                     ->where('status', 'published')
-                    ->latest('tanggal_publish')
-                    ->get();
+                    ->latest('tanggal_publish');
+
+        // Filter search jika ada
+        if (request()->has('search') && request('search') != '') {
+            $query->where('judul', 'like', '%' . request('search') . '%');
+        }
+
+        // Filter rubrik jika ada
+        if (request()->has('rubrik') && request('rubrik') != '') {
+            $query->where('rubrik_id', request('rubrik'));
+        }
+
+        $news = $query->get();
 
         return view('frontend.news', [
             'news' => $news,
@@ -22,6 +33,7 @@ class News_frontendController extends Controller
             'latestPosts' => $this->getLatestPosts()
         ]);
     }
+
 
     public function show(int $id)
     {
@@ -82,7 +94,7 @@ class News_frontendController extends Controller
     {
         return News::where('status', 'published')
                    ->latest('tanggal_publish')
-                   ->limit(3)
+                   ->limit(5)
                    ->get();
     }
 }
