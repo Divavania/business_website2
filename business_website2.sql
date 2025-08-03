@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Agu 2025 pada 14.48
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Aug 03, 2025 at 06:41 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `about_us`
+-- Table structure for table `about_us`
 --
 
 CREATE TABLE `about_us` (
@@ -36,7 +36,7 @@ CREATE TABLE `about_us` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `about_us`
+-- Dumping data for table `about_us`
 --
 
 INSERT INTO `about_us` (`id`, `sejarah`, `visi`, `misi`, `deskripsi`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `about_us` (`id`, `sejarah`, `visi`, `misi`, `deskripsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `company_info`
+-- Table structure for table `company_info`
 --
 
 CREATE TABLE `company_info` (
@@ -69,7 +69,7 @@ CREATE TABLE `company_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `company_info`
+-- Dumping data for table `company_info`
 --
 
 INSERT INTO `company_info` (`id`, `company_name`, `tagline`, `street`, `city`, `province`, `postal_code`, `country`, `phone_number`, `whatsapp_number`, `contact_email`, `facebook_link`, `tiktok_link`, `youtube_link`, `instagram_link`, `linkedin_link`, `google_maps_embed_link`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `company_info` (`id`, `company_name`, `tagline`, `street`, `city`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contact_messages`
+-- Table structure for table `contact_messages`
 --
 
 CREATE TABLE `contact_messages` (
@@ -97,7 +97,7 @@ CREATE TABLE `contact_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `contact_messages`
+-- Dumping data for table `contact_messages`
 --
 
 INSERT INTO `contact_messages` (`id`, `first_name`, `last_name`, `email`, `company_name`, `address`, `city`, `phone_number`, `message`, `is_read`, `created_at`, `updated_at`) VALUES
@@ -108,7 +108,7 @@ INSERT INTO `contact_messages` (`id`, `first_name`, `last_name`, `email`, `compa
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -120,7 +120,7 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE `news` (
@@ -140,7 +140,7 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `judul`, `rubrik_id`, `konten`, `gambar`, `deskripsi_gambar`, `tanggal_dibuat`, `tanggal_publish`, `jadwal_publikasi`, `is_scheduled`, `status`, `created_at`, `updated_at`) VALUES
@@ -153,7 +153,36 @@ INSERT INTO `news` (`id`, `judul`, `rubrik_id`, `konten`, `gambar`, `deskripsi_g
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `products`
+-- Table structure for table `organization_members`
+--
+
+CREATE TABLE `organization_members` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `order` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `organization_members`
+--
+
+INSERT INTO `organization_members` (`id`, `photo`, `name`, `position`, `description`, `order`, `created_at`, `updated_at`) VALUES
+(2, 'organization_photos/mMZFxEP4atZJcF06cL9UUg7sXxZX0OdtaGqn8DQu.jpg', 'Mingyu', 'hehehhe', NULL, 7, '2025-08-02 19:29:31', '2025-08-02 21:37:25'),
+(3, 'organization_photos/pF2ovNeaRu99qjV64KyplgNXMw2yvbY5LIbsOMOH.jpg', 'Jay', 'Enhyp', NULL, 5, '2025-08-02 19:50:27', '2025-08-02 21:26:56'),
+(4, 'organization_photos/isJCRohV3PNgyzgDcqTL1mm1NXs0mlLpv64ZPkSj.jpg', 'V', 'BTS', NULL, 3, '2025-08-02 21:22:06', '2025-08-02 21:22:26'),
+(6, 'organization_photos/23w6dIB9sAVdSbKDqGiOYtGUubGQWjL6gqsuIFqh.jpg', 'Kim Seon ho', 'Actors', NULL, 2, '2025-08-02 21:23:43', '2025-08-02 21:26:25'),
+(7, 'organization_photos/VHofhRgegk8kN2gk3wDpot7VYcJuhtyUe8Aam1nN.jpg', 'Park Seo Jun', 'Actors', NULL, 6, '2025-08-02 21:24:32', '2025-08-02 21:24:32'),
+(8, 'organization_photos/WNuNpf1W3Lha21e3rWoeKdjHJNxlEql8K17jp0pm.jpg', 'Lee Minho', 'om om', NULL, 1, '2025-08-02 21:25:42', '2025-08-02 21:26:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -168,7 +197,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `gambar`, `created_at`, `updated_at`) VALUES
@@ -183,7 +212,7 @@ INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `g
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rubrik`
+-- Table structure for table `rubrik`
 --
 
 CREATE TABLE `rubrik` (
@@ -194,7 +223,7 @@ CREATE TABLE `rubrik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `rubrik`
+-- Dumping data for table `rubrik`
 --
 
 INSERT INTO `rubrik` (`id`, `nama`, `created_at`, `updated_at`) VALUES
@@ -204,7 +233,7 @@ INSERT INTO `rubrik` (`id`, `nama`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `service_centers`
+-- Table structure for table `service_centers`
 --
 
 CREATE TABLE `service_centers` (
@@ -215,7 +244,7 @@ CREATE TABLE `service_centers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `service_centers`
+-- Dumping data for table `service_centers`
 --
 
 INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
@@ -226,7 +255,7 @@ INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `solutions`
+-- Table structure for table `solutions`
 --
 
 CREATE TABLE `solutions` (
@@ -238,17 +267,17 @@ CREATE TABLE `solutions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `solutions`
+-- Dumping data for table `solutions`
 --
 
 INSERT INTO `solutions` (`id`, `judul`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 'piwpiw', 'omggd', '2025-08-01 00:18:00', '2025-08-01 01:58:16'),
-(6, 'OH okey', 'halo', '2025-08-01 02:06:39', '2025-08-01 02:06:39');
+(1, 'AI Vision Analytics', 'Solusi analisis citra berbasis AI untuk sektor manufaktur dan retail yang mampu mendeteksi anomali visual, mengoptimalkan kualitas produksi, dan menyediakan laporan otomatis.', '2025-08-01 00:18:00', '2025-08-02 09:18:10'),
+(6, 'RetailBoost POS Cloud', 'Sistem kasir berbasis cloud yang mendukung multi-cabang, laporan penjualan otomatis, serta integrasi dengan e-commerce dan sistem inventori. Cocok untuk bisnis ritel modern.', '2025-08-01 02:06:39', '2025-08-02 09:18:31');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -260,7 +289,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
@@ -270,7 +299,7 @@ INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vendors`
+-- Table structure for table `vendors`
 --
 
 CREATE TABLE `vendors` (
@@ -284,7 +313,7 @@ CREATE TABLE `vendors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `vendors`
+-- Dumping data for table `vendors`
 --
 
 INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `vendor_category_id`, `created_at`, `updated_at`) VALUES
@@ -293,7 +322,7 @@ INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `vendor_category_i
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vendor_categories`
+-- Table structure for table `vendor_categories`
 --
 
 CREATE TABLE `vendor_categories` (
@@ -304,7 +333,7 @@ CREATE TABLE `vendor_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `vendor_categories`
+-- Dumping data for table `vendor_categories`
 --
 
 INSERT INTO `vendor_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -315,161 +344,173 @@ INSERT INTO `vendor_categories` (`id`, `name`, `created_at`, `updated_at`) VALUE
 --
 
 --
--- Indeks untuk tabel `about_us`
+-- Indexes for table `about_us`
 --
 ALTER TABLE `about_us`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `company_info`
+-- Indexes for table `company_info`
 --
 ALTER TABLE `company_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `contact_messages`
+-- Indexes for table `contact_messages`
 --
 ALTER TABLE `contact_messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `products`
+-- Indexes for table `organization_members`
+--
+ALTER TABLE `organization_members`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `rubrik`
+-- Indexes for table `rubrik`
 --
 ALTER TABLE `rubrik`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `service_centers`
+-- Indexes for table `service_centers`
 --
 ALTER TABLE `service_centers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `solutions`
+-- Indexes for table `solutions`
 --
 ALTER TABLE `solutions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indeks untuk tabel `vendors`
+-- Indexes for table `vendors`
 --
 ALTER TABLE `vendors`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_vendor_category` (`vendor_category_id`);
 
 --
--- Indeks untuk tabel `vendor_categories`
+-- Indexes for table `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `about_us`
+-- AUTO_INCREMENT for table `about_us`
 --
 ALTER TABLE `about_us`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `company_info`
+-- AUTO_INCREMENT for table `company_info`
 --
 ALTER TABLE `company_info`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `contact_messages`
+-- AUTO_INCREMENT for table `contact_messages`
 --
 ALTER TABLE `contact_messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `products`
+-- AUTO_INCREMENT for table `organization_members`
+--
+ALTER TABLE `organization_members`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT untuk tabel `rubrik`
+-- AUTO_INCREMENT for table `rubrik`
 --
 ALTER TABLE `rubrik`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `service_centers`
+-- AUTO_INCREMENT for table `service_centers`
 --
 ALTER TABLE `service_centers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `solutions`
+-- AUTO_INCREMENT for table `solutions`
 --
 ALTER TABLE `solutions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `vendors`
+-- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `vendor_categories`
+-- AUTO_INCREMENT for table `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `vendors`
+-- Constraints for table `vendors`
 --
 ALTER TABLE `vendors`
   ADD CONSTRAINT `fk_vendor_category` FOREIGN KEY (`vendor_category_id`) REFERENCES `vendor_categories` (`id`) ON DELETE SET NULL;
