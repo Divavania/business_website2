@@ -7,7 +7,7 @@
     {{-- Header Halaman --}}
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h3 class="mb-0 text-primary fw-bold">Manajemen Informasi Perusahaan</h3>
+            <h3 class="mb-0 text-dark fw-bold">Manajemen Informasi Perusahaan</h3>
             <p class="text-muted mb-0">Perbarui detail kontak, alamat, dan tautan sosial media perusahaan Anda.</p>
         </div>
     </div>

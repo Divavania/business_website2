@@ -6,8 +6,8 @@
 <div class="container-fluid py-4">
     {{-- Header Halaman: Judul, Deskripsi, dan Tombol Tambah --}}
     <div class="row align-items-center mb-3">
-        <div class="col-md-6 mb-3 mb-md-0"
-            <h3 class="mb-0 text-primary fw-bold">Manajemen Service Center</h3>
+        <div class="col-md-6 mb-3 mb-md-0">
+            <h3 class="mb-0 text-dark fw-bold">Manajemen Service Center</h3>
             <p class="text-muted mb-0">Kelola daftar lokasi service center Anda.</p>
         </div>
         <div class="col-md-6 d-flex justify-content-md-end justify-content-start">
@@ -50,7 +50,7 @@
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0 table-fixed-layout" id="serviceCenterTable">
-                    <thead class="bg-light text-secondary text-uppercase fw-semibold">
+                    <thead class="table-secondary bg-light text-secondary text-uppercase fw-semibold">
                         <tr>
                             <th class="py-3 px-4" style="width: 50px;">No.</th>
                             <th class="py-3 px-4" style="width: 18%;">Nama</th>

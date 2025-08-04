@@ -94,6 +94,7 @@ class VendorController extends Controller
                 'name' => 'required|string|max:255',
                 'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'alt_text' => 'nullable|string|max:255',
+                'website_url' => 'nullable|url|max:255',
                 'vendor_category_id' => 'nullable|exists:vendor_categories,id',
             ]);
 
@@ -106,6 +107,7 @@ class VendorController extends Controller
                 'name' => $request->name,
                 'logo_path' => $logoPath,
                 'alt_text' => $request->alt_text,
+                'website_url' => $request->website_url,
                 'vendor_category_id' => $request->vendor_category_id,
             ]);
 
@@ -124,6 +126,7 @@ class VendorController extends Controller
                 'name' => 'required|string|max:255',
                 'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'alt_text' => 'nullable|string|max:255',
+                'website_url' => 'nullable|url|max:255',
                 'vendor_category_id' => 'nullable|exists:vendor_categories,id',
             ]);
 
@@ -141,6 +144,7 @@ class VendorController extends Controller
                 'name' => $request->name,
                 'logo_path' => $logoPath,
                 'alt_text' => $request->alt_text,
+                'website_url' => $request->website_url,
                 'vendor_category_id' => $request->vendor_category_id,
             ]);
 

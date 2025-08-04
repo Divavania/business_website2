@@ -6,7 +6,7 @@
 <div class="container-fluid py-4">
     <div class="row align-items-center mb-3">
         <div class="col-md-6">
-            <h3 class="mb-0 text-primary fw-bold">Manajemen Solusi</h3>
+            <h3 class="mb-0 text-dark fw-bold">Manajemen Solusi</h3>
             <p class="text-muted mb-0">Kelola daftar solusi yang tersedia.</p>
         </div>
         <div class="col-md-6 d-flex justify-content-md-end justify-content-start">
@@ -27,7 +27,7 @@
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover mb-0" id="solutionTable">
-                    <thead class="bg-light text-secondary text-uppercase fw-semibold">
+                    <thead class="table-secondary bg-light text-secondary text-uppercase fw-semibold">
                         <tr>
                             <th class="py-3 px-4" style="width: 5%;">No.</th>
                             <th class="py-3 px-4" style="width: 25%;">Judul</th>

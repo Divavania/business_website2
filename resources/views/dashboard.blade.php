@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid py-4">
-        <h3 class="mb-4 text-primary fw-bold">Selamat datang di Dashboard, {{ session('user')->nama }}!</h3>
+        <h3 class="mb-4 text-dark fw-bold">Selamat datang di Dashboard, {{ session('user')->nama }}!</h3>
         <p class="text-muted mb-4">Kelola semua konten website Anda dengan mudah melalui panel di sebelah kiri.</p>
 
         <div class="row g-4 mb-5">

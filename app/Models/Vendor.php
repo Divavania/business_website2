@@ -13,6 +13,7 @@ class Vendor extends Model
         'name',
         'logo_path',
         'alt_text',
+        'website_url',
         'vendor_category_id'
     ];
 

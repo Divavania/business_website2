@@ -6,7 +6,7 @@
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h3 class="mb-0 text-primary fw-bold">Tentang Kami</h3>
+            <h3 class="mb-0 text-dark fw-bold">Tentang Kami</h3>
             <p class="text-muted mb-0">Kelola informasi sejarah, visi, misi, dan ringkasan perusahaan Anda.</p> {{-- Perbarui deskripsi --}}
         </div>
     </div>
