@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2025 at 06:41 AM
+-- Generation Time: Aug 05, 2025 at 08:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,8 +101,6 @@ CREATE TABLE `contact_messages` (
 --
 
 INSERT INTO `contact_messages` (`id`, `first_name`, `last_name`, `email`, `company_name`, `address`, `city`, `phone_number`, `message`, `is_read`, `created_at`, `updated_at`) VALUES
-(3, 'Shani', 'Indira', 'shn@gmail.com', 'PT. JOT', 'Sleman', 'Jogjakarta', '081348481212', 'Haiii', 1, '2025-07-30 06:47:51', '2025-07-30 06:56:51'),
-(4, 'Sisca', 'Saras', 'sisca@gmail.com', 'PT. JOT', 'Baturetno', 'Wonogiri', '081340298475', 'Haloo', 1, '2025-07-30 07:38:20', '2025-07-30 07:38:35'),
 (9, 'Nindi', 'Julitasari', 'nindi@gmail.com', 'Tigatra Adikara', 'Indonesia', 'Jogjakarta', '08111111111', 'Halo', 1, '2025-07-30 08:16:31', '2025-07-30 08:16:40');
 
 -- --------------------------------------------------------
@@ -212,6 +210,31 @@ INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `g
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `projects`
+--
+
+CREATE TABLE `projects` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `year` year(4) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `order` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `title`, `description`, `year`, `image`, `order`, `created_at`, `updated_at`) VALUES
+(1, 'Pembangunan A', 'Pembangunan Gedung A merupakan inisiatif strategis untuk mendirikan fasilitas perkantoran modern yang mendukung efisiensi dan kenyamanan kerja. Gedung ini dirancang dengan konsep ramah lingkungan dan mengadopsi prinsip green building, mencakup sistem ventilasi cerdas, efisiensi energi, serta tata cahaya alami.\r\nBangunan terdiri atas 5 lantai yang difungsikan untuk ruang kerja, ruang rapat, area publik, dan fasilitas pendukung lainnya. Target penyelesaian proyek adalah akhir tahun 2025 dengan tahapan pengerjaan mencakup perencanaan struktur, pembangunan pondasi, pengerjaan dinding dan atap, serta pemasangan sistem kelistrikan dan interior.\r\nGedung A nantinya akan menjadi pusat operasional baru untuk instansi pemerintahan daerah, serta menjadi simbol kemajuan infrastruktur di wilayah Karangjati.', '2021', 'projects/dToy9YyGt5Xdcul9UZraPqInoNpzQkr4l2tLyj9h.jpg', 2, '2025-08-04 22:36:22', '2025-08-04 22:36:50'),
+(2, 'Instalasi Sistem CCTV Terpadu di Kompleks Kantor Pemerintah', 'Proyek ini bertujuan untuk meningkatkan keamanan dan pengawasan di lingkungan kompleks kantor pemerintahan Kabupaten Ponorogo dengan pemasangan sistem CCTV terpadu. Sistem ini mencakup 56 titik kamera yang tersebar di area strategis seperti pintu masuk, ruang rapat, parkiran, dan koridor antar gedung.\r\nSetiap kamera dilengkapi dengan fitur resolusi tinggi, night vision, deteksi gerak, dan integrasi ke pusat monitoring berbasis jaringan lokal. Sistem pemantauan akan ditangani oleh petugas keamanan melalui ruang kontrol yang dilengkapi dengan layar monitor multi-panel dan perangkat rekam digital (NVR).\r\nProyek ini diharapkan dapat selesai dalam waktu tiga bulan, dengan tahapan meliputi survei lokasi, pengadaan perangkat, pemasangan kabel dan perangkat, konfigurasi sistem, dan uji coba operasional. CCTV akan mendukung sistem keamanan yang lebih proaktif dan efisien.', '2025', 'projects/DhNacQ74uTn8v36lXK9XoxQcZclrtcUjwrEHZNlY.jpg', 2, '2025-08-04 23:47:05', '2025-08-04 23:47:05');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `rubrik`
 --
 
@@ -307,6 +330,7 @@ CREATE TABLE `vendors` (
   `name` varchar(255) NOT NULL,
   `logo_path` varchar(255) DEFAULT NULL,
   `alt_text` varchar(255) DEFAULT NULL,
+  `website_url` varchar(255) DEFAULT NULL,
   `vendor_category_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -316,8 +340,8 @@ CREATE TABLE `vendors` (
 -- Dumping data for table `vendors`
 --
 
-INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `vendor_category_id`, `created_at`, `updated_at`) VALUES
-(8, 'Acer', 'vendors/logos/tkU2zDMz2SYNyY0PNcCrIXc53JJhEA9ycC5QpDiL.png', 'acer', 5, '2025-07-31 23:06:38', '2025-07-31 23:06:38');
+INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `website_url`, `vendor_category_id`, `created_at`, `updated_at`) VALUES
+(8, 'Acer', 'vendors/logos/tkU2zDMz2SYNyY0PNcCrIXc53JJhEA9ycC5QpDiL.png', 'acer', 'https://www.acer.com/id-id', 5, '2025-07-31 23:06:38', '2025-08-04 06:20:21');
 
 -- --------------------------------------------------------
 
@@ -337,7 +361,8 @@ CREATE TABLE `vendor_categories` (
 --
 
 INSERT INTO `vendor_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(5, 'PC & Computing', '2025-07-31 23:06:27', '2025-07-31 23:06:27');
+(5, 'PC & Computing', '2025-07-31 23:06:27', '2025-07-31 23:06:27'),
+(7, 'Server & Storage', '2025-08-04 05:53:30', '2025-08-04 06:00:30');
 
 --
 -- Indexes for dumped tables
@@ -383,6 +408,12 @@ ALTER TABLE `organization_members`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `projects`
+--
+ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -470,6 +501,12 @@ ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT for table `projects`
+--
+ALTER TABLE `projects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `rubrik`
 --
 ALTER TABLE `rubrik`
@@ -503,7 +540,7 @@ ALTER TABLE `vendors`
 -- AUTO_INCREMENT for table `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

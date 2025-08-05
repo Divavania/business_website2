@@ -267,6 +267,11 @@
             <span class="text">News & Event</span>
         </a>
 
+        <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+            <i class="bi bi-folder-fill"></i>
+            <span class="text">Kelola Proyek</span>
+        </a>
+
         @if(session()->has('user') && session('user')->role == 'superadmin')
         <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
             <i class="bi bi-people"></i>

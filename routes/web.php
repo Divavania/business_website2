@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SolutionController;
 use App\Http\Controllers\Backend\NewsController;
 use App\Http\Controllers\Backend\RubrikController;
 use App\Http\Controllers\Backend\OrganizationMemberController;
+use App\Http\Controllers\Backend\ProjectController;
 
 use App\Http\Controllers\Frontend\About_frontendController;
 use App\Http\Controllers\Frontend\Home_frontendController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Frontend\Vendor_frontendController;
 use App\Http\Controllers\Frontend\Solution_frontendController;
 use App\Http\Controllers\Frontend\News_frontendController;
 use App\Http\Controllers\Frontend\Organization_frontendController;
+use App\Http\Controllers\Frontend\Project_frontendController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -57,8 +59,10 @@ Route::get('/solutions', [Solution_frontendController::class, 'index'])->name('f
 Route::prefix('')->name('frontend.')->group(function () {
     Route::get('/news', [News_frontendController::class, 'index'])->name('news.index');
     Route::get('/news/{id}', [News_frontendController::class, 'show'])->name('news.show');
-    // tambahkan route frontend lainnya di sini juga kalau mau
 });
+
+// ... (rute-rute frontend lainnya)
+Route::get('/projects', [Project_frontendController::class, 'index'])->name('frontend.projects.index');
 
 // FRONTEND CONTROLLERS
 //About
@@ -144,3 +148,10 @@ Route::prefix('admin/organization-members')->name('admin.organization-members.')
     Route::post('/update/{organizationMember}', [OrganizationMemberController::class, 'update'])->name('update');
     Route::delete('/destroy/{organizationMember}', [OrganizationMemberController::class, 'destroy'])->name('destroy');
 });
+
+// --- RUTE PROJECT ---
+Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
+Route::post('/admin/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
+Route::put('/admin/projects/{project}', [ProjectController::class, 'update'])->name('admin.projects.update');
+Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
+   
