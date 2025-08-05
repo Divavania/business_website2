@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h1 class="mb-2 fw-bold text-primary">Manajemen Vendor & Kategori</h1>
+    <h1 class="mb-2 fw-bold">Manajemen Vendor & Kategori</h1>
     <p class="text-secondary mb-5">
         Kelola semua vendor dan kategori mereka di sini. Anda dapat menambah, mengubah, atau menghapus data vendor dan kategorinya.
     </p>

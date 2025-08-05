@@ -8,13 +8,13 @@
         <div class="card-header bg-white border-bottom py-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h5 class="mb-0 text-primary">Manajemen Pesan Masuk</h5>
+                    <h5 class="mb-0">Manajemen Pesan Masuk</h5>
                     <p class="text-muted mb-0">Kelola semua pesan yang masuk dari pengunjung website.</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <div class="me-3">
                         <span class="text-muted">Total Pesan:</span>
-                        <span class="fw-bold text-primary fs-5">{{ $totalMessages }}</span>
+                        <span class="fw-bold ">{{ $totalMessages }}</span>
                     </div>
                 </div>
             </div>

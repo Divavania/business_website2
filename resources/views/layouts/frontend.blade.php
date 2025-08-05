@@ -445,7 +445,10 @@
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
+                        <li><a href="{{ route('frontend.solutions.index') }}">Solusi Teknologi</a></li>
+                        <li><a href="{{ route('frontend.projects.index') }}">Project</a></li>
                         {{-- <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> --}}
+                        <li><a href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
                         <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
                         <li><a href="{{ route('frontend.news.index') }}">News & Event</a></li>
                         <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li>

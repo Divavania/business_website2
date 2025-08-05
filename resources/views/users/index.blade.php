@@ -6,7 +6,7 @@
     {{-- Header Halaman: Judul, Deskripsi, dan Tombol Tambah --}}
     <div class="row align-items-center mb-3">
         <div class="col-md-6 mb-3 mb-md-0">
-            <h3 class="mb-0 text-primary fw-bold">Manajemen Admin</h3>
+            <h3 class="mb-0 fw-bold">Manajemen Admin</h3>
             <p class="text-muted mb-0">Kelola daftar pengguna admin dan superadmin Anda.</p>
         </div>
         <div class="col-md-6 d-flex justify-content-md-end justify-content-start">

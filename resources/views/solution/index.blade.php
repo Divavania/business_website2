@@ -47,15 +47,28 @@
                             </td>
                             <td class="align-middle text-center px-4">
                                 <div class="d-flex justify-content-center gap-2">
-                                    <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $solution->id }}">
-                                        <i class="bi bi-pencil-fill"></i>
+                                    {{-- Tombol Edit dengan border kuning --}}
+                                    <button type="button"
+                                            class="btn btn-sm p-2 rounded-circle d-flex align-items-center justify-content-center"
+                                            style="background-color: #3399FF; color: white; border: 3px solid #FFD700;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#editModal{{ $solution->id }}"
+                                            title="Edit">
+                                        <i class="fas fa-edit"></i>
                                     </button>
 
-                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $solution->id }}">
-                                        <i class="bi bi-trash-fill"></i>
+                                    {{-- Tombol Hapus dengan border merah --}}
+                                    <button type="button"
+                                            class="btn btn-sm p-2 rounded-circle d-flex align-items-center justify-content-center"
+                                            style="background-color: #3399FF; color: white; border: 3px solid red;"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal{{ $solution->id }}"
+                                            title="Hapus">
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </div>
                             </td>
+
                         </tr>
                         <div class="modal fade" id="deleteModal{{ $solution->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $solution->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">

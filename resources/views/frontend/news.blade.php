@@ -22,7 +22,7 @@
     <div class="row">
       <!-- Berita Utama -->
       <div class="col-lg-8">
-        <h2 class="mb-4 fw-semibold text-dark">Berita Terbaru</h2>
+        {{-- <h2 class="mb-4 fw-semibold text-dark">Berita Terbaru</h2> --}}
 
         <!-- Filter Rubrik & Search -->
         <form action="{{ route('frontend.news.index') }}" method="GET" class="mb-4">
