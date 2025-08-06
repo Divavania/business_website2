@@ -8,12 +8,18 @@ class RubrikController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'nama' => 'required|string|max:100'
-        ]);
-
-        $rubrik = Rubrik::create(['nama' => $request->nama]);
+        $rubrik = Rubrik::create($request->validate([
+            'nama' => 'required|string|max:255',
+        ]));
 
         return response()->json($rubrik);
+    }
+
+    public function destroy($id)
+    {
+        $rubrik = Rubrik::findOrFail($id);
+        $rubrik->delete();
+
+        return response()->json(['success' => true]);
     }
 }

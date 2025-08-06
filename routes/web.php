@@ -139,7 +139,9 @@ Route::prefix('admin/news')->name('admin.news.')->group(function () {
 });
 
 // RUTE RUBRIK (tambahan rubrik baru)
-Route::post('/rubrik', [RubrikController::class, 'store'])->name('rubrik.store');
+// Route::post('/rubrik', [RubrikController::class, 'store'])->name('rubrik.store');
+Route::post('/admin/rubrik', [RubrikController::class, 'store'])->name('rubrik.store');
+Route::delete('/admin/rubrik/{id}', [RubrikController::class, 'destroy'])->name('rubrik.destroy');
 
 // --- RUTE UNTUK MANAJEMEN STRUKTUR ORGANISASI ---
 Route::prefix('admin/organization-members')->name('admin.organization-members.')->group(function () {

@@ -82,7 +82,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <input type="text" name="nama" class="form-control" placeholder="Nama Rubrik" required>
+                <input type="text" name="nama" class="form-control mb-3" placeholder="Nama Rubrik" required>
+
+                <ul class="list-group" id="rubrikList">
+                    @foreach($rubriks as $rubrik)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ $rubrik->nama }}</span>
+                            <button type="button" class="btn btn-sm btn-danger btn-delete-rubrik" data-id="{{ $rubrik->id }}">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Tambah</button>
@@ -93,18 +104,10 @@
 
 {{-- Script tambahan --}}
 <script>
-    // Untuk checkbox jadwal (jika diaktifkan kembali)
-    const scheduleCheck = document.getElementById('scheduleCheck');
-    if (scheduleCheck) {
-        scheduleCheck.addEventListener('change', function () {
-            document.getElementById('jadwalContainer').style.display = this.checked ? 'block' : 'none';
-        });
-    }
-
-    // Tambah rubrik lewat fetch
     document.getElementById('formRubrik').addEventListener('submit', function (e) {
         e.preventDefault();
         const form = this;
+
         fetch("{{ route('rubrik.store') }}", {
             method: "POST",
             headers: {
@@ -118,11 +121,54 @@
         })
         .then(res => res.json())
         .then(data => {
+            // Tambah ke dropdown
             const select = document.querySelector('select[name="rubrik_id"]');
             const option = new Option(data.nama, data.id, true, true);
             select.add(option);
-            bootstrap.Modal.getInstance(document.getElementById('modalRubrik')).hide();
+
+            // Tambah ke daftar di modal
+            const list = document.getElementById('rubrikList');
+            const li = document.createElement('li');
+            li.className = 'list-group-item d-flex justify-content-between align-items-center';
+            li.innerHTML = `
+                <span>${data.nama}</span>
+                <button type="button" class="btn btn-sm btn-danger btn-delete-rubrik" data-id="${data.id}">
+                    <i class="bi bi-trash"></i>
+                </button>`;
+            list.appendChild(li);
+
+            form.nama.value = "";
         });
+    });
+
+    // Hapus rubrik (delegation)
+    document.addEventListener('click', function (e) {
+        if (e.target.closest('.btn-delete-rubrik')) {
+            const button = e.target.closest('.btn-delete-rubrik');
+            const id = button.getAttribute('data-id');
+
+            if (!confirm('Yakin ingin menghapus rubrik ini?')) return;
+
+            fetch(`/admin/rubrik/${id}`, {
+                method: "DELETE",
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Accept': 'application/json',
+                }
+            })
+            .then(res => {
+                if (res.ok) {
+                    // Hapus dari modal
+                    button.closest('li').remove();
+
+                    // Hapus dari select box
+                    const option = document.querySelector(`select[name="rubrik_id"] option[value="${id}"]`);
+                    if (option) option.remove();
+                } else {
+                    alert('Gagal menghapus rubrik.');
+                }
+            });
+        }
     });
 </script>
 @endsection

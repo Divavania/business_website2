@@ -33,7 +33,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalRubrik">+ Tambah Rubrik</button>
+                        {{-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalRubrik">+ Tambah Rubrik</button> --}}
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@
     </div>
 </div>
 
-<!-- Modal Tambah Rubrik -->
+{{-- <!-- Modal Tambah Rubrik -->
 <div class="modal fade" id="modalRubrik" tabindex="-1">
     <div class="modal-dialog">
         <form id="formRubrik" class="modal-content">
@@ -99,10 +99,10 @@
             </div>
         </form>
     </div>
-</div>
+</div> --}}
 
 {{-- Script tambah rubrik --}}
-<script>
+{{-- <script>
     document.getElementById('formRubrik').addEventListener('submit', function (e) {
         e.preventDefault();
         const form = this;
@@ -141,5 +141,5 @@
             console.error(err);
         });
     });
-</script>
+</script> --}}
 @endsection
