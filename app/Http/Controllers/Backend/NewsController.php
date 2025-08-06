@@ -90,7 +90,7 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         $news->delete();
 
-        return redirect()->route('admin.news.index')->with('success', 'Berita berhasil dihapus!');
+        return redirect()->route('admin.news.index')->with('deleted', 'Berita berhasil dihapus!');
     }
 
     public function filter($status)

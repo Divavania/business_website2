@@ -48,6 +48,6 @@ class SolutionController extends Controller
         $solution = Solution::findOrFail($id); // Mengambil solusi berdasarkan ID
         $solution->delete(); // Menghapus solusi dari database
 
-        return redirect()->route('admin.solution.index')->with('success', 'Solusi berhasil dihapus');
+        return redirect()->route('admin.solution.index')->with('deleted', 'Solusi berhasil dihapus');
     }
 }

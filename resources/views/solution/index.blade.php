@@ -16,13 +16,27 @@
         </div>
     </div>
 
-    @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-
+    {{-- SweetAlert Flash Message --}}
+    @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
+        @if(session($key))
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    icon: '{{ $type }}',
+                    title: '{{ ucfirst($key) }}!',
+                    text: @json(session($key)),
+                    showConfirmButton: {{ $key == 'error' ? 'true' : 'false' }},
+                    confirmButtonText: 'OK',
+                    timer: {{ $key == 'error' ? 'null' : '1600' }},
+                    timerProgressBar: true,
+                    toast: false,
+                    position: 'center'
+                });
+            });
+        </script>
+        @endif
+    @endforeach
+    
     <div class="card shadow-sm border-0 rounded-lg">
         <div class="card-body p-0">
             <div class="table-responsive">

@@ -12,6 +12,27 @@
             </a>
         </div>
 
+        {{-- SweetAlert Flash Message --}}
+        @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
+            @if(session($key))
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    Swal.fire({
+                        icon: '{{ $type }}',
+                        title: '{{ ucfirst($key) }}!',
+                        text: @json(session($key)),
+                        showConfirmButton: {{ $key == 'error' ? 'true' : 'false' }},
+                        confirmButtonText: 'OK',
+                        timer: {{ $key == 'error' ? 'null' : '1600' }},
+                        timerProgressBar: true,
+                        toast: false,
+                        position: 'center'
+                    });
+                });
+            </script>
+            @endif
+        @endforeach
+
         <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
             <div class="btn-group">
                 <a href="{{ route('admin.news.index') }}"
@@ -73,13 +94,14 @@
                                class="btn btn-sm btn-outline-primary me-1" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <form action="{{ route('admin.news.destroy', $n->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus?')">
+                            <form action="{{ route('admin.news.destroy', $n->id) }}" method="POST" class="d-inline delete-news-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus">
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete-news" data-title="{{ $n->judul }}">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
+
                         </td>
                     </tr>
                     @empty
@@ -92,4 +114,34 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.btn-delete-news').forEach(button => {
+        button.addEventListener('click', function () {
+            const form = this.closest('.delete-news-form');
+            const title = this.dataset.title;
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                html: `Berita <strong>${title}</strong> akan dihapus secara permanen.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal',
+                reverseButtons: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+});
+</script>
+@endpush
+
 @endsection

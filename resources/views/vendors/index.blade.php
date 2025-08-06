@@ -7,19 +7,26 @@
         Kelola semua vendor dan kategori mereka di sini. Anda dapat menambah, mengubah, atau menghapus data vendor dan kategorinya.
     </p>
 
-    {{-- Alerts --}}
-    @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if (session('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
+    {{-- SweetAlert Flash Message --}}
+    @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
+        @if(session($key))
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    icon: '{{ $type }}',
+                    title: '{{ ucfirst($key) }}!',
+                    text: @json(session($key)),
+                    showConfirmButton: {{ $key == 'error' ? 'true' : 'false' }},
+                    confirmButtonText: 'OK',
+                    timer: {{ $key == 'error' ? 'null' : '1600' }},
+                    timerProgressBar: true,
+                    toast: false,
+                    position: 'center'
+                });
+            });
+        </script>
+        @endif
+    @endforeach
 
     {{-- Kategori Section (Full Width) --}}
     <div class="row g-4 mb-4">
@@ -58,12 +65,10 @@
                                             data-bs-target="#editCategoryModal" data-id="{{ $category->id }}" data-name="{{ $category->name }}">
                                             Edit
                                         </button>
-                                        <form action="{{ route('admin.vendors.category.destroy', $category) }}" method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus kategori ini? Vendor terkait akan kehilangan kategori.')"
-                                            class="d-inline-block">
+                                        <form action="{{ route('admin.vendors.category.destroy', $category) }}" method="POST" class="d-inline-block delete-category-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger">Hapus</button>
+                                            <button type="button" class="btn btn-sm btn-danger btn-delete-category" data-name="{{ $category->name }}">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -169,11 +174,10 @@
                                             data-category-id="{{ $vendor->vendor_category_id }}">
                                             Edit
                                         </button>
-                                        <form action="{{ route('admin.vendors.destroy', $vendor) }}" method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus vendor ini?');" class="d-inline-block">
+                                        <form action="{{ route('admin.vendors.destroy', $vendor) }}" method="POST" class="d-inline-block delete-vendor-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm btn-danger">Hapus</button>
+                                            <button type="button" class="btn btn-sm btn-danger btn-delete-vendor" data-name="{{ $vendor->name }}">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -343,6 +347,52 @@
                 previewImg.style.display = 'block';
             };
             if (this.files[0]) reader.readAsDataURL(this.files[0]);
+        });
+
+        // SweetAlert untuk hapus kategori
+        document.querySelectorAll('.btn-delete-category').forEach(button => {
+            button.addEventListener('click', function () {
+                const form = this.closest('.delete-category-form');
+                const name = this.dataset.name;
+
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    html: `Kategori <strong>${name}</strong> akan dihapus.<br><small class="text-muted">Vendor terkait akan kehilangan kategori ini.</small>`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    focusCancel: true,
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+        // SweetAlert untuk hapus vendor
+        document.querySelectorAll('.btn-delete-vendor').forEach(button => {
+            button.addEventListener('click', function () {
+                const form = this.closest('.delete-vendor-form');
+                const name = this.dataset.name;
+
+                Swal.fire({
+                    title: 'Hapus Vendor?',
+                    html: `Vendor <strong>${name}</strong> akan dihapus secara permanen.`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    focusCancel: true,
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
         });
     });
 </script>

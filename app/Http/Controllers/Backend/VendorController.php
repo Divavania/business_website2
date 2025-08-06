@@ -77,7 +77,7 @@ class VendorController extends Controller
             $category->vendors()->update(['vendor_category_id' => null]);
             $category->delete();
             
-            return redirect()->route('admin.vendors.index')->with('success', 'Kategori vendor berhasil dihapus.');
+            return redirect()->route('admin.vendors.index')->with('deleted', 'Kategori vendor berhasil dihapus.');
         } catch (\Exception $e) {
             Log::error('Gagal menghapus kategori vendor: ' . $e->getMessage());
             return redirect()->route('admin.vendors.index')->with('error', 'Gagal menghapus kategori.');
@@ -165,7 +165,7 @@ class VendorController extends Controller
             }
             
             $vendor->delete();
-            return redirect()->route('admin.vendors.index')->with('success', 'Vendor berhasil dihapus.');
+            return redirect()->route('admin.vendors.index')->with('deleted', 'Vendor berhasil dihapus.');
         } catch (\Exception $e) {
             Log::error('Gagal menghapus vendor: ' . $e->getMessage());
             return redirect()->route('admin.vendors.index')->with('error', 'Gagal menghapus vendor.');

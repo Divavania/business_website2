@@ -216,6 +216,8 @@
 </head>
 
 <body>
+    @stack('scripts')
+
 
     <div id="sidebar" class="sidebar">
         <h5>Tigatra Admin</h5>
@@ -343,6 +345,7 @@
             }
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 
