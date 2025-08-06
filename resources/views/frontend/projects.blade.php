@@ -4,6 +4,17 @@
 @section('description', 'Lihat daftar proyek yang telah kami kerjakan.')
 
 @section('content')
+<div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Our Project</h1>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li class="current">Our Project</li>
+            </ol>
+        </nav>
+    </div>
+</div>
 <section id="projects" class="projects section">
     <div class="container" data-aos="fade-up">
 

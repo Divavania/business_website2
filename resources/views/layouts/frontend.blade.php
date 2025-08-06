@@ -59,7 +59,6 @@
 
 
         #header .sitename,
-        #header .navmenu a,
         #footer {
             color: #556270;
         }
@@ -103,12 +102,15 @@
         #footer .copyright p {
             color: #556270;
         }
+.contact-promo-btn {
+    background-color: #007bff; /* Primary blue */
+    color: #ffffff !important; /* White text */
+}
 
-        #header .navmenu a.active,
-        #header .navmenu a:hover {
-            color: #007bff;
-        }
-
+/* New style for hover state */
+.contact-promo-btn:hover {
+    background-color: #0056b3 !important; /* Darker blue on hover */
+}
         .whatsapp-sticky-button {
             position: fixed;
             bottom: 20px;
@@ -244,7 +246,7 @@
             }
         }
 
-        /* Specific styles for the main navigation menu to make it more compact */
+        /* Specific styles for the main navigation menu */
         #header .navmenu ul {
             margin: 0;
             padding: 0;
@@ -258,15 +260,73 @@
             white-space: nowrap;
         }
 
+        /* MODIFIED: Default color is secondary, font size increased */
         #header .navmenu a {
             display: block;
             padding: 10px 15px;
-            font-size: 12px;
+            font-size: 14px;
+            /* Increased from 12px to 14px */
             font-weight: 500;
             color: #556270;
+            /* Default color (secondary) */
             transition: 0.3s;
             text-decoration: none;
         }
+
+        /* MODIFIED: Only active and hover links are blue */
+        #header .navmenu a.active,
+        #header .navmenu a:hover {
+            color: #007bff;
+            /* Blue color for active and hover states */
+            background-color: transparent;
+        }
+
+
+        /* --- Custom CSS for Vertical Dropdowns --- */
+        #header .navmenu li.dropdown ul {
+            display: none;
+            /* Hide dropdowns by default */
+            position: absolute;
+            /* Position dropdowns relative to their parent li */
+            top: 100%;
+            /* Place dropdowns directly below the parent link */
+            left: 0;
+            min-width: 200px;
+            /* Adjust as needed */
+            background: #fff;
+            /* Background for dropdown menu */
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+            z-index: 99;
+            padding: 10px 0;
+            border-radius: 4px;
+        }
+
+        #header .navmenu li.dropdown:hover>ul {
+            display: block;
+            /* Show dropdown on hover */
+        }
+
+        #header .navmenu li.dropdown ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        #header .navmenu li.dropdown ul a {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #556270;
+            /* Default color for dropdown items */
+            background-color: transparent;
+        }
+
+        #header .navmenu li.dropdown ul a:hover {
+            background-color: #f8f9fa;
+            /* Light background on hover */
+            color: #007bff;
+            /* Blue color on hover for dropdown items */
+        }
+
+        /* --- End Custom CSS for Vertical Dropdowns --- */
 
         /* Responsive for mobile menu */
         @media (max-width: 1199px) {
@@ -368,14 +428,40 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="{{ route('home') }}" class="active">Home</a></li>
-                    <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li> {{-- Menggunakan rute bernama --}}
-                    <li><a href="{{ route('frontend.solutions.index') }}">Solusi Teknologi</a></li>
-                    <li><a href="{{ route('frontend.projects.index') }}">Project</a></li>
-                    {{-- <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> --}}
-                    <li><a href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
-                    <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
-                    <li><a href="{{ route('frontend.news.index') }}">News & Event</a></li>
-                    <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li> {{-- Menggunakan rute bernama --}}
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                            Tentang Kami
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.contact.index') }}">Kontak</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                            Solusi & Project
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('frontend.solutions.index') }}">Solusi Teknologi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.projects.index') }}">Project</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                            Layanan & Dukungan
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('frontend.services.index') }}">Service Center</a></li>
+                            <li><a class="dropdown-item" href="{{ route('frontend.news.index') }}">News & Event</a></li>
+                        </ul>
+                    </li>
+                    <a href="{{ route('frontend.contact.index') }}" class="btn contact-promo-btn btn-lg rounded-pill bg-primary text-ligt">
+                        <i class="bi bi-headset me-2 text-light"></i> Hubungi Kami
+                    </a>
                 </ul>
             </nav>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -445,13 +531,9 @@
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
-                        <li><a href="{{ route('frontend.solutions.index') }}">Solusi Teknologi</a></li>
-                        <li><a href="{{ route('frontend.projects.index') }}">Project</a></li>
-                        {{-- <li><a href="{{ route('frontend.products.index') }}">Produk</a></li> --}}
-                        <li><a href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
-                        <li><a href="{{ route('frontend.services.index') }}">Service Center</a></li>
-                        <li><a href="{{ route('frontend.news.index') }}">News & Event</a></li>
-                        <li><a href="{{ route('frontend.contact.index') }}">Kontak</a></li>
+                        <li><a href="{{ route('frontend.solutions.index') }}">Solusi & Project</a></li>
+                        <li><a href="{{ route('frontend.services.index') }}">Layanan & Dukungan </a></li>
+                        <li><a href="{{ route('frontend.contact.index') }}">Hubungi Kami</a></li>
                     </ul>
                 </div>
 
@@ -480,7 +562,6 @@
 
     {{-- Vendor JS Files --}}
     <script src="{{ asset('template-assets/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- <script src="{{ asset('template-assets/assets/vendor/php-email-form/validate.js') }}"></script> -->
     <script src="{{ asset('template-assets/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('template-assets/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
     <script src="{{ asset('template-assets/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
@@ -546,12 +627,33 @@
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 const linkHref = new URL(link.href).pathname;
+
+                // Mark parent dropdown as active if any of its children are active
+                let isChildActive = false;
+                if (link.closest('.dropdown')) {
+                    const dropdownItems = link.closest('.dropdown').querySelectorAll('.dropdown-menu a');
+                    dropdownItems.forEach(item => {
+                        const itemHref = new URL(item.href).pathname;
+                        if (itemHref === currentPath || (itemHref !== '/' && currentPath.startsWith(itemHref + '/'))) {
+                            isChildActive = true;
+                        }
+                    });
+                }
+
                 if (linkHref === currentPath) {
                     link.classList.add('active');
                 } else if (currentPath === '/' && linkHref === '/') {
                     link.classList.add('active');
                 } else if (linkHref !== '/' && currentPath.startsWith(linkHref + '/')) {
                     link.classList.add('active');
+                }
+
+                // If a child is active, also mark the parent dropdown link as active
+                if (isChildActive) {
+                    const parentDropdownLink = link.closest('.dropdown')?.querySelector('.dropdown-toggle');
+                    if (parentDropdownLink) {
+                        parentDropdownLink.classList.add('active');
+                    }
                 }
             });
         });
