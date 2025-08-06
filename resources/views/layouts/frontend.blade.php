@@ -102,15 +102,16 @@
         #footer .copyright p {
             color: #556270;
         }
-.contact-promo-btn {
-    background-color: #007bff; /* Primary blue */
-    color: #ffffff !important; /* White text */
-}
+        
+        .contact-promo-btn {
+            background-color: #007bff; /* Primary blue */
+            color: #ffffff !important; /* White text */
+        }
 
-/* New style for hover state */
-.contact-promo-btn:hover {
-    background-color: #0056b3 !important; /* Darker blue on hover */
-}
+        /* New style for hover state */
+        .contact-promo-btn:hover {
+            background-color: #0056b3 !important; /* Darker blue on hover */
+        }
         .whatsapp-sticky-button {
             position: fixed;
             bottom: 20px;
@@ -326,6 +327,148 @@
             /* Blue color on hover for dropdown items */
         }
 
+        /* --- Navigasi Utama --- */
+        #header .navmenu a,
+        #header .navmenu .dropdown-toggle {
+            display: block;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #556270; /* Warna default abu */
+            background-color: transparent;
+            text-decoration: none;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        #header .navmenu a:hover,
+        #header .navmenu .dropdown-toggle:hover,
+        #header .navmenu a.active,
+        #header .navmenu .dropdown-toggle.active {
+            color: #007bff; /* Warna biru saat hover / aktif */
+            background-color: transparent;
+        }
+
+        /* --- Dropdown Menu --- */
+        #header .navmenu li.dropdown ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background: #fff;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+            z-index: 99;
+            padding: 10px 0;
+            border-radius: 4px;
+        }
+
+        #header .navmenu li.dropdown:hover > ul {
+            display: block;
+        }
+
+        #header .navmenu li.dropdown ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        #header .navmenu li.dropdown ul a,
+        #header .navmenu .dropdown-menu .dropdown-item {
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #556270; /* Warna default dropdown */
+            background-color: transparent;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        #header .navmenu li.dropdown ul a:hover,
+        #header .navmenu li.dropdown ul a.active,
+        #header .navmenu .dropdown-menu .dropdown-item:hover,
+        #header .navmenu .dropdown-menu .dropdown-item.active {
+            color: #007bff; /* Biru saat hover/active */
+            background-color: #f8f9fa; /* Background terang saat hover */
+        }
+
+        /* --- Responsive Mobile Menu --- */
+        @media (max-width: 1199px) {
+            #header .navmenu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: #ffffff;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                transition: 0.3s;
+                z-index: 9998;
+                padding: 20px 0;
+            }
+
+            body.mobile-nav-active #header .navmenu {
+                right: 0;
+            }
+
+            #header .navmenu ul {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+            }
+
+            #header .navmenu li {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            #header .navmenu li:last-child {
+                margin-bottom: 0;
+            }
+
+            #header .navmenu a {
+                padding: 12px 15px;
+                font-size: 16px;
+                border-bottom: 1px solid #eee;
+            }
+
+            #header .navmenu li:last-child a {
+                border-bottom: none;
+            }
+
+            .mobile-nav-toggle {
+                display: block !important;
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 28px;
+                z-index: 9999;
+                color: #556270;
+                cursor: pointer;
+            }
+
+            body.mobile-nav-active .mobile-nav-toggle {
+                color: #556270;
+            }
+
+            #header .logo {
+                margin-left: 15px;
+                margin-right: auto;
+            }
+
+            #header .logo .sitename {
+                font-size: 1rem;
+            }
+
+            #header .btn-getstarted {
+                display: none !important;
+            }
+        }
+
+
         /* --- End Custom CSS for Vertical Dropdowns --- */
 
         /* Responsive for mobile menu */
@@ -409,6 +552,26 @@
                 display: none !important;
             }
         }
+
+        /* Mobile nav menu hidden by default */
+        @media (max-width: 1199px) {
+            .navmenu {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                padding: 1rem;
+                z-index: 999;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .navmenu.navmenu-active {
+                display: block;
+            }
+        }
+
     </style>
 
     @stack('styles') {{-- Memastikan stack styles ada di sini --}}
@@ -657,6 +820,19 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navToggle = document.querySelector('.mobile-nav-toggle');
+            const navMenu = document.querySelector('#navmenu');
+
+            navToggle.addEventListener('click', function () {
+                navMenu.classList.toggle('navmenu-active');
+                this.classList.toggle('bi-x'); // ganti icon hamburger ke "X"
+                this.classList.toggle('bi-list'); // toggle kembali
+            });
+        });
+    </script>
+
 
 </body>
 
