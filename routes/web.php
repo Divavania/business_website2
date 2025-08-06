@@ -144,9 +144,9 @@ Route::post('/rubrik', [RubrikController::class, 'store'])->name('rubrik.store')
 // --- RUTE UNTUK MANAJEMEN STRUKTUR ORGANISASI ---
 Route::prefix('admin/organization-members')->name('admin.organization-members.')->group(function () {
     Route::get('/', [OrganizationMemberController::class, 'index'])->name('index');
-    Route::post('/store', [OrganizationMemberController::class, 'store'])->name('store');
-    Route::post('/update/{organizationMember}', [OrganizationMemberController::class, 'update'])->name('update');
-    Route::delete('/destroy/{organizationMember}', [OrganizationMemberController::class, 'destroy'])->name('destroy');
+    Route::post('/', [OrganizationMemberController::class, 'store'])->name('store');
+    Route::put('/{organizationMember}', [OrganizationMemberController::class, 'update'])->name('update');
+    Route::delete('/{organizationMember}', [OrganizationMemberController::class, 'destroy'])->name('destroy');
 });
 
 // --- RUTE PROJECT ---

@@ -436,7 +436,6 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
                             <li><a class="dropdown-item" href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.contact.index') }}">Kontak</a></li>
                         </ul>
                     </li>
 

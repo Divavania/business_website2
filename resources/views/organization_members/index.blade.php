@@ -6,15 +6,17 @@
 <style>
     /* Mengatur tinggi maksimal dan scrolling vertikal untuk tabel */
     .table-scroll-container {
-        max-height: 600px; /* Atur tinggi maksimal sesuai kebutuhan Anda (sekitar 5-6 baris) */
+        max-height: 600px;
+        /* Atur tinggi maksimal sesuai kebutuhan Anda (sekitar 5-6 baris) */
         overflow-y: auto;
     }
-    
+
     /* Memastikan thead tetap terlihat saat scrolling */
     .table-scroll-container thead th {
         position: sticky;
         top: 0;
-        background-color: #f8f9fa; /* Warna background thead */
+        background-color: #f8f9fa;
+        /* Warna background thead */
         z-index: 10;
         border-bottom: 2px solid #dee2e6;
     }
@@ -75,10 +77,13 @@
                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editMemberModal-{{ $member->id }}">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                                {{-- Tombol hapus yang menggunakan modal konfirmasi --}}
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMemberModal" data-member-id="{{ $member->id }}">
-                                    <i class="fas fa-trash-alt"></i> Hapus
-                                </button>
+                                <form action="{{ route('admin.organization-members.destroy', $member->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i> Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -200,9 +205,9 @@
 {{-- Skrip untuk mengelola modal hapus --}}
 @push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var deleteMemberModal = document.getElementById('deleteMemberModal');
-        deleteMemberModal.addEventListener('show.bs.modal', function (event) {
+        deleteMemberModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget; // Button yang memicu modal
             var memberId = button.getAttribute('data-member-id');
             var form = document.getElementById('deleteForm');
