@@ -29,16 +29,16 @@
             <div class="row g-3">
                 @php
                     $menu = [
-                        ['icon' => 'bi-tools', 'label' => 'Service Center', 'url' => '/service'],
-                        ['icon' => 'bi-info-circle', 'label' => 'Tentang Kami', 'url' => '/about_backend'],
-                        ['icon' => 'bi-diagram-3', 'label' => 'Struktur Organisasi', 'url' => '/struktur'],
+                        ['icon' => 'bi-tools', 'label' => 'Service Center', 'url' => '/service'], // Keep as is if no named route exists
+                        ['icon' => 'bi-info-circle', 'label' => 'Tentang Kami', 'url' => route('about_backend.index')],
+                        ['icon' => 'bi-diagram-3', 'label' => 'Struktur Organisasi', 'url' => route('admin.organization-members.index')],
                         ['icon' => 'bi-building', 'label' => 'Info Perusahaan', 'url' => route('admin.company_info.index')],
-                        ['icon' => 'bi-gear', 'label' => 'Kelola Solusi', 'url' => '/solutions'],
-                        ['icon' => 'bi-envelope', 'label' => 'Pesan Masuk', 'url' => '/pesan'],
-                        ['icon' => 'bi-truck', 'label' => 'Kelola Vendor', 'url' => '/vendors'],
+                        ['icon' => 'bi-gear', 'label' => 'Kelola Solusi', 'url' => route('admin.solution.index')],
+                        ['icon' => 'bi-envelope', 'label' => 'Pesan Masuk', 'url' => route('contact_messages.index')],
+                        ['icon' => 'bi-truck', 'label' => 'Kelola Vendor', 'url' => route('admin.vendors.index')],
                         ['icon' => 'bi-megaphone', 'label' => 'News & Event', 'url' => route('admin.news.index')],
-                        ['icon' => 'bi-folder2-open', 'label' => 'Kelola Proyek', 'url' => '/projects'],
-                        ['icon' => 'bi-person-gear', 'label' => 'Kelola Admin', 'url' => '/users', 'role' => 'superadmin'],
+                        ['icon' => 'bi-folder2-open', 'label' => 'Kelola Proyek', 'url' => route('admin.projects.index')],
+                        ['icon' => 'bi-person-gear', 'label' => 'Kelola Admin', 'url' => route('users.index'), 'role' => 'superadmin'],
                     ];
                 @endphp
 
