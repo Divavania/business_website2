@@ -102,16 +102,20 @@
         #footer .copyright p {
             color: #556270;
         }
-        
+
         .contact-promo-btn {
-            background-color: #007bff; /* Primary blue */
-            color: #ffffff !important; /* White text */
+            background-color: #007bff;
+            /* Primary blue */
+            color: #ffffff !important;
+            /* White text */
         }
 
         /* New style for hover state */
         .contact-promo-btn:hover {
-            background-color: #0056b3 !important; /* Darker blue on hover */
+            background-color: #0056b3 !important;
+            /* Darker blue on hover */
         }
+
         .whatsapp-sticky-button {
             position: fixed;
             bottom: 20px;
@@ -334,7 +338,8 @@
             padding: 10px 15px;
             font-size: 14px;
             font-weight: 500;
-            color: #556270; /* Warna default abu */
+            color: #556270;
+            /* Warna default abu */
             background-color: transparent;
             text-decoration: none;
             transition: color 0.3s, background-color 0.3s;
@@ -344,7 +349,8 @@
         #header .navmenu .dropdown-toggle:hover,
         #header .navmenu a.active,
         #header .navmenu .dropdown-toggle.active {
-            color: #007bff; /* Warna biru saat hover / aktif */
+            color: #007bff;
+            /* Warna biru saat hover / aktif */
             background-color: transparent;
         }
 
@@ -362,7 +368,7 @@
             border-radius: 4px;
         }
 
-        #header .navmenu li.dropdown:hover > ul {
+        #header .navmenu li.dropdown:hover>ul {
             display: block;
         }
 
@@ -375,7 +381,8 @@
         #header .navmenu .dropdown-menu .dropdown-item {
             padding: 10px 20px;
             font-size: 14px;
-            color: #556270; /* Warna default dropdown */
+            color: #556270;
+            /* Warna default dropdown */
             background-color: transparent;
             text-decoration: none;
             display: block;
@@ -386,8 +393,10 @@
         #header .navmenu li.dropdown ul a.active,
         #header .navmenu .dropdown-menu .dropdown-item:hover,
         #header .navmenu .dropdown-menu .dropdown-item.active {
-            color: #007bff; /* Biru saat hover/active */
-            background-color: #f8f9fa; /* Background terang saat hover */
+            color: #007bff;
+            /* Biru saat hover/active */
+            background-color: #f8f9fa;
+            /* Background terang saat hover */
         }
 
         /* --- Responsive Mobile Menu --- */
@@ -572,6 +581,18 @@
             }
         }
 
+        /* New CSS for centered social icons above copyright */
+        .footer-social-centered {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 1rem;
+            /* Adjust padding as needed */
+        }
+
+        .footer-social-centered .social-links a {
+            margin: 0 8px;
+            /* Spacing between icons */
+        }
     </style>
 
     @stack('styles') {{-- Memastikan stack styles ada di sini --}}
@@ -636,59 +657,41 @@
 
     <footer id="footer" class="footer dark-background">
 
-        <div class="container footer-top py-1">
-            <div class="row gy-4">
+        {{-- Container utama untuk footer top --}}
+        <div class="container footer-top py-4"> {{-- 'container' akan memberikan padding horizontal default dari Bootstrap --}}
 
-                {{-- Kolom 1: Logo, Alamat & Kontak --}}
-                <div class="col-lg-4 col-md-6 footer-about">
+            {{-- Baris untuk kolom-kolom footer --}}
+            <div class="row justify-content-center"> {{-- 'justify-content-center' akan memusatkan kolom di dalam baris --}}
+
+                {{-- Kolom 1: Informasi Kontak Perusahaan --}}
+                <div class="col-lg-3 col-md-6 footer-contact text-start">
                     <a href="{{ route('home') }}" class="logo d-flex align-items-center mb-3">
                         <img src="{{ asset('template-assets/assets/img/logo-tigatra.png') }}" alt="Logo Tigatra" class="img-fluid me-2" style="height: 40px;">
                         <span class="sitename">{{ strtoupper($companyInfo->company_name ?? 'Tigatra Adikara') }}</span>
                     </a>
-
-                    <div class="footer-contact mb-3">
-                        <p class="mb-1"><strong>Alamat:</strong>
-                            @if($companyInfo->street)
-                            {{ $companyInfo->street }}, {{ $companyInfo->city }}, {{ $companyInfo->province }}, {{ $companyInfo->postal_code }}, {{ $companyInfo->country }}
-                            @else
-                            Alamat belum tersedia.
-                            @endif
-                        </p>
-                        @if($companyInfo->phone_number)
-                        <p class="mb-1"><strong>Phone:</strong> <span>{{ $companyInfo->phone_number }}</span></p>
+                    <p class="mb-1"><strong>Alamat:</strong>
+                        @if($companyInfo->street)
+                        {{ $companyInfo->street }}, {{ $companyInfo->city }}, {{ $companyInfo->province }}, {{ $companyInfo->postal_code }}, {{ $companyInfo->country }}
+                        @else
+                        Alamat belum tersedia.
                         @endif
-                        @if($companyInfo->contact_email)
-                        <p class="mb-0"><strong>Email:</strong> <span>{{ $companyInfo->contact_email }}</span></p>
-                        @endif
-                    </div>
+                    </p>
+                    @if($companyInfo->phone_number)
+                    <p class="mb-1"><strong>Phone:</strong> <span>{{ $companyInfo->phone_number }}</span></p>
+                    @endif
+                    @if($companyInfo->contact_email)
+                    <p class="mb-0"><strong>Email:</strong> <span>{{ $companyInfo->contact_email }}</span></p>
+                    @endif
                 </div>
 
-                {{-- Kolom 2: Deskripsi Singkat PT & Sosial Media --}}
-                <div class="col-lg-4 col-md-6 footer-description"> {{-- Diubah dari col-lg-3 ke col-lg-4 --}}
+                {{-- Kolom 2: Deskripsi Singkat "Tentang Kami" --}}
+                <div class="col-lg-3 col-md-6 text-start">
+                    <h4 class="mb-3">Tentang Kami</h4>
                     <p class="mb-3">{{ $companyInfo->tagline ?? 'PT Tigatra Adikara menyediakan solusi komprehensif untuk Infrastruktur IT, serta pemasaran dan dukungan untuk Hardware dan Software terkemuka.' }}</p>
-                    <div class="social-links d-flex">
-                        @if($companyInfo->facebook_link)
-                        <a href="{{ $companyInfo->facebook_link }}" target="_blank"><i class="bi bi-facebook"></i></a>
-                        @endif
-
-                        @if($companyInfo->tiktok_link)
-                        <a href="{{ $companyInfo->tiktok_link }}" target="_blank"><i class="bi bi-tiktok"></i></a>
-                        @endif
-
-                        @if($companyInfo->youtube_link)
-                        <a href="{{ $companyInfo->youtube_link }}" target="_blank"><i class="bi bi-youtube"></i></a>
-                        @endif
-                        @if($companyInfo->instagram_link)
-                        <a href="{{ $companyInfo->instagram_link }}" target="_blank"><i class="bi bi-instagram"></i></a>
-                        @endif
-                        @if($companyInfo->linkedin_link)
-                        <a href="{{ $companyInfo->linkedin_link }}" target="_blank"><i class="bi bi-linkedin"></i></a>
-                        @endif
-                    </div>
                 </div>
 
                 {{-- Kolom 3: Useful Links --}}
-                <div class="col-lg-2 col-md-6 footer-links">
+                <div class="col-lg-3 col-md-6 text-start ">
                     <h4>Useful Links</h4>
                     <ul>
                         <li><a href="{{ route('home') }}">Home</a></li>
@@ -699,19 +702,54 @@
                     </ul>
                 </div>
 
-                {{-- Kolom 4: Produk Kami --}}
-                {{-- <div class="col-lg-2 col-md-6 footer-links"> 
-                    <h4>Produk Kami</h4>
+                {{-- Kolom 4: Lokasi Service Center --}}
+                <div class="col-lg-3 col-md-6 text-start">
+                    <h4>Lokasi Service Center</h4>
+                    @if(isset($serviceCenters) && $serviceCenters->isNotEmpty())
                     <ul>
-                        <li><a href="{{ route('frontend.products.index', ['kategori' => 'hardware']) }}">Hardware</a></li>
-                <li><a href="{{ route('frontend.products.index', ['kategori' => 'software']) }}">Software</a></li>
-                </ul>
-            </div> --}}
+                        @foreach($serviceCenters->take(3) as $center) {{-- Take only the first 3 --}}
+                        <li>
+                            <strong>{{ $center->nama }}</strong><br>
+                            {{ $center->alamat }}
+                        </li>
+                        @endforeach
+                        @if($serviceCenters->count() > 3) {{-- If there are more than 3, show "Selengkapnya" --}}
+                        <li>
+                            <a href="{{ route('frontend.services.index') }}">Selengkapnya</a>
+                        </li>
+                        @endif
+                    </ul>
+                    @else
+                    <p>Lokasi service center belum tersedia.</p>
+                    @endif
+                </div>
 
-        </div>
+            </div>
         </div>
 
-        <div class="container copyright text-center mt-2 py-1 border-top border-light-subtle pt-2">
+        {{-- Bagian Sosial Media (sudah terpusat) --}}
+        <div class="container footer-social-centered py-3">
+            <div class="social-links d-flex justify-content-center w-100">
+                @if($companyInfo->facebook_link)
+                <a href="{{ $companyInfo->facebook_link }}" target="_blank"><i class="bi bi-facebook"></i></a>
+                @endif
+                @if($companyInfo->tiktok_link)
+                <a href="{{ $companyInfo->tiktok_link }}" target="_blank"><i class="bi bi-tiktok"></i></a>
+                @endif
+                @if($companyInfo->youtube_link)
+                <a href="{{ $companyInfo->youtube_link }}" target="_blank"><i class="bi bi-youtube"></i></a>
+                @endif
+                @if($companyInfo->instagram_link)
+                <a href="{{ $companyInfo->instagram_link }}" target="_blank"><i class="bi bi-instagram"></i></a>
+                @endif
+                @if($companyInfo->linkedin_link)
+                <a href="{{ $companyInfo->linkedin_link }}" target="_blank"><i class="bi bi-linkedin"></i></a>
+                @endif
+            </div>
+        </div>
+
+        {{-- Bagian Copyright --}}
+        <div class="container copyright text-center py-1 border-top border-light-subtle pt-2">
             <p class="mb-0">© {{ date('Y') }} <span>Copyright</span> <strong class="px-1 sitename">Tigatra Adikara</strong> <span>All Rights Reserved</span></p>
         </div>
 
@@ -821,14 +859,14 @@
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const navToggle = document.querySelector('.mobile-nav-toggle');
             const navMenu = document.querySelector('#navmenu');
 
-            navToggle.addEventListener('click', function () {
+            navToggle.addEventListener('click', function() {
                 navMenu.classList.toggle('navmenu-active');
-                this.classList.toggle('bi-x'); // ganti icon hamburger ke "X"
-                this.classList.toggle('bi-list'); // toggle kembali
+                this.classList.toggle('bi-x'); 
+                this.classList.toggle('bi-list');
             });
         });
     </script>
