@@ -112,7 +112,7 @@ class ProjectController extends Controller
             // Hapus data proyek
             $project->delete();
 
-            return redirect()->route('admin.projects.index')->with('success', 'Proyek berhasil dihapus!');
+            return redirect()->route('admin.projects.index')->with('deleted', 'Proyek berhasil dihapus!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus data: ' . $e->getMessage());
         }
