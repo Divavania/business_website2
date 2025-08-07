@@ -282,7 +282,8 @@
             <span class="text">Kelola Admin</span>
         </a>
         @endif
-        <a href="/logout" onclick="return confirm('Yakin mau logout?')">
+        {{-- <a href="/logout" onclick="return confirm('Yakin mau logout?')"> --}}
+        <a href="/logout" id="logout-link">
             <i class="bi bi-box-arrow-right"></i>
             <span class="text">Logout</span>
         </a>
@@ -346,6 +347,59 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // ✅ Success message
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            });
+        @endif
+
+        // ✅ Error message
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Tutup'
+            });
+        @endif
+
+        // ✅ Validation errors
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                html: `{!! implode('<br>', $errors->all()) !!}`,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Tutup'
+            });
+        @endif
+    </script>
+    <script>
+        document.getElementById('logout-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Logout?',
+                text: 'Apakah Anda yakin ingin logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Ya, logout',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/logout';
+                }
+            });
+        });
+    </script>
 
 </body>
 

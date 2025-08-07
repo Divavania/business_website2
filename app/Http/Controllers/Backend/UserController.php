@@ -81,7 +81,7 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             $user->delete();
 
-            return redirect()->back()->with('success', 'Admin berhasil dihapus');
+            return redirect()->back()->with('deleted', 'Admin berhasil dihapus');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal menghapus admin: ' . $e->getMessage());
         }

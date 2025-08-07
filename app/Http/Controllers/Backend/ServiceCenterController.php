@@ -43,6 +43,6 @@ class ServiceCenterController extends Controller
     {
         DB::table('service_centers')->where('id', $id)->delete();
 
-        return redirect('/service')->with('success', 'Service center berhasil dihapus!');
+        return redirect('/service')->with('deleted', 'Service center berhasil dihapus!');
     }
 }

@@ -2,6 +2,26 @@
 @section('title', 'Dashboard Admin | Tigatra Adikara')
 
 @section('content')
+{{-- SweetAlert Flash Message --}}
+@foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
+    @if(session($key))
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Swal.fire({
+                icon: '{{ $type }}',
+                title: '{{ ucfirst($key) }}!',
+                text: @json(session($key)),
+                showConfirmButton: {{ $key == 'error' ? 'true' : 'false' }},
+                confirmButtonText: 'OK',
+                timer: {{ $key == 'error' ? 'null' : '1600' }},
+                timerProgressBar: true,
+                toast: false,
+                position: 'center'
+            });
+        });
+    </script>
+    @endif
+@endforeach
 <div class="container-fluid py-4">
     {{-- Header Halaman: Judul, Deskripsi, dan Tombol Tambah --}}
     <div class="row align-items-center mb-3">
@@ -24,7 +44,7 @@
         </div>
     </div>
 
-    @if(session('success'))
+    {{-- @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm" role="alert">
             <i class="bi bi-check-circle me-2"></i>
             {{ session('success') }}
@@ -37,7 +57,7 @@
             {{ session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    @endif
+    @endif --}}
 
     {{-- Filter (Input Pencarian) dan Total Admin --}}
     <div class="d-flex justify-content-between align-items-center mb-3">
