@@ -212,6 +212,144 @@
         .container-fluid {
             padding: 0 30px;
         }
+
+        /* Sidebar utama */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #1f2937; /* Warna lebih elegan */
+            color: #f9fafb;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Judul sidebar */
+        .sidebar h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #f3f4f6;
+        }
+
+        /* Link menu */
+        .sidebar a {
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            padding: 12px 18px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+            border-radius: 6px;
+            margin: 2px 10px;
+        }
+
+        /* Efek hover & aktif */
+        .sidebar a:hover,
+        .sidebar a.active {
+            background-color: #0ea5e9;
+            color: #fff;
+            padding-left: 22px;
+        }
+
+        /* Ikon menu */
+        .sidebar a i {
+            margin-right: 12px;
+            font-size: 1.1rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Sidebar collapsed */
+        .sidebar.collapsed {
+            width: 70px;
+        }
+
+        .sidebar.collapsed h5,
+        .sidebar.collapsed a span.text {
+            display: none;
+        }
+
+        .sidebar.collapsed a i {
+            margin-right: 0;
+        }
+
+        /* Submenu */
+        .submenu {
+            display: none;
+            background-color: #273549;
+            border-left: 2px solid #0ea5e9;
+            margin: 4px 0;
+            padding-left: 5px;
+        }
+
+        .submenu a {
+            font-size: 0.9rem;
+            padding: 10px 18px 10px 35px;
+        }
+
+        .submenu.show {
+            display: block;
+        }
+
+        /* Pemisah antar menu */
+        .sidebar .dropdown-toggle-wrapper {
+            margin-top: 5px;
+            padding-top: 5px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Footer sidebar */
+        .sidebar .copyright {
+            margin-top: auto;
+            padding: 15px;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Hilangkan ikon default bootstrap di dropdown-toggle */
+        .dropdown-toggle::after {
+            display: none !important;
+        }
+
+        /* Animasi rotasi panah */
+        .bi-chevron-down {
+            transition: transform 0.3s ease;
+        }
+        .bi-chevron-down.rotate {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-toggle-wrapper a i.bi-chevron-down {
+            margin-left: auto;
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Animasi rotasi saat dropdown terbuka */
+        .submenu.show ~ a i.bi-chevron-down,
+        .dropdown-toggle[aria-expanded="true"] i.bi-chevron-down {
+            transform: rotate(180deg);
+        }
+        /* Hover untuk buka dropdown */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /* Buka dropdown kalau parentnya aktif */
+        .nav-item.active-parent .dropdown-menu {
+            display: block;
+        }
+
     </style>
 </head>
 
@@ -226,63 +364,116 @@
             <span class="text">Dashboard</span>
         </a>
 
-        {{-- <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
-        <i class="bi bi-box-seam"></i>
-        <span class="text">Produk</span>
-        </a> --}}
+        {{-- Master Data Dropdown --}}
+        <div class="dropdown-toggle-wrapper">
+            <a href="#"
+            class="dropdown-toggle d-flex align-items-center {{ request()->is('vendor*') || request()->is('solution*') ? 'active' : '' }}"
+            onclick="toggleDropdown(event, 'masterDataDropdown')">
+                <i class="bi bi-archive"></i>
+                <span class="text flex-grow-1">Master Data</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <div id="masterDataDropdown" class="submenu {{ request()->is('vendor*') || request()->is('solution*') ? 'show' : '' }}">
+                <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
+                    <i class="bi bi-truck"></i>
+                    <span class="text">Vendor</span>
+                </a>
+                <a href="{{ route('admin.solution.index') }}" class="{{ request()->routeIs('admin.solution.*') ? 'active' : '' }}">
+                    <i class="bi bi-gear"></i>
+                    <span class="text">Solusi</span>
+                </a>
+            </div>
+        </div>
 
-        <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
-            <i class="bi bi-wrench"></i>
-            <span class="text">Service Center</span>
-        </a>
-        
-        <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
-            <i class="bi bi-info-circle"></i>
-            <span class="text">Tentang Kami</span>
-        </a>
+        {{-- Konten Dropdown --}}
+        <div class="dropdown-toggle-wrapper">
+            <a href="#"
+            class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.projects.*') ? 'active' : '' }}"
+            onclick="toggleDropdown(event, 'kontenDropdown')">
+                <i class="bi bi-collection"></i>
+                <span class="text flex-grow-1">Konten</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <div id="kontenDropdown" class="submenu {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.projects.*') ? 'show' : '' }}">
+                <a href="{{ route('admin.news.index') }}" class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+                    <i class="bi bi-newspaper"></i>
+                    <span class="text">News & Event</span>
+                </a>
+                <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+                    <i class="bi bi-folder-fill"></i>
+                    <span class="text">Kelola Proyek</span>
+                </a>
+            </div>
+        </div>
 
-        <a href="{{ route('admin.organization-members.index') }}" class="{{ request()->routeIs('admin.organization-members.*') ? 'active' : '' }}">
-            <i class="bi bi-person-badge"></i>
-            <span class="text">Kelola Struktur Organisasi</span>
-        </a>
-
-        <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
-            <i class="bi bi-building"></i>
-            <span class="text">Info Perusahaan</span>
-        </a>
-
-        <a href="{{ route('admin.solution.index') }}" class="{{ request()->routeIs('admin.solution.index') ? 'active' : '' }}">
-            <i class="bi bi-gear-fill"></i>
-            <span class="text">Kelola Solusi</span>
-        </a>
-
-        <a href="{{ route('contact_messages.index') }}" class="{{ request()->routeIs('contact_messages.*') ? 'active' : '' }}">
-            <i class="bi bi-envelope"></i>
-            <span class="text">Pesan Masuk</span>
-        </a>
-
-        <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
-            <i class="bi bi-truck"></i>
-            <span class="text">Kelola Vendor</span>
-        </a>
-
-        <a href="{{ route('admin.news.index') }}" class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
-            <i class="bi bi-newspaper"></i>
-            <span class="text">News & Event</span>
-        </a>
-
-        <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
-            <i class="bi bi-folder-fill"></i>
-            <span class="text">Kelola Proyek</span>
-        </a>
-
+        {{-- Akun Dropdown --}}
         @if(session()->has('user') && session('user')->role == 'superadmin')
-        <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
-            <i class="bi bi-people"></i>
-            <span class="text">Kelola Admin</span>
-        </a>
+        <div class="dropdown-toggle-wrapper">
+            <a href="#"
+            class="dropdown-toggle d-flex align-items-center {{ request()->is('users') ? 'active' : '' }}"
+            onclick="toggleDropdown(event, 'akunDropdown')">
+                <i class="bi bi-people"></i>
+                <span class="text flex-grow-1">Akun</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <div id="akunDropdown" class="submenu {{ request()->is('users') ? 'show' : '' }}">
+                <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span class="text">Kelola Admin</span>
+                </a>
+            </div>
+        </div>
         @endif
-        {{-- <a href="/logout" onclick="return confirm('Yakin mau logout?')"> --}}
+
+        {{-- Informasi Umum Dropdown --}}
+        <div class="dropdown-toggle-wrapper">
+            <a href="#"
+            class="dropdown-toggle d-flex align-items-center
+                {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'active' : '' }}"
+            onclick="toggleDropdown(event, 'infoUmumDropdown')">
+                <i class="bi bi-info-circle"></i>
+                <span class="text flex-grow-1">Informasi Umum</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <div id="infoUmumDropdown"
+                class="submenu
+                {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'show' : '' }}">
+                <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
+                    <i class="bi bi-building"></i>
+                    <span class="text">Info Perusahaan</span>
+                </a>
+                <a href="{{ route('admin.organization-members.index') }}" class="{{ request()->routeIs('admin.organization-members.*') ? 'active' : '' }}">
+                    <i class="bi bi-person-badge"></i>
+                    <span class="text">Struktur Organisasi</span>
+                </a>
+                <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
+                    <i class="bi bi-info-square"></i>
+                    <span class="text">Tentang Kami</span>
+                </a>
+                <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
+                    <i class="bi bi-wrench"></i>
+                    <span class="text">Service Center</span>
+                </a>
+            </div>
+        </div>
+
+        {{-- Komunikasi Dropdown --}}
+        <div class="dropdown-toggle-wrapper">
+            <a href="#"
+            class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('contact_messages.*') ? 'active' : '' }}"
+            onclick="toggleDropdown(event, 'komunikasiDropdown')">
+                <i class="bi bi-chat-dots"></i>
+                <span class="text flex-grow-1">Komunikasi</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <div id="komunikasiDropdown" class="submenu {{ request()->routeIs('contact_messages.*') ? 'show' : '' }}">
+                <a href="{{ route('contact_messages.index') }}" class="{{ request()->routeIs('contact_messages.*') ? 'active' : '' }}">
+                    <i class="bi bi-envelope"></i>
+                    <span class="text">Pesan Masuk</span>
+                </a>
+            </div>
+        </div>
+
         <a href="/logout" id="logout-link">
             <i class="bi bi-box-arrow-right"></i>
             <span class="text">Logout</span>
@@ -400,6 +591,17 @@
             });
         });
     </script>
+    <script>
+    function toggleDropdown(e, id) {
+        e.preventDefault();
+        const menu = document.getElementById(id);
+        // Kalau sudah aktif (karena halaman anak), jangan ditutup
+        if (!menu.classList.contains('show')) {
+            menu.classList.add('show');
+        }
+    }
+    </script>
+
 
 </body>
 
