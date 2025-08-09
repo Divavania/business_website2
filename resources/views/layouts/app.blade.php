@@ -18,7 +18,7 @@
             --sidebar-width: 240px;
             --sidebar-collapsed-width: 70px;
             --topbar-height: 60px;
-            --primary-color: #0ea5e9;
+            --primary-color: #4797ec;
             --sidebar-bg: #1e293b;
             --text-color: #e2e8f0;
         }
@@ -263,6 +263,30 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        /* SweetAlert2 Customization */
+        .swal2-container {
+            z-index: 1200 !important; /* Higher than sidebar z-index (1100) */
+        }
+
+        .swal2-popup {
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .swal2-confirm {
+            background-color: #4797ec !important;
+            border-color: #4797ec !important;
+        }
+
+        .swal2-confirm:hover {
+            background-color: #014a79 !important;
+        }
+
+        .swal2-cancel {
+            background-color: #6c757d !important;
+            border-color: #6c757d !important;
+        }
+
         @media (max-width: 992px) {
             .sidebar {
                 width: var(--sidebar-width);
@@ -293,6 +317,21 @@
 
             .topbar .btn-toggle {
                 display: inline-block !important;
+            }
+
+            /* Adjust SweetAlert2 positioning on smaller screens */
+            .swal2-container {
+                padding: 1rem;
+            }
+
+            .swal2-popup {
+                max-width: calc(100% - var(--sidebar-width)) !important;
+                margin-left: auto;
+                margin-right: 1rem;
+            }
+
+            .sidebar.collapsed ~ .swal2-container .swal2-popup {
+                max-width: calc(100% - var(--sidebar-collapsed-width)) !important;
             }
         }
 
@@ -348,6 +387,17 @@
 
             .sidebar h5 {
                 font-size: clamp(0.9rem, 2.2vw, 1rem);
+            }
+
+            .swal2-popup {
+                max-width: calc(100% - var(--sidebar-width)) !important;
+                font-size: 0.9rem;
+                margin-left: auto;
+                margin-right: 0.5rem;
+            }
+
+            .sidebar.collapsed ~ .swal2-container .swal2-popup {
+                max-width: calc(100% - var(--sidebar-collapsed-width)) !important;
             }
         }
     </style>
@@ -506,6 +556,9 @@
             } else {
                 localStorage.removeItem('sidebarCollapsed');
             }
+
+            // Trigger resize event to adjust SweetAlert2 position
+            window.dispatchEvent(new Event('resize'));
         }
 
         function toggleDropdown(e, id) {
@@ -524,6 +577,18 @@
                 topbar.classList.add('collapsed');
                 content.classList.add('collapsed');
             }
+
+            // Adjust SweetAlert2 position on window resize
+            window.addEventListener('resize', function() {
+                const isSidebarCollapsed = sidebar.classList.contains('collapsed');
+                const sidebarWidth = isSidebarCollapsed ? 'var(--sidebar-collapsed-width)' : 'var(--sidebar-width)';
+                const swalPopup = document.querySelector('.swal2-popup');
+                if (swalPopup && window.innerWidth <= 992) {
+                    swalPopup.style.maxWidth = `calc(100% - ${isSidebarCollapsed ? '60px' : '200px'})`;
+                    swalPopup.style.marginLeft = 'auto';
+                    swalPopup.style.marginRight = '0.5rem';
+                }
+            });
         });
 
         @if(session('success'))
@@ -531,8 +596,19 @@
             icon: 'success',
             title: 'Berhasil!',
             text: '{{ session('success') }}',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'OK'
+            confirmButtonColor: '#4797ec',
+            confirmButtonText: 'OK',
+            timer: 5000,
+            timerProgressBar: true,
+            willOpen: () => {
+                const sidebar = document.getElementById('sidebar');
+                const isSidebarCollapsed = sidebar.classList.contains('collapsed');
+                if (window.innerWidth <= 992) {
+                    Swal.getPopup().style.maxWidth = `calc(100% - ${isSidebarCollapsed ? '60px' : '200px'})`;
+                    Swal.getPopup().style.marginLeft = 'auto';
+                    Swal.getPopup().style.marginRight = '0.5rem';
+                }
+            }
         });
         @endif
 
@@ -541,8 +617,19 @@
             icon: 'error',
             title: 'Gagal!',
             text: '{{ session('error') }}',
-            confirmButtonColor: '#d33',
-            confirmButtonText: 'Tutup'
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Tutup',
+            timer: 5000,
+            timerProgressBar: true,
+            willOpen: () => {
+                const sidebar = document.getElementById('sidebar');
+                const isSidebarCollapsed = sidebar.classList.contains('collapsed');
+                if (window.innerWidth <= 992) {
+                    Swal.getPopup().style.maxWidth = `calc(100% - ${isSidebarCollapsed ? '60px' : '200px'})`;
+                    Swal.getPopup().style.marginLeft = 'auto';
+                    Swal.getPopup().style.marginRight = '0.5rem';
+                }
+            }
         });
         @endif
 
@@ -551,8 +638,19 @@
             icon: 'error',
             title: 'Gagal!',
             html: `{!! implode('<br>', $errors->all()) !!}`,
-            confirmButtonColor: '#d33',
-            confirmButtonText: 'Tutup'
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Tutup',
+            timer: 5000,
+            timerProgressBar: true,
+            willOpen: () => {
+                const sidebar = document.getElementById('sidebar');
+                const isSidebarCollapsed = sidebar.classList.contains('collapsed');
+                if (window.innerWidth <= 992) {
+                    Swal.getPopup().style.maxWidth = `calc(100% - ${isSidebarCollapsed ? '60px' : '200px'})`;
+                    Swal.getPopup().style.marginLeft = 'auto';
+                    Swal.getPopup().style.marginRight = '0.5rem';
+                }
+            }
         });
         @endif
 
@@ -563,10 +661,19 @@
                 text: 'Apakah Anda yakin ingin logout?',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#aaa',
+                confirmButtonColor: '#4797ec',
+                cancelButtonColor: '#6c757d',
                 confirmButtonText: 'Ya, logout',
-                cancelButtonText: 'Batal'
+                cancelButtonText: 'Batal',
+                willOpen: () => {
+                    const sidebar = document.getElementById('sidebar');
+                    const isSidebarCollapsed = sidebar.classList.contains('collapsed');
+                    if (window.innerWidth <= 992) {
+                        Swal.getPopup().style.maxWidth = `calc(100% - ${isSidebarCollapsed ? '60px' : '200px'})`;
+                        Swal.getPopup().style.marginLeft = 'auto';
+                        Swal.getPopup().style.marginRight = '0.5rem';
+                    }
+                }
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = '/logout';
