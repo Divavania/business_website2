@@ -95,12 +95,38 @@
                                 <td class="align-middle px-4">
                                     <img src="{{ Storage::url($project->image) }}" alt="Gambar Proyek" class="rounded" style="height: 50px; width: auto; object-fit: cover;">
                                 </td>
-                                <td class="align-middle text-center px-4">
+                                {{-- <td class="align-middle text-center px-4">
                                     <div class="d-flex justify-content-center gap-2">
                                         <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $project->id }}" title="Edit"><i class="bi bi-pencil-fill"></i></button>
                                         <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $project->id }}" title="Hapus"><i class="bi bi-trash-fill"></i></button>
                                     </div>
+                                </td> --}}
+                                <td class="align-middle text-center px-4">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#editModal{{ $project->id }}" 
+                                                title="Edit">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </button>
+
+                                        {{-- Tombol hapus pakai SweetAlert --}}
+                                        <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" 
+                                                onclick="confirmDelete({{ $project->id }})" 
+                                                title="Hapus">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+
+                                        {{-- Form hapus hidden --}}
+                                        <form id="delete-form-{{ $project->id }}" 
+                                            action="{{ route('admin.projects.destroy', $project->id) }}" 
+                                            method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </div>
                                 </td>
+
                             </tr>
                         @empty
                             <tr>
@@ -207,7 +233,7 @@
         </div>
 
         {{-- Modal Hapus --}}
-        <div class="modal fade" id="hapusModal{{ $project->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $project->id }}" aria-hidden="true">
+        {{-- <div class="modal fade" id="hapusModal{{ $project->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $project->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <form method="POST" action="{{ route('admin.projects.destroy', $project->id) }}" class="modal-content shadow-lg rounded-lg border-0">
                     @csrf
@@ -226,7 +252,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
     @endforeach
 
 </div>
@@ -308,5 +334,27 @@
         // Set active class for 'Semua Tahun' by default
         document.querySelector('.filter-tahun[data-year="all"]').classList.add('active');
     });
+</script>
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function confirmDelete(id) {
+    Swal.fire({
+        title: 'Yakin ingin menghapus?',
+        text: "Data proyek ini akan dihapus permanen!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Ya, hapus!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(`delete-form-${id}`).submit();
+        }
+    });
+}
 </script>
 @endpush

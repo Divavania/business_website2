@@ -72,19 +72,30 @@
                                     </button>
 
                                     {{-- Tombol Hapus dengan border merah --}}
-                                    <button type="button"
+                                    {{-- <button type="button"
                                             class="btn btn-sm p-2 rounded-circle d-flex align-items-center justify-content-center"
                                             style="background-color: #3399FF; color: white; border: 3px solid red;"
                                             data-bs-toggle="modal"
                                             data-bs-target="#deleteModal{{ $solution->id }}"
                                             title="Hapus">
                                         <i class="fas fa-trash-alt"></i>
-                                    </button>
+                                    </button> --}}
+                                    {{-- Tombol Hapus dengan border merah --}}
+                                    <form method="POST" action="{{ route('admin.solution.destroy', $solution->id) }}" class="d-inline delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button"
+                                                class="btn btn-sm p-2 rounded-circle d-flex align-items-center justify-content-center btn-delete"
+                                                style="background-color: #3399FF; color: white; border: 3px solid red;"
+                                                title="Hapus">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
 
                         </tr>
-                        <div class="modal fade" id="deleteModal{{ $solution->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $solution->id }}" aria-hidden="true">
+                        {{-- <div class="modal fade" id="deleteModal{{ $solution->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $solution->id }}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content shadow-lg rounded-xl">
                                     <div class="modal-header bg-danger text-white px-4 py-3 rounded-top-xl d-flex justify-content-between align-items-center">
@@ -104,7 +115,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         @endforeach
                     </tbody>
                 </table>
@@ -190,4 +201,32 @@
         color: #fff !important;
     }
 </style>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.btn-delete').forEach(button => {
+        button.addEventListener('click', function () {
+            const form = this.closest('form');
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data ini tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+});
+</script>
+@endpush
+
 @endsection

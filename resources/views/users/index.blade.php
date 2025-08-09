@@ -106,11 +106,25 @@
                                 @endif
 
                                 {{-- Tombol Hapus --}}
-                                @if(session()->has('user') && session('user')->role == 'superadmin')
+                                {{-- @if(session()->has('user') && session('user')->role == 'superadmin')
                                     <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $u->id }}" title="Hapus"><i class="bi bi-trash-fill"></i></button>
-                                @else
+                                @else --}}
                                     {{-- Tombol Hapus non-aktif jika bukan superadmin --}}
-                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Hapus"><i class="bi bi-trash-fill"></i></button>
+                                    {{-- <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Hapus"><i class="bi bi-trash-fill"></i></button>
+                                @endif --}}
+                                {{-- Tombol Hapus --}}
+                                @if(session()->has('user') && session('user')->role == 'superadmin')
+                                    <form action="{{ route('users.destroy', $u->id) }}" method="POST" class="d-inline form-delete">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill" title="Hapus">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Hapus">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
                                 @endif
                             </div>
                         </td>
@@ -231,7 +245,7 @@
 @endforeach
 
     {{-- MODAL HAPUS ADMIN --}}
-    @foreach($users as $u)
+    {{-- @foreach($users as $u)
     @if(session()->has('user') && session('user')->role == 'superadmin')
     <div class="modal fade" id="hapusModal{{ $u->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $u->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -254,7 +268,7 @@
         </div>
     </div>
     @endif
-@endforeach
+@endforeach --}}
 </div>
 @endsection
 
@@ -316,5 +330,32 @@
             }
         /* @endif */
     });
+</script>
+@endpush
+
+@push('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.form-delete').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop submit langsung
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data ini akan dihapus permanen dan tidak bisa dikembalikan.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit kalau konfirmasi
+                }
+            });
+        });
+    });
+});
 </script>
 @endpush

@@ -37,21 +37,6 @@
         </div>
     </div>
 
-    {{-- @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm" role="alert">
-            <i class="bi bi-check-circle me-2"></i>
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show rounded-lg shadow-sm" role="alert">
-            <i class="bi bi-exclamation-triangle me-2"></i>
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif --}}
-
     {{-- Filter (Input Pencarian) dan Total Store --}}
     <div class="d-flex justify-content-between align-items-center mb-3"> 
         <div class="input-group shadow-sm rounded-pill" style="max-width: 300px;">
@@ -91,7 +76,13 @@
                                 <td class="align-middle text-center px-4">
                                     <div class="d-flex justify-content-center gap-2">
                                         <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $c->id }}" title="Edit"><i class="bi bi-pencil-fill"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $c->id }}" title="Hapus"><i class="bi bi-trash-fill"></i></button>
+                                        <form action="/service/hapus/{{ $c->id }}" method="POST" class="d-inline delete-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill btn-delete" title="Hapus">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -171,7 +162,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="hapusModal{{ $c->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $c->id }}" aria-hidden="true">
+    {{-- <div class="modal fade" id="hapusModal{{ $c->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $c->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <form method="POST" action="/service/hapus/{{ $c->id }}" class="modal-content shadow-lg rounded-lg border-0">
                 @csrf
@@ -189,7 +180,7 @@
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Batal</button>
                 </div>
             </form>
-        </div>
+        </div> --}}
     </div>
     @endforeach
 
@@ -256,4 +247,29 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                const form = this.closest('form');
+
+                Swal.fire({
+                    title: 'Yakin ingin menghapus?',
+                    text: "Data ini tidak bisa dikembalikan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Ya, hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 @endpush
