@@ -21,6 +21,9 @@
             --primary-color: #4797ec;
             --sidebar-bg: #1e293b;
             --text-color: #e2e8f0;
+            --header-color: #94a3b8;
+            --hover-bg: rgba(255, 255, 255, 0.1);
+            --active-bg: rgba(255, 255, 255, 0.2);
         }
 
         body {
@@ -45,32 +48,47 @@
             flex-direction: column;
             z-index: 1100;
             overflow-y: auto;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .sidebar h5 {
             font-size: clamp(1rem, 2.5vw, 1.25rem);
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #ffffff;
+            color: #fff;
+        }
+
+        .sidebar-header {
+            color: var(--header-color);
+            font-size: 0.85rem;
+            padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
         .sidebar a {
             color: var(--text-color);
             display: flex;
             align-items: center;
-            padding: 0.75rem 1rem;
+            padding: 0.75rem 1.5rem;
             text-decoration: none;
             font-size: clamp(0.85rem, 2vw, 0.95rem);
-            transition: background-color 0.3s ease, padding-left 0.3s ease;
+            transition: background-color 0.3s ease;
             border-radius: 6px;
-            margin: 0.2rem 0.5rem;
+            margin: 0.2rem 1rem;
         }
 
         .sidebar a:hover,
         .sidebar a.active {
-            background-color: var(--primary-color);
-            color: white;
-            padding-left: 1.25rem;
+            background-color: var(--hover-bg);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .sidebar a.active {
+            background-color: var(--active-bg);
+            color: var(--primary-color);
         }
 
         .sidebar a i {
@@ -78,6 +96,15 @@
             font-size: 1.1rem;
             min-width: 1.25rem;
             text-align: center;
+            color: var(--header-color);
+        }
+        
+        .sidebar a.active i {
+            color: var(--primary-color);
+        }
+        
+        .sidebar a:hover i {
+            color: var(--primary-color);
         }
 
         .sidebar.collapsed {
@@ -85,30 +112,25 @@
         }
 
         .sidebar.collapsed h5,
+        .sidebar.collapsed .sidebar-header,
         .sidebar.collapsed a span.text {
             display: none;
         }
 
         .sidebar.collapsed a i {
-            margin-right: 0;
+            margin: 0;
             font-size: 1.2rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+        
+        .sidebar.collapsed a.active i {
+            color: var(--primary-color);
         }
 
-        .submenu {
-            display: none;
-            background-color: #273549;
-            border-left: 2px solid var(--primary-color);
-            margin: 0.25rem 0;
-            padding-left: 0.5rem;
-        }
-
-        .submenu.show {
-            display: block;
-        }
-
-        .submenu a {
-            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-            padding: 0.625rem 1rem 0.625rem 2rem;
+        .sidebar-menu-item {
+            margin: 0.2rem 1rem;
+            border-radius: 6px;
         }
 
         .sidebar::-webkit-scrollbar {
@@ -116,7 +138,7 @@
         }
 
         .sidebar::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
         }
 
@@ -243,7 +265,7 @@
         }
 
         .bi-chevron-down.rotate,
-        .submenu.show ~ a i.bi-chevron-down,
+        .submenu.show~a i.bi-chevron-down,
         .dropdown-toggle[aria-expanded="true"] i.bi-chevron-down {
             transform: rotate(180deg);
         }
@@ -262,10 +284,9 @@
             color: #94a3b8;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        /* SweetAlert2 Customization */
+        
         .swal2-container {
-            z-index: 1200 !important; /* Higher than sidebar z-index (1100) */
+            z-index: 1200 !important;
         }
 
         .swal2-popup {
@@ -319,7 +340,6 @@
                 display: inline-block !important;
             }
 
-            /* Adjust SweetAlert2 positioning on smaller screens */
             .swal2-container {
                 padding: 1rem;
             }
@@ -330,7 +350,7 @@
                 margin-right: 1rem;
             }
 
-            .sidebar.collapsed ~ .swal2-container .swal2-popup {
+            .sidebar.collapsed~.swal2-container .swal2-popup {
                 max-width: calc(100% - var(--sidebar-collapsed-width)) !important;
             }
         }
@@ -396,7 +416,7 @@
                 margin-right: 0.5rem;
             }
 
-            .sidebar.collapsed ~ .swal2-container .swal2-popup {
+            .sidebar.collapsed~.swal2-container .swal2-popup {
                 max-width: calc(100% - var(--sidebar-collapsed-width)) !important;
             }
         }
@@ -408,102 +428,64 @@
 
     <div id="sidebar" class="sidebar">
         <h5>Tigatra Admin</h5>
+
+        <h6 class="sidebar-header">Navigasi</h6>
         <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">
             <i class="bi bi-speedometer2"></i>
             <span class="text">Dashboard</span>
         </a>
 
-        <div class="dropdown-toggle-wrapper">
-            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.vendors.*') || request()->routeIs('admin.solution.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'masterDataDropdown')">
-                <i class="bi bi-archive"></i>
-                <span class="text flex-grow-1">Master Data</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <div id="masterDataDropdown" class="submenu {{ request()->routeIs('admin.vendors.*') || request()->routeIs('admin.solution.*') ? 'show' : '' }}">
-                <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
-                    <i class="bi bi-truck"></i>
-                    <span class="text">Vendor</span>
-                </a>
-                <a href="{{ route('admin.solution.index') }}" class="{{ request()->routeIs('admin.solution.*') ? 'active' : '' }}">
-                    <i class="bi bi-gear"></i>
-                    <span class="text">Solusi</span>
-                </a>
-            </div>
-        </div>
+        <h6 class="sidebar-header">Data</h6>
+        <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
+            <i class="bi bi-truck"></i>
+            <span class="text">Vendor</span>
+        </a>
+        <a href="{{ route('admin.solution.index') }}" class="{{ request()->routeIs('admin.solution.*') ? 'active' : '' }}">
+            <i class="bi bi-gear"></i>
+            <span class="text">Solusi</span>
+        </a>
 
-        <div class="dropdown-toggle-wrapper">
-            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.projects.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'kontenDropdown')">
-                <i class="bi bi-collection"></i>
-                <span class="text flex-grow-1">Konten</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <div id="kontenDropdown" class="submenu {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.projects.*') ? 'show' : '' }}">
-                <a href="{{ route('admin.news.index') }}" class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
-                    <i class="bi bi-newspaper"></i>
-                    <span class="text">News & Event</span>
-                </a>
-                <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
-                    <i class="bi bi-folder-fill"></i>
-                    <span class="text">Kelola Proyek</span>
-                </a>
-            </div>
-        </div>
+        <h6 class="sidebar-header">Konten</h6>
+        <a href="{{ route('admin.news.index') }}" class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+            <i class="bi bi-newspaper"></i>
+            <span class="text">News & Event</span>
+        </a>
+        <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+            <i class="bi bi-folder-fill"></i>
+            <span class="text">Kelola Proyek</span>
+        </a>
 
         @if(session()->has('user') && session('user')->role == 'superadmin')
-        <div class="dropdown-toggle-wrapper">
-            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->is('users') ? 'active' : '' }}" onclick="toggleDropdown(event, 'akunDropdown')">
-                <i class="bi bi-people"></i>
-                <span class="text flex-grow-1">Akun</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <div id="akunDropdown" class="submenu {{ request()->is('users') ? 'show' : '' }}">
-                <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
-                    <i class="bi bi-person-lines-fill"></i>
-                    <span class="text">Kelola Admin</span>
-                </a>
-            </div>
-        </div>
+        <h6 class="sidebar-header">Akun</h6>
+        <a href="/users" class="{{ request()->is('users') ? 'active' : '' }}">
+            <i class="bi bi-person-lines-fill"></i>
+            <span class="text">Kelola Admin</span>
+        </a>
         @endif
 
-        <div class="dropdown-toggle-wrapper">
-            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'infoUmumDropdown')">
-                <i class="bi bi-info-circle"></i>
-                <span class="text flex-grow-1">Informasi Umum</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <div id="infoUmumDropdown" class="submenu {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'show' : '' }}">
-                <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
-                    <i class="bi bi-building"></i>
-                    <span class="text">Info Perusahaan</span>
-                </a>
-                <a href="{{ route('admin.organization-members.index') }}" class="{{ request()->routeIs('admin.organization-members.*') ? 'active' : '' }}">
-                    <i class="bi bi-person-badge"></i>
-                    <span class="text">Struktur Organisasi</span>
-                </a>
-                <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
-                    <i class="bi bi-info-square"></i>
-                    <span class="text">Tentang Kami</span>
-                </a>
-                <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
-                    <i class="bi bi-wrench"></i>
-                    <span class="text">Service Center</span>
-                </a>
-            </div>
-        </div>
+        <h6 class="sidebar-header">Informasi Umum</h6>
+        <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
+            <i class="bi bi-building"></i>
+            <span class="text">Info Perusahaan</span>
+        </a>
+        <a href="{{ route('admin.organization-members.index') }}" class="{{ request()->routeIs('admin.organization-members.*') ? 'active' : '' }}">
+            <i class="bi bi-person-badge"></i>
+            <span class="text">Struktur Organisasi</span>
+        </a>
+        <a href="/about_backend" class="{{ request()->is('about_backend') ? 'active' : '' }}">
+            <i class="bi bi-info-square"></i>
+            <span class="text">Tentang Kami</span>
+        </a>
+        <a href="/service" class="{{ request()->is('service') ? 'active' : '' }}">
+            <i class="bi bi-wrench"></i>
+            <span class="text">Service Center</span>
+        </a>
 
-        <div class="dropdown-toggle-wrapper">
-            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('contact_messages.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'komunikasiDropdown')">
-                <i class="bi bi-chat-dots"></i>
-                <span class="text flex-grow-1">Komunikasi</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <div id="komunikasiDropdown" class="submenu {{ request()->routeIs('contact_messages.*') ? 'show' : '' }}">
-                <a href="{{ route('contact_messages.index') }}" class="{{ request()->routeIs('contact_messages.*') ? 'active' : '' }}">
-                    <i class="bi bi-envelope"></i>
-                    <span class="text">Pesan Masuk</span>
-                </a>
-            </div>
-        </div>
+        <h6 class="sidebar-header">Komunikasi</h6>
+        <a href="{{ route('contact_messages.index') }}" class="{{ request()->routeIs('contact_messages.*') ? 'active' : '' }}">
+            <i class="bi bi-envelope"></i>
+            <span class="text">Pesan Masuk</span>
+        </a>
 
         <a href="/logout" id="logout-link">
             <i class="bi bi-box-arrow-right"></i>
@@ -557,14 +539,7 @@
                 localStorage.removeItem('sidebarCollapsed');
             }
 
-            // Trigger resize event to adjust SweetAlert2 position
             window.dispatchEvent(new Event('resize'));
-        }
-
-        function toggleDropdown(e, id) {
-            e.preventDefault();
-            const menu = document.getElementById(id);
-            menu.classList.toggle('show');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -578,10 +553,8 @@
                 content.classList.add('collapsed');
             }
 
-            // Adjust SweetAlert2 position on window resize
             window.addEventListener('resize', function() {
                 const isSidebarCollapsed = sidebar.classList.contains('collapsed');
-                const sidebarWidth = isSidebarCollapsed ? 'var(--sidebar-collapsed-width)' : 'var(--sidebar-width)';
                 const swalPopup = document.querySelector('.swal2-popup');
                 if (swalPopup && window.innerWidth <= 992) {
                     swalPopup.style.maxWidth = `calc(100% - ${isSidebarCollapsed ? '60px' : '200px'})`;
