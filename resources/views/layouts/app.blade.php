@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title', 'Dashboard Admin | Tigatra Adikara')</title>
 
-    {{-- Favicon dan Apple Touch Icon --}}
     <link href="{{ asset('template-assets/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('template-assets/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
@@ -14,53 +13,75 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-
     <style>
+        :root {
+            --sidebar-width: 240px;
+            --sidebar-collapsed-width: 70px;
+            --topbar-height: 60px;
+            --primary-color: #0ea5e9;
+            --sidebar-bg: #1e293b;
+            --text-color: #e2e8f0;
+        }
+
         body {
             background-color: #f1f5f9;
             font-family: 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
         .sidebar {
-            width: 240px;
+            width: var(--sidebar-width);
             height: 100vh;
             position: fixed;
             left: 0;
             top: 0;
-            background-color: #1e293b;
-            color: white;
-            padding-top: 20px;
-            transition: all 0.3s ease;
+            background-color: var(--sidebar-bg);
+            color: var(--text-color);
+            padding-top: 1.5rem;
+            transition: width 0.3s ease;
             display: flex;
             flex-direction: column;
+            z-index: 1100;
+            overflow-y: auto;
         }
 
         .sidebar h5 {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
             color: #ffffff;
         }
 
         .sidebar a {
-            color: #e2e8f0;
-            display: block;
-            padding: 12px 20px;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
             text-decoration: none;
-            white-space: nowrap;
-            transition: background-color 0.3s ease;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+            border-radius: 6px;
+            margin: 0.2rem 0.5rem;
         }
 
         .sidebar a:hover,
         .sidebar a.active {
-            background-color: #0ea5e9;
+            background-color: var(--primary-color);
             color: white;
+            padding-left: 1.25rem;
+        }
+
+        .sidebar a i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+            min-width: 1.25rem;
+            text-align: center;
         }
 
         .sidebar.collapsed {
-            width: 70px;
+            width: var(--sidebar-collapsed-width);
         }
 
         .sidebar.collapsed h5,
@@ -68,35 +89,47 @@
             display: none;
         }
 
-        .sidebar a i {
-            margin-right: 10px;
-        }
-
         .sidebar.collapsed a i {
             margin-right: 0;
-            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .submenu {
+            display: none;
+            background-color: #273549;
+            border-left: 2px solid var(--primary-color);
+            margin: 0.25rem 0;
+            padding-left: 0.5rem;
+        }
+
+        .submenu.show {
             display: block;
         }
 
-        .sidebar .copyright {
-            margin-top: auto;
-            padding-bottom: 20px;
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 0.8rem;
-            color: #e2e8f0;
+        .submenu a {
+            font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+            padding: 0.625rem 1rem 0.625rem 2rem;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
         }
 
         .topbar {
-            height: 60px;
+            height: var(--topbar-height);
             background-color: #ffffff;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
-            left: 240px;
+            left: var(--sidebar-width);
             right: 0;
             top: 0;
             z-index: 1000;
-            padding: 0 20px;
+            padding: 0 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -104,7 +137,7 @@
         }
 
         .topbar.collapsed {
-            left: 70px;
+            left: var(--sidebar-collapsed-width);
         }
 
         .topbar .btn-toggle {
@@ -112,13 +145,13 @@
             background: none;
             border: none;
             color: #333;
+            padding: 0.5rem;
         }
 
-        /* Styles for topbar notification */
         .topbar .notification-group {
             display: flex;
             align-items: center;
-            margin-left: auto;
+            gap: 1rem;
         }
 
         .topbar .notification-icon {
@@ -126,67 +159,62 @@
             font-size: 1.5rem;
             color: #555;
             text-decoration: none;
-            margin-left: 15px;
         }
 
         .topbar .notification-icon:hover {
-            color: #0ea5e9;
+            color: var(--primary-color);
         }
 
         .topbar .notification-badge {
             position: absolute;
-            top: -2px;
-            right: -9px;
+            top: -0.2rem;
+            right: -0.5rem;
             background-color: #dc3545;
             color: white;
             border-radius: 50%;
             padding: 0.2em 0.5em;
-            /* **UKURAN BARU:** Padding lebih kecil */
-            font-size: 0.50em;
-            /* **UKURAN BARU:** Ukuran font lebih kecil */
+            font-size: 0.65em;
             line-height: 1;
             display: flex;
             align-items: center;
             justify-content: center;
             min-width: 1.3em;
-            /* **UKURAN BARU:** Min-width lebih kecil */
             height: 1.3em;
-            /* **UKURAN BARU:** Height lebih kecil */
         }
 
-
         .main-content {
-            margin-left: 240px;
-            padding: 80px 20px 20px 20px;
+            margin-left: var(--sidebar-width);
+            padding: calc(var(--topbar-height) + 1rem) 1rem 1rem;
             transition: margin-left 0.3s ease;
+            min-height: 100vh;
         }
 
         .main-content.collapsed {
-            margin-left: 70px;
+            margin-left: var(--sidebar-collapsed-width);
         }
 
         .card {
             border: none;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
 
         .card-body {
-            padding: 30px;
+            padding: clamp(1rem, 3vw, 1.5rem);
         }
 
         .card-title {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             color: #014a79;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
         .card .btn {
             background-color: #4797ec;
             color: white;
             border-radius: 5px;
-            padding: 10px 15px;
+            padding: 0.5rem 1rem;
             transition: background-color 0.3s ease;
         }
 
@@ -198,6 +226,7 @@
         .table td {
             text-align: center;
             vertical-align: middle;
+            padding: clamp(0.5rem, 2vw, 0.75rem);
         }
 
         .table thead {
@@ -205,178 +234,127 @@
             color: white;
         }
 
-        .card-body .row {
-            margin-bottom: 20px;
-        }
-
-        .container-fluid {
-            padding: 0 30px;
-        }
-
-        /* Sidebar utama */
-        .sidebar {
-            width: 240px;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            background-color: #1f2937; /* Warna lebih elegan */
-            color: #f9fafb;
-            padding-top: 20px;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(255,255,255,0.05);
-            overflow-y: auto;
-        }
-
-        /* Scroll style biar lebih halus */
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .sidebar::-webkit-scrollbar-thumb {
-            background-color: rgba(0,0,0,0.2);
-            border-radius: 10px;
-        }
-
-        /* Judul sidebar */
-        .sidebar h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 25px;
-            color: #f3f4f6;
-        }
-
-        /* Link menu */
-        .sidebar a {
-            color: #cbd5e1;
-            display: flex;
-            align-items: center;
-            padding: 12px 18px;
-            text-decoration: none;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-            transition: background-color 0.3s ease, padding-left 0.3s ease;
-            border-radius: 6px;
-            margin: 2px 10px;
-        }
-
-        /* Efek hover & aktif */
-        .sidebar a:hover,
-        .sidebar a.active {
-            background-color: #0ea5e9;
-            color: #fff;
-            padding-left: 22px;
-        }
-
-        /* Ikon menu */
-        .sidebar a i {
-            margin-right: 12px;
-            font-size: 1.1rem;
-            min-width: 20px;
-            text-align: center;
-        }
-
-        /* Sidebar collapsed */
-        .sidebar.collapsed {
-            width: 70px;
-        }
-
-        .sidebar.collapsed h5,
-        .sidebar.collapsed a span.text {
-            display: none;
-        }
-
-        .sidebar.collapsed a i {
-            margin-right: 0;
-        }
-
-        /* Submenu */
-        .submenu {
-            display: none;
-            background-color: #273549;
-            border-left: 2px solid #0ea5e9;
-            margin: 4px 0;
-            padding-left: 5px;
-        }
-
-        .submenu a {
-            font-size: 0.9rem;
-            padding: 10px 18px 10px 35px;
-        }
-
-        .submenu.show {
-            display: block;
-        }
-
-        /* Pemisah antar menu */
-        .sidebar .dropdown-toggle-wrapper {
-            margin-top: 5px;
-            padding-top: 5px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Footer sidebar */
-        .sidebar .copyright {
-            margin-top: auto;
-            padding: 15px;
-            font-size: 0.75rem;
-            text-align: center;
-            color: #94a3b8;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Hilangkan ikon default bootstrap di dropdown-toggle */
         .dropdown-toggle::after {
             display: none !important;
         }
 
-        /* Animasi rotasi panah */
         .bi-chevron-down {
             transition: transform 0.3s ease;
         }
-        .bi-chevron-down.rotate {
-            transform: rotate(180deg);
-        }
 
-        .dropdown-toggle-wrapper a i.bi-chevron-down {
-            margin-left: auto;
-            font-size: 0.85rem;
-            transition: transform 0.3s ease;
-        }
-
-        /* Animasi rotasi saat dropdown terbuka */
+        .bi-chevron-down.rotate,
         .submenu.show ~ a i.bi-chevron-down,
         .dropdown-toggle[aria-expanded="true"] i.bi-chevron-down {
             transform: rotate(180deg);
         }
-        /* Hover untuk buka dropdown */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        /* Buka dropdown kalau parentnya aktif */
-        .nav-item.active-parent .dropdown-menu {
-            display: block;
+
+        .dropdown-toggle-wrapper {
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Mobile: sidebar jadi offcanvas */
-        @media (max-width: 768px) {
+        .sidebar .copyright {
+            margin-top: auto;
+            padding: 1rem;
+            font-size: clamp(0.7rem, 1.5vw, 0.75rem);
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 992px) {
             .sidebar {
-                transform: translateX(-100%);
+                width: var(--sidebar-width);
                 position: fixed;
+                left: 0;
+                top: 0;
             }
-            .sidebar.show {
-                transform: translateX(0);
+
+            .sidebar.collapsed {
+                width: var(--sidebar-collapsed-width);
+            }
+
+            .topbar {
+                left: var(--sidebar-width);
+            }
+
+            .topbar.collapsed {
+                left: var(--sidebar-collapsed-width);
+            }
+
+            .main-content {
+                margin-left: var(--sidebar-width);
+            }
+
+            .main-content.collapsed {
+                margin-left: var(--sidebar-collapsed-width);
+            }
+
+            .topbar .btn-toggle {
+                display: inline-block !important;
             }
         }
 
+        @media (max-width: 576px) {
+            :root {
+                --sidebar-width: 200px;
+                --sidebar-collapsed-width: 60px;
+            }
+
+            .sidebar {
+                width: var(--sidebar-width);
+            }
+
+            .sidebar.collapsed {
+                width: var(--sidebar-collapsed-width);
+            }
+
+            .topbar {
+                left: var(--sidebar-width);
+            }
+
+            .topbar.collapsed {
+                left: var(--sidebar-collapsed-width);
+            }
+
+            .main-content {
+                margin-left: var(--sidebar-width);
+            }
+
+            .main-content.collapsed {
+                margin-left: var(--sidebar-collapsed-width);
+            }
+
+            .topbar .notification-group span {
+                font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+            }
+
+            .card-body {
+                padding: 0.8rem;
+            }
+
+            .card-title {
+                font-size: clamp(0.9rem, 2.2vw, 1rem);
+            }
+
+            .table {
+                font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+            }
+
+            .sidebar a {
+                font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+            }
+
+            .sidebar h5 {
+                font-size: clamp(0.9rem, 2.2vw, 1rem);
+            }
+        }
     </style>
 </head>
 
 <body>
     @stack('scripts')
-
 
     <div id="sidebar" class="sidebar">
         <h5>Tigatra Admin</h5>
@@ -385,11 +363,8 @@
             <span class="text">Dashboard</span>
         </a>
 
-        {{-- Master Data Dropdown --}}
         <div class="dropdown-toggle-wrapper">
-            <a href="#"
-            class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.vendors.*') || request()->routeIs('admin.solution.*') ? 'active' : '' }}"
-            onclick="toggleDropdown(event, 'masterDataDropdown')">
+            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.vendors.*') || request()->routeIs('admin.solution.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'masterDataDropdown')">
                 <i class="bi bi-archive"></i>
                 <span class="text flex-grow-1">Master Data</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
@@ -406,11 +381,8 @@
             </div>
         </div>
 
-        {{-- Konten Dropdown --}}
         <div class="dropdown-toggle-wrapper">
-            <a href="#"
-            class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.projects.*') ? 'active' : '' }}"
-            onclick="toggleDropdown(event, 'kontenDropdown')">
+            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.news.*') || request()->routeIs('admin.projects.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'kontenDropdown')">
                 <i class="bi bi-collection"></i>
                 <span class="text flex-grow-1">Konten</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
@@ -427,12 +399,9 @@
             </div>
         </div>
 
-        {{-- Akun Dropdown --}}
         @if(session()->has('user') && session('user')->role == 'superadmin')
         <div class="dropdown-toggle-wrapper">
-            <a href="#"
-            class="dropdown-toggle d-flex align-items-center {{ request()->is('users') ? 'active' : '' }}"
-            onclick="toggleDropdown(event, 'akunDropdown')">
+            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->is('users') ? 'active' : '' }}" onclick="toggleDropdown(event, 'akunDropdown')">
                 <i class="bi bi-people"></i>
                 <span class="text flex-grow-1">Akun</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
@@ -446,19 +415,13 @@
         </div>
         @endif
 
-        {{-- Informasi Umum Dropdown --}}
         <div class="dropdown-toggle-wrapper">
-            <a href="#"
-            class="dropdown-toggle d-flex align-items-center
-                {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'active' : '' }}"
-            onclick="toggleDropdown(event, 'infoUmumDropdown')">
+            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'infoUmumDropdown')">
                 <i class="bi bi-info-circle"></i>
                 <span class="text flex-grow-1">Informasi Umum</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <div id="infoUmumDropdown"
-                class="submenu
-                {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'show' : '' }}">
+            <div id="infoUmumDropdown" class="submenu {{ request()->is('about_backend') || request()->is('service') || request()->routeIs('admin.company_info.*') || request()->routeIs('admin.organization-members.*') ? 'show' : '' }}">
                 <a href="{{ route('admin.company_info.index') }}" class="{{ request()->routeIs('admin.company_info.*') ? 'active' : '' }}">
                     <i class="bi bi-building"></i>
                     <span class="text">Info Perusahaan</span>
@@ -478,11 +441,8 @@
             </div>
         </div>
 
-        {{-- Komunikasi Dropdown --}}
         <div class="dropdown-toggle-wrapper">
-            <a href="#"
-            class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('contact_messages.*') ? 'active' : '' }}"
-            onclick="toggleDropdown(event, 'komunikasiDropdown')">
+            <a href="#" class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('contact_messages.*') ? 'active' : '' }}" onclick="toggleDropdown(event, 'komunikasiDropdown')">
                 <i class="bi bi-chat-dots"></i>
                 <span class="text flex-grow-1">Komunikasi</span>
                 <i class="bi bi-chevron-down ms-auto"></i>
@@ -499,24 +459,25 @@
             <i class="bi bi-box-arrow-right"></i>
             <span class="text">Logout</span>
         </a>
+
+        <div class="copyright">
+            &copy; {{ date('Y') }} Tigatra Adikara. All rights reserved.
+        </div>
     </div>
 
     <div id="topbar" class="topbar d-flex align-items-center">
-        <button class="btn-toggle d-none d-lg-block ms-3" id="desktopToggle" onclick="toggleSidebar()">
+        <button class="btn-toggle ms-3" id="sidebarToggle" onclick="toggleSidebar()">
             <i class="bi bi-list"></i>
         </button>
 
-        {{-- Group untuk nama pengguna dan notifikasi di kanan atas --}}
-        @php
-        use App\Models\Contact;
-        $unreadMessagesCount = Contact::where('is_read', false)->count();
-        @endphp
-
         <div class="notification-group">
             <span class="fw-bold me-3">Halo, {{ session('user')->nama }} ({{ session('user')->role }})</span>
-
             <a href="{{ route('contact_messages.index') }}" class="notification-icon">
                 <i class="bi bi-envelope-fill"></i>
+                @php
+                use App\Models\Contact;
+                $unreadMessagesCount = Contact::where('is_read', false)->count();
+                @endphp
                 @if($unreadMessagesCount > 0)
                 <span class="notification-badge">{{ $unreadMessagesCount }}</span>
                 @endif
@@ -529,6 +490,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
@@ -546,6 +508,12 @@
             }
         }
 
+        function toggleDropdown(e, id) {
+            e.preventDefault();
+            const menu = document.getElementById(id);
+            menu.classList.toggle('show');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');
             const topbar = document.getElementById('topbar');
@@ -557,44 +525,38 @@
                 content.classList.add('collapsed');
             }
         });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        // ✅ Success message
+
         @if(session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: '{{ session('success') }}',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
         @endif
 
-        // ✅ Error message
         @if(session('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal!',
-                text: '{{ session('error') }}',
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Tutup'
-            });
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            text: '{{ session('error') }}',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Tutup'
+        });
         @endif
 
-        // ✅ Validation errors
         @if ($errors->any())
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal!',
-                html: `{!! implode('<br>', $errors->all()) !!}`,
-                confirmButtonColor: '#d33',
-                confirmButtonText: 'Tutup'
-            });
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal!',
+            html: `{!! implode('<br>', $errors->all()) !!}`,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Tutup'
+        });
         @endif
-    </script>
-    <script>
-        document.getElementById('logout-link').addEventListener('click', function (e) {
+
+        document.getElementById('logout-link').addEventListener('click', function(e) {
             e.preventDefault();
             Swal.fire({
                 title: 'Logout?',
@@ -612,24 +574,6 @@
             });
         });
     </script>
-    <script>
-    function toggleDropdown(e, id) {
-        e.preventDefault();
-        const menu = document.getElementById(id);
-        // Kalau sudah aktif (karena halaman anak), jangan ditutup
-        if (!menu.classList.contains('show')) {
-            menu.classList.add('show');
-        }
-    }
-    </script>
-
-    <script>
-    document.getElementById('sidebarToggle').addEventListener('click', function() {
-        document.getElementById('sidebar').classList.toggle('show');
-    });
-    </script>
-
-
 </body>
 
 </html>
