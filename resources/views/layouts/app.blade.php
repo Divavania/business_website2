@@ -386,27 +386,6 @@
         </a>
 
         {{-- Master Data Dropdown --}}
-        {{-- <div class="dropdown-toggle-wrapper">
-            <a href="#"
-            class="dropdown-toggle d-flex align-items-center {{ request()->is('vendor*') || request()->is('solution*') ? 'active' : '' }}"
-            onclick="toggleDropdown(event, 'masterDataDropdown')">
-                <i class="bi bi-archive"></i>
-                <span class="text flex-grow-1">Master Data</span>
-                <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <div id="masterDataDropdown" class="submenu {{ request()->is('vendor*') || request()->is('solution*') ? 'show' : '' }}">
-                <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
-                    <i class="bi bi-truck"></i>
-                    <span class="text">Vendor</span>
-                </a>
-                <a href="{{ route('admin.solution.index') }}" class="{{ request()->routeIs('admin.solution.*') ? 'active' : '' }}">
-                    <i class="bi bi-gear"></i>
-                    <span class="text">Solusi</span>
-                </a>
-            </div>
-        </div> --}}
-
-        {{-- Master Data Dropdown --}}
         <div class="dropdown-toggle-wrapper">
             <a href="#"
             class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.vendors.*') || request()->routeIs('admin.solution.*') ? 'active' : '' }}"
