@@ -4,6 +4,27 @@
 
 @section('content')
 <div class="container-fluid mt-4">
+    {{-- SweetAlert Flash Message --}}
+    @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
+        @if(session($key))
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    icon: '{{ $type }}',
+                    title: '{{ ucfirst($key) }}!',
+                    text: @json(session($key)),
+                    showConfirmButton: {{ $key == 'error' ? 'true' : 'false' }},
+                    confirmButtonText: 'OK',
+                    timer: {{ $key == 'error' ? 'null' : '1600' }},
+                    timerProgressBar: true,
+                    toast: false,
+                    position: 'center'
+                });
+            });
+        </script>
+        @endif
+    @endforeach
+    
     <div class="card shadow-sm">
         <div class="card-header bg-white border-bottom py-3">
             <div class="d-flex justify-content-between align-items-center">
@@ -20,12 +41,12 @@
             </div>
         </div>
         <div class="card-body">
-            @if (session('success'))
+            {{-- @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            @endif
+            @endif --}}
 
             {{-- Form Pencarian --}}
             <div class="row mb-4">
@@ -91,10 +112,19 @@
                                     <a href="{{ route('contact_messages.show', $message->id) }}" class="btn btn-sm btn-outline-primary" title="Lihat Detail"> {{-- KOREKSI RUTE: tambahkan '' --}}
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <form action="{{ route('contact_messages.destroy', $message->id) }}" method="POST" class="d-inline"> {{-- KOREKSI RUTE: tambahkan '' --}}
+                                    {{-- <form action="{{ route('contact_messages.destroy', $message->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" title="Hapus Pesan">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form> --}}
+                                    <form action="{{ route('contact_messages.destroy', $message->id) }}" 
+                                        method="POST" 
+                                        class="d-inline form-delete">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus Pesan">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
@@ -116,3 +146,30 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.form-delete').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // stop submit langsung
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data ini akan dihapus permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit kalau user klik Ya
+                }
+            });
+        });
+    });
+});
+</script>
+@endpush

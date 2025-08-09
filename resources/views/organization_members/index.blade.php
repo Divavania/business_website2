@@ -30,7 +30,28 @@
         </button>
     </div>
 
-    @if(session('success'))
+    {{-- SweetAlert Flash Message --}}
+    @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
+        @if(session($key))
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                Swal.fire({
+                    icon: '{{ $type }}',
+                    title: '{{ ucfirst($key) }}!',
+                    text: @json(session($key)),
+                    showConfirmButton: {{ $key == 'error' ? 'true' : 'false' }},
+                    confirmButtonText: 'OK',
+                    timer: {{ $key == 'error' ? 'null' : '1600' }},
+                    timerProgressBar: true,
+                    toast: false,
+                    position: 'center'
+                });
+            });
+        </script>
+        @endif
+    @endforeach
+
+    {{-- @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -46,7 +67,7 @@
         </ul>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @endif
+    @endif --}}
 
     <div class="card-body p-0">
         {{-- Kontainer baru untuk scrolling --}}
@@ -77,7 +98,17 @@
                                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editMemberModal-{{ $member->id }}">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <form action="{{ route('admin.organization-members.destroy', $member->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">
+                                {{-- <form action="{{ route('admin.organization-members.destroy', $member->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i> Hapus
+                                    </button>
+                                </form> --}}
+                                {{-- Tombol Hapus --}}
+                                <form action="{{ route('admin.organization-members.destroy', $member->id) }}" 
+                                    method="POST" 
+                                    class="d-inline form-delete">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">
@@ -180,7 +211,7 @@
 @endforeach
 
 {{-- Modal Konfirmasi Hapus --}}
-<div class="modal fade" id="deleteMemberModal" tabindex="-1" aria-labelledby="deleteMemberModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="deleteMemberModal" tabindex="-1" aria-labelledby="deleteMemberModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -200,20 +231,33 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
-{{-- Skrip untuk mengelola modal hapus --}}
 @push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var deleteMemberModal = document.getElementById('deleteMemberModal');
-        deleteMemberModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget; // Button yang memicu modal
-            var memberId = button.getAttribute('data-member-id');
-            var form = document.getElementById('deleteForm');
-            form.action = '{{ url("admin/organization-members") }}/' + memberId;
+document.addEventListener("DOMContentLoaded", function () {
+    // Ambil semua form dengan class form-delete
+    document.querySelectorAll('.form-delete').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // hentikan submit langsung
+
+            Swal.fire({
+                title: 'Yakin ingin menghapus?',
+                text: "Data ini akan dihapus permanen!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // submit form jika dikonfirmasi
+                }
+            });
         });
     });
+});
 </script>
 @endpush
 

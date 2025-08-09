@@ -78,6 +78,6 @@ class OrganizationMemberController extends Controller
         }
         $organizationMember->delete();
 
-        return redirect()->route('admin.organization-members.index')->with('success', 'Anggota organisasi berhasil dihapus!');
+        return redirect()->route('admin.organization-members.index')->with('deleted', 'Anggota organisasi berhasil dihapus!');
     }
 }
