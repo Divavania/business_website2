@@ -75,12 +75,12 @@
                                 <td class="align-middle px-4">{{ $c->waktu_pelayanan }}</td>
                                 <td class="align-middle text-center px-4">
                                     <div class="d-flex justify-content-center gap-2">
-                                        <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $c->id }}" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                                        <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $c->id }}" title="Edit"><i class="fas fa-edit"></i></button>
                                         <form action="/service/hapus/{{ $c->id }}" method="POST" class="d-inline delete-form">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn btn-sm btn-outline-danger rounded-pill btn-delete" title="Hapus">
-                                                <i class="bi bi-trash-fill"></i>
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -162,25 +162,6 @@
         </div>
     </div>
 
-    {{-- <div class="modal fade" id="hapusModal{{ $c->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $c->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-sm">
-            <form method="POST" action="/service/hapus/{{ $c->id }}" class="modal-content shadow-lg rounded-lg border-0">
-                @csrf
-                @method('DELETE')
-                <div class="modal-header bg-danger text-white p-3 rounded-top-lg">
-                    <h5 class="modal-title" id="hapusModalLabel{{ $c->id }}"><i class="bi bi-exclamation-triangle-fill me-2"></i>Konfirmasi Hapus</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <div class="modal-body text-center p-4">
-                    <p class="mb-4">Apakah Anda yakin ingin menghapus service center <strong>"{{ $c->nama }}"</strong>?</p>
-                    <small class="text-muted">Tindakan ini tidak dapat dibatalkan.</small>
-                </div>
-                <div class="modal-footer d-flex justify-content-center p-3 bg-light border-top rounded-bottom-lg">
-                    <button type="submit" class="btn btn-danger fw-semibold px-4"><i class="bi bi-trash-fill me-2"></i>Ya, Hapus</button>
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Batal</button>
-                </div>
-            </form>
-        </div> --}}
     </div>
     @endforeach
 

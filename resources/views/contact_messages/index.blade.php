@@ -41,13 +41,6 @@
             </div>
         </div>
         <div class="card-body">
-            {{-- @if (session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif --}}
-
             {{-- Form Pencarian --}}
             <div class="row mb-4">
                 <div class="col-md-6 offset-md-3">
@@ -112,20 +105,13 @@
                                     <a href="{{ route('contact_messages.show', $message->id) }}" class="btn btn-sm btn-outline-primary" title="Lihat Detail"> {{-- KOREKSI RUTE: tambahkan '' --}}
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    {{-- <form action="{{ route('contact_messages.destroy', $message->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" title="Hapus Pesan">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form> --}}
                                     <form action="{{ route('contact_messages.destroy', $message->id) }}" 
                                         method="POST" 
                                         class="d-inline form-delete">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger" title="Hapus Pesan">
-                                            <i class="bi bi-trash"></i>
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 </td>

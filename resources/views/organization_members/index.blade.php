@@ -95,24 +95,17 @@
                             <td>{{ Str::limit($member->description, 50) }}</td>
                             <td>{{ $member->order }}</td>
                             <td>
-                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editMemberModal-{{ $member->id }}">
-                                    <i class="fas fa-edit"></i> Edit
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editMemberModal-{{ $member->id }}">
+                                    <i class="fas fa-edit"></i>
                                 </button>
-                                {{-- <form action="{{ route('admin.organization-members.destroy', $member->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus anggota ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i> Hapus
-                                    </button>
-                                </form> --}}
                                 {{-- Tombol Hapus --}}
                                 <form action="{{ route('admin.organization-members.destroy', $member->id) }}" 
                                     method="POST" 
                                     class="d-inline form-delete">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i> Hapus
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
                             </td>
@@ -209,29 +202,6 @@
     </div>
 </div>
 @endforeach
-
-{{-- Modal Konfirmasi Hapus --}}
-{{-- <div class="modal fade" id="deleteMemberModal" tabindex="-1" aria-labelledby="deleteMemberModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteMemberModalLabel">Konfirmasi Hapus</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Apakah Anda yakin ingin menghapus anggota ini?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <form id="deleteForm" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 @push('scripts')
 <script>

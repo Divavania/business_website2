@@ -16,7 +16,6 @@
         </div>
     </div>
 
-    {{-- SweetAlert Flash Message --}}
     @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
         @if(session($key))
         <script>
@@ -61,61 +60,21 @@
                             </td>
                             <td class="align-middle text-center px-4">
                                 <div class="d-flex justify-content-center gap-2">
-                                    {{-- Tombol Edit dengan border kuning --}}
-                                    <button type="button"
-                                            class="btn btn-sm p-2 rounded-circle d-flex align-items-center justify-content-center"
-                                            style="background-color: #3399FF; color: white; border: 3px solid #FFD700;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#editModal{{ $solution->id }}"
-                                            title="Edit">
+                                    <a href="#" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                                       data-bs-target="#editModal{{ $solution->id }}" title="Edit">
                                         <i class="fas fa-edit"></i>
-                                    </button>
-
-                                    {{-- Tombol Hapus dengan border merah --}}
-                                    {{-- <button type="button"
-                                            class="btn btn-sm p-2 rounded-circle d-flex align-items-center justify-content-center"
-                                            style="background-color: #3399FF; color: white; border: 3px solid red;"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal{{ $solution->id }}"
-                                            title="Hapus">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button> --}}
-                                    {{-- Tombol Hapus dengan border merah --}}
+                                    </a>
                                     <form method="POST" action="{{ route('admin.solution.destroy', $solution->id) }}" class="d-inline delete-form">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button"
-                                                class="btn btn-sm p-2 rounded-circle d-flex align-items-center justify-content-center btn-delete"
-                                                style="background-color: #3399FF; color: white; border: 3px solid red;"
+                                        <button type="button" class="btn btn-sm btn-outline-danger btn-delete" data-title="{{ $solution->judul }}"
                                                 title="Hapus">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 </div>
                             </td>
-
                         </tr>
-                        {{-- <div class="modal fade" id="deleteModal{{ $solution->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $solution->id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content shadow-lg rounded-xl">
-                                    <div class="modal-header bg-danger text-white px-4 py-3 rounded-top-xl d-flex justify-content-between align-items-center">
-                                        <h5 class="modal-title fs-5" id="deleteModalLabel{{ $solution->id }}"><i class="bi bi-trash-fill me-2"></i>Hapus Solusi</h5>
-                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body p-4">
-                                        <p>Apakah Anda yakin ingin menghapus solusi <strong>{{ $solution->judul }}</strong>?</p>
-                                    </div>
-                                    <div class="modal-footer d-flex justify-content-end p-3 bg-light border-top rounded-bottom-xl">
-                                        <button type="button" class="btn btn-secondary px-4 me-2" data-bs-dismiss="modal">Batal</button>
-                                        <form method="POST" action="{{ route('admin.solution.destroy', $solution->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger fw-semibold px-4"><i class="bi bi-trash me-2"></i>Hapus Solusi</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                         @endforeach
                     </tbody>
                 </table>
@@ -208,10 +167,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.btn-delete').forEach(button => {
         button.addEventListener('click', function () {
             const form = this.closest('form');
+            const title = this.dataset.title;
 
             Swal.fire({
                 title: 'Yakin ingin menghapus?',
-                text: "Data ini tidak dapat dikembalikan!",
+                text: `Solusi <strong>${title}</strong> akan dihapus secara permanen!`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

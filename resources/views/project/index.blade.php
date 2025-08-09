@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="container-fluid py-4">
-    {{-- Header Halaman: Judul, Deskripsi, dan Tombol Tambah --}}
     <div class="row align-items-center mb-3">
         <div class="col-md-6 mb-3 mb-md-0">
             <h3 class="mb-0 text-dark fw-bold">Manajemen Proyek</h3>
@@ -17,7 +16,6 @@
         </div>
     </div>
 
-    {{-- SweetAlert Flash Message --}}
     @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
         @if(session($key))
         <script>
@@ -38,7 +36,6 @@
         @endif
     @endforeach
 
-    {{-- Filter Tahun dan Total Proyek --}}
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
         <div class="input-group shadow-sm rounded-pill mb-2 mb-md-0" style="max-width: 300px;">
             <span class="input-group-text rounded-start-pill bg-white border-end-0 pe-1">
@@ -59,14 +56,12 @@
                     @endforeach
                 </ul>
             </div>
-            {{-- Informasi Total Proyek --}}
             <div class="text-end">
                 <p class="mb-0 text-muted">Total Proyek: <span class="fw-bold text-primary">{{ $projects->count() }}</span></p>
             </div>
         </div>
     </div>
 
-    {{-- Tabel Proyek --}}
     <div class="card shadow-sm border-0 rounded-lg">
         <div class="card-body p-0">
             <div class="table-responsive project-table-container">
@@ -95,38 +90,24 @@
                                 <td class="align-middle px-4">
                                     <img src="{{ Storage::url($project->image) }}" alt="Gambar Proyek" class="rounded" style="height: 50px; width: auto; object-fit: cover;">
                                 </td>
-                                {{-- <td class="align-middle text-center px-4">
-                                    <div class="d-flex justify-content-center gap-2">
-                                        <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $project->id }}" title="Edit"><i class="bi bi-pencil-fill"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $project->id }}" title="Hapus"><i class="bi bi-trash-fill"></i></button>
-                                    </div>
-                                </td> --}}
                                 <td class="align-middle text-center px-4">
                                     <div class="d-flex justify-content-center gap-2">
-                                        <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" 
-                                                data-bs-toggle="modal" 
-                                                data-bs-target="#editModal{{ $project->id }}" 
-                                                title="Edit">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </button>
-
-                                        {{-- Tombol hapus pakai SweetAlert --}}
-                                        <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" 
-                                                onclick="confirmDelete({{ $project->id }})" 
-                                                title="Hapus">
-                                            <i class="bi bi-trash-fill"></i>
-                                        </button>
-
-                                        {{-- Form hapus hidden --}}
+                                        <a href="#" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal"
+                                           data-bs-target="#editModal{{ $project->id }}" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
                                         <form id="delete-form-{{ $project->id }}" 
-                                            action="{{ route('admin.projects.destroy', $project->id) }}" 
-                                            method="POST" style="display: none;">
+                                              action="{{ route('admin.projects.destroy', $project->id) }}" 
+                                              method="POST" class="d-inline delete-form">
                                             @csrf
                                             @method('DELETE')
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete" data-title="{{ $project->title }}"
+                                                    title="Hapus" onclick="confirmDelete({{ $project->id }})">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
                                         </form>
                                     </div>
                                 </td>
-
                             </tr>
                         @empty
                             <tr>
@@ -141,7 +122,6 @@
         </div>
     </div>
 
-    {{-- MODAL TAMBAH PROYEK --}}
     <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <form method="POST" action="{{ route('admin.projects.store') }}" class="modal-content shadow-lg rounded-lg border-0" enctype="multipart/form-data">
@@ -182,9 +162,7 @@
         </div>
     </div>
 
-    {{-- MODAL EDIT & HAPUS (Loop untuk setiap item) --}}
     @foreach($projects as $project)
-        {{-- Modal Edit --}}
         <div class="modal fade" id="editModal{{ $project->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $project->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <form method="POST" action="{{ route('admin.projects.update', $project->id) }}" class="modal-content shadow-lg rounded-lg border-0" enctype="multipart/form-data">
@@ -231,30 +209,7 @@
                 </form>
             </div>
         </div>
-
-        {{-- Modal Hapus --}}
-        {{-- <div class="modal fade" id="hapusModal{{ $project->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $project->id }}" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <form method="POST" action="{{ route('admin.projects.destroy', $project->id) }}" class="modal-content shadow-lg rounded-lg border-0">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-header bg-danger text-white p-3 rounded-top-lg">
-                        <h5 class="modal-title" id="hapusModalLabel{{ $project->id }}"><i class="bi bi-exclamation-triangle-fill me-2"></i>Konfirmasi Hapus</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                    </div>
-                    <div class="modal-body text-center p-4">
-                        <p class="mb-4">Apakah Anda yakin ingin menghapus proyek <strong>"{{ $project->title }}"</strong>?</p>
-                        <small class="text-muted">Tindakan ini tidak dapat dibatalkan.</small>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center p-3 bg-light border-top rounded-bottom-lg">
-                        <button type="submit" class="btn btn-danger fw-semibold px-4"><i class="bi bi-trash-fill me-2"></i>Ya, Hapus</button>
-                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Batal</button>
-                    </div>
-                </form>
-            </div>
-        </div> --}}
     @endforeach
-
 </div>
 @endsection
 
@@ -270,23 +225,21 @@
         overflow: hidden;
     }
 
-    /* Menambahkan scrolling vertikal saat data melebihi 11 baris */
     .project-table-container {
-        max-height: 500px; /* Atur tinggi maksimal tabel, bisa disesuaikan */
+        max-height: 500px;
         overflow-y: auto;
     }
     
-    /* Mengurangi ukuran font untuk seluruh sel tabel */
     .table-fixed-layout td,
     .table-fixed-layout th {
-        font-size: 0.875rem; /* Ukuran font 14px */
+        font-size: 0.875rem;
     }
 
     .text-truncate-2 {
         display: -webkit-box;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        -webkit-line-clamp: 2; /* Batasi hingga 2 baris */
+        -webkit-line-clamp: 2;
     }
 </style>
 @endpush
@@ -331,7 +284,6 @@
             });
         });
 
-        // Set active class for 'Semua Tahun' by default
         document.querySelector('.filter-tahun[data-year="all"]').classList.add('active');
     });
 </script>
@@ -343,7 +295,7 @@
 function confirmDelete(id) {
     Swal.fire({
         title: 'Yakin ingin menghapus?',
-        text: "Data proyek ini akan dihapus permanen!",
+        text: `Proyek ini akan dihapus permanen!`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',

@@ -44,21 +44,6 @@
         </div>
     </div>
 
-    {{-- @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show rounded-lg shadow-sm" role="alert">
-            <i class="bi bi-check-circle me-2"></i>
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show rounded-lg shadow-sm" role="alert">
-            <i class="bi bi-exclamation-triangle me-2"></i>
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif --}}
-
     {{-- Filter (Input Pencarian) dan Total Admin --}}
     <div class="d-flex justify-content-between align-items-center mb-3">
         <form action="{{ url('/users') }}" method="GET" class="d-flex w-100 me-3">
@@ -99,31 +84,24 @@
                             <div class="d-flex justify-content-center gap-2">
                                 {{-- Tombol Edit --}}
                                 @if(session()->has('user') && session('user')->role == 'superadmin')
-                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $u->id }}" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" data-bs-toggle="modal" data-bs-target="#editModal{{ $u->id }}" title="Edit"><i class="fas fa-edit"></i></button>
                                 @else
                                     {{-- Tombol Edit non-aktif jika bukan superadmin --}}
-                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Edit"><i class="bi bi-pencil-fill"></i></button>
+                                    <button type="button" class="btn btn-sm btn-outline-warning rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Edit"><i class="fas fa-edit"></i></button>
                                 @endif
 
-                                {{-- Tombol Hapus --}}
-                                {{-- @if(session()->has('user') && session('user')->role == 'superadmin')
-                                    <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $u->id }}" title="Hapus"><i class="bi bi-trash-fill"></i></button>
-                                @else --}}
-                                    {{-- Tombol Hapus non-aktif jika bukan superadmin --}}
-                                    {{-- <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Hapus"><i class="bi bi-trash-fill"></i></button>
-                                @endif --}}
                                 {{-- Tombol Hapus --}}
                                 @if(session()->has('user') && session('user')->role == 'superadmin')
                                     <form action="{{ route('users.destroy', $u->id) }}" method="POST" class="d-inline form-delete">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill" title="Hapus">
-                                            <i class="bi bi-trash-fill"></i>
+                                            <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 @else
                                     <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" disabled style="opacity: 0.6; cursor: not-allowed;" title="Hapus">
-                                        <i class="bi bi-trash-fill"></i>
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 @endif
                             </div>
@@ -244,31 +222,6 @@
     @endif
 @endforeach
 
-    {{-- MODAL HAPUS ADMIN --}}
-    {{-- @foreach($users as $u)
-    @if(session()->has('user') && session('user')->role == 'superadmin')
-    <div class="modal fade" id="hapusModal{{ $u->id }}" tabindex="-1" aria-labelledby="hapusModalLabel{{ $u->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-sm">
-            <form method="POST" action="/users/hapus/{{ $u->id }}" class="modal-content shadow-lg rounded-lg border-0">
-                @csrf
-                @method('DELETE')
-                <div class="modal-header bg-danger text-white p-3 rounded-top-lg">
-                    <h5 class="modal-title" id="hapusModalLabel{{ $u->id }}"><i class="bi bi-exclamation-triangle-fill me-2"></i>Konfirmasi Hapus</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Tutup"></button>
-                </div>
-                <div class="modal-body text-center p-4">
-                    <p class="mb-4">Apakah Anda yakin ingin menghapus admin <strong>"{{ $u->nama }}"</strong>?</p>
-                    <small class="text-muted">Tindakan ini tidak dapat dibatalkan.</small>
-                </div>
-                <div class="modal-footer d-flex justify-content-center p-3 bg-light border-top rounded-bottom-lg">
-                    <button type="submit" class="btn btn-danger fw-semibold px-4"><i class="bi bi-trash-fill me-2"></i>Ya, Hapus</button>
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Batal</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    @endif
-@endforeach --}}
 </div>
 @endsection
 
