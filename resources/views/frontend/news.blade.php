@@ -22,13 +22,11 @@
     <div class="row">
       <!-- Berita Utama -->
       <div class="col-lg-8">
-        {{-- <h2 class="mb-4 fw-semibold text-dark">Berita Terbaru</h2> --}}
-
         <!-- Filter Rubrik & Search -->
         <form action="{{ route('frontend.news.index') }}" method="GET" class="mb-4">
           <div class="row g-3 align-items-center">
             <div class="col-md-4">
-              <select name="rubrik" class="form-select shadow-sm border-light" onchange="this.form.submit()">
+              <select name="rubrik" class="form-select form-select-sm shadow-sm border-light" onchange="this.form.submit()">
                 <option value="">Semua Rubrik</option>
                 @foreach($rubriks as $rubrik)
                   <option value="{{ $rubrik->id }}" {{ request('rubrik') == $rubrik->id ? 'selected' : '' }}>
@@ -38,9 +36,9 @@
               </select>
             </div>
             <div class="col-md-8">
-              <div class="input-group shadow-sm border-light">
+              <div class="input-group input-group-sm shadow-sm border-light">
                 <input type="text" name="search" class="form-control" placeholder="Cari berita atau event..." value="{{ request('search') }}">
-                <button class="btn btn-outline-primary" type="submit">
+                <button class="btn" type="submit" style="background-color: #4797ec; color: white;">
                   <i class="bi bi-search"></i>
                 </button>
               </div>
@@ -84,6 +82,11 @@
             </div>
           @endforelse
         </div>
+
+        <!-- Paginasi -->
+        <div class="mt-4 d-flex justify-content-center justify-content-md-end">
+          {{ $news->appends(request()->query())->links('pagination::bootstrap-5') }}
+        </div>
       </div>
 
       <!-- Sidebar -->
@@ -109,10 +112,10 @@
   </div>
 </section>
 
-<!-- Custom Styles -->
+@push('styles')
 <style>
   .hover-primary:hover {
-    color: #0d6efd;
+    color: #4797ec;
     transition: color 0.2s ease-in-out;
   }
 
@@ -125,11 +128,88 @@
   .form-control,
   .btn {
     border-radius: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(71, 151, 236, 0.25);
   }
 
   .breadcrumb-item + .breadcrumb-item::before {
     color: #6c757d;
   }
-</style>
 
+  .pagination .page-link {
+    color: #014a79;
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: #4797ec;
+    border-color: #4797ec;
+    color: white;
+  }
+
+  .pagination .page-link:hover {
+    background-color: #f8f9fa;
+    color: #014a79;
+  }
+
+  @media (max-width: 767.98px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .form-select,
+    .form-control {
+      font-size: 0.9rem;
+    }
+    .btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+    }
+    .news-card img {
+      height: 180px;
+    }
+    .card-body {
+      padding: 0.75rem !important;
+    }
+    .card-body h5 {
+      font-size: 1rem;
+    }
+    .pagination {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .form-select,
+    .form-control {
+      font-size: 0.95rem;
+    }
+    .btn {
+      font-size: 0.9rem;
+    }
+    .news-card img {
+      height: 200px;
+    }
+    .pagination {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .form-select,
+    .form-control {
+      font-size: 1rem;
+    }
+    .btn {
+      font-size: 0.95rem;
+    }
+    .pagination {
+      font-size: 0.95rem;
+    }
+  }
+</style>
+@endpush
 @endsection

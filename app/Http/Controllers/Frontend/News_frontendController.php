@@ -9,23 +9,24 @@ use Illuminate\Http\Request;
 
 class News_frontendController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $query = News::with('rubrik')
                     ->where('status', 'published')
                     ->latest('tanggal_publish');
 
         // Filter search jika ada
-        if (request()->has('search') && request('search') != '') {
-            $query->where('judul', 'like', '%' . request('search') . '%');
+        if ($search = $request->query('search')) {
+            $query->where('judul', 'like', '%' . $search . '%')
+                  ->orWhere('konten', 'like', '%' . $search . '%');
         }
 
         // Filter rubrik jika ada
-        if (request()->has('rubrik') && request('rubrik') != '') {
-            $query->where('rubrik_id', request('rubrik'));
+        if ($rubrik = $request->query('rubrik')) {
+            $query->where('rubrik_id', $rubrik);
         }
 
-        $news = $query->get();
+        $news = $query->paginate(6); // 6 berita per halaman
 
         return view('frontend.news', [
             'news' => $news,
@@ -33,7 +34,6 @@ class News_frontendController extends Controller
             'latestPosts' => $this->getLatestPosts()
         ]);
     }
-
 
     public function show(int $id)
     {
@@ -48,41 +48,44 @@ class News_frontendController extends Controller
         ]);
     }
 
-    // public function rubrik(int $id)
-    // {
-    //     $rubrik = Rubrik::findOrFail($id);
+    public function rubrik(int $id)
+    {
+        $rubrik = Rubrik::findOrFail($id);
 
-    //     $news = News::with('rubrik')
-    //                 ->where('rubrik_id', $rubrik->id)
-    //                 ->where('status', 'published')
-    //                 ->latest('tanggal_publish')
-    //                 ->get();
+        $news = News::with('rubrik')
+                    ->where('rubrik_id', $rubrik->id)
+                    ->where('status', 'published')
+                    ->latest('tanggal_publish')
+                    ->paginate(6); // 6 berita per halaman
 
-    //     return view('frontend.news_rubrik', [
-    //         'rubrik' => $rubrik,
-    //         'news' => $news,
-    //         'rubriks' => $this->getRubriks(),
-    //         'latestPosts' => $this->getLatestPosts()
-    //     ]);
-    // }
+        return view('frontend.news_rubrik', [
+            'rubrik' => $rubrik,
+            'news' => $news,
+            'rubriks' => $this->getRubriks(),
+            'latestPosts' => $this->getLatestPosts()
+        ]);
+    }
 
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('q');
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
 
-    //     $news = News::with('rubrik')
-    //                 ->where('status', 'published')
-    //                 ->where('judul', 'like', '%' . $query . '%')
-    //                 ->latest('tanggal_publish')
-    //                 ->get();
+        $news = News::with('rubrik')
+                    ->where('status', 'published')
+                    ->where(function ($q) use ($query) {
+                        $q->where('judul', 'like', '%' . $query . '%')
+                          ->orWhere('konten', 'like', '%' . $query . '%');
+                    })
+                    ->latest('tanggal_publish')
+                    ->paginate(6); // 6 berita per halaman
 
-    //     return view('frontend.news_search', [
-    //         'query' => $query,
-    //         'news' => $news,
-    //         'rubriks' => $this->getRubriks(),
-    //         'latestPosts' => $this->getLatestPosts()
-    //     ]);
-    // }
+        return view('frontend.news_search', [
+            'query' => $query,
+            'news' => $news,
+            'rubriks' => $this->getRubriks(),
+            'latestPosts' => $this->getLatestPosts()
+        ]);
+    }
 
     // Helpers
     private function getRubriks()
