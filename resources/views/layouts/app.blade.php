@@ -227,6 +227,16 @@
             display: flex;
             flex-direction: column;
             border-right: 1px solid rgba(255,255,255,0.05);
+            overflow-y: auto;
+        }
+
+        /* Scroll style biar lebih halus */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 10px;
         }
 
         /* Judul sidebar */
@@ -350,6 +360,17 @@
             display: block;
         }
 
+        /* Mobile: sidebar jadi offcanvas */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+        }
+
     </style>
 </head>
 
@@ -365,7 +386,7 @@
         </a>
 
         {{-- Master Data Dropdown --}}
-        <div class="dropdown-toggle-wrapper">
+        {{-- <div class="dropdown-toggle-wrapper">
             <a href="#"
             class="dropdown-toggle d-flex align-items-center {{ request()->is('vendor*') || request()->is('solution*') ? 'active' : '' }}"
             onclick="toggleDropdown(event, 'masterDataDropdown')">
@@ -374,6 +395,27 @@
                 <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <div id="masterDataDropdown" class="submenu {{ request()->is('vendor*') || request()->is('solution*') ? 'show' : '' }}">
+                <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
+                    <i class="bi bi-truck"></i>
+                    <span class="text">Vendor</span>
+                </a>
+                <a href="{{ route('admin.solution.index') }}" class="{{ request()->routeIs('admin.solution.*') ? 'active' : '' }}">
+                    <i class="bi bi-gear"></i>
+                    <span class="text">Solusi</span>
+                </a>
+            </div>
+        </div> --}}
+
+        {{-- Master Data Dropdown --}}
+        <div class="dropdown-toggle-wrapper">
+            <a href="#"
+            class="dropdown-toggle d-flex align-items-center {{ request()->routeIs('admin.vendors.*') || request()->routeIs('admin.solution.*') ? 'active' : '' }}"
+            onclick="toggleDropdown(event, 'masterDataDropdown')">
+                <i class="bi bi-archive"></i>
+                <span class="text flex-grow-1">Master Data</span>
+                <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <div id="masterDataDropdown" class="submenu {{ request()->routeIs('admin.vendors.*') || request()->routeIs('admin.solution.*') ? 'show' : '' }}">
                 <a href="{{ route('admin.vendors.index') }}" class="{{ request()->routeIs('admin.vendors.*') ? 'active' : '' }}">
                     <i class="bi bi-truck"></i>
                     <span class="text">Vendor</span>
@@ -600,6 +642,12 @@
             menu.classList.add('show');
         }
     }
+    </script>
+
+    <script>
+    document.getElementById('sidebarToggle').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('show');
+    });
     </script>
 
 
