@@ -50,13 +50,11 @@
             flex-grow: 1;
         }
 
-        /* header footer */
         #header,
         #footer {
             background-color: #ffffff;
             border-top: 1px solid #dee2e6;
         }
-
 
         #header .sitename,
         #footer {
@@ -105,15 +103,11 @@
 
         .contact-promo-btn {
             background-color: #007bff;
-            /* Primary blue */
             color: #ffffff !important;
-            /* White text */
         }
 
-        /* New style for hover state */
         .contact-promo-btn:hover {
             background-color: #0056b3 !important;
-            /* Darker blue on hover */
         }
 
         .whatsapp-sticky-button {
@@ -151,7 +145,6 @@
             line-height: 1;
         }
 
-        /* WhatsApp Modal Styling */
         #whatsappModal .modal-dialog {
             position: fixed;
             bottom: 90px;
@@ -251,7 +244,6 @@
             }
         }
 
-        /* Specific styles for the main navigation menu */
         #header .navmenu ul {
             margin: 0;
             padding: 0;
@@ -265,41 +257,30 @@
             white-space: nowrap;
         }
 
-        /* MODIFIED: Default color is secondary, font size increased */
         #header .navmenu a {
             display: block;
             padding: 10px 15px;
             font-size: 14px;
-            /* Increased from 12px to 14px */
             font-weight: 500;
             color: #556270;
-            /* Default color (secondary) */
             transition: 0.3s;
             text-decoration: none;
         }
 
-        /* MODIFIED: Only active and hover links are blue */
         #header .navmenu a.active,
         #header .navmenu a:hover {
             color: #007bff;
-            /* Blue color for active and hover states */
             background-color: transparent;
         }
 
-
-        /* --- Custom CSS for Vertical Dropdowns --- */
+        /* Desktop Dropdown */
         #header .navmenu li.dropdown ul {
             display: none;
-            /* Hide dropdowns by default */
             position: absolute;
-            /* Position dropdowns relative to their parent li */
             top: 100%;
-            /* Place dropdowns directly below the parent link */
             left: 0;
             min-width: 200px;
-            /* Adjust as needed */
             background: #fff;
-            /* Background for dropdown menu */
             box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
             z-index: 99;
             padding: 10px 0;
@@ -308,7 +289,6 @@
 
         #header .navmenu li.dropdown:hover>ul {
             display: block;
-            /* Show dropdown on hover */
         }
 
         #header .navmenu li.dropdown ul li {
@@ -320,18 +300,14 @@
             padding: 10px 20px;
             font-size: 14px;
             color: #556270;
-            /* Default color for dropdown items */
             background-color: transparent;
         }
 
         #header .navmenu li.dropdown ul a:hover {
             background-color: #f8f9fa;
-            /* Light background on hover */
             color: #007bff;
-            /* Blue color on hover for dropdown items */
         }
 
-        /* --- Navigasi Utama --- */
         #header .navmenu a,
         #header .navmenu .dropdown-toggle {
             display: block;
@@ -339,67 +315,23 @@
             font-size: 14px;
             font-weight: 500;
             color: #556270;
-            /* Warna default abu */
             background-color: transparent;
             text-decoration: none;
             transition: color 0.3s, background-color 0.3s;
+            border: none;
         }
 
         #header .navmenu a:hover,
         #header .navmenu .dropdown-toggle:hover,
         #header .navmenu a.active,
-        #header .navmenu .dropdown-toggle.active {
-            color: #007bff;
-            /* Warna biru saat hover / aktif */
+        #header .navmenu .dropdown-toggle.active,
+        #header .navmenu li.active > a,
+        #header .navmenu li.active > .dropdown-toggle {
+            color: #007bff !important;
             background-color: transparent;
         }
 
-        /* --- Dropdown Menu --- */
-        #header .navmenu li.dropdown ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 200px;
-            background: #fff;
-            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-            z-index: 99;
-            padding: 10px 0;
-            border-radius: 4px;
-        }
-
-        #header .navmenu li.dropdown:hover>ul {
-            display: block;
-        }
-
-        #header .navmenu li.dropdown ul li {
-            padding: 0;
-            margin: 0;
-        }
-
-        #header .navmenu li.dropdown ul a,
-        #header .navmenu .dropdown-menu .dropdown-item {
-            padding: 10px 20px;
-            font-size: 14px;
-            color: #556270;
-            /* Warna default dropdown */
-            background-color: transparent;
-            text-decoration: none;
-            display: block;
-            transition: color 0.3s, background-color 0.3s;
-        }
-
-        #header .navmenu li.dropdown ul a:hover,
-        #header .navmenu li.dropdown ul a.active,
-        #header .navmenu .dropdown-menu .dropdown-item:hover,
-        #header .navmenu .dropdown-menu .dropdown-item.active {
-            color: #007bff;
-            /* Biru saat hover/active */
-            background-color: #f8f9fa;
-            /* Background terang saat hover */
-        }
-
-        /* --- Responsive Mobile Menu --- */
+        /* Mobile Navigation */
         @media (max-width: 1199px) {
             #header .navmenu {
                 position: fixed;
@@ -475,123 +407,44 @@
             #header .btn-getstarted {
                 display: none !important;
             }
-        }
 
-
-        /* --- End Custom CSS for Vertical Dropdowns --- */
-
-        /* Responsive for mobile menu */
-        @media (max-width: 1199px) {
-            #header .navmenu {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 85%;
-                max-width: 300px;
-                height: 100vh;
-                background-color: #ffffff;
-                box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-                overflow-y: auto;
-                transition: 0.3s;
-                z-index: 9998;
-                padding: 20px 0;
-            }
-
-            body.mobile-nav-active #header .navmenu {
-                right: 0;
-            }
-
-            #header .navmenu ul {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0;
-                margin: 0;
-                width: 100%;
-            }
-
-            #header .navmenu li {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-
-            #header .navmenu li:last-child {
-                margin-bottom: 0;
-            }
-
-            #header .navmenu a {
-                padding: 12px 15px;
-                font-size: 16px;
-                border-bottom: 1px solid #eee;
-            }
-
-            #header .navmenu li:last-child a {
-                border-bottom: none;
-            }
-
-            #header .container-xl {
-                position: relative;
-            }
-
-            .mobile-nav-toggle {
-                display: block !important;
-                position: absolute;
-                right: 15px;
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: 28px;
-                z-index: 9999;
-                color: #556270;
-                cursor: pointer;
-            }
-
-            body.mobile-nav-active .mobile-nav-toggle {
-                color: #556270;
-            }
-
-            #header .logo {
-                margin-left: 15px;
-                margin-right: auto;
-            }
-
-            #header .logo .sitename {
-                font-size: 1rem;
-            }
-
-            #header .btn-getstarted {
-                display: none !important;
-            }
-        }
-
-        /* Mobile nav menu hidden by default */
-        @media (max-width: 1199px) {
-            .navmenu {
+            /* Mobile Dropdown */
+            #header .navmenu li.dropdown ul {
                 display: none;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: #fff;
-                padding: 1rem;
-                z-index: 999;
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+                position: static;
+                width: 100%;
+                background: #f8f9fa;
+                box-shadow: none;
+                padding: 0 0 0 20px;
+                border-radius: 0;
             }
 
-            .navmenu.navmenu-active {
+            #header .navmenu li.dropdown.active > ul {
                 display: block;
             }
+
+            #header .navmenu li.dropdown ul a {
+                padding: 10px 15px;
+                font-size: 14px;
+                color: #556270;
+                border-bottom: 1px solid #eee;
+            }
+
+            #header .navmenu li.dropdown ul a:hover,
+            #header .navmenu li.dropdown ul a.active {
+                background-color: #e9ecef;
+                color: #007bff;
+            }
         }
 
-        /* New CSS for centered social icons above copyright */
         .footer-social-centered {
             display: flex;
             justify-content: center;
             padding-bottom: 1rem;
-            /* Adjust padding as needed */
         }
 
         .footer-social-centered .social-links a {
             margin: 0 8px;
-            /* Spacing between icons */
         }
     </style>
 
@@ -603,7 +456,6 @@
 
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
             <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto">
                 <img src="{{ asset('template-assets/assets/img/logo-tigatra.png') }}" alt="Logo Tigatra" class="img-fluid me-2" style="height: 40px;">
                 <h1 class="sitename">Tigatra Adikara</h1>
@@ -611,40 +463,42 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ route('home') }}" class="active">Home</a></li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                            Tentang Kami
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.vendors.index') }}">Our Vendor</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                            Solusi & Project
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('frontend.solutions.index') }}">Solusi Teknologi</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.projects.index') }}">Project</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                            Layanan & Dukungan
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('frontend.services.index') }}">Service Center</a></li>
-                            <li><a class="dropdown-item" href="{{ route('frontend.news.index') }}">News & Event</a></li>
-                        </ul>
-                    </li>
-                    <a href="{{ route('frontend.contact.index') }}" class="btn contact-promo-btn btn-lg rounded-pill bg-primary text-ligt">
-                        <i class="bi bi-headset me-2 text-light"></i> Hubungi Kami
-                    </a>
+                   <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Beranda</a>
+                        </li>
+                        {{-- Dropdown Tentang Kami --}}
+                        <li class="nav-item dropdown {{ request()->routeIs(['frontend.about.index', 'frontend.vendors.index']) ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="tentangKamiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Tentang Kami
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="tentangKamiDropdown">
+                                <li><a class="dropdown-item {{ request()->routeIs('frontend.about.index') ? 'active' : '' }}" href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
+                                <li><a class="dropdown-item {{ request()->routeIs('frontend.vendors.index') ? 'active' : '' }}" href="{{ route('frontend.vendors.index') }}">Vendor</a></li>
+                            </ul>
+                        </li>
+                        {{-- Dropdown Solusi & Proyek --}}
+                        <li class="nav-item dropdown {{ request()->routeIs(['frontend.solutions.index', 'frontend.projects.index']) ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="solusiProyekDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Solusi & Proyek
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="solusiProyekDropdown">
+                                <li><a class="dropdown-item {{ request()->routeIs('frontend.solutions.index') ? 'active' : '' }}" href="{{ route('frontend.solutions.index') }}">Solusi Teknologi</a></li>
+                                <li><a class="dropdown-item {{ request()->routeIs('frontend.projects.index') ? 'active' : '' }}" href="{{ route('frontend.projects.index') }}">Proyek</a></li>
+                            </ul>
+                        </li>
+                        {{-- Dropdown Layanan & Dukungan --}}
+                        <li class="nav-item dropdown {{ request()->routeIs(['frontend.services.index', 'frontend.news.index']) ? 'active' : '' }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="layananDukunganDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Layanan & Dukungan
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="layananDukunganDropdown">
+                                <li><a class="dropdown-item {{ request()->routeIs('frontend.services.index') ? 'active' : '' }}" href="{{ route('frontend.services.index') }}">Pusat Layanan</a></li>
+                                <li><a class="dropdown-item {{ request()->routeIs('frontend.news.index') ? 'active' : '' }}" href="{{ route('frontend.news.index') }}">Berita & Acara</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('frontend.contact.index') ? 'active' : '' }}" href="{{ route('frontend.contact.index') }}">Kontak</a>
+                        </li>
                 </ul>
             </nav>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -821,56 +675,37 @@
                 whatsappModal.addEventListener('hidden.bs.modal', function() {});
             }
 
-            const currentPath = window.location.pathname;
-            const navLinks = document.querySelectorAll('#navmenu a');
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkHref = new URL(link.href).pathname;
-
-                // Mark parent dropdown as active if any of its children are active
-                let isChildActive = false;
-                if (link.closest('.dropdown')) {
-                    const dropdownItems = link.closest('.dropdown').querySelectorAll('.dropdown-menu a');
-                    dropdownItems.forEach(item => {
-                        const itemHref = new URL(item.href).pathname;
-                        if (itemHref === currentPath || (itemHref !== '/' && currentPath.startsWith(itemHref + '/'))) {
-                            isChildActive = true;
-                        }
-                    });
-                }
-
-                if (linkHref === currentPath) {
-                    link.classList.add('active');
-                } else if (currentPath === '/' && linkHref === '/') {
-                    link.classList.add('active');
-                } else if (linkHref !== '/' && currentPath.startsWith(linkHref + '/')) {
-                    link.classList.add('active');
-                }
-
-                // If a child is active, also mark the parent dropdown link as active
-                if (isChildActive) {
-                    const parentDropdownLink = link.closest('.dropdown')?.querySelector('.dropdown-toggle');
-                    if (parentDropdownLink) {
-                        parentDropdownLink.classList.add('active');
-                    }
-                }
-            });
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const whatsappModal = document.getElementById('whatsappModal');
+            if (whatsappModal) {
+                whatsappModal.addEventListener('hidden.bs.modal', function() {});
+            }
+
             const navToggle = document.querySelector('.mobile-nav-toggle');
             const navMenu = document.querySelector('#navmenu');
 
             navToggle.addEventListener('click', function() {
                 navMenu.classList.toggle('navmenu-active');
-                this.classList.toggle('bi-x'); 
+                this.classList.toggle('bi-x');
                 this.classList.toggle('bi-list');
+            });
+
+            // Toggle dropdown in mobile view
+            const dropdownToggles = document.querySelectorAll('.navmenu .dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 1199) {
+                        e.preventDefault();
+                        const parentLi = this.parentElement;
+                        parentLi.classList.toggle('active');
+                    }
+                });
             });
         });
     </script>
-
 
 </body>
 
