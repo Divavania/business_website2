@@ -200,7 +200,6 @@
 
 @push('styles')
 <style>
-    /* Alert notifikasi di kanan atas */
     .fixed-alert {
         position: fixed;
         top: 50px;
@@ -304,7 +303,6 @@
         }
     }
 
-    /* CSS tambahan untuk form kontak */
     .form-group label {
         font-weight: 600;
         margin-bottom: .5rem;
@@ -323,14 +321,13 @@
 
 @push('scripts')
 <script>
-    // Menambahkan class "show" pada alert agar muncul
     document.addEventListener('DOMContentLoaded', function() {
         const alert = document.querySelector('.fixed-alert');
         if (alert) {
             alert.classList.add('show');
             setTimeout(function() {
                 alert.classList.remove('show');
-            }, 3000); // Menghilang setelah 3 detik
+            }, 3000); 
         }
     });
 </script>

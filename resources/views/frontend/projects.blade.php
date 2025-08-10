@@ -93,7 +93,6 @@
 
 @push('styles')
 <style>
-    /* Style untuk card proyek */
     .projects-container {
         display: flex;
         flex-wrap: wrap;
@@ -133,7 +132,6 @@
         margin-top: 0;
     }
 
-    /* Style untuk memotong teks deskripsi */
     .text-truncate-2 {
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -141,7 +139,6 @@
         -webkit-line-clamp: 2;
     }
 
-    /* Style untuk offcanvas */
     .offcanvas-body {
         white-space: pre-wrap;
     }
@@ -173,7 +170,6 @@
         line-height: 1.6;
     }
 
-    /* Tambahan gaya untuk filter dropdown mobile */
     .filter-btn {
         background-color: white !important;
         border: 1px solid #343a40 !important;
@@ -222,7 +218,6 @@
             });
         }
         
-        // Atur tombol 'Semua Tahun' sebagai aktif saat pertama kali load
         const allDesktopButton = document.querySelector('.d-none.d-md-flex .filter-btn[data-year="all"]');
         const allDropdownItem = document.querySelector('.d-md-none .dropdown-item.filter-btn[data-year="all"]');
         if (allDesktopButton) {
@@ -251,7 +246,6 @@
             });
         });
 
-        // Logika untuk Offcanvas detail proyek (tidak berubah)
         const offcanvas = document.getElementById('projectOffcanvas');
         offcanvas.addEventListener('show.bs.offcanvas', function(event) {
             const button = event.relatedTarget;

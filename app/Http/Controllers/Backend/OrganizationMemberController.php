@@ -59,7 +59,6 @@ class OrganizationMemberController extends Controller
         $data = $request->except('photo');
 
         if ($request->hasFile('photo')) {
-            // Hapus foto lama
             if ($organizationMember->photo) {
                 Storage::disk('public')->delete($organizationMember->photo);
             }

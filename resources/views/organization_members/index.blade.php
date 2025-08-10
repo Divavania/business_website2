@@ -4,19 +4,15 @@
 
 @section('content')
 <style>
-    /* Mengatur tinggi maksimal dan scrolling vertikal untuk tabel */
     .table-scroll-container {
         max-height: 600px;
-        /* Atur tinggi maksimal sesuai kebutuhan Anda (sekitar 5-6 baris) */
         overflow-y: auto;
     }
 
-    /* Memastikan thead tetap terlihat saat scrolling */
     .table-scroll-container thead th {
         position: sticky;
         top: 0;
         background-color: #f8f9fa;
-        /* Warna background thead */
         z-index: 10;
         border-bottom: 2px solid #dee2e6;
     }
@@ -206,11 +202,9 @@
 @push('scripts')
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    // Ambil semua form dengan class form-delete
     document.querySelectorAll('.form-delete').forEach(function(form) {
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // hentikan submit langsung
-
+            e.preventDefault(); 
             Swal.fire({
                 title: 'Yakin ingin menghapus?',
                 text: "Data ini akan dihapus permanen!",
@@ -222,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit(); // submit form jika dikonfirmasi
+                    form.submit(); 
                 }
             });
         });

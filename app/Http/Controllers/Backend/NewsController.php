@@ -13,19 +13,17 @@ class NewsController extends Controller
     {
         $query = News::with('rubrik');
 
-        // Pencarian berdasarkan judul
         if ($search = $request->query('search')) {
             $query->where('judul', 'like', '%' . $search . '%');
         }
 
-        // Filter berdasarkan status
         if ($status = $request->query('status')) {
             $query->where('status', $status);
         }
 
         $news = $query->orderByDesc('tanggal_publish')
                      ->orderByDesc('tanggal_dibuat')
-                     ->paginate(10); // Menambahkan paginasi dengan 10 item per halaman
+                     ->paginate(10); 
 
         return view('news.index', compact('news'));
     }
@@ -53,7 +51,6 @@ class NewsController extends Controller
 
         $validated['tanggal_dibuat'] = now();
 
-        // Jika status langsung "published", set juga tanggal_publish
         if ($validated['status'] === 'published') {
             $validated['tanggal_publish'] = now();
         }
@@ -86,8 +83,7 @@ class NewsController extends Controller
         if ($request->hasFile('gambar')) {
             $validated['gambar'] = $request->file('gambar')->store('uploads/news', 'public');
         }
-
-        // Jika status diubah menjadi published dan belum punya tanggal_publish
+        
         if (
             $validated['status'] === 'published' &&
             ($news->tanggal_publish === null || $news->status !== 'published')
@@ -110,7 +106,6 @@ class NewsController extends Controller
 
     public function filter($status)
     {
-        // Mengarahkan ke index dengan parameter status
         return redirect()->route('admin.news.index', ['status' => $status]);
     }
 }

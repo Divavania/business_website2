@@ -73,7 +73,6 @@
     </div>
 </div>
 
-<!-- Modal Tambah Rubrik -->
 <div class="modal fade" id="modalRubrik" tabindex="-1">
     <div class="modal-dialog">
         <form id="formRubrik" class="modal-content">
@@ -121,12 +120,10 @@
         })
         .then(res => res.json())
         .then(data => {
-            // Tambah ke dropdown
             const select = document.querySelector('select[name="rubrik_id"]');
             const option = new Option(data.nama, data.id, true, true);
             select.add(option);
 
-            // Tambah ke daftar di modal
             const list = document.getElementById('rubrikList');
             const li = document.createElement('li');
             li.className = 'list-group-item d-flex justify-content-between align-items-center';
@@ -141,7 +138,6 @@
         });
     });
 
-    // Hapus rubrik (delegation)
     document.addEventListener('click', function (e) {
         if (e.target.closest('.btn-delete-rubrik')) {
             const button = e.target.closest('.btn-delete-rubrik');
@@ -158,10 +154,8 @@
             })
             .then(res => {
                 if (res.ok) {
-                    // Hapus dari modal
                     button.closest('li').remove();
 
-                    // Hapus dari select box
                     const option = document.querySelector(`select[name="rubrik_id"] option[value="${id}"]`);
                     if (option) option.remove();
                 } else {

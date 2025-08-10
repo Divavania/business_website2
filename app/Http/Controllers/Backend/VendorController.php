@@ -11,21 +11,16 @@ use Illuminate\Support\Facades\Log;
 
 class VendorController extends Controller
 {
-    // Tampilkan halaman utama admin vendor
     public function index()
     {
         try {
             $vendors = Vendor::with('category')->latest()->get();
             $categories = VendorCategory::all();
 
-            // UBAH DARI: return view('admin.vendors.index', compact('vendors', 'categories'));
-            // MENJADI:
             return view('vendors.index', compact('vendors', 'categories'));
         } catch (\Exception $e) {
             Log::error('Error in VendorController@index: ' . $e->getMessage());
             
-            // Return view with empty collections if there's an error
-            // UBAH JUGA DI SINI:
             return view('vendors.index', [
                 'vendors' => collect(),
                 'categories' => collect()
@@ -33,9 +28,6 @@ class VendorController extends Controller
         }
     }
 
-    // --- CRUD Kategori ---
-
-    // Simpan kategori baru
     public function storeCategory(Request $request)
     {
         try {
@@ -52,7 +44,6 @@ class VendorController extends Controller
         }
     }
 
-    // Perbarui kategori
     public function updateCategory(Request $request, VendorCategory $category)
     {
         try {
@@ -69,11 +60,9 @@ class VendorController extends Controller
         }
     }
 
-    // Hapus kategori
     public function destroyCategory(VendorCategory $category)
     {
         try {
-            // Update semua vendor yang terkait agar vendor_category_id-nya menjadi null
             $category->vendors()->update(['vendor_category_id' => null]);
             $category->delete();
             
@@ -84,9 +73,6 @@ class VendorController extends Controller
         }
     }
 
-    // --- CRUD Vendor ---
-
-    // Simpan vendor baru
     public function storeVendor(Request $request)
     {
         try {
@@ -118,7 +104,6 @@ class VendorController extends Controller
         }
     }
 
-    // Perbarui vendor
     public function updateVendor(Request $request, Vendor $vendor)
     {
         try {
@@ -131,7 +116,6 @@ class VendorController extends Controller
             ]);
 
             if ($request->hasFile('logo')) {
-                // Hapus logo lama jika ada
                 if ($vendor->logo_path && Storage::disk('public')->exists($vendor->logo_path)) {
                     Storage::disk('public')->delete($vendor->logo_path);
                 }
@@ -155,11 +139,9 @@ class VendorController extends Controller
         }
     }
 
-    // Hapus vendor
     public function destroyVendor(Vendor $vendor)
     {
         try {
-            // Hapus logo dari storage jika ada
             if ($vendor->logo_path && Storage::disk('public')->exists($vendor->logo_path)) {
                 Storage::disk('public')->delete($vendor->logo_path);
             }

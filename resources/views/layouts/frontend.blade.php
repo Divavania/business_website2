@@ -693,7 +693,6 @@
                 this.classList.toggle('bi-list');
             });
 
-            // Toggle dropdown in mobile view
             const dropdownToggles = document.querySelectorAll('.navmenu .dropdown-toggle');
             dropdownToggles.forEach(toggle => {
                 toggle.addEventListener('click', function(e) {

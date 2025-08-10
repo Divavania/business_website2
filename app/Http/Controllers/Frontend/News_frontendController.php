@@ -15,18 +15,16 @@ class News_frontendController extends Controller
                     ->where('status', 'published')
                     ->latest('tanggal_publish');
 
-        // Filter search jika ada
         if ($search = $request->query('search')) {
             $query->where('judul', 'like', '%' . $search . '%')
                   ->orWhere('konten', 'like', '%' . $search . '%');
         }
 
-        // Filter rubrik jika ada
         if ($rubrik = $request->query('rubrik')) {
             $query->where('rubrik_id', $rubrik);
         }
 
-        $news = $query->paginate(6); // 6 berita per halaman
+        $news = $query->paginate(6); 
 
         return view('frontend.news', [
             'news' => $news,
@@ -56,7 +54,7 @@ class News_frontendController extends Controller
                     ->where('rubrik_id', $rubrik->id)
                     ->where('status', 'published')
                     ->latest('tanggal_publish')
-                    ->paginate(6); // 6 berita per halaman
+                    ->paginate(6); 
 
         return view('frontend.news_rubrik', [
             'rubrik' => $rubrik,
@@ -77,7 +75,7 @@ class News_frontendController extends Controller
                           ->orWhere('konten', 'like', '%' . $query . '%');
                     })
                     ->latest('tanggal_publish')
-                    ->paginate(6); // 6 berita per halaman
+                    ->paginate(6); 
 
         return view('frontend.news_search', [
             'query' => $query,
@@ -87,7 +85,6 @@ class News_frontendController extends Controller
         ]);
     }
 
-    // Helpers
     private function getRubriks()
     {
         return Rubrik::orderBy('nama')->get();

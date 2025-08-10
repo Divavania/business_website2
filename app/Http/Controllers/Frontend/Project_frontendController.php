@@ -16,7 +16,6 @@ class Project_frontendController extends Controller
         $years = Project::select('year')->distinct()->orderBy('year', 'desc')->pluck('year');
         $projects = Project::orderBy('year', 'desc')->orderBy('order', 'asc')->get();
 
-        // Mengubah path view dari 'frontend.projects.index' menjadi 'frontend.projects'
         return view('frontend.projects', compact('years', 'projects'));
     }
 }

@@ -13,10 +13,8 @@ class Solution_frontendController extends Controller
      */
     public function index()
     {
-        // Mengambil semua solusi dari database
         $solutions = Solution::all();
         
-        // Mengarahkan ke view frontend solusi
         return view('frontend.solutions', compact('solutions'));
     }
 }

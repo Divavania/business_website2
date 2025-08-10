@@ -274,14 +274,11 @@
             searchForm.submit();
         });
 
-        // SKRIP UNTUK MENAMPILKAN MODAL SECARA OTOMATIS JIKA ADA ERROR VALIDASI
-        /* @if ($errors->any()) */
             const modalTarget = "{{ session('modal_target') }}";
             if (modalTarget) {
                 const myModal = new bootstrap.Modal(document.getElementById(modalTarget));
                 myModal.show();
             }
-        /* @endif */
     });
 </script>
 @endpush
@@ -291,7 +288,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.form-delete').forEach(function(form) {
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop submit langsung
+            e.preventDefault(); 
 
             Swal.fire({
                 title: 'Yakin ingin menghapus?',
@@ -304,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit(); // submit kalau konfirmasi
+                    form.submit(); 
                 }
             });
         });

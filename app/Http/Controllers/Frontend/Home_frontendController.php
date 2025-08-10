@@ -23,10 +23,8 @@ class Home_frontendController extends Controller
             ];
         }
 
-        // Mengambil 4 solusi terbaru untuk ditampilkan di halaman utama
         $solutions = Solution::latest()->take(4)->get();
 
-        // Mengambil 3 proyek terbaru
         $projects = Project::latest()->take(3)->get();
 
         $companyInfo = CompanyInfo::first();
@@ -48,7 +46,6 @@ class Home_frontendController extends Controller
             ];
         }
 
-        // Meneruskan semua variabel yang dibutuhkan ke view
         return view('frontend.index', compact('about', 'companyInfo', 'solutions', 'projects'));
     }
 }

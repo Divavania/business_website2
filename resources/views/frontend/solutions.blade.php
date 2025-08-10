@@ -33,7 +33,6 @@
             </div>
         </div>
 
-        <!-- Modal untuk setiap solusi -->
         <div class="modal fade" id="solutionModal{{ $solution->id }}" tabindex="-1" aria-labelledby="solutionModalLabel{{ $solution->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content shadow-lg rounded-xl">
@@ -45,7 +44,6 @@
                         <p class="text-muted">{{ $solution->deskripsi }}</p>
                     </div>
                     <div class="modal-footer border-0 d-flex justify-content-center pt-0">
-                        <!-- Tombol "Konsultasi Sekarang" yang mengarah ke halaman kontak -->
                         <a href="{{ url('contact') }}" class="btn btn-primary btn-md rounded-pill px-4 me-3 consultation-btn shadow-lg">
                             <i class="bi bi-chat-left-dots-fill me-2"></i>Konsultasi Sekarang
                         </a>

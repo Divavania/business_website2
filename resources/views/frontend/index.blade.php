@@ -341,9 +341,10 @@
         transform: translateY(-1px);
     }
 
-    /* Custom CSS untuk styling card solusi */#technology-solutions {
-    background-color: rgb(69, 150, 237, 0.5);
-}
+    #technology-solutions {
+        background-color: rgb(69, 150, 237, 0.5);
+    }
+
     .solution-card {
         border-radius: 1rem;
         transition: all 0.3s ease-in-out, transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -360,9 +361,7 @@
 
     .solution-card:hover {
         transform: translateY(-10px) scale(1.05);
-        /* Efek hover yang lebih dramatis */
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        /* Bayangan yang lebih dalam */
         border-color: #014a79;
     }
 
@@ -371,29 +370,24 @@
         margin-bottom: 0;
         color: #014a79;
         font-weight: 600;
-        /* Sedikit lebih tebal */
     }
 
     .solution-icon {
         font-size: 2.5rem;
-        /* Ukuran ikon lebih besar */
         color: #4797ec;
-        /* Warna ikon yang menarik */
         transition: all 0.3s ease-in-out;
     }
 
     .solution-card:hover .solution-icon {
         color: #014a79;
-        /* Ubah warna ikon saat hover */
     }
 
     .solution-card .card-body {
         position: relative;
         z-index: 2;
-        /* Pastikan konten di atas pseudo-element */
+
     }
 
-    /* Efek background gradient saat hover (opsional) */
     .solution-card::before {
         content: '';
         position: absolute;
@@ -415,178 +409,173 @@
     .solution-card:hover .card-title,
     .solution-card:hover .solution-icon {
         color: #ffffff;
-        /* Ubah warna teks dan ikon menjadi putih saat hover */
         position: relative;
         z-index: 3;
     }
 
-    /* Style untuk card proyek yang diambil dari proyek.blade.php */
-.project-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+    .project-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
 
-.project-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
+    .project-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
 
-.project-card .card-body {
-    padding: 1.25rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
+    .project-card .card-body {
+        padding: 1.25rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
 
-.project-card .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-top: 0;
-}
+    .project-card .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-top: 0;
+    }
 
-.project-card .btn-outline-primary {
-    color: #014a79;
-    border-color: #014a79;
-    transition: all 0.3s ease;
-}
+    .project-card .btn-outline-primary {
+        color: #014a79;
+        border-color: #014a79;
+        transition: all 0.3s ease;
+    }
 
-.project-card .btn-outline-primary:hover {
-    background-color: #014a79;
-    color: #fff;
-}
+    .project-card .btn-outline-primary:hover {
+        background-color: #014a79;
+        color: #fff;
+    }
 
-/* Style untuk memotong teks deskripsi */
-.text-truncate-2 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-}
+    .text-truncate-2 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 2;
+    }
 
-/* Style untuk offcanvas (jika ingin digunakan) */
-.offcanvas-body {
-    white-space: pre-wrap;
-    padding: 1.5rem;
-}
+    .offcanvas-body {
+        white-space: pre-wrap;
+        padding: 1.5rem;
+    }
 
-.offcanvas-body img {
-    margin-bottom: 0.75rem;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
-}
+    .offcanvas-body img {
+        margin-bottom: 0.75rem;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
 
-#offcanvas-year {
-    display: inline-block;
-    margin-bottom: 0.25rem;
-}
+    #offcanvas-year {
+        display: inline-block;
+        margin-bottom: 0.25rem;
+    }
 
-#offcanvas-title {
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-}
+    #offcanvas-title {
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+    }
 
-#offcanvas-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
+    #offcanvas-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
 
+    .cta.section {
+        background-color: #f8f9fa;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 
-/* Styling untuk Bagian CTA Baru */
-.cta.section {
-    background-color: #f8f9fa;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
+    .cta-card {
+        background-color: #ffffff;
+        border: 1px solid #e9ecef;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.cta-card {
-    background-color: #ffffff;
-    border: 1px solid #e9ecef;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    max-width: 900px; /* Ukuran card lebih lebar */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.cta-title {
-    font-size: 2rem;
-    color: #014a79;
-    font-weight: 700;
-}
-
-.cta-description {
-    font-size: 1.1rem;
-    color: #555555;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Tombol utama */
-.cta-btn {
-    background-color: #014a79;
-    color: #ffffff;
-    border: 2px solid #014a79;
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.cta-btn:hover {
-    background-color: #003a60;
-    border-color: #003a60;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(1, 74, 121, 0.35);
-    color: #ffffff;
-}
-
-/* Tombol sekunder (outline) */
-.cta-btn-outline {
-    background-color: transparent;
-    color: #014a79;
-    border: 2px solid #014a79;
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.cta-btn-outline:hover {
-    background-color: #014a79;
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(1, 74, 121, 0.35);
-}
-
-@media (max-width: 767.98px) {
     .cta-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        color: #014a79;
+        font-weight: 700;
     }
 
     .cta-description {
-        font-size: 0.95rem;
+        font-size: 1.1rem;
+        color: #555555;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .cta-btn, .cta-btn-outline {
-        width: 100%;
-        max-width: 300px;
+    /* Tombol utama */
+    .cta-btn {
+        background-color: #014a79;
+        color: #ffffff;
+        border: 2px solid #014a79;
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
-}
+
+    .cta-btn:hover {
+        background-color: #003a60;
+        border-color: #003a60;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(1, 74, 121, 0.35);
+        color: #ffffff;
+    }
+
+    /* Tombol sekunder (outline) */
+    .cta-btn-outline {
+        background-color: transparent;
+        color: #014a79;
+        border: 2px solid #014a79;
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .cta-btn-outline:hover {
+        background-color: #014a79;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(1, 74, 121, 0.35);
+    }
+
+    @media (max-width: 767.98px) {
+        .cta-title {
+            font-size: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 0.95rem;
+        }
+
+        .cta-btn,
+        .cta-btn-outline {
+            width: 100%;
+            max-width: 300px;
+        }
+    }
 </style>
 @endpush
 

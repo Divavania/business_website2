@@ -17,7 +17,6 @@ class Vendor extends Model
         'vendor_category_id'
     ];
 
-    // Relasi ke VendorCategory
     public function category()
     {
         return $this->belongsTo(VendorCategory::class, 'vendor_category_id');

@@ -138,7 +138,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('.form-delete').forEach(function(form) {
             form.addEventListener('submit', function(e) {
-                e.preventDefault(); // stop submit langsung
+                e.preventDefault(); 
 
                 Swal.fire({
                     title: 'Yakin ingin menghapus?',
@@ -151,7 +151,7 @@
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        form.submit(); // submit kalau user klik Ya
+                        form.submit(); 
                     }
                 });
             });

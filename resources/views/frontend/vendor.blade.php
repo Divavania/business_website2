@@ -82,34 +82,30 @@
 
 @if(isset($categories) && $categories->count() > 0 && isset($vendors) && $vendors->count() > 0)
 <style>
-    /* Default state for filter buttons */
     .filter-btn {
         background-color: white !important;
-        border: 1px solid #343a40 !important; /* border-dark */
-        color: #6c757d !important; /* text-secondary */
+        border: 1px solid #343a40 !important;
+        color: #6c757d !important; 
         transition: all 0.2s ease-in-out;
     }
 
-    /* Hover and Active state for filter buttons */
     .filter-btn:hover,
     .filter-btn.active {
-        background-color: #6c757d !important; /* bg-secondary */
-        border-color: #6c757d !important; /* border-secondary */
-        color: white !important; /* text-white */
+        background-color: #6c757d !important; 
+        border-color: #6c757d !important; 
+        color: white !important; 
     }
 
-    /* Adjust dropdown item colors specifically for hover/active */
     .dropdown-item.filter-btn:hover,
     .dropdown-item.filter-btn.active {
-        background-color: #6c757d !important; /* bg-secondary */
-        color: white !important; /* text-white */
+        background-color: #6c757d !important; 
+        color: white !important; 
     }
 
-    /* Specific style for the dropdown button on mobile */
     .d-md-none .dropdown button#categoryDropdown {
-        background-color: #6c757d !important; /* bg-secondary */
-        border-color: #6c757d !important; /* border-secondary */
-        color: white !important; /* text-white */
+        background-color: #6c757d !important; 
+        border-color: #6c757d !important; 
+        color: white !important; 
     }
 </style>
 <script>
@@ -118,7 +114,6 @@
         const vendorCards = document.querySelectorAll('.vendor-card');
         const categoryDropdown = document.getElementById('categoryDropdown');
 
-        // Function to handle filtering
         function filterVendors(categoryId) {
             vendorCards.forEach(card => {
                 const cardCategoryId = card.dataset.categoryId;
@@ -130,17 +125,13 @@
             });
         }
 
-        // Initial filter to show all vendors
         filterVendors('all');
 
-        // Set 'Semua' as active by default for both button group and dropdown
-        // For regular buttons (desktop)
         const allDesktopButton = document.querySelector('.d-none.d-md-flex .filter-btn[data-category-id="all"]');
         if (allDesktopButton) {
             allDesktopButton.classList.add('active');
         }
         
-        // For dropdown item (mobile) and update dropdown button text
         const allDropdownItem = document.querySelector('.dropdown-item.filter-btn[data-category-id="all"]');
         if (allDropdownItem) {
             allDropdownItem.classList.add('active');
@@ -150,17 +141,14 @@
 
         filterButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default link behavior for dropdown items
+                event.preventDefault(); 
                 
-                // Remove active states from all filter buttons/items
                 filterButtons.forEach(btn => {
                     btn.classList.remove('active');
                 });
                 
-                // Set the clicked button/item as active
                 button.classList.add('active');
 
-                // Update dropdown button text if it's a dropdown item
                 if (button.tagName === 'A' && button.closest('.dropdown-menu')) {
                     categoryDropdown.textContent = button.textContent;
                 }

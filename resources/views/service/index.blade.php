@@ -130,7 +130,7 @@
         </div>
     </div>
 
-    {{-- MODAL EDIT & HAPUS (Loop untuk setiap item - Kode ini tetap sama) --}}
+    {{-- MODAL EDIT & HAPUS  --}}
     @foreach($centers as $c)
     <div class="modal fade" id="editModal{{ $c->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $c->id }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -194,10 +194,9 @@
         text-overflow: ellipsis;
     }
 
-    /* Kustomisasi untuk input-group agar lebih rapi */
     .input-group.rounded-pill > .input-group-text,
     .input-group.rounded-pill > .form-control {
-        border-color: #dee2e6; /* Warna border default Bootstrap */
+        border-color: #dee2e6; 
     }
 </style>
 @endpush

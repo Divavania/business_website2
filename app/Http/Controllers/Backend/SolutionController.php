@@ -8,14 +8,12 @@ use Illuminate\Http\Request;
 
 class SolutionController extends Controller
 {
-    // Menampilkan daftar solusi
     public function index()
     {
-        $solutions = Solution::all(); // Mengambil semua solusi dari database
-        return view('solution.index', compact('solutions')); // Mengirim data ke view
+        $solutions = Solution::all(); 
+        return view('solution.index', compact('solutions')); 
     }
 
-    // Menyimpan solusi baru ke dalam database
     public function store(Request $request)
     {
         $request->validate([
@@ -23,12 +21,11 @@ class SolutionController extends Controller
             'deskripsi' => 'required',
         ]);
 
-        Solution::create($request->all()); // Menyimpan data solusi ke database
+        Solution::create($request->all()); 
 
         return redirect()->route('admin.solution.index')->with('success', 'Solusi berhasil ditambahkan');
     }
 
-    // Memperbarui solusi di dalam database
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -36,17 +33,16 @@ class SolutionController extends Controller
             'deskripsi' => 'required',
         ]);
 
-        $solution = Solution::findOrFail($id); // Mengambil solusi yang akan diperbarui
-        $solution->update($request->all()); // Memperbarui data solusi
+        $solution = Solution::findOrFail($id); 
+        $solution->update($request->all());
 
         return redirect()->route('admin.solution.index')->with('success', 'Solusi berhasil diperbarui');
     }
 
-    // Menghapus solusi dari database
     public function destroy($id)
     {
-        $solution = Solution::findOrFail($id); // Mengambil solusi berdasarkan ID
-        $solution->delete(); // Menghapus solusi dari database
+        $solution = Solution::findOrFail($id); 
+        $solution->delete(); 
 
         return redirect()->route('admin.solution.index')->with('deleted', 'Solusi berhasil dihapus');
     }

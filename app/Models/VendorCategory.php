@@ -11,7 +11,7 @@ class VendorCategory extends Model
 
     protected $fillable = ['name'];
 
-    // Relasi ke Vendor
+
     public function vendors()
     {
         return $this->hasMany(Vendor::class, 'vendor_category_id');

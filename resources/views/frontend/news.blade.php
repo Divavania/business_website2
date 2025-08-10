@@ -4,7 +4,6 @@
 
 @section('content')
 
-<!-- Page Title -->
 <div class="page-title light-background">
   <div class="container d-lg-flex justify-content-between align-items-center">
     <h1 class="mb-2 mb-lg-0">Berita & Acara</h1> 
@@ -15,14 +14,12 @@
       </ol>
     </nav>
   </div>
-</div><!-- End Page Title -->
+</div>
 
 <section class="pb-5">
   <div class="container">
     <div class="row">
-      <!-- Berita Utama -->
       <div class="col-lg-8">
-        <!-- Filter Rubrik & Search -->
         <form action="{{ route('frontend.news.index') }}" method="GET" class="mb-4">
           <div class="row g-3 align-items-center">
             <div class="col-md-4">
@@ -46,7 +43,6 @@
           </div>
         </form>
 
-        <!-- Daftar Berita -->
         <div class="row g-4">
           @forelse($news as $item)
             <div class="col-md-6">
@@ -83,13 +79,11 @@
           @endforelse
         </div>
 
-        <!-- Paginasi -->
         <div class="mt-4 d-flex justify-content-center justify-content-md-end">
           {{ $news->appends(request()->query())->links('pagination::bootstrap-5') }}
         </div>
       </div>
 
-      <!-- Sidebar -->
       <div class="col-lg-4 mt-5 mt-lg-0">
         <div class="p-4 border bg-white shadow-sm rounded-4">
           <h5 class="fw-semibold mb-3 text-dark">Latest Posts</h5>

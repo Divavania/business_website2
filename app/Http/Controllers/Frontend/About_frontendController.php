@@ -20,17 +20,14 @@ class About_frontendController extends Controller
             ];
         }
 
-        // Mengambil semua anggota dan memisahkannya
         $members = DB::table('organization_members')->orderBy('order')->get();
 
-        // Memisahkan data
         $president = $members->where('order', 1)->first();
         $vicePresident = $members->where('order', 2)->first();
         $staff = $members->filter(function ($member) {
             return $member->order >= 3;
         });
 
-        // Mengirimkan semua data ke view
         return view('frontend.about', compact('about', 'president', 'vicePresident', 'staff'));
     }
 }

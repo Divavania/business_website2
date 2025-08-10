@@ -149,13 +149,13 @@
     }
 
     .btn-success {
-        background-color: #198754 !important; /* Warna hijau */
+        background-color: #198754 !important; 
         border-color: #198754 !important;
         color: #fff !important;
     }
 
     .btn-danger {
-        background-color: #dc3545 !important; /* Warna merah */
+        background-color: #dc3545 !important; 
         border-color: #dc3545 !important;
         color: #fff !important;
     }
