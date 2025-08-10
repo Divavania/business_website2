@@ -6,11 +6,11 @@
 @section('content')
 <div class="page-title light-background">
     <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Our Project</h1>
+        <h1 class="mb-2 mb-lg-0">Proyek</h1>
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li class="current">Our Project</li>
+                <li class="current">Proyek</li>
             </ol>
         </nav>
     </div>
@@ -23,12 +23,28 @@
             <p>Jelajahi portofolio proyek yang telah kami selesaikan</p>
         </div>
 
-        <div class="d-flex justify-content-center mb-4">
+        {{-- Filter untuk layar besar (desktop) --}}
+        <div class="d-flex justify-content-center mb-4 d-none d-md-flex">
             <div class="btn-group" role="group" aria-label="Filter tahun proyek">
-                <button type="button" class="btn filter-btn active" data-year="all">Semua Tahun</button>
+                <button type="button" class="btn filter-btn" data-year="all">Semua Tahun</button>
                 @foreach($years as $year)
                 <button type="button" class="btn filter-btn" data-year="{{ $year }}">{{ $year }}</button>
                 @endforeach
+            </div>
+        </div>
+
+        {{-- Filter untuk layar kecil (mobile) dengan dropdown --}}
+        <div class="d-flex justify-content-center mb-4 d-md-none">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle rounded-pill px-4 py-2 text-white" type="button" id="yearDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Semua Tahun
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="yearDropdown">
+                    <li><a class="dropdown-item filter-btn" href="#" data-year="all">Semua Tahun</a></li>
+                    @foreach($years as $year)
+                    <li><a class="dropdown-item filter-btn" href="#" data-year="{{ $year }}">{{ $year }}</a></li>
+                    @endforeach
+                </ul>
             </div>
         </div>
 
@@ -156,35 +172,86 @@
         font-size: 0.95rem;
         line-height: 1.6;
     }
+
+    /* Tambahan gaya untuk filter dropdown mobile */
+    .filter-btn {
+        background-color: white !important;
+        border: 1px solid #343a40 !important;
+        color: #6c757d !important;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+        background-color: #6c757d !important;
+        border-color: #6c757d !important;
+        color: white !important;
+    }
+
+    .d-md-none .dropdown button#yearDropdown {
+        background-color: #6c757d !important;
+        border-color: #6c757d !important;
+        color: white !important;
+    }
+
+    .dropdown-item.filter-btn:hover,
+    .dropdown-item.filter-btn.active {
+        background-color: #6c757d !important;
+        color: white !important;
+    }
+
 </style>
 @endpush
 
 @push('scripts')
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Logika untuk filter tahun proyek
         const filterButtons = document.querySelectorAll(".filter-btn");
         const projectItems = document.querySelectorAll(".project-item");
+        const yearDropdown = document.getElementById('yearDropdown');
+        
+        function filterProjects(filterYear) {
+            let found = false;
+            projectItems.forEach(item => {
+                const itemYear = item.getAttribute("data-year");
+                if (filterYear === "all" || itemYear === filterYear) {
+                    item.style.display = "block";
+                    found = true;
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+        
+        // Atur tombol 'Semua Tahun' sebagai aktif saat pertama kali load
+        const allDesktopButton = document.querySelector('.d-none.d-md-flex .filter-btn[data-year="all"]');
+        const allDropdownItem = document.querySelector('.d-md-none .dropdown-item.filter-btn[data-year="all"]');
+        if (allDesktopButton) {
+            allDesktopButton.classList.add('active');
+        }
+        if (allDropdownItem) {
+            allDropdownItem.classList.add('active');
+        }
+
+        filterProjects('all');
 
         filterButtons.forEach(btn => {
-            btn.addEventListener("click", function() {
+            btn.addEventListener("click", function(event) {
+                event.preventDefault();
+
                 filterButtons.forEach(b => b.classList.remove("active"));
                 this.classList.add("active");
 
                 const filterYear = this.getAttribute("data-year");
 
-                projectItems.forEach(item => {
-                    const itemYear = item.getAttribute("data-year");
-                    if (filterYear === "all" || itemYear === filterYear) {
-                        item.style.display = "block";
-                    } else {
-                        item.style.display = "none";
-                    }
-                });
+                if (this.closest('.dropdown-menu')) {
+                    yearDropdown.textContent = this.textContent;
+                }
+                
+                filterProjects(filterYear);
             });
         });
 
-        // Logika untuk Offcanvas detail proyek
+        // Logika untuk Offcanvas detail proyek (tidak berubah)
         const offcanvas = document.getElementById('projectOffcanvas');
         offcanvas.addEventListener('show.bs.offcanvas', function(event) {
             const button = event.relatedTarget;

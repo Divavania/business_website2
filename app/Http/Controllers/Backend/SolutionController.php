@@ -20,7 +20,7 @@ class SolutionController extends Controller
     {
         $request->validate([
             'judul' => 'required|max:100',
-            'deskripsi' => 'required|max:255',
+            'deskripsi' => 'required',
         ]);
 
         Solution::create($request->all()); // Menyimpan data solusi ke database
@@ -33,7 +33,7 @@ class SolutionController extends Controller
     {
         $request->validate([
             'judul' => 'required|max:100',
-            'deskripsi' => 'required|max:255',
+            'deskripsi' => 'required',
         ]);
 
         $solution = Solution::findOrFail($id); // Mengambil solusi yang akan diperbarui

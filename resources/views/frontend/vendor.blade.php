@@ -1,13 +1,13 @@
 @extends('layouts.frontend')
 
 @section('content')
-<div class="bg-light border-bottom py-4 mb-5">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <h1 class="mb-2 mb-md-0 h4 fw-bold text-dark">Our Vendor</h1>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Our Vendor</li>
+<div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Vendor</h1>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li class="current">Vendor</li>
             </ol>
         </nav>
     </div>
