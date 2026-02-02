@@ -5,9 +5,9 @@
     <div class="bg-white shadow rounded p-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold mb-0">Manajemen Vendor & Kategori</h4>
-            <a href="{{ route('admin.vendors.store') }}" class="btn" style="background-color: #4797ec; color: white;">
+            <!-- <a href="{{ route('admin.vendors.store') }}" class="btn" style="background-color: #4797ec; color: white;">
                 <i class="bi bi-plus-circle me-1"></i> Tambah Vendor
-            </a>
+            </a> -->
         </div>
 
         @foreach (['success' => 'success', 'error' => 'error', 'deleted' => 'warning'] as $key => $type)
