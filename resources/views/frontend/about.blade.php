@@ -12,7 +12,7 @@
             <h1 class="mb-2 mb-lg-0">Tentang Kami</h1>
             <nav class="breadcrumbs">
                 <ol>
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/') }}">Beranda</a></li>
                     <li class="current">Tentang Kami</li>
                 </ol>
             </nav>
@@ -65,11 +65,12 @@
                 <p style="color: #666;">Kenali Tim Profesional Kami</p>
             </header>
 
-            {{-- Baris untuk President (Order 1) --}}
-            @if(isset($president))
+            {{-- Baris untuk President DAN Vice President (Order 1 & 2) - Digabung jadi 1 baris --}}
+            @if(isset($president) || isset($vicePresident))
             <div class="row d-flex justify-content-center">
-                <div class="col-lg-4 col-md-8 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card team-member border-0 shadow-sm rounded-3 w-100 h-100 bg-white"
+                @if(isset($president))
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card team-member border-0 shadow-sm rounded-2 w-100 h-100 bg-white"
                         style="cursor: pointer;"
                         data-bs-toggle="modal"
                         data-bs-target="#memberDetailModal"
@@ -86,14 +87,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @endif
+                @endif
 
-            {{-- Baris untuk Vice President (Order 2) --}}
-            @if(isset($vicePresident))
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-4 col-md-8 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card team-member border-0 shadow-sm rounded-3 w-100 h-100 bg-white"
+                @if(isset($vicePresident))
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card team-member border-0 shadow-sm rounded-2 w-100 h-100 bg-white"
                         style="cursor: pointer;"
                         data-bs-toggle="modal"
                         data-bs-target="#memberDetailModal"
@@ -110,15 +108,16 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
             @endif
 
-            {{-- Baris untuk Staff (Order 3 ke atas) --}}
+            {{-- Baris untuk Staff (Order 3 ke atas) - Responsif untuk semua ukuran layar --}}
             @if($staff->isNotEmpty())
             <div class="row d-flex justify-content-center">
-                @foreach($staff as $member)
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card team-member border-0 shadow-sm rounded-3 w-100 h-100 bg-white"
+                @foreach($staff as $index => $member)
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="{{ 100 + ($index * 100) }}">
+                    <div class="card team-member border-0 shadow-sm rounded-2 w-100 h-100 bg-white"
                         style="cursor: pointer;"
                         data-bs-toggle="modal"
                         data-bs-target="#memberDetailModal"
@@ -144,12 +143,12 @@
 
 <div class="modal fade" id="memberDetailModal" tabindex="-1" aria-labelledby="memberDetailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
+        <div class="modal-content rounded-3">  <!-- Tambahkan rounded-3 di sini -->
             <div class="modal-body p-0 position-relative">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 1rem; right: 1rem; z-index: 1050;"></button>
                 <div class="row g-0">
                     <div class="col-md-5">
-                        <img id="modalMemberPhoto" src="" alt="" class="modal-member-photo img-fluid w-100 h-100">
+                        <img id="modalMemberPhoto" src="" alt="" class="modal-member-photo img-fluid w-100 h-100 rounded-start">  <!-- Tambahkan rounded-start -->
                     </div>
                     <div class="col-md-7 p-4 d-flex flex-column justify-content-center">
                         <h4 id="modalMemberName" class="fw-bold mb-1" style="color: #333;"></h4>
@@ -266,18 +265,35 @@
     .modal-content {
         background-color: #fff;
         color: #333;
+        border-radius: 0.5rem !important;
+        overflow: hidden;
     }
 
     .modal-member-photo {
         border: none !important;
         object-fit: cover;
         object-position: center;
+        border-radius: 0.5rem 0 0 0.5rem !important;
     }
 
     .modal-body.p-0 {
         min-height: 400px;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    @media (max-width: 576px) {
+        .card-title {
+            font-size: 0.9rem !important;
+        }
+        
+        .card-text {
+            font-size: 0.75rem !important;
+        }
+        
+        .card-body {
+            padding: 0.75rem !important;
+        }
     }
 
     .breadcrumbs ol a {

@@ -9,7 +9,7 @@
         <h1 class="mb-2 mb-lg-0">Berita </h1> 
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="{{ url('/') }}">Home</a></li>
+            <li><a href="{{ url('/') }}">Beranda</a></li>
             <li><a href="{{ route('frontend.news.index') }}">Berita & Acara</a></li>
             <li class="current">Berita</li>
           </ol>

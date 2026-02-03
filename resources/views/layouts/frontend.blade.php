@@ -546,11 +546,11 @@
 
                 {{-- Kolom 3: Useful Links --}}
                 <div class="col-lg-3 col-md-6 text-start ">
-                    <h4>Useful Links</h4>
+                    <h4>Tautan Cepat</h4>
                     <ul>
-                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('home') }}">Beranda</a></li>
                         <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
-                        <li><a href="{{ route('frontend.solutions.index') }}">Solusi & Project</a></li>
+                        <li><a href="{{ route('frontend.solutions.index') }}">Solusi & Proyek</a></li>
                         <li><a href="{{ route('frontend.services.index') }}">Layanan & Dukungan </a></li>
                         <li><a href="{{ route('frontend.contact.index') }}">Hubungi Kami</a></li>
                     </ul>
@@ -558,7 +558,7 @@
 
                 {{-- Kolom 4: Lokasi Service Center --}}
                 <div class="col-lg-3 col-md-6 text-start">
-                    <h4>Lokasi Service Center</h4>
+                    <h4>Lokasi Pusat Layanan</h4>
                     @if(isset($serviceCenters) && $serviceCenters->isNotEmpty())
                     <ul>
                         @foreach($serviceCenters->take(3) as $center) {{-- Take only the first 3 --}}
@@ -574,7 +574,7 @@
                         @endif
                     </ul>
                     @else
-                    <p>Lokasi service center belum tersedia.</p>
+                    <p>Lokasi pusat layanan belum tersedia.</p>
                     @endif
                 </div>
 
