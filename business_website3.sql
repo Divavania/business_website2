@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Feb 2026 pada 04.04
+-- Waktu pembuatan: 04 Feb 2026 pada 06.20
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `business_website2`
+-- Database: `business_website3`
 --
 
 -- --------------------------------------------------------
@@ -378,7 +378,39 @@ INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `website_url`, `ve
 (18, 'APC', 'vendors/logos/UX0ZsSAt0tYuIShnMoyQE0eytO7DsBaqv8MZkcFX.png', NULL, 'https://www.se.com/id/id/brands/apc/', 9, '2026-02-03 08:18:13', '2026-02-03 08:18:13'),
 (19, 'Liebert', 'vendors/logos/HbiKIroJNMbuLYqOzSiG8ZnOGtujWVB6WOiFL2Xe.png', NULL, NULL, 9, '2026-02-03 08:19:30', '2026-02-03 08:19:30'),
 (20, 'Vertiv', 'vendors/logos/mpoJYIruszuCc5lyWQ6GCjuVbMUp8LJrzytTf0Z3.jpg', NULL, 'https://www.vertiv.com/en-us/', 10, '2026-02-03 08:26:54', '2026-02-03 08:26:54'),
-(21, 'indorack', 'vendors/logos/Lqwzli5TcdYCvXpp31EOZrEk2BqbFFHbftgfQzJV.png', NULL, 'https://www.indorack.co.id/', 10, '2026-02-03 08:27:17', '2026-02-03 08:27:17');
+(21, 'indorack', 'vendors/logos/Lqwzli5TcdYCvXpp31EOZrEk2BqbFFHbftgfQzJV.png', NULL, 'https://www.indorack.co.id/', 10, '2026-02-03 08:27:17', '2026-02-03 08:27:17'),
+(22, 'Sangoma', 'vendors/logos/kb6Hh2g0u71WHqEsBRwKJdnhuOepS1hZycO0ZtWz.png', NULL, 'https://sangoma.com/', 11, '2026-02-03 20:43:55', '2026-02-03 20:43:55'),
+(23, 'Yeastar', 'vendors/logos/nhpInh77HjD6P9Ifi5w35uZKEGrJUaFlLu9ytYBZ.png', NULL, 'https://www.yeastar.com/', 11, '2026-02-03 20:47:08', '2026-02-03 20:47:08'),
+(24, 'Fanvil', 'vendors/logos/rvlPIZXfmbr8ZnJtG7X1rfksrtolMbxVxLabyP43.jpg', NULL, 'https://fanvil.com/', 11, '2026-02-03 20:49:46', '2026-02-03 20:49:46'),
+(25, 'Logitech', 'vendors/logos/khxQQkRZUgvVk5AnhpzCyw7R9l4OQiaBlskJ6axg.png', NULL, 'https://www.logitechg.com/id-id/innovation/g-hub.html', 12, '2026-02-03 20:52:38', '2026-02-03 20:52:38'),
+(26, 'DJI Enterprise', 'vendors/logos/cfVKsOZeP8pu736OPN3g6oCKJrkYgyXy4rvcIWEQ.png', NULL, 'https://enterprise.dji.com/', 13, '2026-02-03 20:56:32', '2026-02-03 20:56:32'),
+(27, 'DJI Agriculture', 'vendors/logos/XA4j03oSPgtghLDsv2bH7zNKuHMx1IQQNoFgz2xN.png', NULL, 'https://ag.dji.com/', 13, '2026-02-03 20:58:53', '2026-02-03 20:58:53'),
+(28, 'DJI Delivery', 'vendors/logos/z7bWfK6ng8qqjvxt0cFeYDwQlZVrytPcgR3PW10x.png', NULL, 'https://www.dji.com/id/delivery', 13, '2026-02-03 21:03:51', '2026-02-03 21:03:51'),
+(29, 'Skyfend', 'vendors/logos/DtX6oqAv8wYidkuefKCX5E8Qnf9Oa4nJdXSiUwqQ.webp', NULL, 'https://www.skyfend.com/', 13, '2026-02-03 21:06:18', '2026-02-03 21:06:18'),
+(30, 'Elitekorps', 'vendors/logos/7WkhUU3tvURNQF3D2qlqiGLYuouFQKesAFoCSL6N.png', NULL, 'https://halorobotics.com/elitekorps/', 13, '2026-02-03 21:28:05', '2026-02-03 21:30:00'),
+(31, 'Flyability', 'vendors/logos/TkZ58LYS8uAEH14v3w5rNICMx9R4HI0myakEZU0D.webp', NULL, 'https://www.flyability.com/', 13, '2026-02-03 21:32:19', '2026-02-03 21:32:19'),
+(32, 'Hikvision', 'vendors/logos/gljBh9mAGqQynY389X4cqrgYPAyuf2dUHrFasXMP.jpg', NULL, 'https://www.hikvision.com/id/', 14, '2026-02-03 21:34:28', '2026-02-03 21:34:28'),
+(33, 'ZKTeco', 'vendors/logos/Dp0UuYCBItD7pHOQZp4S5X2PwNaIArlX5Xx4mIhj.png', NULL, 'https://www.zkteco.co.id/', 14, '2026-02-03 21:35:54', '2026-02-03 21:35:54'),
+(34, 'Hikvision', 'vendors/logos/mDHasNdCrBX6pD8OHrETimdwyuFf8JFZuXTZUFXJ.jpg', NULL, 'https://www.hikvision.com/id/', 15, '2026-02-03 21:37:27', '2026-02-03 21:37:27'),
+(35, 'Datatron', 'vendors/logos/nbyCQIUV6m7CgTzZBwQ9rtO76Gf4qOYAN4igiUiS.png', NULL, 'https://datatron.com/', 15, '2026-02-03 21:40:27', '2026-02-03 21:40:27'),
+(36, 'Huawei', 'vendors/logos/uaqm8DAhrsMHpt8QImUQfKK3YIyDH061MHTDargY.png', NULL, 'https://consumer.huawei.com/id/', 15, '2026-02-03 21:42:11', '2026-02-03 21:42:11'),
+(37, 'Acer', 'vendors/logos/BDMWoLPXmWmmfuJ8pfrzCbIhV4Iz6ZqmHa1JiPV6.png', NULL, 'https://www.acer.com/id-id/', 15, '2026-02-03 21:43:47', '2026-02-03 21:43:47'),
+(38, 'Epson', 'vendors/logos/nRLSrdhclFw2wsBm2z65vVUfzgFEAtnCk7FThLln.png', NULL, 'https://www.epson.co.id/', 15, '2026-02-03 21:45:06', '2026-02-03 21:45:06'),
+(39, 'Microsoft', 'vendors/logos/26iyyhuT0LTZHhKPkKC3Ce96TPv638ICeniVDZo8.png', NULL, 'https://www.microsoft.com/id-id', 16, '2026-02-03 21:47:46', '2026-02-03 21:48:20'),
+(40, 'Google', 'vendors/logos/DTKyf5LCy8vI6vINefQsBh5mF7o9VFGDzXWxkxcR.png', NULL, 'https://www.google.com/?hl=id', 16, '2026-02-03 21:50:02', '2026-02-03 21:50:02'),
+(41, 'CZUR', 'vendors/logos/HRsSdVcRcKSBtPjWcxjQTFUJvm95wE8bD3y6KqBT.webp', NULL, 'https://www.czur.com/', 17, '2026-02-03 21:52:01', '2026-02-03 21:52:01'),
+(42, 'Dell', 'vendors/logos/REKjlz0MRhuu9scASYUfosX0IgF8QKeE0MAfaUZV.png', NULL, 'https://www.dell.com/en-id', 18, '2026-02-03 21:53:27', '2026-02-03 21:53:27'),
+(43, 'HP', 'vendors/logos/MqoEtOWKG3k4QU8jyIsEjt2OO31bvEU6Bk21QLIr.png', NULL, 'https://www.hp.com/id-id/home.html', 18, '2026-02-03 21:54:40', '2026-02-03 21:54:40'),
+(44, 'Asus', 'vendors/logos/IQnFWZbUsu7tt6diyirmR21x9q09tOo9l33QHOFn.png', NULL, 'https://www.asus.com/id/', 18, '2026-02-03 21:56:04', '2026-02-03 21:56:04'),
+(45, 'Acer', 'vendors/logos/XKl9X6s7feHhwBxNZwslKweLxyVRr6iwz2Km6sOa.png', NULL, 'https://www.acer.com/id-id/', 18, '2026-02-03 21:56:57', '2026-02-03 21:56:57'),
+(46, 'Lenovo', 'vendors/logos/HqhvcRVKBcl3NUxxdLXJqUYZJQ7yLb5ZPx3M1w2Q.jpg', NULL, 'https://www.lenovo.com/id/id/', 18, '2026-02-03 21:59:28', '2026-02-03 21:59:28'),
+(47, 'MSI', 'vendors/logos/35WFJpIaUrnokgDMtHluY1rBl1zmPPgVBsejuTzw.png', NULL, 'https://id.msi.com/', 18, '2026-02-03 22:01:25', '2026-02-03 22:01:25'),
+(48, 'Seagate', 'vendors/logos/vsBVVYDod27u32wlcdkc0AyL617wnC0Q8nXe6whP.png', NULL, 'https://www.seagate.com/id/id/', 19, '2026-02-03 22:04:59', '2026-02-03 22:04:59'),
+(49, 'Western Digital', 'vendors/logos/ZTew7xoJmBeVBZlTNmfMWj8E5BsAVTvNQbCG06ER.png', NULL, 'https://www.westerndigital.com/in-id', 19, '2026-02-03 22:07:50', '2026-02-03 22:07:50'),
+(50, 'QNAP', 'vendors/logos/zSK2BDs2sd94eQml2ko2ZIbwFumV4yRujfQ8WfAT.jpg', NULL, 'https://www.qnap.com/en-as', 19, '2026-02-03 22:10:00', '2026-02-03 22:10:00'),
+(51, 'Synology', 'vendors/logos/SM9Z6Jw30UYEASOayxLRgxnedaiO5hNcmOoDCX6P.png', NULL, 'https://www.synology.com/en-global', 19, '2026-02-03 22:11:47', '2026-02-03 22:11:47'),
+(52, 'Aspen Aerogels', 'vendors/logos/eRQ674DsVRbR3S9J8KvJvWklogsDMZCDYtXzQFdZ.png', NULL, 'https://www.aerogel.com/', 20, '2026-02-03 22:13:36', '2026-02-03 22:13:36'),
+(53, 'Armacell', 'vendors/logos/JeDNR2KtOyZ1yVuPm8MOWaXnFuJfDuOr4tTn8ooc.png', NULL, 'https://www.armacell.com/en-ID', 20, '2026-02-03 22:15:09', '2026-02-03 22:15:09');
 
 -- --------------------------------------------------------
 
@@ -584,7 +616,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT untuk tabel `vendor_categories`
