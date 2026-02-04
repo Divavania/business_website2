@@ -28,7 +28,7 @@
                 <h2 class="text-center">Layanan Teknologi & Dukungan Operasional</h2>
                 <p class="text-center">Kami menyediakan jasa instalasi CCTV, Fiber Optic, Server, perangkat jaringan, serta penjualan hardware dan instrumen pendukung operasional pabrik dan perusahaan. Inovasi kami telah membantu berbagai industri menghadapi tantangan digital dengan solusi efektif dan efisien. </p>
                 <div class="d-flex justify-content-center">
-                    <a href="{{ route('frontend.services.index') }}" class="btn-get-started">Service Center</a>
+                    <a href="{{ route('frontend.services.index') }}" class="btn-get-started">Pusat Layanan</a>
                     <a href="{{ route('frontend.contact.index') }}" class="btn-get-started btn-get-started-alt ms-3">Hubungi Kami</a>
                 </div>
             </div>
@@ -80,8 +80,8 @@
         <div class="row gy-4 justify-content-center">
             @foreach($solutions->take(4) as $solution)
             <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card solution-card h-100 shadow-sm border-0 text-center">
-                    <div class="card-body p-4">
+                <div class="card solution-card h-100 shadow-sm border-0">
+                    <div class="card-body p-4 d-flex align-items-center justify-content-center text-center">
                         <h5 class="card-title fw-bold text-dark">{{ $solution->judul }}</h5>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                 </p>
                 <div class="d-flex justify-content-center flex-wrap gap-3">
                     <a href="{{ route('frontend.services.index') }}" class="btn cta-btn btn-lg rounded-pill">
-                        <i class="bi bi-headset me-2"></i> Kunjungi Service Center
+                        <i class="bi bi-headset me-2"></i> Kunjungi Pusat Layanan
                     </a>
                     <a href="{{ route('frontend.contact.index') }}" class="btn cta-btn-outline btn-lg rounded-pill">
                         <i class="bi bi-chat-dots me-2"></i> Hubungi Kami
@@ -357,10 +357,18 @@
         text-align: center;
         background-color: #ffffff;
         border: 1px solid #e9ecef;
+        overflow: hidden;
+    }
+
+    .solution-card .card-body {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%; 
     }
 
     .solution-card:hover {
-        transform: translateY(-10px) scale(1.05);
+        transform: translateY(-5px) scale(1.05);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         border-color: #014a79;
     }
@@ -575,6 +583,23 @@
             width: 100%;
             max-width: 300px;
         }
+    }
+
+    .navbar-mobile ul,
+    .mobile-nav ul {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Jika ada container offcanvas */
+    .offcanvas-body {
+        padding-left: 0 !important; /* Paksa rapat kiri jika perlu */
+    }
+    
+    /* Memastikan item list rata kiri penuh */
+    .navbar-mobile li,
+    .mobile-nav li {
+        list-style: none;
     }
 </style>
 @endpush

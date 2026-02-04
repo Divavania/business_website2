@@ -13,41 +13,52 @@
     </div>
 </div>
 
-<div class="container mb-5">
+{{-- Padding Top 5 agar ada jarak lega dari header --}}
+<div class="container py-5 mb-5">
     <h2 class="text-center fw-bold text-dark mb-4">Partner Kami</h2>
 
+    {{-- BAGIAN FILTER: HORIZONTAL SCROLL + TOMBOL NAVIGASI --}}
     @if(isset($categories) && $categories->count() > 0)
-    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4 d-none d-md-flex">
-        {{-- Visible on medium and larger screens --}}
-        <button class="filter-btn btn btn-white border-dark text-secondary rounded-pill px-4 py-2" data-category-id="all">Semua</button>
-        @foreach($categories as $category)
-        <button class="filter-btn btn btn-white border-dark text-secondary rounded-pill px-4 py-2" data-category-id="{{ $category->id }}">
-            {{ $category->name }}
+    <div class="slider-container-wrapper mb-5 position-relative">
+        
+        {{-- Tombol Navigasi KIRI --}}
+        <button class="nav-btn prev-btn" id="scrollLeftBtn">
+            <i class="bi bi-chevron-left"></i>
         </button>
-        @endforeach
-    </div>
 
-    <div class="d-flex justify-content-center mb-4 d-md-none">
-        {{-- Visible on small screens --}}
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle rounded-pill px-4 py-2 text-white" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        {{-- Area Scroll --}}
+        <div class="scroll-wrapper" id="categoryScroll">
+            <button class="btn filter-btn active" data-category-id="all">
                 Semua
             </button>
-            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                <li><a class="dropdown-item filter-btn active" href="#" data-category-id="all">Semua</a></li>
-                @foreach($categories as $category)
-                <li><a class="dropdown-item filter-btn" href="#" data-category-id="{{ $category->id }}">{{ $category->name }}</a></li>
-                @endforeach
-            </ul>
+            @foreach($categories->sortBy('name') as $category)
+            <button class="btn filter-btn" data-category-id="{{ $category->id }}">
+                {{ $category->name }}
+            </button>
+            @endforeach
         </div>
+
+        {{-- Tombol Navigasi KANAN --}}
+        <button class="nav-btn next-btn" id="scrollRightBtn">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+
     </div>
     @endif
 
+    {{-- DAFTAR VENDOR (CLEAN STYLE) --}}
     @if(isset($vendors) && $vendors->count() > 0)
-    <div id="vendor-list" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4">
+    {{-- 
+        PERUBAHAN DI SINI:
+        1. row-cols-3      -> HP jadi 3 kolom (sebelumnya row-cols-2)
+        2. row-cols-md-4   -> Tablet/Laptop kecil tetap 4
+        3. row-cols-lg-5   -> Desktop lebar tetap 5
+        4. g-3 g-md-4      -> Jarak antar logo di HP agak rapat (g-3), di Desktop lebar (g-md-4)
+    --}}
+    <div id="vendor-list" class="row row-cols-3 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3 g-md-4">
         @foreach($vendors as $vendor)
         <div class="col vendor-card" data-category-id="{{ $vendor->vendor_category_id ?? '' }}">
-            <div class="card h-100 border-0 text-center p-3 transition">
+            <div class="h-100 text-center p-2 d-flex align-items-center justify-content-center vendor-item position-relative">
                 @php
                     $logoUrl = $vendor->logo_path ? asset('storage/' . $vendor->logo_path) : null;
                     $altText = $vendor->alt_text ?? $vendor->name;
@@ -56,15 +67,16 @@
                 
                 @if($logoUrl)
                     @if($websiteUrl)
-                        <a href="{{ $websiteUrl }}" target="_blank" rel="noopener noreferrer" class="d-flex h-100 align-items-center justify-content-center">
-                            <img src="{{ $logoUrl }}" alt="{{ $altText }}" class="img-fluid" style="max-height: 80px; object-fit: contain;">
+                        <a href="{{ $websiteUrl }}" target="_blank" rel="noopener noreferrer" class="d-block w-100">
+                            {{-- Style max-height dan object-fit menjaga logo tetap proporsional --}}
+                            <img src="{{ $logoUrl }}" alt="{{ $altText }}" class="img-fluid" style="max-height: 80px; max-width: 100%; object-fit: contain; transition: transform 0.3s;">
                         </a>
                     @else
-                        <img src="{{ $logoUrl }}" alt="{{ $altText }}" class="img-fluid mx-auto d-block" style="max-height: 80px; object-fit: contain;">
+                        <img src="{{ $logoUrl }}" alt="{{ $altText }}" class="img-fluid" style="max-height: 80px; max-width: 100%; object-fit: contain; transition: transform 0.3s;">
                     @endif
                 @else
-                    <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 80px;">
-                        <span class="text-muted small">Logo tidak tersedia</span>
+                    <div class="text-muted small py-4 w-100 border rounded bg-light">
+                        {{ $vendor->name }}
                     </div>
                 @endif
             </div>
@@ -80,85 +92,198 @@
     @endif
 </div>
 
-@if(isset($categories) && $categories->count() > 0 && isset($vendors) && $vendors->count() > 0)
+@endsection
+
+@push('styles')
 <style>
+    /* --- WRAPPER UTAMA --- */
+    .slider-container-wrapper {
+        position: relative;
+        padding: 0 10px; 
+    }
+
+    /* --- AREA SCROLL --- */
+    .scroll-wrapper {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding: 10px 5px; 
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+        scroll-behavior: smooth; 
+        cursor: grab;
+    }
+    
+    .scroll-wrapper::-webkit-scrollbar {
+        display: none; 
+    }
+
+    /* --- TOMBOL NAVIGASI (PANAH) --- */
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid #eee;
+        background-color: #fff;
+        color: #014a79;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0; 
+        pointer-events: none; 
+    }
+
+    .nav-btn:hover {
+        background-color: #014a79;
+        color: #fff;
+        box-shadow: 0 6px 12px rgba(1, 74, 121, 0.25);
+    }
+
+    .prev-btn {
+        left: 0;
+        background: linear-gradient(90deg, #fff 60%, rgba(255,255,255,0)); 
+    }
+
+    .next-btn {
+        right: 0;
+        background: linear-gradient(-90deg, #fff 60%, rgba(255,255,255,0)); 
+    }
+
+    .nav-btn.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* --- TOMBOL KATEGORI --- */
     .filter-btn {
-        background-color: white !important;
-        border: 1px solid #343a40 !important;
-        color: #6c757d !important; 
-        transition: all 0.2s ease-in-out;
+        flex: 0 0 auto;
+        white-space: nowrap;
+        border-radius: 50px;
+        padding: 8px 24px;
+        border: 1px solid #e9ecef;
+        background-color: #fff;
+        color: #6c757d;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
     }
 
-    .filter-btn:hover,
+    .filter-btn:hover {
+        border-color: #014a79;
+        color: #014a79;
+        background-color: #f8f9fa;
+    }
+
     .filter-btn.active {
-        background-color: #6c757d !important; 
-        border-color: #6c757d !important; 
-        color: white !important; 
+        background-color: #014a79;
+        color: #fff;
+        border-color: #014a79;
+        box-shadow: 0 4px 10px rgba(1, 74, 121, 0.2);
     }
 
-    .dropdown-item.filter-btn:hover,
-    .dropdown-item.filter-btn.active {
-        background-color: #6c757d !important; 
-        color: white !important; 
+    /* --- VENDOR LOGO --- */
+    .vendor-item img {
+        transition: transform 0.3s ease;
     }
-
-    .d-md-none .dropdown button#categoryDropdown {
-        background-color: #6c757d !important; 
-        border-color: #6c757d !important; 
-        color: white !important; 
+    
+    .vendor-item:hover img {
+        transform: scale(1.1); 
     }
 </style>
+@endpush
+
+@push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const scrollContainer = document.getElementById('categoryScroll');
+        const leftBtn = document.getElementById('scrollLeftBtn');
+        const rightBtn = document.getElementById('scrollRightBtn');
         const filterButtons = document.querySelectorAll('.filter-btn');
         const vendorCards = document.querySelectorAll('.vendor-card');
-        const categoryDropdown = document.getElementById('categoryDropdown');
 
-        function filterVendors(categoryId) {
-            vendorCards.forEach(card => {
-                const cardCategoryId = card.dataset.categoryId;
-                if (categoryId === 'all' || cardCategoryId === categoryId || (categoryId === '' && cardCategoryId === '')) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+        // --- 1. LOGIKA TOMBOL NAVIGASI ---
+        function updateNavButtons() {
+            const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+            
+            if (scrollContainer.scrollLeft > 10) {
+                leftBtn.classList.add('show');
+            } else {
+                leftBtn.classList.remove('show');
+            }
+
+            if (scrollContainer.scrollLeft < maxScrollLeft - 5) {
+                rightBtn.classList.add('show');
+            } else {
+                rightBtn.classList.remove('show');
+            }
         }
 
-        filterVendors('all');
+        updateNavButtons();
+        scrollContainer.addEventListener('scroll', updateNavButtons);
+        window.addEventListener('resize', updateNavButtons);
 
-        const allDesktopButton = document.querySelector('.d-none.d-md-flex .filter-btn[data-category-id="all"]');
-        if (allDesktopButton) {
-            allDesktopButton.classList.add('active');
-        }
-        
-        const allDropdownItem = document.querySelector('.dropdown-item.filter-btn[data-category-id="all"]');
-        if (allDropdownItem) {
-            allDropdownItem.classList.add('active');
-            categoryDropdown.textContent = allDropdownItem.textContent;
-        }
+        leftBtn.addEventListener('click', () => {
+            scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
+        });
 
+        rightBtn.addEventListener('click', () => {
+            scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+        });
 
+        // --- 2. LOGIKA FILTER ---
         filterButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault(); 
-                
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+                const categoryId = this.getAttribute('data-category-id');
+                vendorCards.forEach(card => {
+                    const cardCategoryId = card.getAttribute('data-category-id');
+                    if (categoryId === 'all' || cardCategoryId == categoryId) {
+                        card.style.display = 'block';
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.opacity = '1', 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
                 });
-                
-                button.classList.add('active');
-
-                if (button.tagName === 'A' && button.closest('.dropdown-menu')) {
-                    categoryDropdown.textContent = button.textContent;
-                }
-
-                const categoryId = button.dataset.categoryId;
-                filterVendors(categoryId);
             });
+        });
+
+        // --- 3. MOUSE DRAG SCROLL ---
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            scrollContainer.style.cursor = 'grabbing';
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+        });
+        scrollContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            scrollContainer.style.cursor = 'grab';
+        });
+        scrollContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            scrollContainer.style.cursor = 'grab';
+        });
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; 
+            scrollContainer.scrollLeft = scrollLeft - walk;
         });
     });
 </script>
-@endif
-
-@endsection
+@endpush

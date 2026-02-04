@@ -37,7 +37,6 @@ Route::get('/about', [About_frontendController::class, 'index'])->name('frontend
 // Rute untuk menampilkan struktur organisasi
 Route::get('/about/organisasi', [Organization_frontendController::class, 'index'])->name('frontend.organization.index');
 
-
 // Rute untuk halaman Produk di Frontend
 // Route::get('/products', [Product_frontendController::class, 'index'])->name('frontend.products.index');
 // Route::get('/products/{product}', [Product_frontendController::class, 'show'])->name('frontend.products.show');
@@ -72,8 +71,6 @@ Route::get('/tentang-kami', [About_frontendController::class, 'index']);
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
-
-
 
 // --- RUTE UNTUK BACKEND/DASHBOARD ---
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -156,4 +153,3 @@ Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.
 Route::post('/admin/projects', [ProjectController::class, 'store'])->name('admin.projects.store');
 Route::put('/admin/projects/{project}', [ProjectController::class, 'update'])->name('admin.projects.update');
 Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('admin.projects.destroy');
-   

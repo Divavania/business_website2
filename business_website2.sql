@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2025 at 08:47 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 04 Feb 2026 pada 04.04
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `about_us`
+-- Struktur dari tabel `about_us`
 --
 
 CREATE TABLE `about_us` (
@@ -36,16 +36,16 @@ CREATE TABLE `about_us` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `about_us`
+-- Dumping data untuk tabel `about_us`
 --
 
 INSERT INTO `about_us` (`id`, `sejarah`, `visi`, `misi`, `deskripsi`) VALUES
-(1, 'Didirikan pada tahun 2017, CV Tigatra Adikara memulai langkahnya sebagai penyedia perangkat jaringan lokal. Seiring berjalannya waktu, kami berkembang menjadi perusahaan teknologi lengkap yang melayani ratusan klien di seluruh Indonesia.', 'Menjadi pemimpin inovasi teknologi IT di Asia Tenggara', '• Memberikan solusi teknologi terpercaya.\r\n• Meningkatkan efisiensi bisnis klien melalui digitalisasi.\r\n• Menyediakan layanan pelanggan yang profesional dan cepat tanggap.', 'CV Tigatra Adikara adalah perusahaan yang bergerak di bidang infrastruktur IT serta pemasaran hardware dan software terkemuka di Indonesia. Kami menyediakan solusi teknologi yang inovatif dan terpercaya untuk kebutuhan bisnis modern.');
+(1, 'CV. Tigatra adalah perusahaan IT Support dan General Supplier dengan berbagai macam pengalaman khususnya di bidang Teknologi Informatika (IT). Kami terus mengembangkan kompetensi dan pengalaman dalam bisnis ini, mulai dari maintenance, reparation, networking system hingga pengadaan software dan hardware serta menyediakan sumber daya manusia yang handal dan terbaik sesuai bidangnya, yang senantiasa mengutamakan health and safety regulation dalam setiap kegiatan.\r\n\r\nPengalaman kami telah melahirkan beberapa inovasi dan solusi bagi berbagai tantangan industri digital yang berhubungan dengan operasional perusahaan. Kami merupakan partner yang tepat dalam penyedia jasa instalasi CCTV, Fiber Optic, Server dan perangkat jaringan serta hardware dan software lainnya. Selain itu kami juga menjual dan menyediakan berbagai hardware dan instrument penunjang operasional pabrik serta operasional perusahaan.', 'Menjadi mitra strategis bagi perusahaan dan organisasi multi nasional dengan menghadirkan solusi inovatif di bidang teknologi informasi.', 'Menjadi perusahaan mitra teknologi yang terpercaya bagi klien kami, dengan memberikan solusi yang handal dan layanan yang superior.', 'Kami adalah perusahaan IT Support dan General Supplier yang berpengalaman dalam solusi teknologi, pengadaan perangkat, serta layanan instalasi dan maintenance. CV. Tigatra siap mendukung operasional bisnis Anda dengan layanan profesional dan sumber daya berkualitas.');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company_info`
+-- Struktur dari tabel `company_info`
 --
 
 CREATE TABLE `company_info` (
@@ -69,16 +69,16 @@ CREATE TABLE `company_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `company_info`
+-- Dumping data untuk tabel `company_info`
 --
 
 INSERT INTO `company_info` (`id`, `company_name`, `tagline`, `street`, `city`, `province`, `postal_code`, `country`, `phone_number`, `whatsapp_number`, `contact_email`, `facebook_link`, `tiktok_link`, `youtube_link`, `instagram_link`, `linkedin_link`, `google_maps_embed_link`) VALUES
-(1, 'Tigatra Adikara', 'PT Tigatra Adikara menyediakan solusi komprehensif untuk Infrastruktur IT, serta pemasaran dan dukungan untuk Hardware dan Software terkemuka.', 'Jl. Pattimura No. 46 RT. 14', 'Kelurahan Api-api - Kecamatan Bontang Utara', 'Bontang - Kalimantan Timur', '75311', 'Indonesia', '(+021)', '6281346212675', 'infotigatra@gmail.com', 'https://web.facebook.com/?locale=id_ID&_rdc=1&_rdr#', 'https://www.tiktok.com/id-ID/', 'https://www.youtube.com/', 'https://www.instagram.com/tigatra_adikara/', 'https://id.linkedin.com/', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8080471139633!2d117.49504308597604!3d0.13002134425753778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x320a0d80fa9db50d%3A0x97e12d0f735958ed!2sJl.%20Pattimura%20No.46%2C%20Api-Api%2C%20Kec.%20Bontang%20Utara%2C%20Kota%20Bontang%2C%20Kalimantan%20Timur%2075313!5e0!3m2!1sid!2sid!4v1753522647058!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade');
+(1, 'Tigatra Adikara', 'CV. Tigatra Adikara – IT Support & General Supplier untuk Solusi Bisnis Anda.', 'JL. KS Tubun Gg. Vulkanik Perum Villa R4 No.04 Kecamatan Bontang Utara', 'Kota Bontang', 'Kalimantan Timur', NULL, 'Indonesia', '(0548) 355 18 39', '6282255952422', 'admin@tigatra.com', 'https://web.facebook.com/?locale=id_ID&_rdc=1&_rdr#', 'https://www.tiktok.com/id-ID/', 'https://www.youtube.com/', 'https://www.instagram.com/tigatra_adikara/', 'https://id.linkedin.com/', 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3166.7116165625853!2d117.49679393409842!3d0.13856814783382604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sJL.%20KS%20Tubun%20Gg.%20Vulkanik%20Perum%20Villa%20R4%20No.04%20RT.008%20Kelurahan%20Bontang%20Kuala%2C%20Kecamatan%20Bontang%20Utara%20Kota%20Bontang%20-%20Kalimantan%20TImur!5e0!3m2!1sid!2sid!4v1754759033635!5m2!1sid!2sid\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact_messages`
+-- Struktur dari tabel `contact_messages`
 --
 
 CREATE TABLE `contact_messages` (
@@ -97,16 +97,17 @@ CREATE TABLE `contact_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `contact_messages`
+-- Dumping data untuk tabel `contact_messages`
 --
 
 INSERT INTO `contact_messages` (`id`, `first_name`, `last_name`, `email`, `company_name`, `address`, `city`, `phone_number`, `message`, `is_read`, `created_at`, `updated_at`) VALUES
-(9, 'Nindi', 'Julitasari', 'nindi@gmail.com', 'Tigatra Adikara', 'Indonesia', 'Jogjakarta', '08111111111', 'Halo', 1, '2025-07-30 08:16:31', '2025-07-30 08:16:40');
+(12, 'Shani', 'Indira', 'shn@gmail.com', 'PT. JOT', NULL, NULL, '08111111111', 'Halo, saya ingin mengetahui lebih lanjut mengenai layanan instalasi jaringan dan pengadaan hardware untuk kantor kami.', 1, '2025-08-09 11:30:36', '2025-08-09 11:31:36'),
+(13, 'User', '1', 'user1@gmail.com', 'PT. GAADA NAMANYA', 'Jalan Jalan', 'Madiun', '+62 3455 6643', 'Halo', 1, '2026-02-02 23:21:35', '2026-02-02 23:21:48');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Struktur dari tabel `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -118,7 +119,7 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- Struktur dari tabel `news`
 --
 
 CREATE TABLE `news` (
@@ -138,20 +139,17 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `news`
+-- Dumping data untuk tabel `news`
 --
 
 INSERT INTO `news` (`id`, `judul`, `rubrik_id`, `konten`, `gambar`, `deskripsi_gambar`, `tanggal_dibuat`, `tanggal_publish`, `jadwal_publikasi`, `is_scheduled`, `status`, `created_at`, `updated_at`) VALUES
-(4, 'Kecerdasan Buatan dan Dampaknya di Dunia Kerja', 1, '<p>Perkembangan teknologi semakin hari semakin pesat, dan salah satu inovasi yang paling banyak dibicarakan belakangan ini adalah <strong>kecerdasan buatan</strong> atau <strong>Artificial Intelligence (AI)</strong>. Dulu, AI hanya terdengar dalam film fiksi ilmiah, tapi sekarang sudah hadir di kehidupan nyata&mdash;dan tanpa kita sadari, telah menjadi bagian dari rutinitas kerja sehari-hari.</p>\r\n\r\n<h3><strong>Apa Itu Kecerdasan Buatan?</strong></h3>\r\n\r\n<p>Secara sederhana, kecerdasan buatan adalah kemampuan mesin atau komputer untuk meniru cara berpikir manusia. AI bisa belajar dari data, membuat keputusan, hingga menyelesaikan tugas-tugas tertentu yang sebelumnya hanya bisa dilakukan manusia. Contohnya? Asisten virtual seperti Siri atau Google Assistant, chatbot layanan pelanggan, hingga sistem rekomendasi di media sosial dan toko online.</p>\r\n\r\n<h3><em>Dampak Positif AI di Dunia Kerja</em></h3>\r\n\r\n<p>AI membawa banyak manfaat bagi dunia kerja. Beberapa di antaranya:</p>\r\n\r\n<ol>\r\n	<li>\r\n	<p><strong>Meningkatkan Efisiensi dan Produktivitas</strong><br />\r\n	AI bisa mengambil alih tugas-tugas berulang dan administratif, seperti menginput data atau menjadwalkan pertemuan. Hal ini membuat karyawan bisa lebih fokus pada pekerjaan yang membutuhkan kreativitas dan analisis.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Membantu Pengambilan Keputusan</strong><br />\r\n	Dengan kemampuan analisis data yang sangat cepat, AI membantu perusahaan mengambil keputusan berdasarkan data (data-driven). Contohnya dalam dunia pemasaran, AI bisa menganalisis tren pasar dan perilaku konsumen untuk menentukan strategi terbaik.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Munculnya Lapangan Kerja Baru</strong><br />\r\n	Meskipun AI menggantikan beberapa pekerjaan, teknologi ini juga menciptakan profesi baru seperti data analyst, AI engineer, dan machine learning specialist.</p>\r\n	</li>\r\n</ol>\r\n\r\n<h3>Tantangan dan Dampak Negatif</h3>\r\n\r\n<p>Namun, perkembangan AI juga memunculkan beberapa kekhawatiran:</p>\r\n\r\n<ol>\r\n	<li>\r\n	<p><strong>Penggantian Tenaga Manusia</strong><br />\r\n	Tidak bisa dipungkiri, beberapa jenis pekerjaan mulai tergantikan oleh mesin. Contohnya kasir otomatis di supermarket atau customer service berbasis chatbot. Ini memunculkan kekhawatiran hilangnya lapangan kerja, terutama di sektor yang rutin dan berulang.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Kesenjangan Keterampilan (Skill Gap)</strong><br />\r\n	Dunia kerja membutuhkan keterampilan baru yang sesuai dengan perkembangan teknologi. Sayangnya, tidak semua tenaga kerja siap beradaptasi, terutama mereka yang belum terbiasa dengan teknologi digital.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Etika dan Keamanan Data</strong><br />\r\n	Penggunaan AI dalam memproses data menimbulkan pertanyaan tentang privasi dan keamanan informasi. Bagaimana jika data disalahgunakan atau AI mengambil keputusan yang bias?</p>\r\n	</li>\r\n</ol>\r\n\r\n<h3>Apa yang Bisa Kita Lakukan?</h3>\r\n\r\n<p>Menghadapi era AI bukan berarti harus takut, tapi perlu <strong>beradaptasi</strong> dan <strong>meningkatkan keterampilan</strong>. Beberapa langkah yang bisa dilakukan antara lain:</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Belajar keterampilan baru</strong>, terutama yang berkaitan dengan teknologi digital dan data.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Fokus pada soft skill</strong> seperti kreativitas, empati, dan komunikasi yang sulit digantikan oleh mesin.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Berpikir kritis</strong> dalam menggunakan teknologi dan tidak tergantung sepenuhnya pada otomatisasi.</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Penutup</h3>\r\n\r\n<p>AI bukan musuh, melainkan alat yang bisa membantu manusia bekerja lebih cerdas. Namun, agar tidak tertinggal, kita harus mau belajar dan berkembang bersama teknologi. Dunia kerja akan terus berubah, dan adaptasi adalah kunci untuk tetap relevan di masa depan.</p>', 'uploads/news/eQfOCEbqQ4A1QnpDxKHjW71EBKHgAceEe6SvOiEG.jpg', 'okonomiyaki', '2025-08-02 07:48:01', '2025-08-02 09:56:24', '2025-08-02 15:44:00', 0, 'published', '2025-08-02 00:48:01', '2025-08-02 02:56:24'),
-(5, 'Teknologi 5G dan Dampaknya terhadap Kehidupan Sehari-hari', 1, '<p>Teknologi jaringan seluler terus berkembang, dan kini kita memasuki era <strong>5G</strong>&mdash;generasi kelima dari konektivitas mobile. Dibandingkan 4G, 5G menawarkan kecepatan internet yang <strong>jauh lebih tinggi</strong>, <strong>latensi lebih rendah</strong>, dan <strong>koneksi lebih stabil</strong>. Tapi, apa sebenarnya dampaknya dalam kehidupan sehari-hari?</p>\r\n\r\n<p><em><strong>Internet Lebih Cepat, Aktivitas Lebih Lancar</strong></em></p>\r\n\r\n<p>Dengan kecepatan 5G, streaming video 4K, download file besar, atau main game online jadi jauh lebih lancar tanpa buffering. Aktivitas digital seperti belajar online, rapat virtual, atau upload konten juga makin efisien.</p>\r\n\r\n<h3><s><em><strong>Dunia IoT Semakin Nyata</strong></em></s></h3>\r\n\r\n<p>5G mendukung koneksi <strong>jutaan perangkat secara bersamaan</strong>, sehingga teknologi Internet of Things (IoT) makin berkembang. Bayangkan rumah yang semua perangkatnya saling terhubung&mdash;dari lampu, kulkas, sampai CCTV&mdash;semua bisa dikontrol dari smartphone secara real-time.</p>\r\n\r\n<h3>Revolusi di Berbagai Sektor</h3>\r\n\r\n<p>Dampak 5G nggak cuma di level personal, tapi juga menyentuh dunia industri. Di bidang <strong>kesehatan</strong>, misalnya, dokter bisa melakukan operasi jarak jauh dengan bantuan robot. Di <strong>transportasi</strong>, mobil tanpa sopir (autonomous car) makin mungkin digunakan secara massal.</p>\r\n\r\n<h3>Tapi, Belum Merata</h3>\r\n\r\n<p>Sayangnya, infrastruktur 5G belum tersebar luas di semua daerah. Selain itu, belum semua perangkat mendukung 5G, jadi manfaatnya belum bisa dirasakan oleh semua orang.</p>\r\n\r\n<h3>Kesimpulan</h3>\r\n\r\n<p>5G bukan cuma soal internet lebih cepat, tapi juga membuka pintu untuk <strong>inovasi yang lebih besar</strong> di masa depan. Meski butuh waktu agar sepenuhnya merata, teknologi ini sudah mulai mengubah cara kita hidup, bekerja, dan terhubung.</p>', 'uploads/news/jpTdBN1f3r62FQy0Ap9tDVQZPEuZkgThqpyRwdQ9.jpg', 'serombotan', '2025-08-02 07:53:40', '2025-08-02 07:53:40', NULL, 0, 'draft', '2025-08-02 00:53:40', '2025-08-02 00:54:19'),
-(13, 'Coba Coba', 1, '<p>coba</p>', 'uploads/news/4aOPVdUsGENGjY72m7wGKXdiw9wMCY9RN76Irwgp.jpg', 'y', '2025-08-02 18:08:28', '2025-08-02 18:08:28', NULL, 0, 'published', '2025-08-02 04:08:28', '2025-08-02 04:08:28'),
-(14, 'Mengapa Kita Perlu Peduli dengan Keamanan Data Pribadi?', 1, '<p><strong>Di zaman serba digital seperti sekarang, data pribadi kita tersebar hampir di mana-mana&mdash;dari media sosial, aplikasi belanja, sampai layanan perbankan online. Tapi sayangnya, masih banyak orang yang menganggap remeh soal keamanan data pribadi.</strong></p>\r\n\r\n<h3><strong>Data = Aset Berharga</strong></h3>\r\n\r\n<p><em>Data pribadi seperti nama, alamat, nomor telepon, hingga informasi kartu kredit sebenarnya adalah <strong>aset digital</strong>. Jika jatuh ke tangan yang salah, data ini bisa digunakan untuk penipuan, pencurian identitas, bahkan pembobolan rekening.</em></p>\r\n\r\n<h3><em>Ancaman Selalu Mengintai</em></h3>\r\n\r\n<p>Serangan siber makin hari makin canggih. Ada yang menyamar jadi layanan resmi untuk memancing kita membocorkan informasi (phishing), ada juga yang memasang malware lewat tautan mencurigakan. Kalau kita lengah, bisa saja semua akun kita diretas dalam hitungan menit.</p>\r\n\r\n<h3>Cara Sederhana Melindungi Diri</h3>\r\n\r\n<p>Kabar baiknya, ada beberapa langkah sederhana yang bisa dilakukan:</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p>Gunakan <strong>password yang kuat dan berbeda-beda</strong> untuk tiap akun.</p>\r\n	</li>\r\n	<li>\r\n	<p>Aktifkan <strong>verifikasi dua langkah (2FA)</strong>.</p>\r\n	</li>\r\n	<li>\r\n	<p>Hindari klik link sembarangan atau asal download file dari sumber tidak jelas.</p>\r\n	</li>\r\n	<li>\r\n	<p>Perbarui aplikasi dan sistem secara rutin agar tetap aman.</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3><strong>Kesimpulan</strong></h3>\r\n\r\n<p>Keamanan data bukan cuma urusan IT atau perusahaan besar&mdash;tapi juga <strong>tanggung jawab pribadi</strong> kita sebagai pengguna teknologi. Dengan sedikit kehati-hatian, kita bisa tetap menikmati kemudahan digital tanpa harus jadi korban.</p>', 'uploads/news/eUs14zlhZlhW9YzbXmTyj37Tk7RSOtczDe7eJq1f.png', 'contoh', '2025-08-02 18:11:15', '2025-08-02 18:11:15', NULL, 0, 'published', '2025-08-02 04:11:15', '2025-08-02 04:11:44'),
-(15, 'Coba', 1, '<p>Coba lagi</p>', 'uploads/news/A9crpBdzxwOViJdT31HdtbQbtVkyiSJwofFFuEo2.jpg', 'y', '2025-08-02 19:48:14', '2025-08-02 19:48:14', NULL, 0, 'published', '2025-08-02 05:48:14', '2025-08-02 05:48:14');
+(4, 'Kecerdasan Buatan dan Dampaknya di Dunia Kerja', 1, '<p>Perkembangan teknologi semakin hari semakin pesat, dan salah satu inovasi yang paling banyak dibicarakan belakangan ini adalah <strong>kecerdasan buatan</strong> atau <strong>Artificial Intelligence (AI)</strong>. Dulu, AI hanya terdengar dalam film fiksi ilmiah, tapi sekarang sudah hadir di kehidupan nyata&mdash;dan tanpa kita sadari, telah menjadi bagian dari rutinitas kerja sehari-hari.</p>\r\n\r\n<h3><strong>Apa Itu Kecerdasan Buatan?</strong></h3>\r\n\r\n<p>Secara sederhana, kecerdasan buatan adalah kemampuan mesin atau komputer untuk meniru cara berpikir manusia. AI bisa belajar dari data, membuat keputusan, hingga menyelesaikan tugas-tugas tertentu yang sebelumnya hanya bisa dilakukan manusia. Contohnya? Asisten virtual seperti Siri atau Google Assistant, chatbot layanan pelanggan, hingga sistem rekomendasi di media sosial dan toko online.</p>\r\n\r\n<h3><em>Dampak Positif AI di Dunia Kerja</em></h3>\r\n\r\n<p>AI membawa banyak manfaat bagi dunia kerja. Beberapa di antaranya:</p>\r\n\r\n<ol>\r\n	<li>\r\n	<p><strong>Meningkatkan Efisiensi dan Produktivitas</strong><br />\r\n	AI bisa mengambil alih tugas-tugas berulang dan administratif, seperti menginput data atau menjadwalkan pertemuan. Hal ini membuat karyawan bisa lebih fokus pada pekerjaan yang membutuhkan kreativitas dan analisis.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Membantu Pengambilan Keputusan</strong><br />\r\n	Dengan kemampuan analisis data yang sangat cepat, AI membantu perusahaan mengambil keputusan berdasarkan data (data-driven). Contohnya dalam dunia pemasaran, AI bisa menganalisis tren pasar dan perilaku konsumen untuk menentukan strategi terbaik.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Munculnya Lapangan Kerja Baru</strong><br />\r\n	Meskipun AI menggantikan beberapa pekerjaan, teknologi ini juga menciptakan profesi baru seperti data analyst, AI engineer, dan machine learning specialist.</p>\r\n	</li>\r\n</ol>\r\n\r\n<h3>Tantangan dan Dampak Negatif</h3>\r\n\r\n<p>Namun, perkembangan AI juga memunculkan beberapa kekhawatiran:</p>\r\n\r\n<ol>\r\n	<li>\r\n	<p><strong>Penggantian Tenaga Manusia</strong><br />\r\n	Tidak bisa dipungkiri, beberapa jenis pekerjaan mulai tergantikan oleh mesin. Contohnya kasir otomatis di supermarket atau customer service berbasis chatbot. Ini memunculkan kekhawatiran hilangnya lapangan kerja, terutama di sektor yang rutin dan berulang.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Kesenjangan Keterampilan (Skill Gap)</strong><br />\r\n	Dunia kerja membutuhkan keterampilan baru yang sesuai dengan perkembangan teknologi. Sayangnya, tidak semua tenaga kerja siap beradaptasi, terutama mereka yang belum terbiasa dengan teknologi digital.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Etika dan Keamanan Data</strong><br />\r\n	Penggunaan AI dalam memproses data menimbulkan pertanyaan tentang privasi dan keamanan informasi. Bagaimana jika data disalahgunakan atau AI mengambil keputusan yang bias?</p>\r\n	</li>\r\n</ol>\r\n\r\n<h3>Apa yang Bisa Kita Lakukan?</h3>\r\n\r\n<p>Menghadapi era AI bukan berarti harus takut, tapi perlu <strong>beradaptasi</strong> dan <strong>meningkatkan keterampilan</strong>. Beberapa langkah yang bisa dilakukan antara lain:</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Belajar keterampilan baru</strong>, terutama yang berkaitan dengan teknologi digital dan data.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Fokus pada soft skill</strong> seperti kreativitas, empati, dan komunikasi yang sulit digantikan oleh mesin.</p>\r\n	</li>\r\n	<li>\r\n	<p><strong>Berpikir kritis</strong> dalam menggunakan teknologi dan tidak tergantung sepenuhnya pada otomatisasi.</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Penutup</h3>\r\n\r\n<p>AI bukan musuh, melainkan alat yang bisa membantu manusia bekerja lebih cerdas. Namun, agar tidak tertinggal, kita harus mau belajar dan berkembang bersama teknologi. Dunia kerja akan terus berubah, dan adaptasi adalah kunci untuk tetap relevan di masa depan.</p>', 'uploads/news/uY30fo1lYTRWKABImfEBRIYm2kVElsAp2V3mbS2L.jpg', 'okonomiyaki', '2025-08-02 07:48:01', '2025-08-02 09:56:24', '2025-08-02 15:44:00', 0, 'published', '2025-08-02 00:48:01', '2025-08-09 11:04:57'),
+(14, 'Mengapa Kita Perlu Peduli dengan Keamanan Data Pribadi?', 1, '<p><strong>Di zaman serba digital seperti sekarang, data pribadi kita tersebar hampir di mana-mana dari media sosial, aplikasi belanja, sampai layanan perbankan online. Tapi sayangnya, masih banyak orang yang menganggap remeh soal keamanan data pribadi.</strong></p>\r\n\r\n<h3><strong>Data = Aset Berharga</strong></h3>\r\n\r\n<p><em>Data pribadi seperti nama, alamat, nomor telepon, hingga informasi kartu kredit sebenarnya adalah <strong>aset digital</strong>. Jika jatuh ke tangan yang salah, data ini bisa digunakan untuk penipuan, pencurian identitas, bahkan pembobolan rekening.</em></p>\r\n\r\n<h3><em>Ancaman Selalu Mengintai</em></h3>\r\n\r\n<p>Serangan siber makin hari makin canggih. Ada yang menyamar jadi layanan resmi untuk memancing kita membocorkan informasi (phishing), ada juga yang memasang malware lewat tautan mencurigakan. Kalau kita lengah, bisa saja semua akun kita diretas dalam hitungan menit.</p>\r\n\r\n<h3>Cara Sederhana Melindungi Diri</h3>\r\n\r\n<p>Kabar baiknya, ada beberapa langkah sederhana yang bisa dilakukan:</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p>Gunakan <strong>password yang kuat dan berbeda-beda</strong> untuk tiap akun.</p>\r\n	</li>\r\n	<li>\r\n	<p>Aktifkan <strong>verifikasi dua langkah (2FA)</strong>.</p>\r\n	</li>\r\n	<li>\r\n	<p>Hindari klik link sembarangan atau asal download file dari sumber tidak jelas.</p>\r\n	</li>\r\n	<li>\r\n	<p>Perbarui aplikasi dan sistem secara rutin agar tetap aman.</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3><strong>Kesimpulan</strong></h3>\r\n\r\n<p>Keamanan data bukan cuma urusan IT atau perusahaan besar&mdash;tapi juga <strong>tanggung jawab pribadi</strong> kita sebagai pengguna teknologi. Dengan sedikit kehati-hatian, kita bisa tetap menikmati kemudahan digital tanpa harus jadi korban.</p>', 'uploads/news/PLd1oRdtvruGbKWpnqD5OnLGV4rzWHCKdOwM3yX1.jpg', 'contoh', '2025-08-02 18:11:15', '2025-08-02 18:11:15', NULL, 0, 'published', '2025-08-02 04:11:15', '2026-02-03 06:14:25');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `organization_members`
+-- Struktur dari tabel `organization_members`
 --
 
 CREATE TABLE `organization_members` (
@@ -166,21 +164,21 @@ CREATE TABLE `organization_members` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `organization_members`
+-- Dumping data untuk tabel `organization_members`
 --
 
 INSERT INTO `organization_members` (`id`, `photo`, `name`, `position`, `description`, `order`, `created_at`, `updated_at`) VALUES
-(2, 'organization_photos/mMZFxEP4atZJcF06cL9UUg7sXxZX0OdtaGqn8DQu.jpg', 'Mingyu', 'hehehhe', NULL, 7, '2025-08-02 19:29:31', '2025-08-02 21:37:25'),
-(3, 'organization_photos/pF2ovNeaRu99qjV64KyplgNXMw2yvbY5LIbsOMOH.jpg', 'Jay', 'Enhyp', NULL, 5, '2025-08-02 19:50:27', '2025-08-02 21:26:56'),
-(4, 'organization_photos/isJCRohV3PNgyzgDcqTL1mm1NXs0mlLpv64ZPkSj.jpg', 'V', 'BTS', NULL, 3, '2025-08-02 21:22:06', '2025-08-02 21:22:26'),
-(6, 'organization_photos/23w6dIB9sAVdSbKDqGiOYtGUubGQWjL6gqsuIFqh.jpg', 'Kim Seon ho', 'Actors', NULL, 2, '2025-08-02 21:23:43', '2025-08-02 21:26:25'),
-(7, 'organization_photos/VHofhRgegk8kN2gk3wDpot7VYcJuhtyUe8Aam1nN.jpg', 'Park Seo Jun', 'Actors', NULL, 6, '2025-08-02 21:24:32', '2025-08-02 21:24:32'),
-(8, 'organization_photos/WNuNpf1W3Lha21e3rWoeKdjHJNxlEql8K17jp0pm.jpg', 'Lee Minho', 'om om', NULL, 1, '2025-08-02 21:25:42', '2025-08-02 21:26:14');
+(2, 'organization_photos/6Y27WAL9ItWRPRpfwuqnzS2mi7bxSvKn7eKasiLq.jpg', 'Profil 4', 'SUPERVISOR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.', 7, '2025-08-02 19:29:31', '2025-08-09 08:51:13'),
+(3, 'organization_photos/5I8ymVC1htROnTvvWgZ2wqzknBeLdYPW3Hh5HJgQ.jpg', 'Profil 2', 'MANAGER OPERASIONAL & TEKNIS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.', 5, '2025-08-02 19:50:27', '2025-08-09 08:50:14'),
+(4, 'organization_photos/8lXoyThBYPQNH2RyqF9QuRkmP4YpAtBrEZi05NuJ.jpg', 'Profil 1', 'MANAGER ADMINISTRASI,KEUANGAN & PENGEMBANGAN', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.', 3, '2025-08-02 21:22:06', '2025-08-09 08:49:38'),
+(6, 'organization_photos/zWPzx3OVELfa1w1K5KP1xlHuzATQ8dmJhP9gfXox.jpg', 'Pak Wakil Direktur', 'WAKIL DIREKTUR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.', 2, '2025-08-02 21:23:43', '2025-08-09 08:51:36'),
+(7, 'organization_photos/SePDTNfA1jhIxPPHBPp1m5G0lrr61INFn9OYE6bW.jpg', 'Profil 3', 'MANAGER KOMERSIL', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.', 6, '2025-08-02 21:24:32', '2025-08-09 08:50:39'),
+(8, 'organization_photos/AXhGKrYqd2o7tZP105upzq8x3TmPtAnCDLAcqS1b.jpg', 'Pak Direktur', 'DIREKTUR', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.', 1, '2025-08-02 21:25:42', '2025-08-09 08:51:27');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktur dari tabel `products`
 --
 
 CREATE TABLE `products` (
@@ -195,7 +193,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `products`
+-- Dumping data untuk tabel `products`
 --
 
 INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `gambar`, `created_at`, `updated_at`) VALUES
@@ -210,7 +208,7 @@ INSERT INTO `products` (`id`, `nama`, `deskripsi`, `spesifikasi`, `kategori`, `g
 -- --------------------------------------------------------
 
 --
--- Table structure for table `projects`
+-- Struktur dari tabel `projects`
 --
 
 CREATE TABLE `projects` (
@@ -225,17 +223,39 @@ CREATE TABLE `projects` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `projects`
+-- Dumping data untuk tabel `projects`
 --
 
 INSERT INTO `projects` (`id`, `title`, `description`, `year`, `image`, `order`, `created_at`, `updated_at`) VALUES
-(1, 'Pembangunan A', 'Pembangunan Gedung A merupakan inisiatif strategis untuk mendirikan fasilitas perkantoran modern yang mendukung efisiensi dan kenyamanan kerja. Gedung ini dirancang dengan konsep ramah lingkungan dan mengadopsi prinsip green building, mencakup sistem ventilasi cerdas, efisiensi energi, serta tata cahaya alami.\r\nBangunan terdiri atas 5 lantai yang difungsikan untuk ruang kerja, ruang rapat, area publik, dan fasilitas pendukung lainnya. Target penyelesaian proyek adalah akhir tahun 2025 dengan tahapan pengerjaan mencakup perencanaan struktur, pembangunan pondasi, pengerjaan dinding dan atap, serta pemasangan sistem kelistrikan dan interior.\r\nGedung A nantinya akan menjadi pusat operasional baru untuk instansi pemerintahan daerah, serta menjadi simbol kemajuan infrastruktur di wilayah Karangjati.', '2021', 'projects/dToy9YyGt5Xdcul9UZraPqInoNpzQkr4l2tLyj9h.jpg', 2, '2025-08-04 22:36:22', '2025-08-04 22:36:50'),
-(2, 'Instalasi Sistem CCTV Terpadu di Kompleks Kantor Pemerintah', 'Proyek ini bertujuan untuk meningkatkan keamanan dan pengawasan di lingkungan kompleks kantor pemerintahan Kabupaten Ponorogo dengan pemasangan sistem CCTV terpadu. Sistem ini mencakup 56 titik kamera yang tersebar di area strategis seperti pintu masuk, ruang rapat, parkiran, dan koridor antar gedung.\r\nSetiap kamera dilengkapi dengan fitur resolusi tinggi, night vision, deteksi gerak, dan integrasi ke pusat monitoring berbasis jaringan lokal. Sistem pemantauan akan ditangani oleh petugas keamanan melalui ruang kontrol yang dilengkapi dengan layar monitor multi-panel dan perangkat rekam digital (NVR).\r\nProyek ini diharapkan dapat selesai dalam waktu tiga bulan, dengan tahapan meliputi survei lokasi, pengadaan perangkat, pemasangan kabel dan perangkat, konfigurasi sistem, dan uji coba operasional. CCTV akan mendukung sistem keamanan yang lebih proaktif dan efisien.', '2025', 'projects/DhNacQ74uTn8v36lXK9XoxQcZclrtcUjwrEHZNlY.jpg', 2, '2025-08-04 23:47:05', '2025-08-04 23:47:05');
+(1, 'Pengadaan dan pemasangan CCTV Pabrik PT Kaltim Pama Industri', 'Pengadaan dan pemasangan CCTV Pabrik PT Kaltim Pama Industri - Bontang 2017', '2017', 'projects/GyyLBZH4yPcb9SR0LJCh4iq1lv6mYNEU2jWMcOdz.jpg', 1, '2025-08-04 22:36:22', '2025-08-09 09:33:57'),
+(2, 'Pengadaan dan pemasangan CCTV Pabrik PT Kaltim Daya Mandiri', 'Pengadaan dan pemasangan CCTV Pabrik PT Kaltim Daya Mandiri - Bontang 2016', '2016', 'projects/DhNacQ74uTn8v36lXK9XoxQcZclrtcUjwrEHZNlY.jpg', 1, '2025-08-04 23:47:05', '2025-08-09 09:33:00'),
+(3, 'Pengadaan dan installasis Access Door Kantor PT Pupuk Kalimantan Timur', 'Pengadaan dan installasis Access Door Kantor PT Pupuk Kalimantan Timur - Bontang 2018', '2018', 'projects/MKoCVrOH8fFk1j724sqmsOozgJ7HbANM060vh7EB.jpg', 1, '2025-08-09 09:35:17', '2025-08-09 09:35:17'),
+(5, 'Pengembangan Elektronic Security System (CSS) Pabrik PT Pupuk Kalimantan Timur', 'Pengembangan Elektronic Security System (CSS) Pabrik PT Pupuk Kalimantan Timur - Bontang 2019', '2019', 'projects/qsPnEYwAMxnWE67JmFBHZzUgbvvdZNZTt7STDwQk.jpg', 1, '2025-08-09 09:37:03', '2025-08-09 09:37:03'),
+(6, 'Maintenance Tower dan Radio P2P Area Tambang Raya Usaha Tama (TRUST)', 'Maintenance Tower dan Radio P2P Area Tambang Raya Usaha Tama (TRUST) - Tandung Mayang 2019', '2019', 'projects/5Gv1uz18YGnv5TK0DUy9kVMuSerZeVX4bcS3CdED.jpg', 2, '2025-08-09 09:38:14', '2026-01-26 00:54:24'),
+(7, 'Jasa Instalasi Perangkat CCTV Pabrik 6 Area Pabrik dan Kantor Pusat PT Pupuk Kaltim', 'Jasa Instalasi Perangkat CCTV Pabrik 6 Area Pabrik dan Kantor Pusat PT Pupuk Kaltim - Bontang 2022', '2022', 'projects/NmpwW9vNzkU5nmvmyB426aPbdzhnkF719jLlSn45.jpg', 2, '2025-08-09 09:39:30', '2026-02-03 07:14:59'),
+(8, 'Pemasangan Access Door RFID Dept. K3 PT Pupuk Kalimantan Timur', 'Pemasangan Access Door RFID Dept. K3 PT Pupuk Kalimantan Timur - Bontang 2023', '2023', 'projects/raZzDNxnogbvInh3JWx5X6LuolQcOueVxmKQKDCl.jpg', 3, '2025-08-09 09:40:12', '2026-02-03 07:28:44'),
+(11, 'Pemasangan CCTV dan radio P2P PT Kaltim Pama Industri', 'Pemasangan CCTV dan radio P2P PT Kaltim Pama Industri - Bontang 2018', '2018', 'projects/dhwMpmqWSWQRcE4zXkaaWoNyjV5GcKIEJ5JUMMU5.jpg', 1, '2026-02-03 07:12:54', '2026-02-03 07:15:35'),
+(12, 'Pemasangan CCTV dan Radio P2P PT Turbaindo Coal Mining (TCM)', 'Pemasangan CCTV dan Radio P2P PT Turbaindo Coal Mining (TCM) - Melak 2019', '2019', 'projects/bYwBkaGZc8QQ9HcNyqkSH9dbjgjbrxv4exPXJvoa.jpg', 3, '2026-02-03 07:14:33', '2026-02-03 07:16:06'),
+(13, 'Jasa Regenerasi Perangkat Sistem Inti Kantor Pusat PT Pupuk Kaltim', 'Jasa Regenerasi Perangkat Sistem Inti Kantor Pusat PT Pupuk Kaltim - Bontang 2022', '2022', 'projects/UVhs5eCSzcxgtwFztZ05Yc0St8jEqbdhXAIDI9Hd.jpg', 1, '2026-02-03 07:18:30', '2026-02-03 07:18:30'),
+(15, 'Jasa Penarikan Fiber Optik Area Pabrik dan Kantor Pusat PT Pupuk Kaltim', 'Jasa Penarikan Fiber Optik Area Pabrik dan Kantor Pusat PT Pupuk Kaltim - Bontang 2022', '2022', 'projects/QEwnwdR1oQyEDPeFtsadTP2XWbsuCzOlf0DXl54H.jpg', 0, '2026-02-03 07:20:10', '2026-02-03 07:20:10'),
+(17, 'Pekerjaan Pengembangan Elektronik System Sirine, Area Pabrik 5 dan Kantor Pengadaan PT Pupuk Kaltim', 'Pekerjaan Pengembangan Elektronik System Sirine, Area Pabrik 5 dan Kantor Pengadaan PT Pupuk Kaltim - Bontang 2022', '2022', 'projects/cqdOe5G1ksfXVkT1bW8ewXUQVSw5EX7KLW5dg6J7.jpg', 0, '2026-02-03 07:28:27', '2026-02-03 07:28:27'),
+(18, 'Instalasi Penguatan Sinyal Operator Pabrik PT Pupuk Kaltim', 'Instalasi Penguatan Sinyal Operator Pabrik PT Pupuk Kaltim - Bontang 2023', '2023', 'projects/D8VLEtzeVDpNT5GXwEAC6QNCbkxtHNITbOzJ25p3.png', 0, '2026-02-03 07:31:35', '2026-02-03 07:31:35'),
+(19, 'Jasa Pemasangan Fixed Speed Monitor Pabrik PT Kaltim', 'Jasa Pemasangan Fixed Speed Monitor Pabrik PT Kaltim - Bontang 2023', '2023', 'projects/McOLZvxE8zqRSPQQwGFqwiMhaqZzMw7ul7qXuuAM.jpg', 0, '2026-02-03 07:32:56', '2026-02-03 07:32:56'),
+(20, 'Pemasangan dan Instalasi CCTV PT Indominco', 'Pemasangan dan Instalasi CCTV PT Indominco - Bontang 2023', '2023', 'projects/nsVEohUPwVPm7kndDy34H2AYpX2wTsaDFeJzlWgZ.jpg', 0, '2026-02-03 07:33:45', '2026-02-03 07:33:45'),
+(25, 'Pemasangan dan Instalasi PT Kaltim Pama Industri', 'Pemasangan dan Instalasi PT Kaltim Pama Industri - Bontang 2024', '2024', 'projects/icB7hogIG9lqOJFLdTJXIcc4oFwmrPH6oxPACBgu.jpg', 1, '2026-02-03 07:45:16', '2026-02-03 07:45:32'),
+(26, 'Jasa Pemasangan dan Instalasi CCTV PT Pupuk Kalimantan Timur', 'Jasa Pemasangan dan Instalasi CCTV PT Pupuk Kalimantan Timur - Bontang 2024', '2024', 'projects/X6DQNd2QbuhaVN733kqQulb2Vr1dpJyQwT3rs5EM.jpg', 2, '2026-02-03 07:46:04', '2026-02-03 07:46:04'),
+(27, 'Jasa Pemasangan dan Instalasi Video Wall PT Pupuk Kalimantan Timur', 'Jasa Pemasangan dan Instalasi Video Wall PT Pupuk Kalimantan Timur - Bontang 2024', '2024', 'projects/4pE2WcsZSrHiXwjUA5M376R2Nz585Qf9onGqPa1H.jpg', 3, '2026-02-03 07:46:25', '2026-02-03 07:46:25'),
+(28, 'Jasa Pemasangan dan Instalasi CCTV FR PT Pupuk Kalimantan Timur', 'Jasa Pemasangan dan Instalasi CCTV FR PT Pupuk Kalimantan Timur - Bontang 2024', '2024', 'projects/3vpklzAQJyT0c0ot6NrnN9HdCmBaSz4rB5gr6gYM.jpg', 4, '2026-02-03 07:46:50', '2026-02-03 07:46:50'),
+(29, 'Jasa Pemasangan PABX PT Kaltim Daya Mandiri', 'Jasa Pemasangan PABX PT Kaltim Daya Mandiri - Bontang 2024', '2024', 'projects/6EAern4kexuKCc5UERdLOtabDxipptBar7ZReCQp.jpg', 5, '2026-02-03 07:47:56', '2026-02-03 07:47:56'),
+(30, 'Jasa Maintenance dan Penggantian CCTV PT Kaltim Pama Industri', 'Jasa Maintenance dan Penggantian CCTV\r\nPT Kaltim Pama Industri - Bontang 2024', '2024', 'projects/YrIFCReTytlWtS0bP1CVJ2qJk866jCa2IbQIxBeT.jpg', 6, '2026-02-03 07:48:19', '2026-02-03 07:48:19'),
+(31, 'Jasa Maintenance CCTV PT Kaltim Daya Mandiri', 'Jasa Maintenance CCTV PT Kaltim Daya Mandiri - Bontang 2025', '2025', 'projects/lH0CzogYYmlickUulLnlAlH213U8I9v83PB6uDzE.jpg', 1, '2026-02-03 07:48:44', '2026-02-03 07:48:44'),
+(32, 'Jasa Peremajaan CCTV Plant PT Kaltim Pama Industi', 'Jasa Peremajaan CCTV Plant PT Kaltim Pama Industi - Bontang 2025', '2025', 'projects/PI2PFqjP3kciOZK27RjKM4DmcxKajxJ4N3TFcC9X.jpg', 2, '2026-02-03 07:49:06', '2026-02-03 07:49:06'),
+(33, 'Jasa Peningkatan Ruang Meeting PT Kaltim Pama Industri', 'Jasa Peningkatan Ruang Meeting PT Kaltim Pama Industri - Bontang 2025', '2025', 'projects/Qr9hddb64ZZtnpM5pHCmAcjAsEkOmap2OIjxc3QY.jpg', 3, '2026-02-03 07:49:27', '2026-02-03 07:49:27');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rubrik`
+-- Struktur dari tabel `rubrik`
 --
 
 CREATE TABLE `rubrik` (
@@ -246,7 +266,7 @@ CREATE TABLE `rubrik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `rubrik`
+-- Dumping data untuk tabel `rubrik`
 --
 
 INSERT INTO `rubrik` (`id`, `nama`, `created_at`, `updated_at`) VALUES
@@ -256,7 +276,7 @@ INSERT INTO `rubrik` (`id`, `nama`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service_centers`
+-- Struktur dari tabel `service_centers`
 --
 
 CREATE TABLE `service_centers` (
@@ -267,7 +287,7 @@ CREATE TABLE `service_centers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `service_centers`
+-- Dumping data untuk tabel `service_centers`
 --
 
 INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
@@ -278,29 +298,33 @@ INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `solutions`
+-- Struktur dari tabel `solutions`
 --
 
 CREATE TABLE `solutions` (
   `id` int(11) NOT NULL,
   `judul` varchar(100) NOT NULL,
-  `deskripsi` varchar(255) NOT NULL,
+  `deskripsi` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `solutions`
+-- Dumping data untuk tabel `solutions`
 --
 
 INSERT INTO `solutions` (`id`, `judul`, `deskripsi`, `created_at`, `updated_at`) VALUES
-(1, 'AI Vision Analytics', 'Solusi analisis citra berbasis AI untuk sektor manufaktur dan retail yang mampu mendeteksi anomali visual, mengoptimalkan kualitas produksi, dan menyediakan laporan otomatis.', '2025-08-01 00:18:00', '2025-08-02 09:18:10'),
-(6, 'RetailBoost POS Cloud', 'Sistem kasir berbasis cloud yang mendukung multi-cabang, laporan penjualan otomatis, serta integrasi dengan e-commerce dan sistem inventori. Cocok untuk bisnis ritel modern.', '2025-08-01 02:06:39', '2025-08-02 09:18:31');
+(1, 'IT MAINTENANCE', 'Didukung oleh tim berpengalaman di bidangnya, perusahaan kami menyediakan jasa perawatan peralatan IT, seperti software update, hardware maintenance, tower maintenance, cabling management, dan lain-lain.', '2025-08-01 00:18:00', '2026-02-03 07:05:57'),
+(6, 'ELECTRONIC SECURITY SYSTEM', 'Sebagai System Integrator (SI) salah satu produsen Electronic Security System terbaik di dunia, dan didukung teknisi bersertifikasi Hikvision Certified Security Associate (HCSA), kami menyediakan berbagai macam produk solusi untuk memudahkan pengawasan operasional perusahaan. Perlengkapan meliputi CCTV, Rotary Gate, X-Ray Security Inspection, Access Door, dan Command Center Solution.', '2025-08-01 02:06:39', '2026-02-03 07:06:20'),
+(7, 'IT NETWORKING', 'Lingkup pekerjaan IT Networking yang kami kerjakan meliputi pengadaan barang dan jasa instalasi jaringan Fiber Optic (FO), instalasi server, jaringan komputer, smart projector, jaringan wifi, radio rig, radio point to point, serta instalasi perlengkapan telekomunikasi (PABX).', '2025-08-09 09:30:44', '2026-02-03 07:06:39'),
+(8, 'PROGRAMMING', 'Lingkup pekerjaan programming yang kami kerjakan meliputi pembuatan software berbasis desktop dan web sebagai penunjang kegiatan operasional perusahaan.', '2025-08-09 09:30:54', '2026-02-03 07:06:51'),
+(9, 'IT MATERIAL SUPPLIER', 'Lingkup pekerjaan supplies computer yang kami kerjakan meliputi pengadaan toner, cartridge, printer, personal computer, laptop, dan peralatan komputer lainnya.', '2025-08-09 09:31:08', '2026-02-03 07:07:00'),
+(10, 'GENERAL SUPPLIER', 'Kami menyediakan beragam produk untuk memenuhi kebutuhan bisnis dan teknologi modern. Seperti kebutuhan insulation blanket dari bahan Aerogel, serta beragam peralatan penunjang operasional pabrik yang sesuai dengan kebutuhan.', '2025-08-09 09:31:22', '2026-02-03 07:07:50');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -312,17 +336,17 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `nama`, `email`, `password`, `role`) VALUES
-(1, 'Super Admin', 'superadmin@gmail.com', '$2y$10$smifxYv2Fs0mJ/k24pI.6OBidRnZhkJdhW.OPd151m9GPOqW7UDTC', 'superadmin'),
-(3, 'Nindi', 'nindi@gmail.com', '$2y$10$xy2JQGnNd9VMeXDdmyPzZesceONe0iuZxZ.XLfnCqw.xgR.kSfO4G', 'admin');
+(3, 'Nindi', 'nindi@gmail.com', '$2y$10$xy2JQGnNd9VMeXDdmyPzZesceONe0iuZxZ.XLfnCqw.xgR.kSfO4G', 'superadmin'),
+(8, 'Super Admin', 'superadmin@gmail.com', '$2y$10$WE4hXvwuaygu6otlk/gxp.OboJTRUF/fkZnJSOVa6jVNotHcdfgiO', 'superadmin');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vendors`
+-- Struktur dari tabel `vendors`
 --
 
 CREATE TABLE `vendors` (
@@ -337,16 +361,29 @@ CREATE TABLE `vendors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vendors`
+-- Dumping data untuk tabel `vendors`
 --
 
 INSERT INTO `vendors` (`id`, `name`, `logo_path`, `alt_text`, `website_url`, `vendor_category_id`, `created_at`, `updated_at`) VALUES
-(8, 'Acer', 'vendors/logos/tkU2zDMz2SYNyY0PNcCrIXc53JJhEA9ycC5QpDiL.png', 'acer', 'https://www.acer.com/id-id', 5, '2025-07-31 23:06:38', '2025-08-04 06:20:21');
+(8, 'Ubiquiti', 'vendors/logos/UuHhTL5PwVUgKwdNnuHFAsgCR3a9ohfU91EG5C8X.png', 'Ubiquiti', 'https://ui.com/', 8, '2025-07-31 23:06:38', '2025-08-09 09:47:25'),
+(9, 'TOA', 'vendors/logos/rp6HtebzhPjlFngjGZePn781KJYdQ4mm0RFagTE6.png', 'TOA', 'https://www.toa-global.com/en', 5, '2025-08-09 09:45:37', '2025-08-09 09:45:37'),
+(10, 'Netviel', 'vendors/logos/LCHU8GsZTHJsFgq5eOSbmRQe0g6tN9rtaSqXFupL.png', 'netviel', 'http://netviel.com/?gad_source=1&gad_campaignid=22864132211&gbraid=0AAAAADfO5eOiWNxJGZrrtWOr0iWLFwbUT&gclid=EAIaIQobChMIwMezlJf-jgMV8KRmAh0Z6ADpEAAYASAAEgJWQ_D_BwE', 7, '2025-08-09 09:48:50', '2025-08-09 09:48:50'),
+(11, 'Fortinet', 'vendors/logos/H4VDGdLxM7yj9VekJmK27y2K5nLL1LRp2dIMf6hT.png', NULL, 'https://www.fortinet.com/', 8, '2026-02-03 08:03:34', '2026-02-03 08:03:34'),
+(12, 'Mikrotik', 'vendors/logos/CHgFfq1WbNun8w0qPnsG7N8hydVS6OyH2fikPvP0.jpg', NULL, 'https://mikrotik.com/', 8, '2026-02-03 08:05:28', '2026-02-03 08:05:28'),
+(13, 'Cisco', 'vendors/logos/FulaEJBks34tY6aZBVh5bPp6oCJRJgzTxBevG9AI.png', NULL, 'https://www.cisco.com/', 8, '2026-02-03 08:06:21', '2026-02-03 08:06:21'),
+(14, 'tp-link', 'vendors/logos/wfARysYDRAkqD8ptgB2aWe2G5fH1QOHgKReMWPqg.png', NULL, 'https://www.tp-link.com/id/', 8, '2026-02-03 08:06:49', '2026-02-03 08:06:49'),
+(15, 'PT Sucaco', 'vendors/logos/29cbMUANYpBHrYTipfRnArozfpJNYrNCghJtpiNg.jpg', NULL, 'https://www.sucaco.com/', 7, '2026-02-03 08:11:47', '2026-02-03 08:11:47'),
+(16, 'paz', 'vendors/logos/BAxS4q6RHROEjbFNo7FLYlNRGeoIGK6XMEcPlpQK.png', NULL, NULL, 7, '2026-02-03 08:12:20', '2026-02-03 08:12:20'),
+(17, 'Schneider Electric', 'vendors/logos/R2NkBBGFhLQHMqpo5b5lcL78d07xMufetbYWYCis.png', NULL, 'https://www.se.com/id/id/', 9, '2026-02-03 08:15:54', '2026-02-03 08:16:23'),
+(18, 'APC', 'vendors/logos/UX0ZsSAt0tYuIShnMoyQE0eytO7DsBaqv8MZkcFX.png', NULL, 'https://www.se.com/id/id/brands/apc/', 9, '2026-02-03 08:18:13', '2026-02-03 08:18:13'),
+(19, 'Liebert', 'vendors/logos/HbiKIroJNMbuLYqOzSiG8ZnOGtujWVB6WOiFL2Xe.png', NULL, NULL, 9, '2026-02-03 08:19:30', '2026-02-03 08:19:30'),
+(20, 'Vertiv', 'vendors/logos/mpoJYIruszuCc5lyWQ6GCjuVbMUp8LJrzytTf0Z3.jpg', NULL, 'https://www.vertiv.com/en-us/', 10, '2026-02-03 08:26:54', '2026-02-03 08:26:54'),
+(21, 'indorack', 'vendors/logos/Lqwzli5TcdYCvXpp31EOZrEk2BqbFFHbftgfQzJV.png', NULL, 'https://www.indorack.co.id/', 10, '2026-02-03 08:27:17', '2026-02-03 08:27:17');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vendor_categories`
+-- Struktur dari tabel `vendor_categories`
 --
 
 CREATE TABLE `vendor_categories` (
@@ -357,197 +394,210 @@ CREATE TABLE `vendor_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `vendor_categories`
+-- Dumping data untuk tabel `vendor_categories`
 --
 
 INSERT INTO `vendor_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(5, 'PC & Computing', '2025-07-31 23:06:27', '2025-07-31 23:06:27'),
-(7, 'Server & Storage', '2025-08-04 05:53:30', '2025-08-04 06:00:30');
+(5, 'Electronic Sirine System', '2025-07-31 23:06:27', '2026-02-03 08:17:01'),
+(7, 'Fiber Optic', '2025-08-04 05:53:30', '2026-02-03 08:17:11'),
+(8, 'Netware & Firewall', '2025-08-09 09:44:36', '2026-02-03 08:17:21'),
+(9, 'Electrical & Battery', '2026-02-03 08:16:11', '2026-02-03 08:16:11'),
+(10, 'Rack & Cabinet', '2026-02-03 08:26:13', '2026-02-03 08:26:13'),
+(11, 'Telephony', '2026-02-03 08:30:56', '2026-02-03 08:30:56'),
+(12, 'Meeting Room Audio & Video', '2026-02-03 08:31:10', '2026-02-03 08:31:10'),
+(13, 'Drone Inspection , Patrol, Mapping & Security', '2026-02-03 08:31:33', '2026-02-03 08:31:33'),
+(14, 'Camera CCTV & Security System', '2026-02-03 08:31:47', '2026-02-03 08:31:47'),
+(15, 'Advanced & Smart Display', '2026-02-03 08:32:11', '2026-02-03 08:32:11'),
+(16, 'Cloud Service Solution', '2026-02-03 08:32:22', '2026-02-03 08:32:22'),
+(17, 'Advanced Scanner', '2026-02-03 08:32:37', '2026-02-03 08:32:37'),
+(18, 'Computer, Server & Notebook', '2026-02-03 08:32:53', '2026-02-03 08:32:53'),
+(19, 'Storage', '2026-02-03 08:33:02', '2026-02-03 08:33:02'),
+(20, 'Insulation Pipe', '2026-02-03 08:33:10', '2026-02-03 08:33:10');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `about_us`
+-- Indeks untuk tabel `about_us`
 --
 ALTER TABLE `about_us`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `company_info`
+-- Indeks untuk tabel `company_info`
 --
 ALTER TABLE `company_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `contact_messages`
+-- Indeks untuk tabel `contact_messages`
 --
 ALTER TABLE `contact_messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indeks untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `news`
+-- Indeks untuk tabel `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `organization_members`
+-- Indeks untuk tabel `organization_members`
 --
 ALTER TABLE `organization_members`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `projects`
+-- Indeks untuk tabel `projects`
 --
 ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `rubrik`
+-- Indeks untuk tabel `rubrik`
 --
 ALTER TABLE `rubrik`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `service_centers`
+-- Indeks untuk tabel `service_centers`
 --
 ALTER TABLE `service_centers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `solutions`
+-- Indeks untuk tabel `solutions`
 --
 ALTER TABLE `solutions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `vendors`
+-- Indeks untuk tabel `vendors`
 --
 ALTER TABLE `vendors`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_vendor_category` (`vendor_category_id`);
 
 --
--- Indexes for table `vendor_categories`
+-- Indeks untuk tabel `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `about_us`
+-- AUTO_INCREMENT untuk tabel `about_us`
 --
 ALTER TABLE `about_us`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `company_info`
+-- AUTO_INCREMENT untuk tabel `company_info`
 --
 ALTER TABLE `company_info`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `contact_messages`
+-- AUTO_INCREMENT untuk tabel `contact_messages`
 --
 ALTER TABLE `contact_messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `news`
+-- AUTO_INCREMENT untuk tabel `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `organization_members`
+-- AUTO_INCREMENT untuk tabel `organization_members`
 --
 ALTER TABLE `organization_members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `projects`
+-- AUTO_INCREMENT untuk tabel `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `rubrik`
+-- AUTO_INCREMENT untuk tabel `rubrik`
 --
 ALTER TABLE `rubrik`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `service_centers`
+-- AUTO_INCREMENT untuk tabel `service_centers`
 --
 ALTER TABLE `service_centers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `solutions`
---
-ALTER TABLE `solutions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `solutions`
+--
+ALTER TABLE `solutions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `vendors`
+-- AUTO_INCREMENT untuk tabel `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `vendor_categories`
+-- AUTO_INCREMENT untuk tabel `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `vendors`
+-- Ketidakleluasaan untuk tabel `vendors`
 --
 ALTER TABLE `vendors`
   ADD CONSTRAINT `fk_vendor_category` FOREIGN KEY (`vendor_category_id`) REFERENCES `vendor_categories` (`id`) ON DELETE SET NULL;

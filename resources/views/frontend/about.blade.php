@@ -40,17 +40,17 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="about-2-tab1">
                             <h4 class="mt-4">Sejarah Perusahaan Kami</h4>
-                            <p>{!! nl2br(e($about->sejarah)) !!}</p>
+                            <p style="text-align: justify;">{!! nl2br(e($about->sejarah)) !!}</p>
                         </div>
 
                         <div class="tab-pane fade" id="about-2-tab2">
                             <h4 class="mt-4">Visi Kami</h4>
-                            <p>{!! nl2br(e($about->visi)) !!}</p>
+                            <p style="text-align: justify;">{!! nl2br(e($about->visi)) !!}</p>
                         </div>
 
                         <div class="tab-pane fade" id="about-2-tab3">
                             <h4 class="mt-4">Misi Kami</h4>
-                            <p>{!! nl2br(e($about->misi)) !!}</p>
+                            <p style="text-align: justify;">{!! nl2br(e($about->misi)) !!}</p>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     <div class="col-md-7 p-4 d-flex flex-column justify-content-center">
                         <h4 id="modalMemberName" class="fw-bold mb-1" style="color: #333;"></h4>
                         <p id="modalMemberPosition" class="text-muted mb-3" style="color: #666 !important;"></p>
-                        <p id="modalMemberDescription" class="text-justify" style="color: #444;"></p>
+                        <p id="modalMemberDescription" style="color: #444; text-align: justify;"></p>
                     </div>
                 </div>
             </div>
@@ -188,6 +188,7 @@
 
 @push('styles')
 <style>
+    /* ... CSS Team Member Card (Biarkan Tetap Sama) ... */
     .team {
         background-color: #F2F4F6 !important;
     }
@@ -227,7 +228,6 @@
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1) !important;
     }
 
-    
     .team-member-img {
         width: 100%;
         aspect-ratio: 1 / 1;
@@ -262,25 +262,32 @@
         font-size: 0.9rem;
     }
 
-    .modal-content {
+    /* --- PERBAIKAN DI SINI (ISOLASI CSS MODAL) --- */
+    
+    /* Tambahkan #memberDetailModal di depannya agar TIDAK BOCOR ke Modal WA */
+    #memberDetailModal .modal-content {
         background-color: #fff;
         color: #333;
         border-radius: 0.5rem !important;
         overflow: hidden;
     }
 
-    .modal-member-photo {
+    #memberDetailModal .modal-member-photo {
         border: none !important;
         object-fit: cover;
         object-position: center;
         border-radius: 0.5rem 0 0 0.5rem !important;
     }
 
-    .modal-body.p-0 {
+    /* INI BIANG KEROKNYA: min-height 400px */
+    /* Kita kunci supaya cuma kena ke memberDetailModal */
+    #memberDetailModal .modal-body.p-0 {
         min-height: 400px;
         display: flex;
         flex-wrap: wrap;
     }
+
+    /* --- BATAS PERBAIKAN --- */
 
     @media (max-width: 576px) {
         .card-title {
@@ -302,6 +309,11 @@
 
     .breadcrumbs ol li.current {
         color: #999;
+    }
+    
+    /* Mengembalikan fungsi text-justify (jaga-jaga) */
+    .text-justify {
+        text-align: justify !important;
     }
 </style>
 @endpush

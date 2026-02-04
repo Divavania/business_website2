@@ -336,7 +336,7 @@
             #header .navmenu {
                 position: fixed;
                 top: 0;
-                right: -100%;
+                left: -100%;
                 width: 85%;
                 max-width: 300px;
                 height: 100vh;
@@ -349,7 +349,7 @@
             }
 
             body.mobile-nav-active #header .navmenu {
-                right: 0;
+                left: 0;
             }
 
             #header .navmenu ul {
@@ -546,7 +546,7 @@
 
                 {{-- Kolom 3: Useful Links --}}
                 <div class="col-lg-3 col-md-6 text-start ">
-                    <h4>Tautan Cepat</h4>
+                    <h4>Menu Utama</h4>
                     <ul>
                         <li><a href="{{ route('home') }}">Beranda</a></li>
                         <li><a href="{{ route('frontend.about.index') }}">Tentang Kami</a></li>
@@ -684,7 +684,6 @@
                 whatsappModal.addEventListener('hidden.bs.modal', function() {});
             }
 
-            const navToggle = document.querySelector('.mobile-nav-toggle');
             const navMenu = document.querySelector('#navmenu');
 
             navToggle.addEventListener('click', function() {
