@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Feb 2026 pada 06.20
+-- Waktu pembuatan: 05 Feb 2026 pada 09.48
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `business_website3`
+-- Database: `business_website4`
 --
 
 -- --------------------------------------------------------
@@ -291,9 +291,7 @@ CREATE TABLE `service_centers` (
 --
 
 INSERT INTO `service_centers` (`id`, `nama`, `alamat`, `waktu_pelayanan`) VALUES
-(3, 'Tigatra Service Jakarta', 'Jl. Teknologi No. 10, Jakarta Selatan', 'Senin–Jumat, 09.00–17.00'),
-(4, 'Tigatra Service Bandung', 'Jl. Inovasi No. 21, Bandung', 'Senin–Sabtu, 08.00–16.00'),
-(5, 'Tigatra Service Surabaya', 'Jl. Digital No. 33, Surabaya', 'Senin–Jumat, 09.00–17.00');
+(3, 'Tigatra Adikara', 'JL. KS Tubun Gg. Vulkanik Perum Villa R4 No.04 RT.008 Kelurahan Bontang Kuala, Kecamatan Bontang Utara Kota Bontang - Kalimantan Timur', 'Senin–Jumat, 09.00–17.00');
 
 -- --------------------------------------------------------
 
