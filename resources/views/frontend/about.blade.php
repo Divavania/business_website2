@@ -58,53 +58,48 @@
         </div>
     </section>
 
-    <section id="team" class="team light-background py-5">
+    <section id="team" class="team section light-background py-5">
         <div class="container" data-aos="fade-up">
-            <header class="section-header text-center pb-4">
-                <h2 style="color: #333;">Tim Kami</h2>
-                <p style="color: #666;">Kenali Tim Profesional Kami</p>
+            <header class="section-header text-center pb-5">
+                <h2>Tim Kami</h2>
+                <p>Kenali Tim Profesional Kami</p>
             </header>
 
-            {{-- Baris untuk President DAN Vice President (Order 1 & 2) - Digabung jadi 1 baris --}}
             @if(isset($president) || isset($vicePresident))
-            <div class="row d-flex justify-content-center">
+            <div class="row g-4 justify-content-center mb-4">
                 @if(isset($president))
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card team-member border-0 shadow-sm rounded-2 w-100 h-100 bg-white"
-                        style="cursor: pointer;"
-                        data-bs-toggle="modal"
-                        data-bs-target="#memberDetailModal"
+                <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="fade-up" data-aos-delay="50">
+                    <div class="card team-card w-100" data-bs-toggle="modal" data-bs-target="#memberDetailModal"
                         data-bs-photo="{{ asset('storage/' . $president->photo) }}"
                         data-bs-name="{{ $president->name }}"
                         data-bs-position="{{ $president->position }}"
                         data-bs-description="{{ $president->description }}">
-                        <div class="team-member-img rounded-top">
-                            <img src="{{ asset('storage/' . $president->photo) }}" alt="{{ $president->name }}">
+                        
+                        <div class="card-img-wrapper">
+                            <img src="{{ asset('storage/' . $president->photo) }}" class="card-img-top" alt="{{ $president->name }}">
                         </div>
-                        <div class="card-body text-center d-flex flex-column justify-content-center" style="background-color: #ffffff;">
-                            <h5 class="card-title fw-bold m-0" style="color: #333;">{{ $president->name }}</h5>
-                            <p class="card-text m-0" style="color: #666;">{{ $president->position }}</p>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ $president->name }}</h5>
+                            <p class="card-text">{{ $president->position }}</p>
                         </div>
                     </div>
                 </div>
                 @endif
 
                 @if(isset($vicePresident))
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card team-member border-0 shadow-sm rounded-2 w-100 h-100 bg-white"
-                        style="cursor: pointer;"
-                        data-bs-toggle="modal"
-                        data-bs-target="#memberDetailModal"
+                <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card team-card w-100" data-bs-toggle="modal" data-bs-target="#memberDetailModal"
                         data-bs-photo="{{ asset('storage/' . $vicePresident->photo) }}"
                         data-bs-name="{{ $vicePresident->name }}"
                         data-bs-position="{{ $vicePresident->position }}"
                         data-bs-description="{{ $vicePresident->description }}">
-                        <div class="team-member-img rounded-top">
-                            <img src="{{ asset('storage/' . $vicePresident->photo) }}" alt="{{ $vicePresident->name }}">
+                        
+                        <div class="card-img-wrapper">
+                            <img src="{{ asset('storage/' . $vicePresident->photo) }}" class="card-img-top" alt="{{ $vicePresident->name }}">
                         </div>
-                        <div class="card-body text-center d-flex flex-column justify-content-center" style="background-color: #ffffff;">
-                            <h5 class="card-title fw-bold m-0" style="color: #333;">{{ $vicePresident->name }}</h5>
-                            <p class="card-text m-0" style="color: #666;">{{ $vicePresident->position }}</p>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ $vicePresident->name }}</h5>
+                            <p class="card-text">{{ $vicePresident->position }}</p>
                         </div>
                     </div>
                 </div>
@@ -112,48 +107,51 @@
             </div>
             @endif
 
-            {{-- Baris untuk Staff (Order 3 ke atas) - Responsif untuk semua ukuran layar --}}
             @if($staff->isNotEmpty())
-            <div class="row d-flex justify-content-center">
+            <div class="row g-4 justify-content-center">
                 @foreach($staff as $index => $member)
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 d-flex align-items-stretch mb-4" data-aos="fade-up" data-aos-delay="{{ 100 + ($index * 100) }}">
-                    <div class="card team-member border-0 shadow-sm rounded-2 w-100 h-100 bg-white"
-                        style="cursor: pointer;"
-                        data-bs-toggle="modal"
-                        data-bs-target="#memberDetailModal"
+                <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch justify-content-center" 
+                     data-aos="fade-up" 
+                     data-aos-delay="{{ 50 + (($index % 2) * 50) }}">
+                     
+                    <div class="card team-card w-100" data-bs-toggle="modal" data-bs-target="#memberDetailModal"
                         data-bs-photo="{{ asset('storage/' . $member->photo) }}"
                         data-bs-name="{{ $member->name }}"
                         data-bs-position="{{ $member->position }}"
                         data-bs-description="{{ $member->description }}">
-                        <div class="team-member-img rounded-top">
-                            <img src="{{ asset('storage/' . $member->photo) }}" alt="{{ $member->name }}">
+                        
+                        <div class="card-img-wrapper">
+                            <img src="{{ asset('storage/' . $member->photo) }}" class="card-img-top" alt="{{ $member->name }}">
                         </div>
-                        <div class="card-body text-center d-flex flex-column justify-content-center" style="background-color: #ffffff;">
-                            <h5 class="card-title fw-bold m-0" style="color: #333;">{{ $member->name }}</h5>
-                            <p class="card-text m-0" style="color: #666;">{{ $member->position }}</p>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ $member->name }}</h5>
+                            <p class="card-text">{{ $member->position }}</p>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
             @endif
+
         </div>
     </section>
 </main>
 
 <div class="modal fade" id="memberDetailModal" tabindex="-1" aria-labelledby="memberDetailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content rounded-3">  <!-- Tambahkan rounded-3 di sini -->
+        <div class="modal-content border-0 shadow-lg rounded-3 overflow-hidden">
             <div class="modal-body p-0 position-relative">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; top: 1rem; right: 1rem; z-index: 1050;"></button>
+                <button type="button" class="btn-close btn-close-white-mobile" data-bs-dismiss="modal" aria-label="Close" 
+                    style="position: absolute; top: 15px; right: 15px; z-index: 1050; background-color: rgba(255,255,255,0.8); border-radius: 50%; padding: 0.5rem;"></button>
                 <div class="row g-0">
                     <div class="col-md-5">
-                        <img id="modalMemberPhoto" src="" alt="" class="modal-member-photo img-fluid w-100 h-100 rounded-start">  <!-- Tambahkan rounded-start -->
+                        <img id="modalMemberPhoto" src="" alt="" class="img-fluid w-100 h-100 object-fit-cover" style="min-height: 300px;">
                     </div>
-                    <div class="col-md-7 p-4 d-flex flex-column justify-content-center">
-                        <h4 id="modalMemberName" class="fw-bold mb-1" style="color: #333;"></h4>
-                        <p id="modalMemberPosition" class="text-muted mb-3" style="color: #666 !important;"></p>
-                        <p id="modalMemberDescription" style="color: #444; text-align: justify;"></p>
+                    <div class="col-md-7 p-4 p-lg-5 d-flex flex-column justify-content-center bg-white">
+                        <h3 id="modalMemberName" class="fw-bold mb-1 text-dark"></h3>
+                        <p id="modalMemberPosition" class="text-primary fw-medium mb-4"></p>
+                        <hr class="w-25 border-primary border-3 opacity-100 mb-4 mt-0">
+                        <div id="modalMemberDescription" class="text-secondary" style="text-align: justify; line-height: 1.8;"></div>
                     </div>
                 </div>
             </div>
@@ -164,23 +162,25 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var memberDetailModal = document.getElementById('memberDetailModal');
-        memberDetailModal.addEventListener('show.bs.modal', function(event) {
-            var card = event.relatedTarget;
-            var photo = card.getAttribute('data-bs-photo');
-            var name = card.getAttribute('data-bs-name');
-            var position = card.getAttribute('data-bs-position');
-            var description = card.getAttribute('data-bs-description');
+        if(memberDetailModal){
+            memberDetailModal.addEventListener('show.bs.modal', function(event) {
+                var card = event.relatedTarget;
+                var photo = card.getAttribute('data-bs-photo');
+                var name = card.getAttribute('data-bs-name');
+                var position = card.getAttribute('data-bs-position');
+                var description = card.getAttribute('data-bs-description');
 
-            var modalPhoto = memberDetailModal.querySelector('#modalMemberPhoto');
-            var modalName = memberDetailModal.querySelector('#modalMemberName');
-            var modalPosition = memberDetailModal.querySelector('#modalMemberPosition');
-            var modalDescription = memberDetailModal.querySelector('#modalMemberDescription');
+                var modalPhoto = memberDetailModal.querySelector('#modalMemberPhoto');
+                var modalName = memberDetailModal.querySelector('#modalMemberName');
+                var modalPosition = memberDetailModal.querySelector('#modalMemberPosition');
+                var modalDescription = memberDetailModal.querySelector('#modalMemberDescription');
 
-            modalPhoto.src = photo;
-            modalName.textContent = name;
-            modalPosition.textContent = position;
-            modalDescription.textContent = description;
-        });
+                modalPhoto.src = photo;
+                modalName.textContent = name;
+                modalPosition.textContent = position;
+                modalDescription.textContent = description;
+            });
+        }
     });
 </script>
 
@@ -188,132 +188,109 @@
 
 @push('styles')
 <style>
-    /* ... CSS Team Member Card (Biarkan Tetap Sama) ... */
-    .team {
-        background-color: #F2F4F6 !important;
-    }
-
-    .section-header h2,
-    .section-header p {
+    .section-header h2 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 10px;
         color: #333;
-    }
-
-    .section-header {
         position: relative;
-        padding-bottom: 20px;
-        margin-bottom: 20px;
+        display: inline-block;
     }
-
-    .section-header::after {
-        content: '';
+    
+    .section-header h2::after {
+        content: "";
         position: absolute;
-        bottom: 0;
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: #007bff;
+        bottom: -10px;
         left: 50%;
         transform: translateX(-50%);
-        width: 60px;
-        height: 2px;
-        background-color: var(--color-primary);
     }
 
-    .card.team-member {
-        background-color: #fff !important;
-        border: 1px solid rgba(0, 0, 0, 0.125);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05) !important;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .section-header p {
+        margin-top: 15px;
+        color: #777;
+    }
+
+    .team-card {
+        border: 1px solid #f0f0f0; 
+        border-radius: 8px; 
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03); 
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
         overflow: hidden;
+        background: #fff;
+        max-width: 260px;
+        margin: 0 auto;
     }
 
-    .card.team-member:hover {
+    .team-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); 
+        border-color: transparent;
     }
 
-    .team-member-img {
+    .card-img-wrapper {
         width: 100%;
-        aspect-ratio: 1 / 1;
+        position: relative;
+        padding-top: 100%; 
         overflow: hidden;
-        padding: 0;
-        margin: 0;
     }
 
-    .team-member-img img {
+    .card-img-top {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center top;
-        display: block;
-        margin: 0;
-        padding: 0;
+        object-position: center top; 
+        transition: transform 0.5s ease;
     }
-
-    .card-body {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
-
-    .card-title {
-        color: #333 !important;
-        font-size: 1.1rem;
-        margin-bottom: 0.25rem !important;
-    }
-
-    .card-text {
-        color: #666 !important;
-        font-size: 0.9rem;
-    }
-
-    /* --- PERBAIKAN DI SINI (ISOLASI CSS MODAL) --- */
     
-    /* Tambahkan #memberDetailModal di depannya agar TIDAK BOCOR ke Modal WA */
-    #memberDetailModal .modal-content {
+    .team-card:hover .card-img-top {
+        transform: scale(1.03);
+    }
+
+    .team-card .card-body {
+        padding: 15px 10px;
         background-color: #fff;
-        color: #333;
-        border-radius: 0.5rem !important;
-        overflow: hidden;
+        position: relative;
+        z-index: 2;
     }
 
-    #memberDetailModal .modal-member-photo {
-        border: none !important;
+    .team-card .card-title {
+        font-weight: 700;
+        margin-bottom: 3px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .team-card .card-text {
+        font-size: 12px; 
+        color: #888;
+        margin-bottom: 0;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+        .team-card .card-body {
+            padding: 12px 8px;
+        }
+        .team-card .card-title {
+            font-size: 14px;
+        }
+        .team-card .card-text {
+            font-size: 10px;
+        }
+    }
+
+    .object-fit-cover {
         object-fit: cover;
-        object-position: center;
-        border-radius: 0.5rem 0 0 0.5rem !important;
-    }
-
-    /* INI BIANG KEROKNYA: min-height 400px */
-    /* Kita kunci supaya cuma kena ke memberDetailModal */
-    #memberDetailModal .modal-body.p-0 {
-        min-height: 400px;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    /* --- BATAS PERBAIKAN --- */
-
-    @media (max-width: 576px) {
-        .card-title {
-            font-size: 0.9rem !important;
-        }
-        
-        .card-text {
-            font-size: 0.75rem !important;
-        }
-        
-        .card-body {
-            padding: 0.75rem !important;
-        }
-    }
-
-    .breadcrumbs ol a {
-        color: #333;
-    }
-
-    .breadcrumbs ol li.current {
-        color: #999;
-    }
-    
-    /* Mengembalikan fungsi text-justify (jaga-jaga) */
-    .text-justify {
-        text-align: justify !important;
     }
 </style>
 @endpush
